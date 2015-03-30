@@ -1,13 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>D3 Page Template</title>
-        <script type="text/javascript" src="d3/d3.v3.js"></script>
-    </head>
-    <body>
-        <script type="text/javascript">
-            // Your beautiful D3 code will go here
-        </script>
-    </body>
+<html>
+<meta charset="utf-8" />
+<head>
+<script src="libraries/d3.v3.min.js"></script>
+<script src="libraries/topojson.v1.min.js"></script>
+<script src="libraries/queue.v1.min.js"></script>
+<style>
+
+</style>
+</head>
+<body>
+
+<div id="main">
+	<div id="mapContainer"></div>
+	<div id="lineChartContainer"></div>
+</div>
+
+</body>
+<script>
+
+var drawMap = function(data) {
+
+	/* ALL MAP-RELATED CODE AND FUNCTIONS WILL GO IN HERE*/
+
+	/* DEFINE CONSTANTS */
+	var mapContainerSize = {'height':,'width'};
+	var mapSize = {'height':,'width'};
+
+	/* CREATE THE MAP SVG CONTAINERS */
+	var mapContainer = d3.select("#mapContainer").append("svg")
+		.attr("width", mapContainerSize.width)
+        .attr("height", mapContainerSize.height);
+
+	var map = chart1svg.append("g")
+        .attr("width", mapSize.width)
+        .attr("height", mapSize.height);
+};
+
+var drawLineChart = function(data) {
+
+	/* ALL LINE CHART-RELATED CODE AND FUNCTIONS WILL GO IN HERE*/
+
+};
+
+/* THESE FUNCTIONS GET CALLED BY THE QUEUE AND RETURN THE CORRECTLY STRUCTURED DATA ON LOAD. THEY WILL EVENTUALLY BE REPLACED BY SERVER-SIDE DATA API'S */
+function processData1(d) {}
+function processData2(d) {}
+
+/* THE QUEUE SPECIFIES WHICH DATASETS TO LOAD. IT WILL EVENTUALLY BE REPLACED BY CALLS TO A DATA API (EXCEPT IN THE CASE OF STATIC MAP FILES) */
+queue()
+	.defer(d3.json, "path_to_file1.json", processData1)
+	.defer(d3.csv, "path_to_file2.csv", processData2)
+	.await(ready);
+
+/* WHEN ALL THE DATASETS IN THE QUEUE ARE LOADED UP THE ready FUNCTION IS TRIGGERED */
+function ready(error, data1, data2) {
+
+	/* PASS THE PROCESSED DATA TO THE CHARTING FUNCTIONS */
+	drawMap(data1);
+	drawLineChart(data2);
+
+}
+
+</script>
 </html>

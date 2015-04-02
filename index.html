@@ -19,22 +19,38 @@
 </body>
 <script>
 
-var drawMap = function(data) {
 
-	/* ALL MAP-RELATED CODE AND FUNCTIONS WILL GO IN HERE*/
+var drawMap = function(states_map) {
 
 	/* DEFINE CONSTANTS */
-	var mapContainerSize = {'height':,'width'};
-	var mapSize = {'height':,'width'};
+	var mapContainerSize = {'height':800,'width':800};
+	var mapSize = {'height':800,'width':800};
 
 	/* CREATE THE MAP SVG CONTAINERS */
 	var mapContainer = d3.select("#mapContainer").append("svg")
 		.attr("width", mapContainerSize.width)
         .attr("height", mapContainerSize.height);
 
-	var map = chart1svg.append("g")
+	var map = mapContainer.append("g")
         .attr("width", mapSize.width)
         .attr("height", mapSize.height);
+
+	/* ALL MAP-RELATED CODE AND FUNCTIONS WILL GO IN HERE*/
+	var projection = d3.geo.mercator()
+		.center([0, 0])
+		.scale(1500)
+		.translate([mapSize.width / 2, mapSize.height / 2]);
+
+	var path = d3.geo.path().projection(projection);
+
+	states = map.selectAll('.states')
+  	.data(topojson.feature(states_map, states_map.objects.NGA_adm1).features)
+  	.enter().append("path")
+  	.attr('d', path)
+  	.style("fill", function(d, i) {
+        	return 'rgb(200,200,200)';
+    })
+  	.attr('class','states');
 };
 
 var drawLineChart = function(data) {
@@ -49,16 +65,13 @@ function processData2(d) {}
 
 /* THE QUEUE SPECIFIES WHICH DATASETS TO LOAD. IT WILL EVENTUALLY BE REPLACED BY CALLS TO A DATA API (EXCEPT IN THE CASE OF STATIC MAP FILES) */
 queue()
-	.defer(d3.json, "path_to_file1.json", processData1)
-	.defer(d3.csv, "path_to_file2.csv", processData2)
+	.defer(d3.json, "maps/nga-states-topo-05.json")
 	.await(ready);
 
 /* WHEN ALL THE DATASETS IN THE QUEUE ARE LOADED UP THE ready FUNCTION IS TRIGGERED */
-function ready(error, data1, data2) {
-
+function ready(error, states_map) {
 	/* PASS THE PROCESSED DATA TO THE CHARTING FUNCTIONS */
-	drawMap(data1);
-	drawLineChart(data2);
+	drawMap(states_map);
 
 }
 

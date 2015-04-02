@@ -24,11 +24,12 @@ var mapContainerSize = {'height':800,'width':800};
 var mapSize = {'height':800,'width':800};
 
 /*Creating the canvas*/
-var mapContainer = d3.selectAll('#mapContainer').append('svg')
+var mapContainer = d3.select('#mapContainer').append('svg')
 					.attr({
 						width: mapContainerSize.width,
 						height: mapContainerSize.height
 					});
+
 var map = mapContainer.append('g')
 					.attr({
 						width: mapSize.width,
@@ -40,7 +41,6 @@ var projection = d3.geo.mercator()
 					.center([0,0])
 					.scale(1500)
 					.translate([mapSize.width/2, mapSize.height/2]);
-
 
 var path = d3.geo.path()
 			.projection(projection);
@@ -56,9 +56,8 @@ d3.json("/maps/nigeria.json", function(error, nigeria){
 			'class': 'states'
 		})
 		.style('fill', function(d, i){
-			return "rgb(200, 200, 200)"
+			return "rgb(200, " + i * 20 + ", 200)"
 		})
-
 })
 
 

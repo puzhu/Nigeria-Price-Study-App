@@ -80,7 +80,9 @@ d3.json("/maps/nigeria.json", function(error, nigeria){
 		})
 		.style('fill', function(d, i){
 			return "rgb(200, " + i * 20 + ", 200)"
-		})
+		});
+		console.log(topojson.feature(nigeria, nigeria.objects.test).features)
+		console.log(topojson.feature(nigeria, nigeria.objects.test.properties))
 })
 
 

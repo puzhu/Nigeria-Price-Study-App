@@ -1,0 +1,1 @@
+topojson --simplify-proportion .05 -p state_name=NAME_1  -o nga-states-topo-05.json -- NGA_adm1.shp

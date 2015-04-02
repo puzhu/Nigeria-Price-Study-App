@@ -22,13 +22,17 @@ var svg = d3.select("body").append("svg")
     .attr("height", height);
 
 //Loading the json map
-d3.json("/maps/nigeria.json", function(error, nigeria) {
+d3.json("maps/nigeria.json", function(error, nigeria) {
   if (error) return console.error(error);
-  svg.selectAll('path')
-  	.data(topojson.feature(nigeria, nigeria.objects.test).geometries)
-  	.enter()
-  	.append('path')
-  	.attr('d', path);
+  console.log(nigeria.objects.test.geometries)
+  svg.selectAll('.states')
+  	.data(topojson.feature(nigeria, nigeria.objects.test).features)
+  	.enter().append("path")
+  	.attr('d', path)
+  	.style("fill", function(d, i) { 
+        	return 'rgb(200,200,200)';
+        });
+
 });
 
 </script>

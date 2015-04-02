@@ -19,13 +19,8 @@
 </body>
 <script>
 
-<<<<<<< HEAD
 
-var drawMap = function(states_map) {
-=======
->>>>>>> e46321f67cfb668a1258f48f877661371c1b3798
-
-var drawMap = function(states_map) {
+var drawMap = function(states_map, data_to_map) {
 
 	/* DEFINE CONSTANTS */
 	var mapContainerSize = {'height':800,'width':800};
@@ -40,16 +35,47 @@ var drawMap = function(states_map) {
         .attr("width", mapSize.width)
         .attr("height", mapSize.height);
 
-<<<<<<< HEAD
-	var projection = d3.geo.mercator()
-		.center([0, 0])
-		.scale(500)
-=======
-	/* ALL MAP-RELATED CODE AND FUNCTIONS WILL GO IN HERE*/
+    /* CREATE THE DATA LOOKUP FOR THE MAP */
+    var data_lookup = {};
+    data_to_map.forEach(function(d) {
+    	data_lookup[d.name] = d.value;
+    });
+
+	/* DEFINE COLOR SCALES AND BINS */ 
+    var color = d3.scale.threshold().domain([]).range([]);
+    var colorArray = ['rgb(189,0,38)','rgb(240,59,32)','rgb(253,141,60)','rgb(254,178,76)','rgb(254,217,118)']; // change these as we like for different color schemes
+    var max = 100; // we'll want to get this from the data
+    var bounds = [];
+	for (var i=1;i<=5;i++) {
+		bounds.push((max*1.05)*(i/5));
+	}
+	var y = d3.scale.linear().domain([]).range([118, 0]); // 118 is the height in pixels of the legend
+    y.domain([0, max*1.05]);
+    var xAxis = d3.svg.axis().scale(y).orient("right").tickSize(10);
+    xAxis.tickValues([0].concat(bounds));
+    color.domain(bounds).range(colorArray); 
+
+    var key = mapContainer.append("g")
+        .attr("class", "key")
+        .attr("transform", "translate(263,278)"); // will need to change the translation coordinates
+
+    key.selectAll("rect")
+        .data(color.range().map(function(d, i) {
+          return {
+            x0: i ? y(color.domain()[i - 1]) : y.range()[0],
+            x1: i < color.domain().length ? y(color.domain()[i]) : y.range()[1],
+            z: d
+          };
+        }))
+        .enter().append("rect")
+        .attr("height", function(d,i) { return d.x0 - d.x1})
+        .attr("y", function(d, i) { return d.x1; })
+        .attr("width", 6)
+        .style("fill", function(d) { return d.z; });
+
 	var projection = d3.geo.mercator()
 		.center([0, 0])
 		.scale(1500)
->>>>>>> e46321f67cfb668a1258f48f877661371c1b3798
 		.translate([mapSize.width / 2, mapSize.height / 2]);
 
 	var path = d3.geo.path().projection(projection);
@@ -58,12 +84,14 @@ var drawMap = function(states_map) {
   	.data(topojson.feature(states_map, states_map.objects.NGA_adm1).features)
   	.enter().append("path")
   	.attr('d', path)
-<<<<<<< HEAD
-  	.style("fill", function(d, i) { 
-=======
   	.style("fill", function(d, i) {
->>>>>>> e46321f67cfb668a1258f48f877661371c1b3798
-        	return 'rgb(200,200,200)';
+  		console.log(d.properties.NAME_1); // this is the name property for the map features
+  		if (data_to_map.filter(function(e) { return e.name===d.properties.NAME_1})[0]===undefined) {
+  			return 'rgb(200,200,200'; // return gray fill for states without data
+  		}
+  		else {
+  			return color(data_to_map.filter(function(e) { return e.name===d.properties.NAME_1})[0]['value']); // otherwise pass the data value of the given state to the color function
+  		}
     })
   	.attr('class','states');
 };
@@ -81,12 +109,13 @@ function processData2(d) {}
 /* THE QUEUE SPECIFIES WHICH DATASETS TO LOAD. IT WILL EVENTUALLY BE REPLACED BY CALLS TO A DATA API (EXCEPT IN THE CASE OF STATIC MAP FILES) */
 queue()
 	.defer(d3.json, "maps/nga-states-topo-05.json")
+	.defer(d3.csv, "maps/data_to_map.csv")
 	.await(ready);
 
 /* WHEN ALL THE DATASETS IN THE QUEUE ARE LOADED UP THE ready FUNCTION IS TRIGGERED */
-function ready(error, states_map) {
+function ready(error, states_map, data_to_map) {
 	/* PASS THE PROCESSED DATA TO THE CHARTING FUNCTIONS */
-	drawMap(states_map);
+	drawMap(states_map, data_to_map);
 
 }
 

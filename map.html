@@ -1,18 +1,25 @@
 <!DOCTYPE html>
+<html>
+
 <meta charset="utf-8">
+
 <head>
 <title>Nigeria Map</title>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
 <style>
-
-/* CSS goes here. */
-
 </style>
 </head>
 
 <body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
+<div id="main">
+	<div id="mapContainer"></div>
+	<div id="lineChartContainer"></div>
+</div>
+</body>
+
 <script>
+<<<<<<< HEAD
 //Initializing the SVG
 var width = 960,
     height = 1160;
@@ -34,5 +41,52 @@ d3.json("maps/nigeria.json", function(error, nigeria) {
         });
 
 });
+=======
+/*Declaring Constants*/
+var mapContainerSize = {'height':800,'width':800};
+var mapSize = {'height':800,'width':800};
+
+/*Creating the canvas*/
+var mapContainer = d3.select('#mapContainer').append('svg')
+					.attr({
+						width: mapContainerSize.width,
+						height: mapContainerSize.height
+					});
+
+var map = mapContainer.append('g')
+					.attr({
+						width: mapSize.width,
+						height: mapSize.height
+					});
+
+/*Defining mapping variables*/
+var projection = d3.geo.mercator()
+					.center([0,0])
+					.scale(1500)
+					.translate([mapSize.width/2, mapSize.height/2]);
+
+var path = d3.geo.path()
+			.projection(projection);
+
+/*Inputing Data and drawing the map on the canvas using the defined path variable*/
+d3.json("/maps/nigeria.json", function(error, nigeria){
+	map.selectAll('.states')
+		.data(topojson.feature(nigeria, nigeria.objects.test).features)
+		.enter()
+		.append('path')
+		.attr({
+			d: path,
+			'class': 'states'
+		})
+		.style('fill', function(d, i){
+			return "rgb(200, " + i * 20 + ", 200)"
+		})
+})
+
+
+
+
+>>>>>>> e46321f67cfb668a1258f48f877661371c1b3798
 
 </script>
+</html>

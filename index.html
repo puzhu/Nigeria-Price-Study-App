@@ -19,10 +19,13 @@
 </body>
 <script>
 
+<<<<<<< HEAD
 
 var drawMap = function(states_map) {
+=======
+>>>>>>> e46321f67cfb668a1258f48f877661371c1b3798
 
-	/* ALL MAP-RELATED CODE AND FUNCTIONS WILL GO IN HERE*/
+var drawMap = function(states_map) {
 
 	/* DEFINE CONSTANTS */
 	var mapContainerSize = {'height':800,'width':800};
@@ -37,9 +40,16 @@ var drawMap = function(states_map) {
         .attr("width", mapSize.width)
         .attr("height", mapSize.height);
 
+<<<<<<< HEAD
 	var projection = d3.geo.mercator()
 		.center([0, 0])
 		.scale(500)
+=======
+	/* ALL MAP-RELATED CODE AND FUNCTIONS WILL GO IN HERE*/
+	var projection = d3.geo.mercator()
+		.center([0, 0])
+		.scale(1500)
+>>>>>>> e46321f67cfb668a1258f48f877661371c1b3798
 		.translate([mapSize.width / 2, mapSize.height / 2]);
 
 	var path = d3.geo.path().projection(projection);
@@ -48,7 +58,11 @@ var drawMap = function(states_map) {
   	.data(topojson.feature(states_map, states_map.objects.NGA_adm1).features)
   	.enter().append("path")
   	.attr('d', path)
+<<<<<<< HEAD
   	.style("fill", function(d, i) { 
+=======
+  	.style("fill", function(d, i) {
+>>>>>>> e46321f67cfb668a1258f48f877661371c1b3798
         	return 'rgb(200,200,200)';
     })
   	.attr('class','states');

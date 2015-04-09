@@ -41,7 +41,7 @@ var drawMap = function(states_map, data_to_map) {
     	data_lookup[d.name] = d.value;
     });
 
-	/* DEFINE COLOR SCALES AND BINS */ 
+	/* DEFINE COLOR SCALES AND BINS */
     var color = d3.scale.threshold().domain([]).range([]);
     var colorArray = ['rgb(189,0,38)','rgb(240,59,32)','rgb(253,141,60)','rgb(254,178,76)','rgb(254,217,118)']; // change these as we like for different color schemes
     var max = 100; // we'll want to get this from the data

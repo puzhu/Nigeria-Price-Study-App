@@ -59,10 +59,9 @@ d3.csv("/data/dataSum.csv", function(data){
 		d3.max(data, function(d) { return d.price; })])
 
 	//loading map data
-	d3.json("/maps/nigeria.json", function(error, nigeria){
+	d3.json("/maps/nga-states-topo-05.json", function(error, nigeriaStates){
 		//creating a variable to call features collection
-		var stateFeatures = topojson.feature(nigeria, nigeria.objects.test).features
-
+		var stateFeatures = topojson.feature(nigeriaStates, nigeriaStates.objects.NGA_adm1).features
 		//merging the two datasets
 		for(var i = 0; i < data.length; i++){
 			//pulling the states from csv file
@@ -72,16 +71,16 @@ d3.csv("/data/dataSum.csv", function(data){
 
 			//adding the price value to the map properties
 			for(var j = 0; j < stateFeatures.length; j++){
-				var jsonState = stateFeatures[j].properties.NAME_1;
+				var jsonState = stateFeatures[j].properties.state_name;
 				if(dataState == jsonState){
 					stateFeatures[j].properties.price = dataValue
 					break;
 				}
 			}
 		}
-
+		console.log(stateFeatures[1].properties)
 		map.selectAll('.states')
-			.data(topojson.feature(nigeria, nigeria.objects.test).features)
+			.data(stateFeatures)
 			.enter()
 			.append('path')
 			.attr({

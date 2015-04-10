@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset="utf-8">
+
+<head>
+<title>Line Magic</title>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<style>
+</style>
+</head>
+
+<body>
+<div id="main">
+	<div id="mapContainer"></div>
+	<div id="lineChartContainer"></div>
+</div>
+</body>
+
+<script>
+var lineContainerSize = {'width': 800, 'height': 800}
+var lineChartsize = {'width': 800, 'height': 800}
+
+//Creating the canvas
+var lineContainer = d3. select('#lineChartContainer').append('svg')
+					.attr({
+						width: lineContainerSize.width,
+						height: lineContainerSize.height
+					});
+var lineChart = lineContainer.append('g')
+				.attr({
+					width: lineChartsize.width,
+					height: lineChartsize.height
+				});
+
+var clippingPath = []
+
+//Defining charting variables
+var xScale = d3.scale.linear()
+			.range([0, lineChart.width])
+var yScale = d3.scale.linear()
+			.range([lineChart.height, 0])
+
+var xAxis = d3.svg.axis()
+            .scale(xScale)
+            .orient('bottom')
+            //.ticks(4)
+var yAxis = d3.svg.axis()
+			.scale(yScale)
+			.orient('left')
+
+//loading the dataset
+d3.csv("/data/dataMonth.csv", function(data) {
+
+	console.log(data)
+
+
+})
+
+
+</script>
+</html>

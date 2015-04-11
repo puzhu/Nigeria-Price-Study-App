@@ -21,7 +21,7 @@
 
 <script>
 
-function to_num(d) {
+function deString(d) {
 	if (d==="") { return NaN;
 	} else {
 		return +d;
@@ -45,7 +45,7 @@ function ready(error,nigeriaStates,priceData) {
 
 	console.log(priceData)
 	/*Declaring Constants*/
-	var mapContainerSize = {'height':800,'width':800};
+	var mapContainerSize = {'height':500,'width':600};
 	var mapSize = {'height':500,'width':500};
 
 	/*Creating the canvas*/
@@ -53,7 +53,15 @@ function ready(error,nigeriaStates,priceData) {
 		.attr({
 			width: mapContainerSize.width,
 			height: mapContainerSize.height
-		});
+		})
+	// mapContainer
+	// 	.append('rect').attr({
+	// 		width: mapContainerSize.width,
+	// 		height: mapContainerSize.height
+	// 	}).style({
+	// 		stroke:'black',
+	// 		fill:'none'
+	// 	});
 
 	var map = mapContainer.append('g')
 		.attr({
@@ -61,35 +69,47 @@ function ready(error,nigeriaStates,priceData) {
 			height: mapSize.height
 		});
 
+	// map.append('rect').attr({
+	// 		width: mapSize.width,
+	// 		height: mapSize.height
+	// 	}).style({
+	// 		stroke:'black',
+	// 		fill:'none'
+	// 	});
 	/*Defining mapping variables*/
 	var projection = d3.geo.mercator()
-		.center([10,8])
-		.scale(1500)
+		.center([8.9,9])
+		.scale(1600)
 		.translate([mapSize.width/2, mapSize.height/2]);
 
 	var path = d3.geo.path()
 		.projection(projection);
 	
+	// set the color and axis functions
 	var max = d3.max(priceData, function(d) { return d.price; });
 	var min = d3.min(priceData, function(d) { return d.price; });
-	var bounds = []
-	for (var i=1;i<=5;i++) {
-		bounds.push((max*1.05)*(i/5));
+	
+	function setBins(max,min) {
+		var bounds = [];
+		for (var i=1;i<=5;i++) { // create 5 equally sized bins between min*.95 and max*1.05
+			bounds.push(min*.95+(((max*1.05)-(min*.95))*(i/5)));
+		}
+		return bounds;
 	}
+	var bounds = setBins(max,min);
+
 	var colorArray = ['rgb(189,0,38)','rgb(240,59,32)','rgb(253,141,60)','rgb(254,178,76)','rgb(254,217,118)'];
+	colorArray.reverse();
 	var color = d3.scale.threshold()
 		.domain(bounds)
 		.range(colorArray);
 
-	var y = d3.scale.linear().domain([]).range([200, 0]);
-    y.domain([0, max*1.05]);
-    var xAxis = d3.svg.axis().scale(y).orient("right").tickSize(12);
-    xAxis.tickValues([0].concat(bounds));
-    color.domain(bounds).range(colorArray); 
+	var y = d3.scale.linear().domain([min*.95, max*1.05]).range([220, 0]);
+    var axis = d3.svg.axis().scale(y).orient("right").tickSize(12).tickValues([min*.95].concat(bounds));
 
     var g = mapContainer.append("g")
         .attr("class", "key")
-        .attr("transform", "translate("+(mapSize.width*.85)+","+(mapSize.height*.25)+")");
+        .attr("transform", "translate("+(mapSize.width*.95)+","+(mapSize.height*.28)+")");
 
     g.selectAll("rect")
         .data(color.range().map(function(d, i) {
@@ -105,14 +125,15 @@ function ready(error,nigeriaStates,priceData) {
         .attr("width", 8)
         .style("fill", function(d) { return d.z; });
 
-    g.call(xAxis);
+    g.call(axis);
 
     g.selectAll("path").style("display","none");
     g.selectAll("line").style("stroke", "#000").style("shape-rendering", "crispEdges");
-    g.selectAll('text').style('font-family','Helvetica Neue').style('font-size',"13px").attr('transform','translate(2,3)')
+    g.selectAll('text').style('font-family','Helvetica Neue').style('font-size',"13px").attr('transform','translate(2,1)')
 
+   	// add the price data to the map properties
 	var stateFeatures = topojson.feature(nigeriaStates, nigeriaStates.objects.NGA_adm1).features;
-	//merging the two datasets
+
 	for(var i = 0; i < priceData.length; i++){
 		//pulling the states from csv file
 		var dataState = priceData[i].state;
@@ -120,13 +141,8 @@ function ready(error,nigeriaStates,priceData) {
 		var dataValue = priceData[i].price;
 
 		//adding the price value to the map properties
-		for(var j = 0; j < stateFeatures.length; j++){
-			var jsonState = stateFeatures[j].properties.state_name;
-			if(dataState == jsonState){
-				stateFeatures[j].properties.price = dataValue;
-				break;
-			}
-		}
+		var feature = stateFeatures.filter(function(d) { return d.properties.state_name===dataState});
+		if (feature.length>0) feature[0].properties.price = dataValue;
 	}
 
 	map.selectAll('.states')
@@ -139,7 +155,7 @@ function ready(error,nigeriaStates,priceData) {
 		})
 		.style('fill', function(d, i){
 			var value = d.properties.price;
-			if(isNaN(value) || value==undefined) {
+			if(isNaN(value) || value==undefined) { // 2 negative cases: 1) state exists in csv file but no price value (NaN). 2) state doesnt exist in csv file but exists in map file (undefined).
 				return "#ccc";
 			} else {
 				return color(value);
@@ -147,16 +163,17 @@ function ready(error,nigeriaStates,priceData) {
 		});
 	map.append("path")
 		.datum(topojson.mesh(nigeriaStates, nigeriaStates.objects.NGA_adm1, function(a, b) { return a !== b ; }))
-		.attr("d", path)
-		.attr("class", "state-boundary")
+		.attr({
+			d: path,
+			'class': 'state-boundary'
+		})
 		.style("fill","none")
 		.style("stroke","rgb(240,240,240)")
 		.style("stroke-width",".5px")
 		.style("stroke-linejoin","round")
-		.style("stroke-linecap", "round")
+		.style("stroke-linecap", "round");
 }
 
-// }
 // /* Loading data for the map */
 // d3.csv("data/dataSum.csv", function(data){
 // 	//setting the color domain based on the data

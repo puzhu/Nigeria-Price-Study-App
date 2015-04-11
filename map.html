@@ -5,8 +5,9 @@
 
 <head>
 <title>Nigeria Map</title>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="libraries/d3.v3.min.js"></script>
+<script src="libraries/topojson.v1.min.js"></script>
+<script src="libraries/queue.v1.min.js"></script>
 <style>
 </style>
 </head>
@@ -19,84 +20,190 @@
 </body>
 
 <script>
-/*Declaring Constants*/
-var mapContainerSize = {'height':800,'width':800};
-var mapSize = {'height':800,'width':800};
 
-/*Creating the canvas*/
-var mapContainer = d3.select('#mapContainer').append('svg')
-					.attr({
-						width: mapContainerSize.width,
-						height: mapContainerSize.height
-					});
+function to_num(d) {
+	if (d==="") { return NaN;
+	} else {
+		return +d;
+	}
+}
 
-var map = mapContainer.append('g')
-					.attr({
-						width: mapSize.width,
-						height: mapSize.height
-					});
+function processPrices(d, i) {
+	var state = {
+		state: d.state,
+		price: to_num(d.price)
+	};
+	return state;
+}
 
-/*Defining mapping variables*/
-var projection = d3.geo.mercator()
-					.center([0,0])
-					.scale(1500)
-					.translate([mapSize.width/2, mapSize.height/2]);
+queue()
+	.defer(d3.json, "maps/nga-states-topo-05.json")
+	.defer(d3.csv, "data/dataSum.csv",processPrices)
+	.await(ready);
 
-var path = d3.geo.path()
-			.projection(projection);
+function ready(error,nigeriaStates,priceData) {
 
+	console.log(priceData)
+	/*Declaring Constants*/
+	var mapContainerSize = {'height':800,'width':800};
+	var mapSize = {'height':500,'width':500};
 
-var color = d3.scale.threshold()
-			.range(['rgb(189,0,38)','rgb(240,59,32)','rgb(253,141,60)','rgb(254,178,76)','rgb(254,217,118)']);
+	/*Creating the canvas*/
+	var mapContainer = d3.select('#mapContainer').append('svg')
+		.attr({
+			width: mapContainerSize.width,
+			height: mapContainerSize.height
+		});
 
+	var map = mapContainer.append('g')
+		.attr({
+			width: mapSize.width,
+			height: mapSize.height
+		});
 
+	/*Defining mapping variables*/
+	var projection = d3.geo.mercator()
+		.center([10,8])
+		.scale(1500)
+		.translate([mapSize.width/2, mapSize.height/2]);
 
-/* Loading data for the map */
-d3.csv("/data/dataSum.csv", function(data){
-	//setting the color domain based on the data
-	color.domain([
-		d3.min(data, function(d) { return d.price; }),
-		d3.max(data, function(d) { return d.price; })])
+	var path = d3.geo.path()
+		.projection(projection);
+	
+	var max = d3.max(priceData, function(d) { return d.price; });
+	var min = d3.min(priceData, function(d) { return d.price; });
+	var bounds = []
+	for (var i=1;i<=5;i++) {
+		bounds.push((max*1.05)*(i/5));
+	}
+	var colorArray = ['rgb(189,0,38)','rgb(240,59,32)','rgb(253,141,60)','rgb(254,178,76)','rgb(254,217,118)'];
+	var color = d3.scale.threshold()
+		.domain(bounds)
+		.range(colorArray);
 
-	//loading map data
-	d3.json("/maps/nga-states-topo-05.json", function(error, nigeriaStates){
-		//creating a variable to call features collection
-		var stateFeatures = topojson.feature(nigeriaStates, nigeriaStates.objects.NGA_adm1).features
-		//merging the two datasets
-		for(var i = 0; i < data.length; i++){
-			//pulling the states from csv file
-			var dataState = data[i].state;
-			//pulling corresponding price values and converting to number from string
-			var dataValue = parseFloat(data[i].price)
+	var y = d3.scale.linear().domain([]).range([200, 0]);
+    y.domain([0, max*1.05]);
+    var xAxis = d3.svg.axis().scale(y).orient("right").tickSize(12);
+    xAxis.tickValues([0].concat(bounds));
+    color.domain(bounds).range(colorArray); 
 
-			//adding the price value to the map properties
-			for(var j = 0; j < stateFeatures.length; j++){
-				var jsonState = stateFeatures[j].properties.state_name;
-				if(dataState == jsonState){
-					stateFeatures[j].properties.price = dataValue
-					break;
-				}
+    var g = mapContainer.append("g")
+        .attr("class", "key")
+        .attr("transform", "translate("+(mapSize.width*.85)+","+(mapSize.height*.25)+")");
+
+    g.selectAll("rect")
+        .data(color.range().map(function(d, i) {
+          return {
+            x0: i ? y(color.domain()[i - 1]) : y.range()[0],
+            x1: i < color.domain().length ? y(color.domain()[i]) : y.range()[1],
+            z: d
+          };
+        }))
+        .enter().append("rect")
+        .attr("height", function(d,i) { return d.x0 - d.x1})
+        .attr("y", function(d, i) { return d.x1; })
+        .attr("width", 8)
+        .style("fill", function(d) { return d.z; });
+
+    g.call(xAxis);
+
+    g.selectAll("path").style("display","none");
+    g.selectAll("line").style("stroke", "#000").style("shape-rendering", "crispEdges");
+    g.selectAll('text').style('font-family','Helvetica Neue').style('font-size',"13px").attr('transform','translate(2,3)')
+
+	var stateFeatures = topojson.feature(nigeriaStates, nigeriaStates.objects.NGA_adm1).features;
+	//merging the two datasets
+	for(var i = 0; i < priceData.length; i++){
+		//pulling the states from csv file
+		var dataState = priceData[i].state;
+		//pulling corresponding price values
+		var dataValue = priceData[i].price;
+
+		//adding the price value to the map properties
+		for(var j = 0; j < stateFeatures.length; j++){
+			var jsonState = stateFeatures[j].properties.state_name;
+			if(dataState == jsonState){
+				stateFeatures[j].properties.price = dataValue;
+				break;
 			}
 		}
-		console.log(stateFeatures[1].properties)
-		map.selectAll('.states')
-			.data(stateFeatures)
-			.enter()
-			.append('path')
-			.attr({
-				d: path,
-				'class': 'states'
-			})
-			.style('fill', function(d, i){
-				var value = d.properties.price;
-				if(value) {
-					return color(value);
-				} else {
-					 return "#ccc";
-				}
-			});
-	})
-})
+	}
+
+	map.selectAll('.states')
+		.data(stateFeatures)
+		.enter()
+		.append('path')
+		.attr({
+			d: path,
+			'class': 'states'
+		})
+		.style('fill', function(d, i){
+			var value = d.properties.price;
+			if(isNaN(value) || value==undefined) {
+				return "#ccc";
+			} else {
+				return color(value);
+			}
+		});
+	map.append("path")
+		.datum(topojson.mesh(nigeriaStates, nigeriaStates.objects.NGA_adm1, function(a, b) { return a !== b ; }))
+		.attr("d", path)
+		.attr("class", "state-boundary")
+		.style("fill","none")
+		.style("stroke","rgb(240,240,240)")
+		.style("stroke-width",".5px")
+		.style("stroke-linejoin","round")
+		.style("stroke-linecap", "round")
+}
+
+// }
+// /* Loading data for the map */
+// d3.csv("data/dataSum.csv", function(data){
+// 	//setting the color domain based on the data
+// 	color.domain([
+// 		d3.min(data, function(d) { return d.price; }),
+// 		d3.max(data, function(d) { return d.price; })])
+
+// 	//loading map data
+// 	d3.json("maps/nga-states-topo-05.json", function(error, nigeriaStates){
+// 		//creating a variable to call features collection
+// 		var stateFeatures = topojson.feature(nigeriaStates, nigeriaStates.objects.NGA_adm1).features
+// 		//merging the two datasets
+// 		for(var i = 0; i < data.length; i++){
+// 			//pulling the states from csv file
+// 			var dataState = data[i].state;
+// 			//pulling corresponding price values and converting to number from string
+
+// 			var dataValue = parseFloat(data[i].price)
+
+// 			//adding the price value to the map properties
+// 			for(var j = 0; j < stateFeatures.length; j++){
+// 				var jsonState = stateFeatures[j].properties.state_name;
+// 				if(dataState == jsonState){
+// 					stateFeatures[j].properties.price = dataValue
+// 					break;
+// 				}
+// 			}
+// 		}
+// 		console.log(stateFeatures[1].properties)
+// 		map.selectAll('.states')
+// 			.data(stateFeatures)
+// 			.enter()
+// 			.append('path')
+// 			.attr({
+// 				d: path,
+// 				'class': 'states'
+// 			})
+// 			.style('fill', function(d, i){
+// 				var value = d.properties.price;
+// 				if(value) {
+// 					return color(value);
+// 				} else {
+// 					 return "#ccc";
+// 				}
+// 			});
+// 	})
+// })
 
 /*
 var dataLookup = d3.csv("/data/dataSum.csv")

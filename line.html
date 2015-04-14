@@ -5,8 +5,9 @@
 
 <head>
 <title>Line Magic</title>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="libraries/d3.v3.min.js"></script>
+<script src="libraries/topojson.v1.min.js"></script>
+<script src="libraries/queue.v1.min.js"></script>
 <style>
 </style>
 </head>
@@ -19,44 +20,190 @@
 </body>
 
 <script>
-var lineContainerSize = {'width': 800, 'height': 800}
-var lineChartsize = {'width': 800, 'height': 800}
 
-//Creating the canvas
-var lineContainer = d3. select('#lineChartContainer').append('svg')
+queue()
+	.defer(d3.csv, "data/dataMonth.csv")
+	.await(ready);
+
+function ready(error,monthlyPrice) {
+	var monthFormatChart = d3.time.format("%m/%y");
+	var monthFormat = d3.time.format("%Y-%m");
+	var months = uniq_fast(monthlyPrice.map(function(d){ return monthFormat.parse(d.date.slice(0,7))})).sort(function(a,b) { return a - b;});
+
+	var pricesStatewise = reshapeMonthlyPrice(monthlyPrice);
+
+
+	var lineContainerSize = {'width': 800, 'height': 400};
+	var lineChartSize = {'width': 800, 'height': 400};
+	var margin = {top: 7, right: 5, bottom: 25, left: 35};
+	var w = lineChartSize.width - margin.right - margin.left;
+	var h = lineChartSize.height - margin.top - margin.bottom;
+	
+	//Creating the canvas
+	var lineContainer = d3.select('#lineChartContainer').append('svg')
+						.attr({
+							width: lineContainerSize.width,
+							height: lineContainerSize.height
+						});
+	var lineChart = lineContainer.append('g')
 					.attr({
-						width: lineContainerSize.width,
-						height: lineContainerSize.height
+						width: w,
+						height: h,
+						transform: "translate(" + margin.left + "," + margin.top + ")"
 					});
-var lineChart = lineContainer.append('g')
-				.attr({
-					width: lineChartsize.width,
-					height: lineChartsize.height
-				});
 
-var clippingPath = []
+	lineChart.append("clipPath")
+		.attr('id', 'lineclip')
+		.append('rect')
+		.attr("x", 0)
+		.attr("width", w)
+		.attr("y", 0)
+		.attr("height", h);
 
-//Defining charting variables
-var xScale = d3.scale.linear()
-			.range([0, lineChart.width])
-var yScale = d3.scale.linear()
-			.range([lineChart.height, 0])
+	//Defining charting variables
+	var xScale = d3.time.scale()
+				.domain(d3.extent(months))
+				.range([0, w]);
+	var yScale = d3.scale.linear()
+				.domain([0, d3.max(monthlyPrice.map(function(d) { return deString(d.price); }))*1.05])
+				.range([h, 0]);
 
-var xAxis = d3.svg.axis()
-            .scale(xScale)
-            .orient('bottom')
-            //.ticks(4)
-var yAxis = d3.svg.axis()
-			.scale(yScale)
-			.orient('left')
+	// var yAxis = d3.svg.axis()
+	// 			.scale(yScale)
+	// 			.orient('left')
 
+    var line = d3.svg.line()
+    .defined(function(d) { return (d !== null && !isNaN(d.price)); })
+    .x(function(d) { return xScale(d.month); })
+    .y(function(d) { return yScale(d.price); });
+
+	var xAxis = d3.svg.axis()
+        .scale(xScale)
+        .tickSize(7)
+        .ticks(6)
+        .tickFormat(function(d, i) {
+            return monthFormatChart(d);
+        })
+        .tickPadding(8)
+        .orient('bottom');
+
+    var xAxisNodes = lineChart.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + h + ")")
+          .style("shape-rendering", "crispEdges")
+          .style("font-size", "10px")
+          .call(xAxis);
+
+    d3.selectAll(".x.axis path").style("display","none");
+    xAxisNodes.selectAll("line")
+        .style("stroke", function(d,i) {
+            return "black";
+        });
+
+    xAxisNodes.selectAll("text").style('font-family','Helvetica Neue').style('font-size',"12px");
+
+	var yAxis = d3.svg.axis()
+        .scale(yScale).ticks(5)
+        .orient("left")
+        .tickSize(-w)
+        .tickPadding(6)
+        .tickFormat(function(d) { return d});
+
+    var g = lineChart.append("g")
+        .attr("class", "y axis")
+        .style("font-size", "10px")
+        .call(yAxis)
+        .style("shape-rendering", "crispEdges");
+
+    d3.selectAll(".y.axis path").style("display","none").style("stroke","lightgrey").style("stroke-width","1px");
+    d3.selectAll(".y.axis line").style("stroke","lightgrey").style("stroke-width","1px");
+
+    d3.selectAll(".y.axis text").style('font-family','Helvetica Neue').style('font-size',"12px");
+
+
+	lineChart.append("g")
+	.attr("class", "stateLines")
+	.selectAll("path")
+	.data(pricesStatewise)
+	.enter().append("path")
+	.attr("d", function(d) { d.line = this; return line(d.values); })
+	.attr("clip-path", 'url(#lineclip)')
+	.style("fill","none")
+    .style("stroke-width","1px")
+    .style("stroke",function(d,i) { 
+		return "#4D4D4D"
+    });
+
+<<<<<<< HEAD
 //loading the dataset
 d3.csv("/data/dataMonth.csv", function(data) {
+	var format = d3.time.format("%Y-%m-%d")
+	var data = d3.nest()
+		.key(function(d){ return d.state})
+		.key(function(d){ return format.parse(d.date)})
+		.rollup(function(d){
+			return d3.sum(d, function(g){
+				return g.price
+			})
+		})
+		.entries(data)
+	console.log(data[0])
+	//xScale.domain([d3.min(data, function(d){return format.parse(d.date)}), d3.max(data, function(d){return format.parse(d.date)})])
+	//console.log(d3.min(data, function(d){return format.parse(d.date)}))
+=======
+	function deString(d) {
+		if (d==="") { 
+			return NaN;
+		} else {
+			return +d;
+		}
+	}
+	function reshapeMonthlyPrice(monthlyPrice) {
+		var mainArray = [];
+		for (var i=0;i<monthlyPrice.length;i++) {
+			if (mainArray.filter(function(d) {return d.state===monthlyPrice[i].state}).length===0) { // does the state have its own list item yet?
+				var state = {
+					state:monthlyPrice[i].state,
+					values: [{
+						state:monthlyPrice[i].state,
+						month:monthFormat.parse(monthlyPrice[i].date.slice(0,7)),
+						price:deString(monthlyPrice[i].price)
+					}]
+				};
+				mainArray.push(state);
+			} else {
+				var values = {
+					state:monthlyPrice[i].state,
+					month:monthFormat.parse(monthlyPrice[i].date.slice(0,7)),
+					price:deString(monthlyPrice[i].price)
+				};
+				mainArray.filter(function(d) {return d.state===monthlyPrice[i].state})[0].values.push(values);
 
-	console.log(data)
+			}
+		}
+		for (var i=0;i<mainArray.length;i++) {
+			mainArray[i].values.sort(function(a,b) {return a.month - b.month;}) // for every state sort the values array by month, ascending
+		}
+		return mainArray;
+	}
+	function uniq_fast(a) { // quickly drop duplicate values from an array
+	    var seen = {};
+	    var out = [];
+	    var len = a.length;
+	    var j = 0;
+	    for(var i = 0; i < len; i++) {
+	         var item = a[i];
+	         if(seen[item] !== 1) {
+	               seen[item] = 1;
+	               out[j++] = item;
+	         }
+	    }
+	    return out;
+	}	
+>>>>>>> origin/master
 
+}
 
-})
 
 
 </script>

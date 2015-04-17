@@ -1,0 +1,293 @@
+"item","state","centre","segmentation"
+"Maize White","Abia","Aba ukwu amano",93
+"Rice Local","Abia","Aba",9
+"Drink Swan Water Bottle","Abia","Aba",94
+"Maize Yellow","Abia","Aba",73
+"Maize Yellow","Abia","Aba ukwu amano",79
+"Rice Local","Abia","Aba ukwu amano",3
+"Cement Dangote","Abia","Umuahia",85
+"Sorghum","Abia","Aba ukwu amano",95
+"Rice Imported","Abia","Aba",71
+"Rice Local","Abia","Umuahia",0
+"Sorghum","Adamawa","Numan",91
+"Maize White","Adamawa","Numan",80
+"Rice Local","Adamawa","Numan",74
+"Maize Yellow","Adamawa","Numan",97
+"Drink Swan Water Bottle","Adamawa","Numan",97
+"Rice Imported","Adamawa","Numan",92
+"Rice Local","Akwa Ibom","Abak",76
+"Rice Imported","Akwa Ibom","Abak",78
+"Drink Swan Water Bottle","Akwa Ibom","Uyo",69
+"Sorghum","Akwa Ibom","Idua Assang",75
+"Cement Dangote","Akwa Ibom","Idua Assang",73
+"Maize Yellow","Akwa Ibom","Uyo",92
+"Maize White","Akwa Ibom","Abak",95
+"Maize White","Anambra","Onitsha",74
+"Rice Local","Anambra","Akwa",77
+"Rice Imported","Anambra","Onitsha",55
+"Sorghum","Anambra","Onitsha",93
+"Maize Yellow","Anambra","Awka",42
+"Drink Swan Water Bottle","Anambra","Nnewi",93
+"Cement Dangote","Anambra","Nnewi",78
+"Drink Swan Water Bottle","Bauchi","Azare",3
+"Maize Yellow","Bauchi","Azare",0
+"Rice Local","Bauchi","Central market - Bauchi",91
+"Cement Dangote","Bauchi","Ningi",1
+"Sorghum","Bauchi","Central market - Bauchi",1
+"Rice Imported","Bauchi","Azare",0
+"Rice Local","Bauchi","Bauchi",90
+"Drink Swan Water Bottle","Bauchi","Ningi",0
+"Maize White","Bauchi","Azare",99
+"Maize Yellow","Bauchi","Ningi",0
+"Rice Imported","Bauchi","Bauchi",0
+"Maize White","Bauchi","Ningi",99
+"Cement Dangote","Bauchi","Central market - Bauchi",0
+"Cement Dangote","Bauchi","Azare",0
+"Drink Swan Water Bottle","Bauchi","Central market - Bauchi",10
+"Rice Imported","Bauchi","Central market - Bauchi",0
+"Rice Local","Bauchi","Azare",89
+"Maize White","Bauchi","Central market - Bauchi",99
+"Maize Yellow","Bauchi","Central market - Bauchi",0
+"Sorghum","Bauchi","Azare",0
+"Cement Dangote","Benue","Gboko",71
+"Rice Imported","Benue","Katsina-Ala",100
+"Maize Yellow","Benue","Markudi",97
+"Sorghum","Benue","Katsina-Ala",95
+"Rice Local","Benue","Gboko",93
+"Maize White","Benue","Markudi",99
+"Drink Swan Water Bottle","Benue","Otukpo",98
+"Cement Dangote","Borno","Bama",71
+"Maize White","Borno","Gamboru",0
+"Rice Local","Borno","Gamboru",1
+"Maize White","Borno","Maiduguri",0
+"Sorghum","Borno","Maiduguri",73
+"Cement Dangote","Borno","Maiduguri",72
+"Maize Yellow","Borno","Maiduguri",86
+"Rice Imported","Borno","Maiduguri",99
+"Sorghum","Borno","Gamboru",71
+"Rice Local","Borno","Maiduguri",1
+"Maize Yellow","Borno","Gamboru",84
+"Rice Imported","Borno","Bama",83
+"Drink Swan Water Bottle","Borno","Maiduguri",43
+"Drink Swan Water Bottle","Borno","Bama",46
+"Maize Yellow","Cross River","Calabar",50
+"Rice Imported","Cross River","Obudu",91
+"Maize White","Cross River","Ogoja",88
+"Sorghum","Cross River","Obudu",88
+"Drink Swan Water Bottle","Cross River","Calabar",58
+"Rice Local","Cross River","Ogoja",78
+"Cement Dangote","Delta","Asaba",86
+"Sorghum","Delta","Warri",93
+"Maize White","Delta","Warri",78
+"Rice Local","Delta","Sapele",82
+"Drink Swan Water Bottle","Delta","Asaba",82
+"Maize Yellow","Delta","Sapele",70
+"Rice Imported","Delta","Warri",83
+"Sorghum","Ebonyi","Abakaliki",86
+"Cement Dangote","Ebonyi","Eke Market",93
+"Maize White","Ebonyi","Abakaliki",86
+"Drink Swan Water Bottle","Ebonyi","Afikpo",87
+"Maize White","Edo","Ekpoma",82
+"Rice Imported","Edo","Benin",77
+"Sorghum","Edo","Uromi",64
+"Maize Yellow","Edo","Ekpoma",89
+"Rice Local","Edo","Benin",86
+"Sorghum","Ekiti","Ikole-Ekiti",49
+"Cement Dangote","Ekiti","Ilaro",22
+"Cement Dangote","Ekiti","Ikole-Ekiti",82
+"Maize Yellow","Ekiti","Emure",38
+"Rice Local","Ekiti","Ado-Ekiti",19
+"Drink Swan Water Bottle","Ekiti","Ilaro",75
+"Maize Yellow","Ekiti","Ilaro",37
+"Maize White","Ekiti","Emure",65
+"Maize Yellow","Enugu","Enugu",1
+"Maize White","Enugu","Orba",0
+"Cement Dangote","Enugu","Nsukka",0
+"Rice Imported","Enugu","Nsukka",0
+"Drink Swan Water Bottle","Enugu","Obollo",1
+"Rice Local","Enugu","Orba",1
+"Sorghum","Enugu","Nsukka",0
+"Drink Swan Water Bottle","FCT","Gwagwalada-Abuja",21
+"Rice Local","FCT","Wuse",1
+"Sorghum","FCT","Karmo-Abuja",62
+"Maize Yellow","FCT","Karmo-Abuja",0
+"Cement Dangote","FCT","Karmo-Abuja",1
+"Sorghum","FCT","Garki",60
+"Rice Imported","FCT","Wuse-Abuja",0
+"Maize White","FCT","Wuse-Abuja",0
+"Cement Dangote","FCT","Kubwa",1
+"Rice Local","FCT","Karmo-Abuja",1
+"Rice Imported","FCT","Garki",0
+"Maize Yellow","FCT","Wuse",0
+"Maize White","FCT","Garki",0
+"Drink Swan Water Bottle","FCT","Garki",26
+"Rice Imported","Gombe","Kaltungo",99
+"Cement Dangote","Gombe","Kumo",91
+"Maize Yellow","Gombe","Kaltungo",98
+"Maize White","Gombe","Kumo",98
+"Sorghum","Gombe","Kumo",94
+"Rice Local","Gombe","Kumo",81
+"Drink Swan Water Bottle","Gombe","Gombe",95
+"Rice Local","Imo","Umuoronjo",63
+"Sorghum","Imo","Eke Owerri",97
+"Maize White","Imo","Okigwe Urban",0
+"Cement Dangote","Imo","Umuoronjo",73
+"Maize Yellow","Imo","Okigwe Urban",0
+"Drink Swan Water Bottle","Imo","Okigwe Urban",1
+"Cement Dangote","Imo","Okigwe Urban",0
+"Sorghum","Imo","Okigwe Urban",0
+"Maize White","Imo","Eke Owerri",99
+"Rice Local","Imo","Okigwe Urban",1
+"Drink Swan Water Bottle","Imo","Relief Market",87
+"Rice Imported","Imo","Okigwe Urban",0
+"Maize Yellow","Imo","New Market",96
+"Sorghum","Jigawa","Kazaure",91
+"Maize White","Jigawa","Kazaure",88
+"Cement Dangote","Jigawa","Dutse",12
+"Maize Yellow","Jigawa","Birnin Kudu",0
+"Maize Yellow","Jigawa","Kazaure",0
+"Cement Dangote","Jigawa","Kazaure",12
+"Rice Imported","Jigawa","Kazaure",99
+"Rice Imported","Jigawa","Dutse",94
+"Rice Local","Jigawa","Dutse",89
+"Drink Swan Water Bottle","Jigawa","Kazaure",80
+"Drink Swan Water Bottle","Jigawa","Birnin Kudu",80
+"Maize White","Jigawa","Dutse",88
+"Rice Local","Jigawa","Kazaure",89
+"Sorghum","Jigawa","Birnin Kudu",91
+"Cement Dangote","Kaduna","Kaduna",77
+"Maize White","Kaduna","Samaru",95
+"Maize Yellow","Kaduna","Zaria",100
+"Sorghum","Kaduna","Kaduna",97
+"Drink Swan Water Bottle","Kaduna","Samaru",96
+"Rice Local","Kaduna","Zaria",91
+"Rice Imported","Kaduna","Samaru",87
+"Maize White","Kano","City",99
+"Sorghum","Kano","Kano Municipal",88
+"Rice Local","Kano","Rano",97
+"Drink Swan Water Bottle","Kano","Rimi",99
+"Maize Yellow","Kano","City",84
+"Cement Dangote","Kano","City",91
+"Rice Imported","Kano","Kano Municipal",91
+"Rice Imported","Katsina","Baure",87
+"Rice Local","Katsina","Funtua",65
+"Drink Swan Water Bottle","Katsina","Daura",83
+"Maize White","Katsina","Mai adua",93
+"Cement Dangote","Katsina","Baure",87
+"Maize Yellow","Katsina","Katsina",68
+"Sorghum","Katsina","Katsina",75
+"Maize Yellow","Kebbi","Birnin Kebbi",97
+"Cement Dangote","Kebbi","Birnin Kebbi",90
+"Drink Swan Water Bottle","Kebbi","Argungu",91
+"Rice Imported","Kebbi","Birnin Kebbi",93
+"Maize White","Kebbi","Argungu",97
+"Rice Local","Kebbi","Birnin Kebbi",97
+"Sorghum","Kebbi","Yauri",99
+"Cement Dangote","Kogi","Mopa",75
+"Rice Local","Kogi","Okene",91
+"Maize White","Kogi","Okene",84
+"Maize Yellow","Kogi","Ankpa",88
+"Sorghum","Kogi","Ankpa",93
+"Rice Imported","Kwara","Ilorin",82
+"Rice Local","Kwara","Offa",82
+"Maize Yellow","Kwara","Offa",97
+"Sorghum","Kwara","Offa",41
+"Maize White","Kwara","Pategi",91
+"Drink Swan Water Bottle","Kwara","Ilorin",98
+"Sorghum","Kwara","Ilorin",41
+"Cement Dangote","Kwara","Jebba",28
+"Drink Swan Water Bottle","Lagos","Iworo- Ikorodu",85
+"Rice Local","Lagos","Agege",78
+"Maize White","Lagos","Agege",88
+"Sorghum","Lagos","Iworo- Ikorodu",74
+"Maize Yellow","Lagos","Iworo- Ikorodu",96
+"Cement Dangote","Lagos","Ayetoro - Epe",35
+"Rice Local","Nasarawa","Akwanga",96
+"Maize White","Nasarawa","Lafia",84
+"Drink Swan Water Bottle","Nasarawa","Lafia",70
+"Rice Imported","Nasarawa","Akwanga",99
+"Cement Dangote","Nasarawa","Lafia",97
+"Sorghum","Nasarawa","Akwanga",80
+"Maize Yellow","Nasarawa","Lafia",88
+"Sorghum","Niger","Kontagora",82
+"Cement Dangote","Niger","Suleja",91
+"Rice Imported","Niger","Minna",74
+"Drink Swan Water Bottle","Niger","Minna",95
+"Rice Local","Niger","Bida",88
+"Maize Yellow","Niger","Bida",93
+"Maize White","Niger","Suleja",75
+"Sorghum","Ogun","Abeokuta",36
+"Rice Imported","Ogun","Abeokuta",92
+"Rice Local","Ogun","Abeokuta",72
+"Maize White","Ogun","Ijebu-Ode",29
+"Maize Yellow","Ondo","Ondo",51
+"Rice Imported","Ondo","Okitipupa",36
+"Drink Swan Water Bottle","Ondo","Akure",56
+"Cement Dangote","Ondo","Okitipupa",50
+"Maize White","Ondo","Ondo",52
+"Sorghum","Ondo","Ondo",32
+"Rice Local","Ondo","Ondo",16
+"Maize White","Osun","Oshogbo",66
+"Rice Imported","Osun","Ile-Ife",77
+"Rice Local","Osun","Ilesha",28
+"Drink Swan Water Bottle","Osun","Ile-Ife",81
+"Sorghum","Osun","Oshogbo",82
+"Maize Yellow","Osun","Ilesha",50
+"Cement Dangote","Osun","Ilesha",47
+"Maize Yellow","Oyo","Oyo",39
+"Maize White","Oyo","Oyo",61
+"Cement Dangote","Oyo","Ibadan",51
+"Rice Imported","Oyo","Oyo",13
+"Sorghum","Oyo","Oyo",44
+"Drink Swan Water Bottle","Oyo","Ibadan",79
+"Rice Local","Oyo","Oyo",28
+"Maize White","Plateau","Jos",100
+"Rice Imported","Plateau","Mangu",92
+"Sorghum","Plateau","Jos",94
+"Maize Yellow","Plateau","Mangu",68
+"Cement Dangote","Plateau","Mangu",84
+"Drink Swan Water Bottle","Plateau","Jos",97
+"Rice Local","Plateau","Jos",87
+"Cement Dangote","Rivers","Degema",46
+"Maize White","Rivers","Bori",63
+"Sorghum","Rivers","Bonny",78
+"Rice Imported","Rivers","Bonny",80
+"Maize Yellow","Rivers","Bori",85
+"Drink Swan Water Bottle","Rivers","Bonny",93
+"Maize Yellow","Sokoto","Wumo",0
+"Rice Imported","Sokoto","Wumo",0
+"Drink Swan Water Bottle","Sokoto","Sokoto",0
+"Maize White","Sokoto","Central Market",2
+"Maize White","Sokoto","Sokoto",0
+"Cement Dangote","Sokoto","Central Market",1
+"Cement Dangote","Sokoto","Sokoto",0
+"Rice Local","Sokoto","Wumo",0
+"Maize White","Sokoto","Wumo",0
+"Rice Imported","Sokoto","Sokoto",1
+"Rice Local","Sokoto","Sokoto",2
+"Drink Swan Water Bottle","Sokoto","Central Market",4
+"Rice Imported","Sokoto","Central Market",1
+"Maize Yellow","Sokoto","Sokoto",0
+"Sorghum","Sokoto","Central Market",1
+"Rice Local","Sokoto","Central Market",1
+"Maize Yellow","Sokoto","Central Market",2
+"Sorghum","Sokoto","Sokoto",0
+"Sorghum","Taraba","Mutum Biyu",88
+"Rice Imported","Taraba","Mutum Biyu",97
+"Drink Swan Water Bottle","Taraba","Karim-Lamido",95
+"Rice Local","Taraba","Karim-Lamido",92
+"Maize White","Taraba","Karim-Lamido",90
+"Cement Dangote","Taraba","Karim-Lamido",92
+"Maize Yellow","Taraba","Jalingo",94
+"Rice Imported","Yobe","Gashua",86
+"Maize Yellow","Yobe","Damaturu",98
+"Rice Local","Yobe","Nguru",77
+"Drink Swan Water Bottle","Yobe","Gashua",99
+"Maize White","Yobe","Gashua",98
+"Rice Local","Zamfara","Gusau",82
+"Maize White","Zamfara","Gusau",87
+"Sorghum","Zamfara","Gusau",99
+"Rice Imported","Zamfara","Kaura Namoda",97
+"Cement Dangote","Zamfara","Kaura Namoda",98
+"Maize Yellow","Zamfara","Kaura Namoda",65
+"Drink Swan Water Bottle","Zamfara","Gusau",93

@@ -1,0 +1,150 @@
+"item","state","urbanRural","passThrough"
+"Rice Imported","Abia","Rural",-0.368982225656509
+"Rice Local","Abia","Rural",-0.474304884672165
+"Sorghum","Abia","Urban",-0.234883800148964
+"Maize Yellow","Abia","Urban",0.184717163443565
+"Rice Imported","Abia","Urban",-0.575072765350342
+"Sorghum","Adamawa","Urban",-0.300526648759842
+"Rice Imported","Adamawa","Urban",0.53761214017868
+"Maize Yellow","Adamawa","Rural",-0.188264980912209
+"Rice Local","Adamawa","Urban",0.560229063034058
+"Maize White","Akwa Ibom","Rural",-0.891207337379456
+"Rice Local","Akwa Ibom","Rural",0.40097650885582
+"Rice Imported","Akwa Ibom","Rural",0.32899072766304
+"Maize White","Anambra","Urban",-0.224372625350952
+"Sorghum","Anambra","Rural",-0.372022330760956
+"Sorghum","Anambra","Urban",-0.321777105331421
+"Maize White","Bauchi","Urban",-0.257220566272736
+"Rice Local","Bauchi","Urban",-0.385461926460266
+"Maize Yellow","Bauchi","Urban",-0.185063973069191
+"Rice Local","Benue","Urban",0.150525063276291
+"Sorghum","Benue","Urban",-0.215435191988945
+"Maize White","Benue","Rural",-0.352851301431656
+"Rice Local","Benue","Rural",0.422364145517349
+"Sorghum","Benue","Rural",-0.452137380838394
+"Maize White","Borno","Urban",-0.203464418649673
+"Sorghum","Borno","Urban",-0.191454976797104
+"Rice Local","Borno","Rural",0.483927249908447
+"Maize Yellow","Borno","Urban",-0.354593336582184
+"Rice Imported","Borno","Urban",0.373040378093719
+"Rice Imported","Borno","Rural",0.753970205783844
+"Maize White","Cross River","Urban",0.471981555223465
+"Rice Imported","Delta","Urban",-0.686199843883514
+"Rice Local","Delta","Rural",4.42222595214844
+"Sorghum","Delta","Urban",0.131725281476974
+"Rice Imported","Delta","Rural",0.479349583387375
+"Maize White","Delta","Rural",0.406179875135422
+"Maize Yellow","Delta","Rural",0.248575955629349
+"Sorghum","Delta","Rural",0.225506275892258
+"Rice Local","Delta","Urban",0.615396797657013
+"Rice Local","Ebonyi","Urban",0.349152714014053
+"Sorghum","Ebonyi","Rural",0.440352648496628
+"Rice Local","Ebonyi","Rural",0.281965255737305
+"Rice Local","Edo","Rural",-1.16144621372223
+"Maize Yellow","Edo","Rural",0.187892973423004
+"Rice Imported","Edo","Urban",-0.451374918222427
+"Rice Local","Ekiti","Urban",0.588595271110535
+"Rice Local","Ekiti","Rural",0.379151105880737
+"Rice Imported","Ekiti","Rural",2.98719668388367
+"Maize White","Ekiti","Rural",-0.0962308347225189
+"Rice Imported","Enugu","Rural",0.512963831424713
+"Maize White","Enugu","Rural",-0.314611673355103
+"Rice Local","Enugu","Rural",0.752845466136932
+"Maize Yellow","Enugu","Rural",-0.469410121440887
+"Rice Imported","FCT","Rural",-0.935634315013885
+"Rice Local","FCT","Urban",0.241694211959839
+"Sorghum","FCT","Rural",0.239874511957169
+"Maize White","FCT","Rural",0.291569322347641
+"Maize Yellow","FCT","Rural",0.324764788150787
+"Rice Local","FCT","Rural",0.305877774953842
+"Rice Local","Gombe","Urban",0.556614875793457
+"Sorghum","Gombe","Rural",-0.620721578598022
+"Rice Local","Gombe","Rural",2.79632496833801
+"Sorghum","Gombe","Urban",-0.327200174331665
+"Maize Yellow","Jigawa","Urban",-0.245075330138206
+"Maize Yellow","Jigawa","Rural",-0.454336076974869
+"Maize White","Jigawa","Rural",-0.235372975468636
+"Rice Local","Kaduna","Urban",0.43706864118576
+"Rice Imported","Kaduna","Urban",0.305210590362549
+"Rice Local","Kaduna","Rural",0.361666738986969
+"Rice Imported","Kaduna","Rural",0.11324106156826
+"Maize Yellow","Kaduna","Urban",-0.177000641822815
+"Maize White","Kaduna","Urban",-0.173445671796799
+"Maize Yellow","Kano","Rural",0.254418015480042
+"Maize White","Kano","Rural",0.405279457569122
+"Sorghum","Kano","Urban",-0.200838893651962
+"Rice Local","Kano","Urban",0.219755053520203
+"Rice Local","Katsina","Urban",0.400847166776657
+"Rice Local","Katsina","Rural",0.352412611246109
+"Sorghum","Kebbi","Urban",-0.303697615861893
+"Sorghum","Kebbi","Rural",0.104664891958237
+"Rice Local","Kebbi","Rural",0.856761336326599
+"Rice Local","Kogi","Urban",0.402804493904114
+"Sorghum","Kogi","Urban",-0.174338027834892
+"Rice Imported","Kogi","Urban",0.525838434696198
+"Rice Imported","Kogi","Rural",0.544160723686218
+"Sorghum","Kwara","Rural",0.208755657076836
+"Maize Yellow","Kwara","Rural",-0.137303829193115
+"Sorghum","Kwara","Urban",0.192900583148003
+"Rice Local","Kwara","Urban",0.315999299287796
+"Maize White","Kwara","Rural",0.120196603238583
+"Rice Imported","Lagos","Rural",0.337092816829681
+"Sorghum","Lagos","Urban",0.254166543483734
+"Rice Imported","Lagos","Urban",0.218125000596046
+"Maize White","Nasarawa","Rural",-0.119998343288898
+"Rice Local","Nasarawa","Urban",0.340534687042236
+"Rice Imported","Nasarawa","Rural",0.280829250812531
+"Rice Local","Nasarawa","Rural",0.164338007569313
+"Maize White","Nasarawa","Urban",-0.112789429724216
+"Maize Yellow","Niger","Urban",-0.271683514118195
+"Maize White","Niger","Rural",-0.203825354576111
+"Rice Local","Niger","Rural",0.202425688505173
+"Maize White","Niger","Urban",-0.18405482172966
+"Rice Local","Niger","Urban",0.406172782182693
+"Rice Imported","Niger","Urban",0.244834631681442
+"Maize Yellow","Ogun","Urban",0.127223640680313
+"Maize White","Ogun","Rural",0.106115445494652
+"Sorghum","Ogun","Rural",0.114615060389042
+"Maize White","Ogun","Urban",0.105213940143585
+"Sorghum","Ogun","Urban",0.228372007608414
+"Maize Yellow","Ogun","Rural",0.102821677923203
+"Rice Local","Ogun","Rural",-0.477701306343079
+"Rice Imported","Ogun","Rural",0.365218192338943
+"Maize Yellow","Ondo","Rural",0.108846582472324
+"Rice Imported","Ondo","Urban",0.27968242764473
+"Rice Local","Ondo","Rural",0.430382877588272
+"Sorghum","Ondo","Rural",-0.0978483036160469
+"Rice Local","Osun","Rural",0.334836781024933
+"Sorghum","Osun","Rural",0.167301669716835
+"Maize White","Osun","Rural",0.176040977239609
+"Maize Yellow","Osun","Urban",0.274839818477631
+"Rice Imported","Osun","Rural",0.337289184331894
+"Maize White","Osun","Urban",0.278105556964874
+"Maize Yellow","Osun","Rural",0.222289025783539
+"Maize Yellow","Oyo","Rural",0.0957959070801735
+"Maize White","Oyo","Rural",0.164058908820152
+"Rice Imported","Oyo","Rural",0.513907134532928
+"Rice Local","Oyo","Urban",0.375735491514206
+"Rice Imported","Oyo","Urban",0.4695865213871
+"Rice Local","Plateau","Urban",0.286132246255875
+"Sorghum","Plateau","Urban",-0.118586897850037
+"Rice Imported","Plateau","Rural",0.275138646364212
+"Sorghum","Plateau","Rural",0.129269510507584
+"Rice Local","Plateau","Rural",0.271950870752335
+"Maize White","Plateau","Urban",-0.199655875563622
+"Rice Local","Rivers","Rural",0.379346400499344
+"Rice Imported","Rivers","Urban",0.148267671465874
+"Maize White","Rivers","Rural",-0.250184506177902
+"Rice Local","Rivers","Urban",0.630705595016479
+"Maize White","Sokoto","Rural",-0.300640463829041
+"Maize White","Sokoto","Urban",-0.250861674547195
+"Rice Local","Taraba","Urban",0.413347810506821
+"Sorghum","Taraba","Rural",-0.179404869675636
+"Maize White","Taraba","Urban",0.155002936720848
+"Rice Imported","Yobe","Urban",0.705992341041565
+"Rice Imported","Yobe","Rural",-0.547739744186401
+"Maize Yellow","Yobe","Urban",-0.352941870689392
+"Rice Imported","Zamfara","Urban",0.269175738096237
+"Maize White","Zamfara","Rural",0.110629357397556
+"Rice Imported","Zamfara","Rural",0.220095202326775
+"Rice Local","Zamfara","Urban",0.290569424629211

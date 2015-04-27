@@ -99,12 +99,10 @@ function ready(error,nigeriaStates,priceData) {
 	var bounds = setBins(max,min);
 
 	//var colorArray = ['rgb(189,0,38)','rgb(240,59,32)','rgb(253,141,60)','rgb(254,178,76)','rgb(254,217,118)'];
-<<<<<<< HEAD
+
 	var colorArray = ['rgb(255,51,51)','rgb(200,30,100)','rgb(130,15,150)','rgb(60,5,200)','rgb(0,0,255)'];
 	//['rgb(254,178,76)','rgb(253,141,60)','rgb(252,78,42)','rgb(227,26,28)','rgb(177,0,38)'];
-=======
-	var colorArray = ['rgb(254,178,76)','rgb(253,141,60)','rgb(252,78,42)','rgb(227,26,28)','rgb(177,0,38)'];
->>>>>>> origin/master
+
 	var color = d3.scale.threshold()
 		.domain(bounds)
 		.range(colorArray);

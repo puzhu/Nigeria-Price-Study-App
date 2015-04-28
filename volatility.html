@@ -45,14 +45,14 @@ function ready(error, volatility){
   //LOADING THE DATA AND CREATING CHART DOMAINS
   var data = volatility.filter(function(d) { return d.item === input })
   var allDates = uniq_fast(data.map(function(d){return monthFormat(d.date.slice(0,7))})).sort(function(a,b) { return a - b;});//unique list of dates
-  var states = uniq_fast(data.map(function(d){return d.state})); //for some reason when I sort it does not work properly, so the data is presorted.
+  var zones = uniq_fast(data.map(function(d){return d.zonecode})).sort(function(a,b) { return a - b;}); //for some reason when I sort it does not work properly, so the data is presorted.
 
   var maxY = d3.max(data, function(d){return d.position}) //This sets the height of the charts (all the charts would have the same height)
   var maxBin = d3.max(data, function(d){return d.bin}) //this determines the number of bins in each chart
   var maxVol = d3.max(data, function(d){return d.volMoving}) //this determines the color scale
 
   //CREATING THE CANVAS
-  var containerSize = {'height': 3000, 'width': 800}
+  var containerSize = {'height': 1000, 'width': 1000}
   var margin = {top: 100, right: 10, bottom: 20, left: 40}
   var padding = {top: 60, right: 60, bottom: 60, left: 60}
   var panelSize = {'height': containerSize.height - margin.top - margin.bottom, 'width': containerSize.width - margin.right - margin.bottom}
@@ -67,12 +67,8 @@ function ready(error, volatility){
       .append('g')
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-
-
-
-
   var yPanelScale = d3.scale.ordinal()
-        .domain(states) //setting the domain to the number of states in the data
+        .domain(zones) //setting the domain to the number of states in the data
         .rangeRoundBands([0, height], 0.05) //setting the range to the height of the panel
 
   var xPanelScale = d3.scale.ordinal()
@@ -92,7 +88,7 @@ function ready(error, volatility){
   }
   var yPlotScale = d3.scale.ordinal()
         .domain(yPlotDomain)
-        .rangeBands([0, plotSize.height], 0.2)
+        .rangeBands([0, plotSize.height], 0.1)
 
   var xPlotDomain = [1]
   for (i=1; i<maxBin; i++){
@@ -106,7 +102,7 @@ function ready(error, volatility){
 
 //Drawing the chart
   
-  //Drawing the dots
+    //Drawing the dots
   volPanel.append('g')
         .attr('class', 'dots')
         .selectAll('circle')
@@ -116,15 +112,15 @@ function ready(error, volatility){
         .attr({
           r: dotRadius,
           cx: function(d){return xPanelScale(d.date) + xPlotScale(d.bin)},
-          cy: function(d){return yPanelScale(d.state) - yPlotScale(d.position)}
+          cy: function(d){return yPanelScale(d.zonecode) - yPlotScale(d.position)}
         })
         .style({
           fill: function(d){return colorScales(d.volMoving)}
         });
     //Drawing the grid
-    volPanel.append('g')
+  volPanel.append('g')
         .selectAll(".hlines")
-        .data(states)
+        .data(zones)
         .enter()
         .append('line')
         .attr({
@@ -135,7 +131,7 @@ function ready(error, volatility){
         })
         .style("stroke", "#9e9e9e");
 
-    volPanel.append('g')
+  volPanel.append('g')
         .selectAll(".vlines")
         .data(allDates)
         .enter()
@@ -148,39 +144,19 @@ function ready(error, volatility){
         })
         .style("stroke", "#9e9e9e");
 
-
-
-
-/*
-  var xPadding = 20; //determines the spacing between the chart columns
-  var yPadding = 20; //determines the spacing between the chart rows
-  var dotRadius = 2; //should eventually be based on chart size
-  ; //determiners the spacing between the bins
-  var dotJitter = 0.5 * dotRadius; //determines the vertical spacing between the dots in the vertical column
-  var plotWidth = maxBin*dotRadius + (maxBin+1)*binJitter//additional jitter to give gap for both first and last column
-  var plotHeight = maxY*(dotRadius + dotJitter) // additional jitter only at the top
-  var yFontSize = 12;
-  var xFontSize = 12;
-
-
-
-  var yRange = [yPadding]
-  for(i = 1; i<rows; i++){
-    yRange[i] = yRange[i-1] + yPadding + plotHeight
-  }
-  
-
-  var xRange = [xPadding] //this might need recalibration based on the horizontal size of state labels
-  for (i = 1; i<columns; i++){
-    xRange[i] = xRange[i-1] + xPadding + plotWidth
-  }
-  //console.log(yRange, xRange)
-
-*/
-
-
-  
-
+    //Drawing the labels
+    volPanel.append('g')
+        .attr('class', 'x-labels')
+        .selectAll('text')
+        .data(allDates)
+        .enter()
+        .append('text')
+        .text(function(d){return monthYear(d)})
+        .attr({
+          x: function(d){return xPanelScale(d) + plotSize.width/2},
+          y: 0
+        })
+        .style('font-size', 12)
 
 
 }

@@ -37,7 +37,7 @@ var monthFormat = d3.time.format("%Y-%m").parse; //Parse dates and converts to a
 
 //queing the data file
 queue()
-  .defer(d3.json, "data/volatility.json")
+  .defer(d3.json, "data/volatility1.json")
   .defer(d3.json, "data/zones.json")
   .await(ready);
 //creating the function ready
@@ -52,6 +52,7 @@ function ready(error, volatility, zones){
   var xChartDomain = uniq_fast(zoneData.map(function(d){return monthFormat(d.date.slice(0,7))})).sort(function(a,b) { return a - b;});//the width of chart is based on the number of dates.
   var xPanelDomain = d3.extent(data, function(d){return d.volMoving}); // the width of each panel is set to the range of volatility for the selected input
   var yPanelDomain = uniq_fast(zoneData.map(function(d){return d.countStates})).sort(function(a,b) { return a - b;});//the height of each panel is set to the range of the states count within zones
+  var colorDomain = d3.extent(data, function(d){return d.volMoving})
 
   //Creating the canvas
   var containerSize = {'height': 1000, 'width': 1000}
@@ -89,7 +90,10 @@ function ready(error, volatility, zones){
       .domain(xPanelDomain)
       .range([panelPadding.left, panelSize.width])
 
-  console.log(data[23])
+  var colorScales = d3.scale.linear() //could change the scale later
+        .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
+        .range(["#0000ff","#ff0000"])
+        .interpolate(d3.interpolateHcl);
 
   //Drawing the chart
   volChart.append('g')
@@ -183,6 +187,9 @@ function ready(error, volatility, zones){
         cx: function(d){return xChartScale(d.date) + xPanelScale(d.volMoving)},
         cy: function(d){return yChartScale(d.zoneCode) + yPanelScale(d.stateCode)}
       })
+      .style({
+          fill: function(d){return colorScales(d.volMoving)}
+        });
 
 
 }

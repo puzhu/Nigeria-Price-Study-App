@@ -37,11 +37,13 @@ var monthFormat = d3.time.format("%Y-%m").parse; //Parse dates and converts to a
 
 //queing the data file
 queue()
-  .defer(d3.json, "data/volatility1.json")
+  .defer(d3.json, "data/volatility.json")
   .defer(d3.json, "data/zones.json")
+  .defer(d3.json, "data/zoneStates.json")
   .await(ready);
 //creating the function ready
-function ready(error, volatility, zones){
+function ready(error, volatility, zones, zoneStates){
+  console.log(zoneStates)
   var input = "Cement Dangote" //This would be the input value based on user input
 
   //Loading the data and creating domain and data variables
@@ -54,8 +56,9 @@ function ready(error, volatility, zones){
   var yPanelDomain = uniq_fast(zoneData.map(function(d){return d.countStates})).sort(function(a,b) { return a - b;});//the height of each panel is set to the range of the states count within zones
   var colorDomain = d3.extent(data, function(d){return d.volMoving})
 
+
   //Creating the canvas
-  var containerSize = {'height': 1000, 'width': 1000}
+  var containerSize = {'height': 600, 'width': 1000}
   var margin = {top: 0.02 * containerSize.height , right: 0.01 * containerSize.width, bottom: 0.02 * containerSize.height, left: 0.04 * containerSize.width}
   var padding = {top: 0.06 * containerSize.height, right: 0.06 * containerSize.width, bottom: 0.06 * containerSize.height, left: 0.06 * containerSize.width}
   var chartSize = {'height': containerSize.height - margin.top - margin.bottom, 'width': containerSize.width - margin.right - margin.bottom}
@@ -96,8 +99,8 @@ function ready(error, volatility, zones){
         .interpolate(d3.interpolateHcl);
 
   //Drawing the chart
-  volChart.append('g')
-      .selectAll(".hlines")
+ /* volChart.append('g')
+      .selectAll(".hlines") //Horizontal grid lines
       .data(yChartDomain)
       .enter()
       .append('line')
@@ -108,7 +111,7 @@ function ready(error, volatility, zones){
         y2: function(d){return yChartScale(d)}
       })
       .style("stroke", "#9e9e9e");
-  volChart.append('g')
+  volChart.append('g') //vertical grid lines
       .selectAll(".vlines")
       .data(xChartDomain)
       .enter()
@@ -119,9 +122,9 @@ function ready(error, volatility, zones){
         x2: function(d){return xChartScale(d)},
         y2: height
       })
-      .style("stroke", "#9e9e9e");
+      .style("stroke", "#9e9e9e"); */
 
-  volChart.append('g')
+  volChart.append('g') //the first line in the box
       .selectAll(".boxLines")
       .data(zoneData)
       .enter()
@@ -135,7 +138,7 @@ function ready(error, volatility, zones){
       .style("stroke", "#9e9e9e")
       //.style("stroke-dasharray", ("3, 3")) 
 
-  volChart.append('g')
+  volChart.append('g') //last line in the box
       .selectAll(".boxLines")
       .data(zoneData)
       .enter()
@@ -149,7 +152,7 @@ function ready(error, volatility, zones){
       .style("stroke", "#9e9e9e")
       //.style("stroke-dasharray", ("3, 3"))
 
-  volChart.append('g')
+  volChart.append('g') //median
       .selectAll(".boxLines")
       .data(zoneData)
       .enter()
@@ -163,7 +166,7 @@ function ready(error, volatility, zones){
       .style("stroke", "#0000FF")
       .style("stroke-dasharray", ("2, 2"))
 
-  volChart.append('g')
+  volChart.append('g') //mean
       .selectAll(".boxLines")
       .data(zoneData)
       .enter()
@@ -177,7 +180,7 @@ function ready(error, volatility, zones){
       .style("stroke", "#C0C0C0")
       .style("stroke-dasharray", ("2, 2"))
 
-  volChart.append('g')
+  volChart.append('g') //the circles
       .selectAll('.dots')
       .data(data)
       .enter()
@@ -191,7 +194,40 @@ function ready(error, volatility, zones){
           fill: function(d){return colorScales(d.volMoving)}
         });
 
-
+  volChart.append('g')
+      .attr('class', 'y-labels')
+      .selectAll('text')
+      .data(yChartDomain)
+      .enter()
+      .append('text')
+      .text(function(d){return (d)})
+      .attr({
+        x: -20,
+        y: function(d){return yChartScale(d) + panelSize.height/2}
+      })
+  volChart.append('g')
+      .attr('class', 'x-labels')
+      .selectAll('text')
+      .data(xChartDomain)
+      .enter()
+      .append('text')
+      .text(function(d){return monthYear(d)})
+      .attr({
+        x: function(d){return xChartScale(d) + panelSize.width/2},
+        y: 0
+      })
+  volChart.append('g')
+      .attr('class', "state-labels")
+      .selectAll('text')
+      .data(zoneStates)
+      .enter()
+      .append('text')
+      .text(function(d){return d.state})
+      .attr({
+        x: -10,
+        y: function(d){return yChartScale(d.zoneCode) + yPanelScale(d.stateCode)}
+      })
+      .style('font-size', 8)
 }
 
 </script>

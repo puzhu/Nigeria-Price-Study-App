@@ -43,24 +43,28 @@ queue()
   .await(ready);
 //creating the function ready
 function ready(error, volatility, zones, zoneStates){
-  console.log(zoneStates)
-  var input = "Cement Dangote" //This would be the input value based on user input
+  //console.log(zoneStates, zones, volatility)
+  var input = "Rice Local" //This would be the input value based on user input
 
   //Loading the data and creating domain and data variables
   var data = volatility.filter(function(d) { return d.item === input }); //loading the volatility data based on input
   var zoneData = zones.filter(function(d) { return d.item === input }); //loading the zones data based on the input
 
+  /*We have two sets of domains. One for the chart and the other for each individual panel. The chart domain is mapped to the number of zones and the number of dates. While the panel domains are set to the number of states per zone and the volatility values*/
   var yChartDomain = uniq_fast(zoneData.map(function(d){return d.zoneCode})); //the height of the chart is set to the zones
   var xChartDomain = uniq_fast(zoneData.map(function(d){return monthFormat(d.date.slice(0,7))})).sort(function(a,b) { return a - b;});//the width of chart is based on the number of dates.
   var xPanelDomain = d3.extent(data, function(d){return d.volMoving}); // the width of each panel is set to the range of volatility for the selected input
-  var yPanelDomain = uniq_fast(zoneData.map(function(d){return d.countStates})).sort(function(a,b) { return a - b;});//the height of each panel is set to the range of the states count within zones
-  var colorDomain = d3.extent(data, function(d){return d.volMoving})
-
+  var maxStateCount = d3.max(zoneData, function(d){return d.countStates})
+  var yPanelDomain = [] //the height of each panel is set to the range of the states count within zones
+  for(i = 1; i <= maxStateCount; i++){
+    yPanelDomain.push(i)
+  }
+  var colorDomain = d3.extent(data, function(d){return d.volMoving}) //the color domain is set to the range of volatility values
 
   //Creating the canvas
   var containerSize = {'height': 600, 'width': 1000}
-  var margin = {top: 0.02 * containerSize.height , right: 0.01 * containerSize.width, bottom: 0.02 * containerSize.height, left: 0.04 * containerSize.width}
-  var padding = {top: 0.06 * containerSize.height, right: 0.06 * containerSize.width, bottom: 0.06 * containerSize.height, left: 0.06 * containerSize.width}
+  var margin = {top: 0.02 * containerSize.height , right: 0.01 * containerSize.width, bottom: 0.02 * containerSize.height, left: 0.04 * containerSize.width} //controls the spacing between the edge of the container and the inner chart
+  var padding = {top: 0.06 * containerSize.height, right: 0.006 * containerSize.width, bottom: 0.06 * containerSize.height, left: 0.006 * containerSize.width} //controls the size of the chart
   var chartSize = {'height': containerSize.height - margin.top - margin.bottom, 'width': containerSize.width - margin.right - margin.bottom}
   var width = chartSize.width - padding.left - padding.right
   var height = chartSize.height - padding.top - padding.bottom
@@ -81,13 +85,12 @@ function ready(error, volatility, zones, zoneStates){
       .domain(xChartDomain)
       .rangeRoundBands([0, width], 0.05)
 
-  var panelPadding = {top: 0.02 * containerSize.height, right: 0.01 * containerSize.width, bottom: 0.02 * containerSize.height, left: 0.01 * containerSize.width}
-  var panelSize = {'height': yChartScale.rangeBand() - panelPadding.top - panelPadding.bottom, 'width': xChartScale.rangeBand() - panelPadding.right - panelPadding.left}
+  var panelPadding = {top: 0.01 * containerSize.height, right: 0.001 * containerSize.width, bottom: 0.00001 * containerSize.height, left: 0.03 * containerSize.width}
+  var panelSize = {'height': yChartScale.rangeBand(), 'width': xChartScale.rangeBand()}
 
   var yPanelScale = d3.scale.ordinal()
       .domain(yPanelDomain)
-      .rangeBands([0, panelSize.height], 0.2)
-
+      .rangeBands([panelPadding.top, panelSize.height], 0.2)
 
   var xPanelScale = d3.scale.linear()
       .domain(xPanelDomain)
@@ -98,8 +101,12 @@ function ready(error, volatility, zones, zoneStates){
         .range(["#0000ff","#ff0000"])
         .interpolate(d3.interpolateHcl);
 
+  var yFont = 0.8 * yPanelScale(1)
+  var xFont = yPanelScale(1)
+  var radius = Math.max(0.15 * yPanelScale(1), 0.07 * xPanelScale(1))
+
   //Drawing the chart
- /* volChart.append('g')
+  volChart.append('g')
       .selectAll(".hlines") //Horizontal grid lines
       .data(yChartDomain)
       .enter()
@@ -122,7 +129,7 @@ function ready(error, volatility, zones, zoneStates){
         x2: function(d){return xChartScale(d)},
         y2: height
       })
-      .style("stroke", "#9e9e9e"); */
+      .style("stroke", "#9e9e9e");
 
   volChart.append('g') //the first line in the box
       .selectAll(".boxLines")
@@ -131,11 +138,12 @@ function ready(error, volatility, zones, zoneStates){
       .append('line')
       .attr({
         x1: function(d){return xPanelScale(d.fQ) + xChartScale(d.date)},
-        y1: function(d) {return yChartScale(d.zoneCode)},
+        y1: function(d) {return yChartScale(d.zoneCode) + yPanelScale(panelPadding.top)},
         x2: function(d){return xPanelScale(d.fQ) + xChartScale(d.date)},
         y2: function(d){return yPanelScale(d.maxStates) + yChartScale(d.zoneCode)}
       })
       .style("stroke", "#9e9e9e")
+      .style("stroke-dasharray", ("2, 2"))
       //.style("stroke-dasharray", ("3, 3")) 
 
   volChart.append('g') //last line in the box
@@ -145,14 +153,15 @@ function ready(error, volatility, zones, zoneStates){
       .append('line')
       .attr({
         x1: function(d){return xPanelScale(d.tQ) + xChartScale(d.date)},
-        y1: function(d) {return yChartScale(d.zoneCode)},
+        y1: function(d) {return yChartScale(d.zoneCode) + yPanelScale(panelPadding.top)},
         x2: function(d){return xPanelScale(d.tQ) + xChartScale(d.date)},
         y2: function(d){return yPanelScale(d.maxStates) + yChartScale(d.zoneCode)}
       })
       .style("stroke", "#9e9e9e")
+      .style("stroke-dasharray", ("2, 2"))
       //.style("stroke-dasharray", ("3, 3"))
 
-  volChart.append('g') //median
+  /*volChart.append('g') //median
       .selectAll(".boxLines")
       .data(zoneData)
       .enter()
@@ -164,7 +173,7 @@ function ready(error, volatility, zones, zoneStates){
         y2: function(d){return yPanelScale(d.maxStates) + yChartScale(d.zoneCode)}
       })
       .style("stroke", "#0000FF")
-      .style("stroke-dasharray", ("2, 2"))
+      .style("stroke-dasharray", ("2, 2")) */
 
   volChart.append('g') //mean
       .selectAll(".boxLines")
@@ -173,12 +182,12 @@ function ready(error, volatility, zones, zoneStates){
       .append('line')
       .attr({
         x1: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-        y1: function(d) {return yChartScale(d.zoneCode)},
+        y1: function(d) {return yChartScale(d.zoneCode) + yPanelScale(panelPadding.top)},
         x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
         y2: function(d){return yPanelScale(d.maxStates) + yChartScale(d.zoneCode)}
       })
       .style("stroke", "#C0C0C0")
-      .style("stroke-dasharray", ("2, 2"))
+      .attr('stroke-width', 2)
 
   volChart.append('g') //the circles
       .selectAll('.dots')
@@ -186,7 +195,7 @@ function ready(error, volatility, zones, zoneStates){
       .enter()
       .append('circle')
       .attr({
-        r: 2,
+        r: radius,
         cx: function(d){return xChartScale(d.date) + xPanelScale(d.volMoving)},
         cy: function(d){return yChartScale(d.zoneCode) + yPanelScale(d.stateCode)}
       })
@@ -202,9 +211,12 @@ function ready(error, volatility, zones, zoneStates){
       .append('text')
       .text(function(d){return (d)})
       .attr({
-        x: -20,
+        x: -3*padding.left,
         y: function(d){return yChartScale(d) + panelSize.height/2}
       })
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'start');
+
   volChart.append('g')
       .attr('class', 'x-labels')
       .selectAll('text')
@@ -216,6 +228,10 @@ function ready(error, volatility, zones, zoneStates){
         x: function(d){return xChartScale(d) + panelSize.width/2},
         y: 0
       })
+      .style('font-size', xFont)
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'middle');
+
   volChart.append('g')
       .attr('class', "state-labels")
       .selectAll('text')
@@ -224,10 +240,13 @@ function ready(error, volatility, zones, zoneStates){
       .append('text')
       .text(function(d){return d.state})
       .attr({
-        x: -10,
+        x: 0.8*panelPadding.left,
         y: function(d){return yChartScale(d.zoneCode) + yPanelScale(d.stateCode)}
       })
-      .style('font-size', 8)
+      .style('font-size', yFont)
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'end');
+
 }
 
 </script>

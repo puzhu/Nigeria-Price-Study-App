@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<head>
+<script src="libraries/d3.v3.min.js"></script>
+<script src="libraries/topojson.v1.min.js"></script>
+<script src="libraries/queue.v1.min.js"></script>
+<style>
+
+</style>
+</head>
+<body>
+
+<div id="main">
+	<div id="volChart"></div>
+  <select id="productSelect">
+    <option>Cement Dangote</option>
+    <option>Rice Local</option>
+  </select>
+</div>
+
+</body>
+<script>
+//Constructed Functions and variables for the cade
+function uniq_fast(a) { // quickly drop duplicate values from an array
+      var seen = {};
+      var out = [];
+      var len = a.length;
+      var j = 0;
+      for(var i = 0; i < len; i++) {
+           var item = a[i];
+           if(seen[item] !== 1) {
+                 seen[item] = 1;
+                 out[j++] = item;
+           }
+      }
+      return out;
+  }
+var monthYear = d3.time.format("%b %y"); //converts to Month-Year
+var monthFormat = d3.time.format("%Y-%m").parse; //Parse dates and converts to a d3 time format
+
+
+function draw(volatility){ // Calculates the Chart Scales and the Y-Scale for the panel (independent of the product selections)
+  var yChartDomain = uniq_fast(volatility.map(function(d){return d.zoneCode})); //the height of the chart is set to the zones
+  console.log(yChartDomain);
+
+  d3.select('#productSelect')
+    .on('click', function(d) {
+        redraw(d);
+    });
+  function redraw(product){ //recalibrates the x-PanelScale and redraws the means and dots based on the product selection
+    data = volatility.filter(function(d) { return d.item === product })
+    console.log(product)
+  }
+}
+
+
+
+
+
+
+queue()
+  .defer(d3.json, "data/volatility.json")
+  .defer(d3.json, "data/zones.json")
+  .defer(d3.json, "data/zoneStates.json")
+  .await(ready);
+
+
+
+function ready(error, volatility, zones, zoneStates){
+  console.log(volatility)
+  draw(volatility);
+
+
+}
+
+//queing the data file
+
+
+
+
+</script>
+</html>

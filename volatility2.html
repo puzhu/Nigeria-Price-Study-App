@@ -85,7 +85,7 @@ function ready(error, volatility, zones, zoneStates){
       .domain(xChartDomain)
       .rangeRoundBands([0, width], 0.05)
 
-  var panelPadding = {top: 0.01 * containerSize.height, right: 0.001 * containerSize.width, bottom: 0.00001 * containerSize.height, left: 0.03 * containerSize.width}
+  var panelPadding = {top: 0.01 * containerSize.height, right: 0.001 * containerSize.width, bottom: 0.0001 * containerSize.height, left: 0.03 * containerSize.width}
   var panelSize = {'height': yChartScale.rangeBand(), 'width': xChartScale.rangeBand()}
 
   var yPanelScale = d3.scale.ordinal()

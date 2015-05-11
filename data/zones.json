@@ -3,3157 +3,3157 @@
     "zoneCode":1,
     "item":"Cement Dangote",
     "date":"2009-12-01",
-    "countStates":3,
-    "fQ":1.6315732717514,
+    "fQ":2.96202647686005,
     "median":4.02720296382904,
     "mean":5.17681956291199,
-    "tQ":10.3315290927887,
-    "maxStates":6
+    "tQ":6.24199604988098,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Cement Dangote",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":0.996753811836243,
+    "fQ":1.52084279060364,
     "median":3.03434157371521,
     "mean":8.44182440819162,
-    "tQ":35.8426727294922,
-    "maxStates":6
+    "tQ":3.48926591873169,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Cement Dangote",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":1.134162068367,
+    "fQ":2.2401921749115,
     "median":3.45905613899231,
     "mean":8.2107253038522,
-    "tQ":32.7636932373047,
-    "maxStates":6
+    "tQ":4.2094841003418,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Cement Dangote",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":7.46869761943817,
+    "fQ":8.47547006607056,
     "median":10.0941381454468,
     "mean":12.2599707841873,
-    "tQ":22.6994173049927,
-    "maxStates":6
+    "tQ":14.1583836078644,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Cement Dangote",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":8.82520403861999,
+    "fQ":12.8829276561737,
     "median":14.1958250999451,
     "mean":14.0893755753835,
-    "tQ":18.9692850112915,
-    "maxStates":6
+    "tQ":15.5818407535553,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Cement Dangote",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":11.8334487915039,
+    "fQ":13.726975440979,
     "median":18.1851234436035,
     "mean":25.0599853727553,
-    "tQ":44.4175102233887,
-    "maxStates":6
+    "tQ":43.7192344665527,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Cement Dangote",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":9.45992240905762,
+    "fQ":11.0174651145935,
     "median":12.5244455337524,
     "mean":22.3804200490316,
-    "tQ":45.2133604049683,
-    "maxStates":6
+    "tQ":43.3890218734741,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Drink Swan Water Bottle",
     "date":"2009-12-01",
-    "countStates":2,
-    "fQ":1.57662506103516,
+    "fQ":3.66870498657227,
     "median":6.28380489349365,
     "mean":5.16874281565348,
-    "tQ":7.98031711578369,
-    "maxStates":6
+    "tQ":7.22631168365479,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Drink Swan Water Bottle",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":3.31851506233215,
+    "fQ":7.70589780807495,
     "median":24.7949600219727,
     "mean":26.198793888092,
-    "tQ":56.1675758361816,
-    "maxStates":6
+    "tQ":37.9353694915771,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Drink Swan Water Bottle",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":8.32471642494202,
+    "fQ":16.6210417747498,
     "median":25.5922117233276,
     "mean":24.4605116049449,
-    "tQ":43.4426706314087,
-    "maxStates":6
+    "tQ":30.5117797851562,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Drink Swan Water Bottle",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":11.5188726425171,
+    "fQ":14.9667499065399,
     "median":28.5638399124146,
     "mean":26.4531185626984,
-    "tQ":37.9950151443481,
-    "maxStates":6
+    "tQ":36.6545639038086,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Drink Swan Water Bottle",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":10.4277254581451,
+    "fQ":16.259272813797,
     "median":30.9111614227295,
     "mean":27.8567750930786,
-    "tQ":40.6922372817993,
-    "maxStates":6
+    "tQ":38.5100269317627,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Drink Swan Water Bottle",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":9.47885818481445,
+    "fQ":11.0934772491455,
     "median":11.6034135818481,
     "mean":17.9132685131497,
-    "tQ":37.7085800170898,
-    "maxStates":6
+    "tQ":18.7492332458496,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Drink Swan Water Bottle",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":10.1338990688324,
+    "fQ":10.9122316837311,
     "median":14.2753925323486,
     "mean":17.3499624729156,
-    "tQ":34.8166467666626,
-    "maxStates":6
+    "tQ":19.0412030220032,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Maize White",
     "date":"2009-12-01",
-    "countStates":6,
-    "fQ":1.53869023323059,
+    "fQ":6.37459325790405,
     "median":11.5501356124878,
     "mean":12.7924586131766,
-    "tQ":29.355916595459,
-    "maxStates":6
+    "tQ":16.9989147186279,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Maize White",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":4.30758953094482,
+    "fQ":5.94086241722107,
     "median":8.8582706451416,
     "mean":10.392203029186,
-    "tQ":19.6815013885498,
-    "maxStates":6
+    "tQ":15.1371908187866,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Maize White",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":5.46082544326782,
+    "fQ":11.8474340438843,
     "median":16.3462600708008,
     "mean":18.9028874772494,
-    "tQ":46.8965492248535,
-    "maxStates":6
+    "tQ":19.5463409423828,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Maize White",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":8.58105461597443,
+    "fQ":11.9486036300659,
     "median":18.2697162628174,
     "mean":19.065080444018,
-    "tQ":35.8640053749084,
-    "maxStates":6
+    "tQ":21.0506610870361,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Maize White",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":7.94903409481049,
+    "fQ":10.8854258060455,
     "median":13.1212368011475,
     "mean":14.9995566606522,
-    "tQ":26.3777896881104,
-    "maxStates":6
+    "tQ":18.4752697944641,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Maize White",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":9.12280402183533,
+    "fQ":10.0440487861633,
     "median":11.6149921417236,
     "mean":12.4401839256287,
-    "tQ":19.2988212108612,
-    "maxStates":6
+    "tQ":12.1287095546722,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Maize White",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":14.4313307285309,
+    "fQ":17.7447500228882,
     "median":19.4639177322388,
     "mean":20.72425421079,
-    "tQ":32.4066527366638,
-    "maxStates":6
+    "tQ":20.8627152442932,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Maize Yellow",
     "date":"2009-12-01",
-    "countStates":6,
-    "fQ":1.21947872638702,
+    "fQ":6.86007344722748,
     "median":12.7816715240479,
     "mean":16.1640771494971,
-    "tQ":47.8242225646973,
-    "maxStates":6
+    "tQ":20.8934721946716,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Maize Yellow",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":4.06206703186035,
+    "fQ":6.96068477630615,
     "median":9.3107385635376,
     "mean":10.4139676504448,
-    "tQ":19.2407646179199,
-    "maxStates":6
+    "tQ":13.6013822555542,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Maize Yellow",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":6.9588143825531,
+    "fQ":8.14073848724365,
     "median":13.5951232910156,
     "mean":13.1477301888547,
-    "tQ":20.7088212966919,
-    "maxStates":6
+    "tQ":16.1649856567383,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Maize Yellow",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":5.09437417984009,
+    "fQ":13.3653185367584,
     "median":15.7963256835938,
     "mean":14.6801127592723,
-    "tQ":20.9655151367188,
-    "maxStates":6
+    "tQ":18.2063798904419,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Maize Yellow",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":7.25842111110687,
+    "fQ":9.06347298622131,
     "median":11.9072651863098,
     "mean":12.7383325497309,
-    "tQ":18.5357035636902,
-    "maxStates":6
+    "tQ":18.064603805542,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Maize Yellow",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":8.9124933719635,
+    "fQ":9.26253867149353,
     "median":9.89953231811523,
     "mean":10.5415667533875,
-    "tQ":14.0492621898651,
-    "maxStates":6
+    "tQ":10.9500913619995,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Maize Yellow",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":14.7329785346985,
+    "fQ":17.193772315979,
     "median":19.5687980651855,
     "mean":20.8666831652323,
-    "tQ":31.6332294464111,
-    "maxStates":6
+    "tQ":22.1936483383179,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Rice Imported",
     "date":"2009-12-01",
-    "countStates":6,
-    "fQ":1.5968562245369,
+    "fQ":2.59267884492874,
     "median":7.16573810577393,
     "mean":8.34150061607361,
-    "tQ":19.2062015533447,
-    "maxStates":6
+    "tQ":10.7840614318848,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Rice Imported",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":3.3095561504364,
+    "fQ":5.34974527359009,
     "median":8.58007335662842,
     "mean":15.0435168895316,
-    "tQ":44.0454273223877,
-    "maxStates":6
+    "tQ":21.1579942703247,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Rice Imported",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":4.01955826282501,
+    "fQ":7.93944525718689,
     "median":17.7071304321289,
     "mean":18.0377684654073,
-    "tQ":49.2038146972656,
-    "maxStates":6
+    "tQ":24.5811281204224,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Rice Imported",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":4.04886193275452,
+    "fQ":5.79315948486328,
     "median":8.72643184661865,
     "mean":15.7776826222738,
-    "tQ":41.2071348190308,
-    "maxStates":6
+    "tQ":25.0991325378418,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Rice Imported",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":6.65270779132843,
+    "fQ":7.06894028186798,
     "median":8.48646020889282,
     "mean":9.9650444984436,
-    "tQ":15.1007616996765,
-    "maxStates":6
+    "tQ":13.8261733055115,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Rice Imported",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":8.30302205085754,
+    "fQ":12.2750406265259,
     "median":13.6991190910339,
     "mean":14.2696727752686,
-    "tQ":21.6188098907471,
-    "maxStates":6
+    "tQ":15.5091118812561,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Rice Imported",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":19.0293208122253,
+    "fQ":20.8145322799683,
     "median":21.4985342025757,
     "mean":26.2810924847921,
-    "tQ":46.9011499404907,
-    "maxStates":6
+    "tQ":27.3868727684021,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Rice Local",
     "date":"2009-12-01",
-    "countStates":4,
-    "fQ":0.403097268939018,
+    "fQ":2.51867789030075,
     "median":6.0979540348053,
     "mean":6.85005766650041,
-    "tQ":16.1583687782287,
-    "maxStates":6
+    "tQ":9.07551288604736,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Rice Local",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":4.19911801815033,
+    "fQ":7.04314517974854,
     "median":25.8165054321289,
     "mean":32.1166716151767,
-    "tQ":78.2112579345703,
-    "maxStates":6
+    "tQ":50.6676816940308,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Rice Local",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":2.77090221643448,
+    "fQ":10.0753405094147,
     "median":32.0004863739014,
     "mean":27.7728759249051,
-    "tQ":56.2035570144653,
-    "maxStates":6
+    "tQ":35.3747081756592,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Rice Local",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":5.92084405422211,
+    "fQ":7.9874963760376,
     "median":9.50529527664185,
     "mean":17.0963720877965,
-    "tQ":48.9528703689575,
-    "maxStates":6
+    "tQ":18.3990135192871,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Rice Local",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":8.1880035161972,
+    "fQ":9.09875297546387,
     "median":11.1198720932007,
     "mean":16.7573578755061,
-    "tQ":33.4868673324585,
-    "maxStates":6
+    "tQ":25.7045097351074,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Rice Local",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":4.96827239990234,
+    "fQ":8.72333908081055,
     "median":11.0738391876221,
     "mean":15.2944376733568,
-    "tQ":31.5255847930908,
-    "maxStates":6
+    "tQ":16.9934978485107,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Rice Local",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":12.1026854991913,
+    "fQ":22.4886088371277,
     "median":25.4518451690674,
     "mean":28.1612414518992,
-    "tQ":55.2063087463379,
-    "maxStates":6
+    "tQ":27.9870920181274,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Sorghum",
     "date":"2009-12-01",
-    "countStates":6,
-    "fQ":0.564191311597824,
+    "fQ":5.85338401794434,
     "median":8.5857105255127,
     "mean":9.68953180986066,
-    "tQ":23.6259937286377,
-    "maxStates":6
+    "tQ":12.4677720069885,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Sorghum",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":5.08082628250122,
+    "fQ":6.963050365448,
     "median":10.9668111801147,
     "mean":17.7892691952283,
-    "tQ":39.2762184143066,
-    "maxStates":6
+    "tQ":32.8810920715332,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Sorghum",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":9.74909253120422,
+    "fQ":12.9346041679382,
     "median":14.7566499710083,
     "mean":18.682280507581,
-    "tQ":32.5956426620483,
-    "maxStates":6
+    "tQ":27.8943247795105,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Sorghum",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":9.8688178062439,
+    "fQ":13.0836219787598,
     "median":16.0589785575867,
     "mean":16.6689439614614,
-    "tQ":25.6879905700684,
-    "maxStates":6
+    "tQ":18.3425679206848,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Sorghum",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":8.12137131690979,
+    "fQ":10.0229411125183,
     "median":13.5939841270447,
     "mean":14.9853833516439,
-    "tQ":27.7050615310669,
-    "maxStates":6
+    "tQ":16.675404548645,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Sorghum",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":4.90230672359467,
+    "fQ":6.15990090370178,
     "median":10.8557424545288,
     "mean":10.7168038845062,
-    "tQ":21.3187941551208,
-    "maxStates":6
+    "tQ":11.0070476531982,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":1,
     "item":"Sorghum",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":15.1205639839172,
+    "fQ":18.676872253418,
     "median":19.576301574707,
     "mean":21.2103583017985,
-    "tQ":31.7170666694641,
-    "maxStates":6
+    "tQ":21.5180377960205,
+    "minState":1,
+    "maxState":6
   },
   {
     "zoneCode":2,
     "item":"Cement Dangote",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":2.02829432487488,
+    "fQ":4.09493803977966,
     "median":6.4135205745697,
     "mean":9.70757186412811,
-    "tQ":30.0135340690613,
-    "maxStates":6
+    "tQ":8.9426600933075,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Cement Dangote",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":3.90855193138123,
+    "fQ":4.72411179542542,
     "median":7.28459048271179,
     "mean":10.0239010453224,
-    "tQ":24.5014138221741,
-    "maxStates":6
+    "tQ":12.3390083312988,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Cement Dangote",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":7.82079944610596,
+    "fQ":8.76074838638306,
     "median":9.21896648406982,
     "mean":10.4709670543671,
-    "tQ":16.4844218254089,
-    "maxStates":6
+    "tQ":10.6244251728058,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Cement Dangote",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":9.13378763198853,
+    "fQ":10.3732008934021,
     "median":11.2146511077881,
     "mean":15.0505610379306,
-    "tQ":32.478157043457,
-    "maxStates":6
+    "tQ":13.9456963539124,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Cement Dangote",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":6.40376949310303,
+    "fQ":9.95292043685913,
     "median":11.2678980827332,
     "mean":14.1256877581278,
-    "tQ":27.0511121749878,
-    "maxStates":6
+    "tQ":15.4943277835846,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Cement Dangote",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":3.03640508651733,
+    "fQ":9.06869769096375,
     "median":9.72252416610718,
     "mean":12.1803971699306,
-    "tQ":27.0127511024475,
-    "maxStates":6
+    "tQ":10.6648194789886,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Drink Swan Water Bottle",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":6.51838674545288,
+    "fQ":15.7083253860474,
     "median":23.573917388916,
     "mean":27.5895762993739,
-    "tQ":60.360025024414,
-    "maxStates":6
+    "tQ":31.1197242736816,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Drink Swan Water Bottle",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":11.8079008102417,
+    "fQ":21.2924270629883,
     "median":23.4993648529053,
     "mean":32.9288834791917,
-    "tQ":67.5366424560547,
-    "maxStates":6
+    "tQ":45.4295043945312,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Drink Swan Water Bottle",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":8.10733094215393,
+    "fQ":11.1193616390228,
     "median":17.3186974525452,
     "mean":27.4015649159749,
-    "tQ":63.8403787612915,
-    "maxStates":6
+    "tQ":41.12255859375,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Drink Swan Water Bottle",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":7.78389739990234,
+    "fQ":8.46701145172119,
     "median":9.33200836181641,
     "mean":12.4670835841786,
-    "tQ":24.1104393005371,
-    "maxStates":6
+    "tQ":13.9053282737732,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Drink Swan Water Bottle",
     "date":"2012-06-01",
-    "countStates":4,
-    "fQ":7.40044198036194,
+    "fQ":7.47474217414856,
     "median":7.67740941047668,
     "mean":7.71791625022888,
-    "tQ":8.0921000957489,
-    "maxStates":6
+    "tQ":7.92058348655701,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Drink Swan Water Bottle",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":3.37636046409607,
+    "fQ":5.33652544021606,
     "median":8.01221179962158,
     "mean":7.57320098876953,
-    "tQ":11.5467264175415,
-    "maxStates":6
+    "tQ":9.62262773513794,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Maize White",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":8.4654301404953,
+    "fQ":16.6983389854431,
     "median":29.258939743042,
     "mean":34.207802942821,
-    "tQ":68.1168420791626,
-    "maxStates":6
+    "tQ":49.455249786377,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Maize White",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":12.3189736366272,
+    "fQ":17.7816290855408,
     "median":37.6372928619385,
     "mean":35.3076830591474,
-    "tQ":67.5865901947021,
-    "maxStates":6
+    "tQ":43.2147665023804,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Maize White",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":11.2986763954163,
+    "fQ":14.5091376304626,
     "median":27.2698783874512,
     "mean":33.6854036649068,
-    "tQ":70.9323280334472,
-    "maxStates":6
+    "tQ":44.5442695617676,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Maize White",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":8.34780998229981,
+    "fQ":15.484986782074,
     "median":20.6250591278076,
     "mean":29.2520405451457,
-    "tQ":72.7555454254151,
-    "maxStates":6
+    "tQ":37.6801919937134,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Maize White",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":1.87102408707142,
+    "fQ":8.10165154933929,
     "median":19.280481338501,
     "mean":19.0945916076501,
-    "tQ":39.8910484313965,
-    "maxStates":6
+    "tQ":24.4028906822205,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Maize White",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":8.17264852523804,
+    "fQ":11.0042400360107,
     "median":15.5427236557007,
     "mean":20.985590171814,
-    "tQ":55.2016902923584,
-    "maxStates":6
+    "tQ":23.1263942718506,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Maize Yellow",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":11.461446762085,
+    "fQ":15.3039512634277,
     "median":17.1077919006348,
     "mean":38.5072245964637,
-    "tQ":98.8578399658203,
-    "maxStates":6
+    "tQ":52.4591674804688,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Maize Yellow",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":12.7511522293091,
+    "fQ":13.3832693099976,
     "median":26.5447769165039,
     "mean":33.9704469534067,
-    "tQ":67.0555480957031,
-    "maxStates":6
+    "tQ":58.3643836975098,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Maize Yellow",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":5.08783404827118,
+    "fQ":13.8669276237488,
     "median":19.537543296814,
     "mean":30.0975979566574,
-    "tQ":74.8551383972168,
-    "maxStates":6
+    "tQ":46.9443073272705,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Maize Yellow",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":6.40737571716309,
+    "fQ":16.7819652557373,
     "median":21.049861907959,
     "mean":32.3555834293365,
-    "tQ":67.6551040649414,
-    "maxStates":6
+    "tQ":61.0907669067383,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Maize Yellow",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":9.97101902961731,
+    "fQ":16.2959685325623,
     "median":24.190770149231,
     "mean":26.3667419751485,
-    "tQ":47.9868259429932,
-    "maxStates":6
+    "tQ":32.4089245796204,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Maize Yellow",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":13.8082320690155,
+    "fQ":16.7277021408081,
     "median":23.8922529220581,
     "mean":27.6466313089643,
-    "tQ":57.6893957138061,
-    "maxStates":6
+    "tQ":27.6768236160278,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Rice Imported",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":10.2039093971252,
+    "fQ":12.7890486717224,
     "median":24.1125917434692,
     "mean":34.3225919604301,
-    "tQ":80.137659072876,
-    "maxStates":6
+    "tQ":53.9489583969116,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Rice Imported",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":13.0949397087097,
+    "fQ":16.5934600830078,
     "median":27.6925868988037,
     "mean":29.5859534600202,
-    "tQ":56.0161117553711,
-    "maxStates":6
+    "tQ":43.1726455688477,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Rice Imported",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":5.2314022064209,
+    "fQ":13.5407257080078,
     "median":27.4947948455811,
     "mean":28.2769685891958,
-    "tQ":59.2100280761719,
-    "maxStates":6
+    "tQ":36.7742881774902,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Rice Imported",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":10.8407255172729,
+    "fQ":11.5528535842896,
     "median":21.9390640258789,
     "mean":28.3721618652344,
-    "tQ":54.6977394104004,
-    "maxStates":6
+    "tQ":45.464485168457,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Rice Imported",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":1.88749407231808,
+    "fQ":7.13621163368225,
     "median":13.4476933479309,
     "mean":12.0979385872682,
-    "tQ":19.5303483009338,
-    "maxStates":6
+    "tQ":18.8646469116211,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Rice Imported",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":8.71009368896484,
+    "fQ":12.4582490921021,
     "median":14.5100030899048,
     "mean":17.1316059748332,
-    "tQ":30.6945985794067,
-    "maxStates":6
+    "tQ":20.1874113082886,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Rice Local",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":9.42881965637207,
+    "fQ":14.4643595218658,
     "median":33.0385026931763,
     "mean":37.4140738844872,
-    "tQ":70.5042171478271,
-    "maxStates":6
+    "tQ":62.0634260177612,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Rice Local",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":10.3774890899658,
+    "fQ":23.7529182434082,
     "median":34.2560844421387,
     "mean":45.2994360643275,
-    "tQ":88.2807144165039,
-    "maxStates":6
+    "tQ":83.4507522583008,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Rice Local",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":9.74059991836548,
+    "fQ":17.6628746986389,
     "median":34.6496725082397,
     "mean":38.3134773572286,
-    "tQ":77.9745780944824,
-    "maxStates":6
+    "tQ":54.8325634002686,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Rice Local",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":12.2305441379547,
+    "fQ":12.9414908885956,
     "median":21.1608533859253,
     "mean":27.5308971405029,
-    "tQ":68.3195907592773,
-    "maxStates":6
+    "tQ":27.5094475746155,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Rice Local",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":6.24602615833282,
+    "fQ":9.14391422271729,
     "median":11.9254608154297,
     "mean":16.7363115151723,
-    "tQ":34.675181388855,
-    "maxStates":6
+    "tQ":21.5748207569122,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Rice Local",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":10.4125010490417,
+    "fQ":14.1942043304443,
     "median":18.5062923431396,
     "mean":24.3001575469971,
-    "tQ":45.8749786376953,
-    "maxStates":6
+    "tQ":32.9476222991943,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Sorghum",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":7.42090976238251,
+    "fQ":13.0698008537292,
     "median":17.9551849365234,
     "mean":23.7798035144806,
-    "tQ":58.8906539916992,
-    "maxStates":6
+    "tQ":25.6223669052124,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Sorghum",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":8.49859719276428,
+    "fQ":14.232578754425,
     "median":16.0263180732727,
     "mean":22.630405494145,
-    "tQ":44.8210094451904,
-    "maxStates":6
+    "tQ":33.8873424530029,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Sorghum",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":11.4359346866608,
+    "fQ":12.5499320030212,
     "median":17.7495365142822,
     "mean":30.5126235485077,
-    "tQ":67.6310195922851,
-    "maxStates":6
+    "tQ":53.2603235244751,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Sorghum",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":13.0798477649689,
+    "fQ":14.4206087589264,
     "median":24.8406553268433,
     "mean":35.1595878601074,
-    "tQ":79.8585815429688,
-    "maxStates":6
+    "tQ":52.8834629058838,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Sorghum",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":13.9914495944977,
+    "fQ":23.3470425605774,
     "median":25.864764213562,
     "mean":26.1815129915873,
-    "tQ":39.8480854034424,
-    "maxStates":6
+    "tQ":27.3555302619934,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":2,
     "item":"Sorghum",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":12.8576017856598,
+    "fQ":17.4534711837769,
     "median":21.0691604614258,
     "mean":24.0917461259024,
-    "tQ":40.0040550231934,
-    "maxStates":6
+    "tQ":31.4676117897034,
+    "minState":7,
+    "maxState":12
   },
   {
     "zoneCode":3,
     "item":"Cement Dangote",
     "date":"2009-12-01",
-    "countStates":5,
-    "fQ":1.12817151546478,
+    "fQ":2.942049741745,
     "median":4.44216823577881,
     "mean":6.60014210487234,
-    "tQ":15.271443939209,
-    "maxStates":5
+    "tQ":6.72713279724121,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Cement Dangote",
     "date":"2010-06-01",
-    "countStates":5,
-    "fQ":2.1409386754036,
+    "fQ":3.05756187438965,
     "median":4.12814378738403,
     "mean":4.50929179532187,
-    "tQ":6.21999325752258,
-    "maxStates":5
+    "tQ":5.44545829296112,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Cement Dangote",
     "date":"2010-12-01",
-    "countStates":5,
-    "fQ":2.15661805868149,
+    "fQ":3.68982428312302,
     "median":4.37908864021301,
     "mean":4.58929204579556,
-    "tQ":7.86103940010071,
-    "maxStates":5
+    "tQ":4.56833851337433,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Cement Dangote",
     "date":"2011-06-01",
-    "countStates":5,
-    "fQ":6.40765035152435,
+    "fQ":7.23858141899109,
     "median":8.20294690132141,
     "mean":15.4172736167908,
-    "tQ":45.6929817199707,
-    "maxStates":5
+    "tQ":9.59102344512939,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Cement Dangote",
     "date":"2011-12-01",
-    "countStates":5,
-    "fQ":6.90716533660889,
+    "fQ":7.6679790019989,
     "median":7.7449734210968,
     "mean":15.2241181850433,
-    "tQ":45.8867492675781,
-    "maxStates":5
+    "tQ":7.92915391921997,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Cement Dangote",
     "date":"2012-06-01",
-    "countStates":5,
-    "fQ":4.31995048522949,
+    "fQ":4.69070243835449,
     "median":4.94025182723999,
     "mean":5.10325222015381,
-    "tQ":5.86757144927978,
-    "maxStates":5
+    "tQ":5.76477336883545,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Cement Dangote",
     "date":"2012-12-01",
-    "countStates":5,
-    "fQ":4.7701849937439,
+    "fQ":5.1807267665863,
     "median":5.60945701599121,
     "mean":11.1365115859292,
-    "tQ":34.7855472564697,
-    "maxStates":5
+    "tQ":8.20956587791443,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Drink Swan Water Bottle",
     "date":"2009-12-01",
-    "countStates":5,
-    "fQ":1.87535254955292,
+    "fQ":3.57862198352814,
     "median":11.2167339324951,
     "mean":14.4351242542267,
-    "tQ":41.5325866699219,
-    "maxStates":5
+    "tQ":18.593563079834,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Drink Swan Water Bottle",
     "date":"2010-06-01",
-    "countStates":5,
-    "fQ":6.01742658615112,
+    "fQ":8.23592042922974,
     "median":15.2737398147583,
     "mean":16.279984342291,
-    "tQ":27.4197473526001,
-    "maxStates":5
+    "tQ":24.6841230392456,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Drink Swan Water Bottle",
     "date":"2010-12-01",
-    "countStates":5,
-    "fQ":8.12854499816895,
+    "fQ":8.25822877883911,
     "median":12.5744285583496,
     "mean":15.5109456638957,
-    "tQ":28.3199361801147,
-    "maxStates":5
+    "tQ":20.1848077774048,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Drink Swan Water Bottle",
     "date":"2011-06-01",
-    "countStates":5,
-    "fQ":9.9078670501709,
+    "fQ":13.297935962677,
     "median":15.7920680046082,
     "mean":15.0598164558411,
-    "tQ":18.1346073150635,
-    "maxStates":5
+    "tQ":17.6401143074036,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Drink Swan Water Bottle",
     "date":"2011-12-01",
-    "countStates":5,
-    "fQ":7.04821715354919,
+    "fQ":11.8359308242798,
     "median":14.6053738594055,
     "mean":15.0265347480774,
-    "tQ":25.2800729751587,
-    "maxStates":5
+    "tQ":16.3663167953491,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Drink Swan Water Bottle",
     "date":"2012-06-01",
-    "countStates":5,
-    "fQ":8.06455783843994,
+    "fQ":8.35474109649658,
     "median":9.15347385406494,
     "mean":12.5289974212646,
-    "tQ":19.9466724395752,
-    "maxStates":5
+    "tQ":16.2818927764893,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Drink Swan Water Bottle",
     "date":"2012-12-01",
-    "countStates":5,
-    "fQ":7.37498736381531,
+    "fQ":7.77118468284607,
     "median":8.87156867980957,
     "mean":9.85197578776966,
-    "tQ":15.4725875854492,
-    "maxStates":5
+    "tQ":10.3961534500122,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Maize White",
     "date":"2009-12-01",
-    "countStates":5,
-    "fQ":1.51984640061855,
+    "fQ":3.94908440113068,
     "median":7.41808652877808,
     "mean":9.18851040403048,
-    "tQ":18.8551584243774,
-    "maxStates":5
+    "tQ":13.677056312561,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Maize White",
     "date":"2010-06-01",
-    "countStates":5,
-    "fQ":6.79459929466248,
+    "fQ":10.7957081794739,
     "median":14.3436346054077,
     "mean":18.2081321538505,
-    "tQ":32.953080368042,
-    "maxStates":5
+    "tQ":24.7548828125,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Maize White",
     "date":"2010-12-01",
-    "countStates":5,
-    "fQ":13.8708704948425,
+    "fQ":31.6362829208374,
     "median":33.0206871032715,
     "mean":32.8460420246782,
-    "tQ":50.9187421798706,
-    "maxStates":5
+    "tQ":34.7617073059082,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Maize White",
     "date":"2011-06-01",
-    "countStates":5,
-    "fQ":15.0390858650208,
+    "fQ":27.2467088699341,
     "median":30.1827545166016,
     "mean":30.001181082292,
-    "tQ":44.4489555358887,
-    "maxStates":5
+    "tQ":33.5958404541016,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Maize White",
     "date":"2011-12-01",
-    "countStates":5,
-    "fQ":10.2343217849731,
+    "fQ":19.3649787902832,
     "median":19.9451999664307,
     "mean":29.253413273738,
-    "tQ":72.693342590332,
-    "maxStates":5
+    "tQ":32.6477432250977,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Maize White",
     "date":"2012-06-01",
-    "countStates":5,
-    "fQ":13.8509380340576,
+    "fQ":20.9599857330322,
     "median":32.6035003662109,
     "mean":44.65420850118,
-    "tQ":74.3661636352539,
-    "maxStates":5
+    "tQ":72.7952346801758,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Maize White",
     "date":"2012-12-01",
-    "countStates":5,
-    "fQ":7.32026641368866,
+    "fQ":11.364607334137,
     "median":18.7038049697876,
     "mean":16.6509568350656,
-    "tQ":23.1554402351379,
-    "maxStates":5
+    "tQ":20.0423593521118,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Maize Yellow",
     "date":"2009-12-01",
-    "countStates":5,
-    "fQ":2.96724475622177,
+    "fQ":4.83013439178467,
     "median":8.17980575561523,
     "mean":8.7019034465154,
-    "tQ":17.0182543754578,
-    "maxStates":5
+    "tQ":11.3065333366394,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Maize Yellow",
     "date":"2010-06-01",
-    "countStates":5,
-    "fQ":5.38678867816925,
+    "fQ":6.87968063354492,
     "median":19.7008657455444,
     "mean":20.0929422542967,
-    "tQ":40.2556871414185,
-    "maxStates":5
+    "tQ":30.1417169570923,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Maize Yellow",
     "date":"2010-12-01",
-    "countStates":5,
-    "fQ":16.9299293518066,
+    "fQ":30.7757816314697,
     "median":34.6248512268066,
     "mean":40.8624640013042,
-    "tQ":72.1090286254883,
-    "maxStates":5
+    "tQ":52.0609550476074,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Maize Yellow",
     "date":"2011-06-01",
-    "countStates":5,
-    "fQ":12.498047208786,
+    "fQ":30.1261024475098,
     "median":39.8639945983887,
     "mean":42.7145258903503,
-    "tQ":72.2347221374512,
-    "maxStates":5
+    "tQ":60.1515111923218,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Maize Yellow",
     "date":"2011-12-01",
-    "countStates":5,
-    "fQ":25.6275861740112,
+    "fQ":26.100323677063,
     "median":26.611720085144,
     "mean":37.2455373764038,
-    "tQ":70.8703330993652,
-    "maxStates":5
+    "tQ":37.2027702331543,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Maize Yellow",
     "date":"2012-06-01",
-    "countStates":5,
-    "fQ":15.7256868362427,
+    "fQ":23.1647357940674,
     "median":27.5096683502197,
     "mean":39.9051934348212,
-    "tQ":77.0145095825195,
-    "maxStates":5
+    "tQ":70.0056457519531,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Maize Yellow",
     "date":"2012-12-01",
-    "countStates":5,
-    "fQ":9.06957015991211,
+    "fQ":13.3663911819458,
     "median":15.0298881530762,
     "mean":19.2052740683922,
-    "tQ":35.3851337432861,
-    "maxStates":5
+    "tQ":27.3172340393066,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Rice Imported",
     "date":"2009-12-01",
-    "countStates":4,
-    "fQ":5.72399172782898,
+    "fQ":8.29261755943298,
     "median":10.071346282959,
     "mean":11.2044415814536,
-    "tQ":20.317346572876,
-    "maxStates":5
+    "tQ":12.3025450706482,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Rice Imported",
     "date":"2010-06-01",
-    "countStates":5,
-    "fQ":2.45199220180511,
+    "fQ":4.50076627731323,
     "median":9.20135879516602,
     "mean":9.11675091499978,
-    "tQ":20.9132095336914,
-    "maxStates":5
+    "tQ":11.5739259719849,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Rice Imported",
     "date":"2010-12-01",
-    "countStates":5,
-    "fQ":12.868851852417,
+    "fQ":14.5874977111816,
     "median":24.8794822692871,
     "mean":24.8595816359228,
-    "tQ":42.0327262878418,
-    "maxStates":5
+    "tQ":30.3622779846191,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Rice Imported",
     "date":"2011-06-01",
-    "countStates":5,
-    "fQ":7.4830988407135,
+    "fQ":17.7276108264923,
     "median":31.808445930481,
     "mean":28.7002731323242,
-    "tQ":46.52685546875,
-    "maxStates":5
+    "tQ":37.0185556411743,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Rice Imported",
     "date":"2011-12-01",
-    "countStates":5,
-    "fQ":11.6228874206543,
+    "fQ":21.3796787261963,
     "median":33.383960723877,
     "mean":30.3757352828979,
-    "tQ":51.2512535095215,
-    "maxStates":5
+    "tQ":37.4252624511719,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Rice Imported",
     "date":"2012-06-01",
-    "countStates":5,
-    "fQ":12.0715263366699,
+    "fQ":23.6269454956055,
     "median":24.7076530456543,
     "mean":32.2227147420247,
-    "tQ":60.3582000732422,
-    "maxStates":5
+    "tQ":37.4517402648926,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Rice Imported",
     "date":"2012-12-01",
-    "countStates":5,
-    "fQ":4.55403418540955,
+    "fQ":10.6341557502747,
     "median":13.5993504524231,
     "mean":14.7280608812968,
-    "tQ":24.4343082427978,
-    "maxStates":5
+    "tQ":20.7152886390686,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Rice Local",
     "date":"2009-12-01",
-    "countStates":4,
-    "fQ":3.0195764541626,
+    "fQ":4.10216784477234,
     "median":10.1928730010986,
     "mean":11.9599325180054,
-    "tQ":26.3193534851074,
-    "maxStates":5
+    "tQ":18.3548765182495,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Rice Local",
     "date":"2010-06-01",
-    "countStates":5,
-    "fQ":3.76636753082275,
+    "fQ":4.55089890956879,
     "median":12.3116636276245,
     "mean":19.3805172973209,
-    "tQ":104.430982589722,
-    "maxStates":5
+    "tQ":21.3569860458374,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Rice Local",
     "date":"2010-12-01",
-    "countStates":5,
-    "fQ":12.494389629364,
+    "fQ":24.9991207122803,
     "median":32.0995168685913,
     "mean":33.2748861489473,
-    "tQ":77.8168891906738,
-    "maxStates":5
+    "tQ":34.7234783172607,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Rice Local",
     "date":"2011-06-01",
-    "countStates":5,
-    "fQ":24.1075889587402,
+    "fQ":28.5486598014832,
     "median":30.9266805648804,
     "mean":30.9593812942505,
-    "tQ":38.438507270813,
-    "maxStates":5
+    "tQ":33.0592951774597,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Rice Local",
     "date":"2011-12-01",
-    "countStates":5,
-    "fQ":11.0424897670746,
+    "fQ":13.7343723773956,
     "median":19.1956386566162,
     "mean":27.0309700012207,
-    "tQ":67.5679927825928,
-    "maxStates":5
+    "tQ":23.293007850647,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Rice Local",
     "date":"2012-06-01",
-    "countStates":5,
-    "fQ":16.1129151344299,
+    "fQ":20.533034324646,
     "median":21.7056350708008,
     "mean":32.5086573192051,
-    "tQ":63.6752960205078,
-    "maxStates":5
+    "tQ":43.2870988845825,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Rice Local",
     "date":"2012-12-01",
-    "countStates":5,
-    "fQ":8.20444121360779,
+    "fQ":9.7967529296875,
     "median":13.373384475708,
     "mean":13.0077389876048,
-    "tQ":19.0958696365356,
-    "maxStates":5
+    "tQ":14.9601254463196,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Sorghum",
     "date":"2009-12-01",
-    "countStates":4,
-    "fQ":2.72288085222244,
+    "fQ":7.3878219127655,
     "median":9.20911550521851,
     "mean":13.2756030048643,
-    "tQ":33.6227262496948,
-    "maxStates":5
+    "tQ":16.8104484081268,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Sorghum",
     "date":"2010-06-01",
-    "countStates":5,
-    "fQ":4.77895948886871,
+    "fQ":6.15362286567688,
     "median":10.3894386291504,
     "mean":11.4057480096817,
-    "tQ":19.0519190788269,
-    "maxStates":5
+    "tQ":15.6183893680573,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Sorghum",
     "date":"2010-12-01",
-    "countStates":5,
-    "fQ":11.6391182899475,
+    "fQ":17.3817481994629,
     "median":27.4734725952148,
     "mean":30.7049209905225,
-    "tQ":55.5830726623535,
-    "maxStates":5
+    "tQ":45.7076530456543,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Sorghum",
     "date":"2011-06-01",
-    "countStates":5,
-    "fQ":9.94391226768494,
+    "fQ":25.4361581802368,
     "median":28.7230939865112,
     "mean":32.4984204292297,
-    "tQ":57.1070198059082,
-    "maxStates":5
+    "tQ":45.4983649253845,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Sorghum",
     "date":"2011-12-01",
-    "countStates":5,
-    "fQ":32.5119603157043,
+    "fQ":47.3283281326294,
     "median":47.8459911346436,
     "mean":48.5800172805786,
-    "tQ":63.0590621948242,
-    "maxStates":5
+    "tQ":52.2351121902466,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Sorghum",
     "date":"2012-06-01",
-    "countStates":5,
-    "fQ":27.0942905426025,
+    "fQ":28.4591236114502,
     "median":47.5373764038086,
     "mean":46.7180141448975,
-    "tQ":69.052368927002,
-    "maxStates":5
+    "tQ":59.3667030334473,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":3,
     "item":"Sorghum",
     "date":"2012-12-01",
-    "countStates":5,
-    "fQ":5.96454167366028,
+    "fQ":9.9533109664917,
     "median":17.0087509155273,
     "mean":19.8646469549699,
-    "tQ":48.429515838623,
-    "maxStates":5
+    "tQ":18.8661394119263,
+    "minState":13,
+    "maxState":17
   },
   {
     "zoneCode":4,
     "item":"Cement Dangote",
     "date":"2009-12-01",
-    "countStates":7,
-    "fQ":0.347475990653038,
+    "fQ":0.957492053508759,
     "median":2.39582681655884,
     "mean":6.85109690357657,
-    "tQ":16.9838812828064,
-    "maxStates":7
+    "tQ":4.79148066043854,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Cement Dangote",
     "date":"2010-06-01",
-    "countStates":7,
-    "fQ":1.8408687710762,
+    "fQ":2.66639482975006,
     "median":19.4440937042236,
     "mean":28.5655717301643,
-    "tQ":127.824584960938,
-    "maxStates":7
+    "tQ":45.1669540405273,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Cement Dangote",
     "date":"2010-12-01",
-    "countStates":7,
-    "fQ":2.25408444404602,
+    "fQ":3.28072834014893,
     "median":14.0113935470581,
     "mean":24.893602166857,
-    "tQ":102.664865112305,
-    "maxStates":7
+    "tQ":33.5271492004395,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Cement Dangote",
     "date":"2011-06-01",
-    "countStates":7,
-    "fQ":5.92109670639038,
+    "fQ":7.88340497016907,
     "median":10.097306728363,
     "mean":18.1276131206089,
-    "tQ":51.9392116546631,
-    "maxStates":7
+    "tQ":20.7867588996887,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Cement Dangote",
     "date":"2011-12-01",
-    "countStates":7,
-    "fQ":9.16953272819519,
+    "fQ":9.97550058364868,
     "median":14.87819480896,
     "mean":19.1711255179511,
-    "tQ":50.9998579025269,
-    "maxStates":7
+    "tQ":21.1440501213074,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Cement Dangote",
     "date":"2012-06-01",
-    "countStates":7,
-    "fQ":6.90377607345581,
+    "fQ":9.56912279129028,
     "median":10.8692293167114,
     "mean":18.1721534729004,
-    "tQ":46.7912979125976,
-    "maxStates":7
+    "tQ":16.0243349075317,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Cement Dangote",
     "date":"2012-12-01",
-    "countStates":7,
-    "fQ":4.55246522426605,
+    "fQ":6.55763065814972,
     "median":10.0825228691101,
     "mean":12.5037322044373,
-    "tQ":26.2934889793396,
-    "maxStates":7
+    "tQ":17.5388402938843,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Drink Swan Water Bottle",
     "date":"2009-12-01",
-    "countStates":4,
-    "fQ":3.45990831851959,
+    "fQ":7.45573472976685,
     "median":12.295220375061,
     "mean":20.8001282850901,
-    "tQ":57.1691993713379,
-    "maxStates":7
+    "tQ":27.5312423706055,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Drink Swan Water Bottle",
     "date":"2010-06-01",
-    "countStates":7,
-    "fQ":9.51064548492432,
+    "fQ":12.5674619674683,
     "median":15.1580257415771,
     "mean":16.8945199924967,
-    "tQ":29.6960048675537,
-    "maxStates":7
+    "tQ":20.2997894287109,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Drink Swan Water Bottle",
     "date":"2010-12-01",
-    "countStates":7,
-    "fQ":10.5536874771118,
+    "fQ":15.5856549739838,
     "median":22.4793367385864,
     "mean":24.1597922269036,
-    "tQ":55.0008655548097,
-    "maxStates":7
+    "tQ":27.1076469421387,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Drink Swan Water Bottle",
     "date":"2011-06-01",
-    "countStates":7,
-    "fQ":10.0352024078369,
+    "fQ":13.8943226337433,
     "median":25.0172634124756,
     "mean":29.3438789579603,
-    "tQ":59.2232582092285,
-    "maxStates":7
+    "tQ":45.0672616958618,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Drink Swan Water Bottle",
     "date":"2011-12-01",
-    "countStates":7,
-    "fQ":9.17655165195465,
+    "fQ":18.7766242027283,
     "median":20.954122543335,
     "mean":22.1705828507741,
-    "tQ":28.8602285385132,
-    "maxStates":7
+    "tQ":27.035539150238,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Drink Swan Water Bottle",
     "date":"2012-06-01",
-    "countStates":7,
-    "fQ":10.0782214641571,
+    "fQ":18.7072162628174,
     "median":21.8544540405273,
     "mean":24.0535093716213,
-    "tQ":42.2732423782348,
-    "maxStates":7
+    "tQ":27.0472316741943,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Drink Swan Water Bottle",
     "date":"2012-12-01",
-    "countStates":7,
-    "fQ":6.38313508033752,
+    "fQ":9.77291989326477,
     "median":18.631986618042,
     "mean":19.5395976172553,
-    "tQ":46.9901617050171,
-    "maxStates":7
+    "tQ":23.5552701950073,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Maize White",
     "date":"2009-12-01",
-    "countStates":7,
-    "fQ":2.86477386951447,
+    "fQ":7.36721479892731,
     "median":12.2010006904602,
     "mean":14.7073999745505,
-    "tQ":34.1679935455322,
-    "maxStates":7
+    "tQ":18.5657238960266,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Maize White",
     "date":"2010-06-01",
-    "countStates":7,
-    "fQ":5.21996693611145,
+    "fQ":10.115786075592,
     "median":14.247784614563,
     "mean":18.4833336991649,
-    "tQ":37.0805644989013,
-    "maxStates":7
+    "tQ":24.1153302192688,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Maize White",
     "date":"2010-12-01",
-    "countStates":7,
-    "fQ":8.24420070648193,
+    "fQ":10.7140741348267,
     "median":15.2985992431641,
     "mean":17.0499331813213,
-    "tQ":29.6689414978027,
-    "maxStates":7
+    "tQ":19.0148620605469,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Maize White",
     "date":"2011-06-01",
-    "countStates":7,
-    "fQ":4.62705764770508,
+    "fQ":10.6187658309937,
     "median":12.0854473114014,
     "mean":15.4103496953061,
-    "tQ":45.2739040374756,
-    "maxStates":7
+    "tQ":15.1598768234253,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Maize White",
     "date":"2011-12-01",
-    "countStates":7,
-    "fQ":6.91407527923584,
+    "fQ":8.66043663024902,
     "median":9.59458446502686,
     "mean":13.8653510746203,
-    "tQ":48.1708339691162,
-    "maxStates":7
+    "tQ":12.9618382453918,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Maize White",
     "date":"2012-06-01",
-    "countStates":7,
-    "fQ":7.83104219436646,
+    "fQ":8.07088494300842,
     "median":8.48665714263916,
     "mean":9.51597309112549,
-    "tQ":12.746733379364,
-    "maxStates":7
+    "tQ":10.6389832496643,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Maize White",
     "date":"2012-12-01",
-    "countStates":7,
-    "fQ":4.63897302150726,
+    "fQ":5.69625973701477,
     "median":8.12795352935791,
     "mean":8.535700612598,
-    "tQ":16.6614322662354,
-    "maxStates":7
+    "tQ":9.61200308799744,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Maize Yellow",
     "date":"2009-12-01",
-    "countStates":7,
-    "fQ":1.25040084123611,
+    "fQ":6.2731249332428,
     "median":11.5798077583313,
     "mean":13.6130146013968,
-    "tQ":31.9072070121765,
-    "maxStates":7
+    "tQ":18.6843786239624,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Maize Yellow",
     "date":"2010-06-01",
-    "countStates":7,
-    "fQ":4.20987710952759,
+    "fQ":9.1793794631958,
     "median":16.4467973709106,
     "mean":21.4056406861446,
-    "tQ":57.5952346801758,
-    "maxStates":7
+    "tQ":26.694064617157,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Maize Yellow",
     "date":"2010-12-01",
-    "countStates":7,
-    "fQ":9.4642481803894,
+    "fQ":10.7512471675873,
     "median":17.5400619506836,
     "mean":19.7889398500837,
-    "tQ":42.4591493606567,
-    "maxStates":7
+    "tQ":26.2379851341248,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Maize Yellow",
     "date":"2011-06-01",
-    "countStates":7,
-    "fQ":7.17818989753723,
+    "fQ":12.153201341629,
     "median":14.2523922920227,
     "mean":15.7953745524089,
-    "tQ":28.7396966934204,
-    "maxStates":7
+    "tQ":18.3858442306519,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Maize Yellow",
     "date":"2011-12-01",
-    "countStates":7,
-    "fQ":5.54796965122223,
+    "fQ":9.27978372573853,
     "median":11.5611743927002,
     "mean":12.3598944875929,
-    "tQ":29.8313961982727,
-    "maxStates":7
+    "tQ":12.2604758739471,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Maize Yellow",
     "date":"2012-06-01",
-    "countStates":7,
-    "fQ":8.06184659004211,
+    "fQ":11.317765712738,
     "median":12.7238054275513,
     "mean":15.2023810659136,
-    "tQ":25.8508043289184,
-    "maxStates":7
+    "tQ":17.5798559188843,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Maize Yellow",
     "date":"2012-12-01",
-    "countStates":7,
-    "fQ":6.76246373653412,
+    "fQ":8.12590408325195,
     "median":12.4593167304993,
     "mean":14.759472767512,
-    "tQ":27.0992312431335,
-    "maxStates":7
+    "tQ":21.2051086425781,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Rice Imported",
     "date":"2009-12-01",
-    "countStates":7,
-    "fQ":1.3666783452034,
+    "fQ":5.27416515350342,
     "median":7.5339822769165,
     "mean":8.61237560675062,
-    "tQ":20.1992076873779,
-    "maxStates":7
+    "tQ":9.72154903411865,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Rice Imported",
     "date":"2010-06-01",
-    "countStates":7,
-    "fQ":3.9934540271759,
+    "fQ":5.63071382045746,
     "median":10.1323099136353,
     "mean":14.2723685432883,
-    "tQ":32.4198996543884,
-    "maxStates":7
+    "tQ":21.1406087875366,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Rice Imported",
     "date":"2010-12-01",
-    "countStates":7,
-    "fQ":8.08033909797668,
+    "fQ":8.74124050140381,
     "median":11.6010212898254,
     "mean":16.0331080006618,
-    "tQ":26.3310769081116,
-    "maxStates":7
+    "tQ":25.0752115249634,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Rice Imported",
     "date":"2011-06-01",
-    "countStates":7,
-    "fQ":5.88081865310669,
+    "fQ":8.40622448921204,
     "median":11.194806098938,
     "mean":12.9661258591546,
-    "tQ":25.6329939842224,
-    "maxStates":7
+    "tQ":15.0114550590515,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Rice Imported",
     "date":"2011-12-01",
-    "countStates":7,
-    "fQ":4.96966254711151,
+    "fQ":8.11491560935974,
     "median":8.91208076477051,
     "mean":9.4390521314409,
-    "tQ":16.0018431186676,
-    "maxStates":7
+    "tQ":10.4615323543549,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Rice Imported",
     "date":"2012-06-01",
-    "countStates":7,
-    "fQ":4.70057189464569,
+    "fQ":6.89000201225281,
     "median":8.23882484436035,
     "mean":8.40097941671099,
-    "tQ":12.9888043403625,
-    "maxStates":7
+    "tQ":9.25627422332764,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Rice Imported",
     "date":"2012-12-01",
-    "countStates":7,
-    "fQ":5.97602016925812,
+    "fQ":6.70286929607391,
     "median":8.62762546539307,
     "mean":11.1468015246921,
-    "tQ":26.0871538162231,
-    "maxStates":7
+    "tQ":14.7163472175598,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Rice Local",
     "date":"2009-12-01",
-    "countStates":7,
-    "fQ":0.387542903423309,
+    "fQ":2.18391567468643,
     "median":7.23603940010071,
     "mean":11.7635795297101,
-    "tQ":36.5727655410766,
-    "maxStates":7
+    "tQ":18.4144983291626,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Rice Local",
     "date":"2010-06-01",
-    "countStates":7,
-    "fQ":4.22752120494843,
+    "fQ":6.86229205131531,
     "median":8.24284744262695,
     "mean":13.1940043325777,
-    "tQ":47.7465963363647,
-    "maxStates":7
+    "tQ":10.1362056732178,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Rice Local",
     "date":"2010-12-01",
-    "countStates":7,
-    "fQ":6.45353164672852,
+    "fQ":7.66810476779938,
     "median":10.1091213226318,
     "mean":15.1508842265164,
-    "tQ":35.8494152069092,
-    "maxStates":7
+    "tQ":17.1405057907104,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Rice Local",
     "date":"2011-06-01",
-    "countStates":7,
-    "fQ":5.58828284740448,
+    "fQ":10.1237788200378,
     "median":12.9319400787354,
     "mean":19.0041542318132,
-    "tQ":43.7012163162231,
-    "maxStates":7
+    "tQ":26.7580823898315,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Rice Local",
     "date":"2011-12-01",
-    "countStates":7,
-    "fQ":7.2701667547226,
+    "fQ":10.9413492679596,
     "median":12.5902495384216,
     "mean":17.9284223715464,
-    "tQ":43.5471103668213,
-    "maxStates":7
+    "tQ":15.2224383354187,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Rice Local",
     "date":"2012-06-01",
-    "countStates":7,
-    "fQ":7.03536806106567,
+    "fQ":9.5285530090332,
     "median":11.0446929931641,
     "mean":14.8589220046997,
-    "tQ":30.4222646713257,
-    "maxStates":7
+    "tQ":15.9508519172668,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Rice Local",
     "date":"2012-12-01",
-    "countStates":7,
-    "fQ":4.39080421924591,
+    "fQ":9.31286239624023,
     "median":10.1747965812683,
     "mean":15.1628927124871,
-    "tQ":34.8706712722778,
-    "maxStates":7
+    "tQ":21.4562437534332,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Sorghum",
     "date":"2009-12-01",
-    "countStates":7,
-    "fQ":2.0617574930191,
+    "fQ":6.54923903942108,
     "median":12.7606682777405,
     "mean":14.4708748143166,
-    "tQ":31.8698781013489,
-    "maxStates":7
+    "tQ":19.9423122406006,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Sorghum",
     "date":"2010-06-01",
-    "countStates":7,
-    "fQ":5.37300415039062,
+    "fQ":7.33453702926636,
     "median":10.3606100082397,
     "mean":12.7911298178076,
-    "tQ":27.8517816543579,
-    "maxStates":7
+    "tQ":14.9405417442322,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Sorghum",
     "date":"2010-12-01",
-    "countStates":7,
-    "fQ":8.76723837852478,
+    "fQ":11.3817608356476,
     "median":15.7071485519409,
     "mean":16.9217232902845,
-    "tQ":32.9508583068848,
-    "maxStates":7
+    "tQ":19.8502731323242,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Sorghum",
     "date":"2011-06-01",
-    "countStates":7,
-    "fQ":7.21503427028656,
+    "fQ":12.0520894527435,
     "median":14.8569359779358,
     "mean":18.2984474235111,
-    "tQ":37.8991329193115,
-    "maxStates":7
+    "tQ":21.6629152297974,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Sorghum",
     "date":"2011-12-01",
-    "countStates":7,
-    "fQ":9.46916308403015,
+    "fQ":10.2415323257446,
     "median":13.735556602478,
     "mean":17.4099207984077,
-    "tQ":35.2689153671265,
-    "maxStates":7
+    "tQ":15.8547019958496,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Sorghum",
     "date":"2012-06-01",
-    "countStates":7,
-    "fQ":9.31046590805054,
+    "fQ":11.3190531730652,
     "median":12.2775745391846,
     "mean":14.8257055282593,
-    "tQ":23.9522382736206,
-    "maxStates":7
+    "tQ":16.8153734207153,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":4,
     "item":"Sorghum",
     "date":"2012-12-01",
-    "countStates":7,
-    "fQ":7.81751489639282,
+    "fQ":10.0209846496582,
     "median":12.8955898284912,
     "mean":12.3498149759629,
-    "tQ":16.1394714355469,
-    "maxStates":7
+    "tQ":14.9028415679932,
+    "minState":18,
+    "maxState":24
   },
   {
     "zoneCode":5,
     "item":"Cement Dangote",
     "date":"2009-12-01",
-    "countStates":4,
-    "fQ":1.60043005347252,
+    "fQ":1.94763419032097,
     "median":2.83199417591095,
     "mean":12.3200921416283,
-    "tQ":49.3828196525573,
-    "maxStates":7
+    "tQ":5.10935771465302,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Cement Dangote",
     "date":"2010-06-01",
-    "countStates":7,
-    "fQ":0.987759947776794,
+    "fQ":2.41772031784058,
     "median":3.62135100364685,
     "mean":6.98307788953549,
-    "tQ":6.1758713722229,
-    "maxStates":7
+    "tQ":4.58448219299316,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Cement Dangote",
     "date":"2010-12-01",
-    "countStates":7,
-    "fQ":1.22618091106415,
+    "fQ":2.0583336353302,
     "median":3.07650446891785,
     "mean":6.65642300167599,
-    "tQ":28.7613983154295,
-    "maxStates":7
+    "tQ":4.08511257171631,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Cement Dangote",
     "date":"2011-06-01",
-    "countStates":7,
-    "fQ":5.09921109676361,
+    "fQ":8.23084592819214,
     "median":11.6303277015686,
     "mean":21.4280053888048,
-    "tQ":55.6802572250366,
-    "maxStates":7
+    "tQ":30.7191343307495,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Cement Dangote",
     "date":"2011-12-01",
-    "countStates":7,
-    "fQ":7.90628309249878,
+    "fQ":8.85276246070862,
     "median":11.0884509086609,
     "mean":20.9542179107666,
-    "tQ":49.1556930541992,
-    "maxStates":7
+    "tQ":32.6372146606445,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Cement Dangote",
     "date":"2012-06-01",
-    "countStates":7,
-    "fQ":7.09490027427673,
+    "fQ":9.14529085159302,
     "median":14.2174396514893,
     "mean":19.0289077077593,
-    "tQ":38.2004276275635,
-    "maxStates":7
+    "tQ":25.806414604187,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Cement Dangote",
     "date":"2012-12-01",
-    "countStates":7,
-    "fQ":6.07318246364594,
+    "fQ":16.1507134437561,
     "median":25.6134395599365,
     "mean":24.7375166714191,
-    "tQ":43.3185081481934,
-    "maxStates":7
+    "tQ":30.9738168716431,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Drink Swan Water Bottle",
     "date":"2009-12-01",
-    "countStates":5,
-    "fQ":2.3227905601263,
+    "fQ":11.772260427475,
     "median":14.7363691329956,
     "mean":21.737217345408,
-    "tQ":47.8474756240845,
-    "maxStates":7
+    "tQ":33.8180613517761,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Drink Swan Water Bottle",
     "date":"2010-06-01",
-    "countStates":7,
-    "fQ":4.40701732635498,
+    "fQ":6.03724241256714,
     "median":12.7687892913818,
     "mean":14.8452146828175,
-    "tQ":33.3371524810791,
-    "maxStates":7
+    "tQ":17.9641227722168,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Drink Swan Water Bottle",
     "date":"2010-12-01",
-    "countStates":7,
-    "fQ":4.02674918174744,
+    "fQ":5.79136490821838,
     "median":10.0633020401001,
     "mean":13.9700263402401,
-    "tQ":33.8263500213623,
-    "maxStates":7
+    "tQ":18.6942310333252,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Drink Swan Water Bottle",
     "date":"2011-06-01",
-    "countStates":7,
-    "fQ":2.80115041732788,
+    "fQ":6.7120748758316,
     "median":8.41261410713196,
     "mean":11.5308426788875,
-    "tQ":26.8838185310364,
-    "maxStates":7
+    "tQ":15.2742745876312,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Drink Swan Water Bottle",
     "date":"2011-12-01",
-    "countStates":7,
-    "fQ":8.76992950439453,
+    "fQ":9.36324095726013,
     "median":9.99843120574951,
     "mean":13.4160903294881,
-    "tQ":24.4412391662598,
-    "maxStates":7
+    "tQ":17.3657784461975,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Drink Swan Water Bottle",
     "date":"2012-06-01",
-    "countStates":7,
-    "fQ":9.38156900405884,
+    "fQ":10.7973828315735,
     "median":13.039740562439,
     "mean":14.1484399523054,
-    "tQ":23.0368783950806,
-    "maxStates":7
+    "tQ":14.5508818626404,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Drink Swan Water Bottle",
     "date":"2012-12-01",
-    "countStates":7,
-    "fQ":7.46180744171143,
+    "fQ":8.57387351989746,
     "median":10.8225536346436,
     "mean":13.5180874712327,
-    "tQ":22.4788497924805,
-    "maxStates":7
+    "tQ":18.1997394561768,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Maize White",
     "date":"2009-12-01",
-    "countStates":5,
-    "fQ":4.50299882888794,
+    "fQ":10.1795320510864,
     "median":13.2756385803223,
     "mean":15.4777780425164,
-    "tQ":29.6667175292969,
-    "maxStates":7
+    "tQ":19.7357034683228,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Maize White",
     "date":"2010-06-01",
-    "countStates":7,
-    "fQ":7.32533121109009,
+    "fQ":10.1356439590454,
     "median":14.4515151977539,
     "mean":20.6034243646658,
-    "tQ":45.1705619812012,
-    "maxStates":7
+    "tQ":25.8991985321045,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Maize White",
     "date":"2010-12-01",
-    "countStates":7,
-    "fQ":4.23473500013352,
+    "fQ":9.56669306755066,
     "median":13.8278350830078,
     "mean":17.7528778982162,
-    "tQ":38.2897705078125,
-    "maxStates":7
+    "tQ":21.6763162612915,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Maize White",
     "date":"2011-06-01",
-    "countStates":7,
-    "fQ":7.13633604049683,
+    "fQ":10.3260803222656,
     "median":16.2993202209473,
     "mean":17.045162709554,
-    "tQ":30.3267997741699,
-    "maxStates":7
+    "tQ":21.608847618103,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Maize White",
     "date":"2011-12-01",
-    "countStates":7,
-    "fQ":7.17014818191528,
+    "fQ":10.7517051696777,
     "median":13.0357351303101,
     "mean":15.6166582743327,
-    "tQ":29.7634593963623,
-    "maxStates":7
+    "tQ":19.343017578125,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Maize White",
     "date":"2012-06-01",
-    "countStates":7,
-    "fQ":12.2222143173218,
+    "fQ":12.937029838562,
     "median":14.9853706359863,
     "mean":15.6204783575875,
-    "tQ":20.0328130722046,
-    "maxStates":7
+    "tQ":17.910454750061,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Maize White",
     "date":"2012-12-01",
-    "countStates":7,
-    "fQ":14.3406372070312,
+    "fQ":15.513970375061,
     "median":19.9972667694092,
     "mean":21.0873692456414,
-    "tQ":33.5290405273438,
-    "maxStates":7
+    "tQ":26.0781650543213,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Maize Yellow",
     "date":"2009-12-01",
-    "countStates":5,
-    "fQ":4.25377153158188,
+    "fQ":10.7460837364197,
     "median":14.3493614196777,
     "mean":15.5326485713323,
-    "tQ":32.0135847091675,
-    "maxStates":7
+    "tQ":19.3195223808289,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Maize Yellow",
     "date":"2010-06-01",
-    "countStates":7,
-    "fQ":4.92678306102753,
+    "fQ":9.10046648979187,
     "median":11.7599816322327,
     "mean":13.000132060968,
-    "tQ":25.5810535430908,
-    "maxStates":7
+    "tQ":15.6338737010956,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Maize Yellow",
     "date":"2010-12-01",
-    "countStates":7,
-    "fQ":4.51107604503632,
+    "fQ":8.02127766609192,
     "median":9.5144305229187,
     "mean":10.7405924797058,
-    "tQ":17.6553532600403,
-    "maxStates":7
+    "tQ":13.2471785545349,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Maize Yellow",
     "date":"2011-06-01",
-    "countStates":7,
-    "fQ":7.42522029876709,
+    "fQ":11.0078561306,
     "median":19.2766313552856,
     "mean":18.4622452599662,
-    "tQ":26.3958204269409,
-    "maxStates":7
+    "tQ":25.4944233894348,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Maize Yellow",
     "date":"2011-12-01",
-    "countStates":7,
-    "fQ":8.91765584945679,
+    "fQ":10.4800989627838,
     "median":15.8249878883362,
     "mean":18.2161496026175,
-    "tQ":33.91353931427,
-    "maxStates":7
+    "tQ":24.2856941223145,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Maize Yellow",
     "date":"2012-06-01",
-    "countStates":7,
-    "fQ":10.1916854858398,
+    "fQ":13.5728878974915,
     "median":15.4983148574829,
     "mean":16.9763473783221,
-    "tQ":28.5123397827148,
-    "maxStates":7
+    "tQ":17.0759983062744,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Maize Yellow",
     "date":"2012-12-01",
-    "countStates":7,
-    "fQ":6.71430158615112,
+    "fQ":13.400242805481,
     "median":14.5356292724609,
     "mean":17.8836269378662,
-    "tQ":37.4181861877441,
-    "maxStates":7
+    "tQ":15.4924259185791,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Rice Imported",
     "date":"2009-12-01",
-    "countStates":5,
-    "fQ":1.66998927593231,
+    "fQ":3.61314964294434,
     "median":6.81245756149292,
     "mean":7.89146510037509,
-    "tQ":16.6520629882812,
-    "maxStates":7
+    "tQ":9.49732971191406,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Rice Imported",
     "date":"2010-06-01",
-    "countStates":7,
-    "fQ":3.8325110912323,
+    "fQ":3.92519307136536,
     "median":4.29084086418152,
     "mean":7.20793837308884,
-    "tQ":15.3866798400879,
-    "maxStates":7
+    "tQ":9.86772871017456,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Rice Imported",
     "date":"2010-12-01",
-    "countStates":7,
-    "fQ":3.03254905939102,
+    "fQ":4.11897921562195,
     "median":5.72981309890747,
     "mean":11.8893003520511,
-    "tQ":46.7981161117554,
-    "maxStates":7
+    "tQ":11.9899566173553,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Rice Imported",
     "date":"2011-06-01",
-    "countStates":7,
-    "fQ":2.61032127141952,
+    "fQ":5.6121289730072,
     "median":7.48828816413879,
     "mean":11.9712677342551,
-    "tQ":34.6057372093201,
-    "maxStates":7
+    "tQ":12.6745200157166,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Rice Imported",
     "date":"2011-12-01",
-    "countStates":7,
-    "fQ":3.49159008264542,
+    "fQ":5.20282506942749,
     "median":10.5472559928894,
     "mean":12.8436284576144,
-    "tQ":40.5055208206177,
-    "maxStates":7
+    "tQ":12.731986284256,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Rice Imported",
     "date":"2012-06-01",
-    "countStates":7,
-    "fQ":6.04411277770996,
+    "fQ":9.41704893112183,
     "median":11.1618947982788,
     "mean":14.8059734616961,
-    "tQ":31.9205840110779,
-    "maxStates":7
+    "tQ":14.6611466407776,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Rice Imported",
     "date":"2012-12-01",
-    "countStates":7,
-    "fQ":6.75307903289795,
+    "fQ":9.79625415802002,
     "median":11.1829147338867,
     "mean":12.0311046768637,
-    "tQ":17.9347694396973,
-    "maxStates":7
+    "tQ":14.937180519104,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Rice Local",
     "date":"2009-12-01",
-    "countStates":5,
-    "fQ":0.558097903430462,
+    "fQ":6.66991555690765,
     "median":8.80623054504395,
     "mean":10.0963202388957,
-    "tQ":22.3690675735474,
-    "maxStates":7
+    "tQ":13.5370876789093,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Rice Local",
     "date":"2010-06-01",
-    "countStates":7,
-    "fQ":4.19869089126587,
+    "fQ":4.54891788959503,
     "median":6.68190979957581,
     "mean":7.65801196253818,
-    "tQ":15.1219453811646,
-    "maxStates":7
+    "tQ":8.96851682662964,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Rice Local",
     "date":"2010-12-01",
-    "countStates":7,
-    "fQ":4.00663542747498,
+    "fQ":6.48442208766937,
     "median":6.96043491363525,
     "mean":8.68506885611493,
-    "tQ":15.8563451766968,
-    "maxStates":7
+    "tQ":7.39263248443604,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Rice Local",
     "date":"2011-06-01",
-    "countStates":7,
-    "fQ":5.80787138938904,
+    "fQ":7.18295562267303,
     "median":11.4146027565002,
     "mean":12.7069903441838,
-    "tQ":27.1079122543335,
-    "maxStates":7
+    "tQ":14.2153511047363,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Rice Local",
     "date":"2011-12-01",
-    "countStates":7,
-    "fQ":7.68638186454773,
+    "fQ":8.95749950408936,
     "median":10.0936660766602,
     "mean":10.9901009968349,
-    "tQ":15.5652164459229,
-    "maxStates":7
+    "tQ":13.2549867630005,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Rice Local",
     "date":"2012-06-01",
-    "countStates":7,
-    "fQ":7.22651419639587,
+    "fQ":10.4274306297302,
     "median":11.5197525024414,
     "mean":13.0025918824332,
-    "tQ":20.5256107330322,
-    "maxStates":7
+    "tQ":14.7085704803467,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Rice Local",
     "date":"2012-12-01",
-    "countStates":7,
-    "fQ":5.11914300918579,
+    "fQ":5.67380177974701,
     "median":12.0533156394958,
     "mean":12.252711802721,
-    "tQ":22.8946499824524,
-    "maxStates":7
+    "tQ":17.6595325469971,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Sorghum",
     "date":"2009-12-01",
-    "countStates":5,
-    "fQ":4.69274070262909,
+    "fQ":7.73592090606689,
     "median":11.1659641265869,
     "mean":11.9193962624199,
-    "tQ":19.6922097206116,
-    "maxStates":7
+    "tQ":15.1234104633331,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Sorghum",
     "date":"2010-06-01",
-    "countStates":7,
-    "fQ":3.11938238143921,
+    "fQ":5.38485765457153,
     "median":9.17430210113525,
     "mean":11.9648891141954,
-    "tQ":23.0642543792725,
-    "maxStates":7
+    "tQ":12.7785730361938,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Sorghum",
     "date":"2010-12-01",
-    "countStates":7,
-    "fQ":3.9525288939476,
+    "fQ":5.86597990989685,
     "median":7.50484108924866,
     "mean":10.231251405633,
-    "tQ":22.6469395160675,
-    "maxStates":7
+    "tQ":11.7586076259613,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Sorghum",
     "date":"2011-06-01",
-    "countStates":7,
-    "fQ":7.5209047794342,
+    "fQ":9.29551887512207,
     "median":14.3919658660889,
     "mean":14.8466597557068,
-    "tQ":23.7946203231812,
-    "maxStates":7
+    "tQ":19.2577304840088,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Sorghum",
     "date":"2011-12-01",
-    "countStates":7,
-    "fQ":8.22442321777344,
+    "fQ":9.33738708496094,
     "median":14.5461273193359,
     "mean":13.6683172225952,
-    "tQ":22.8749704360962,
-    "maxStates":7
+    "tQ":16.8302335739136,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Sorghum",
     "date":"2012-06-01",
-    "countStates":7,
-    "fQ":8.91362752914429,
+    "fQ":11.1362638473511,
     "median":12.7279605865479,
     "mean":14.7660120555333,
-    "tQ":23.0428771972656,
-    "maxStates":7
+    "tQ":18.1034746170044,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":5,
     "item":"Sorghum",
     "date":"2012-12-01",
-    "countStates":7,
-    "fQ":8.12063312530518,
+    "fQ":11.5739345550537,
     "median":14.8428621292114,
     "mean":19.3947214238784,
-    "tQ":46.1603080749512,
-    "maxStates":7
+    "tQ":20.9684047698975,
+    "minState":25,
+    "maxState":31
   },
   {
     "zoneCode":6,
     "item":"Cement Dangote",
     "date":"2009-12-01",
-    "countStates":5,
-    "fQ":0.61733695268631,
+    "fQ":2.33334064483643,
     "median":3.30004239082336,
     "mean":4.45345315216361,
-    "tQ":10.0195405960083,
-    "maxStates":6
+    "tQ":6.08685970306396,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Cement Dangote",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":1.52028841376305,
+    "fQ":3.42841529846191,
     "median":8.54990339279175,
     "mean":17.1199077935446,
-    "tQ":79.8518817901611,
-    "maxStates":6
+    "tQ":12.3293657302856,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Cement Dangote",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":3.0689909696579,
+    "fQ":7.40429496765137,
     "median":12.7621593475342,
     "mean":20.4618416476894,
-    "tQ":59.2427675247192,
-    "maxStates":6
+    "tQ":28.0426096916199,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Cement Dangote",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":5.99597663879395,
+    "fQ":9.02474117279053,
     "median":10.9647722244263,
     "mean":13.6676622904264,
-    "tQ":30.9555095672607,
-    "maxStates":6
+    "tQ":14.6024971008301,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Cement Dangote",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":7.13558664321899,
+    "fQ":9.16622924804688,
     "median":10.3064312934875,
     "mean":10.7981550693512,
-    "tQ":15.3943138122559,
-    "maxStates":6
+    "tQ":12.6558616161346,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Cement Dangote",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":6.86385905742645,
+    "fQ":9.16689586639404,
     "median":10.6092581748962,
     "mean":16.6190100510915,
-    "tQ":41.0699632167816,
-    "maxStates":6
+    "tQ":12.5444867610931,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Cement Dangote",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":3.9646782875061,
+    "fQ":4.97433495521545,
     "median":8.5976037979126,
     "mean":11.5406284332275,
-    "tQ":28.7532049655914,
-    "maxStates":6
+    "tQ":11.360933303833,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Drink Swan Water Bottle",
     "date":"2009-12-01",
-    "countStates":6,
-    "fQ":2.2428787946701,
+    "fQ":5.6388304233551,
     "median":13.4820594787598,
     "mean":15.6751431914476,
-    "tQ":42.3214740753174,
-    "maxStates":6
+    "tQ":24.2535538673401,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Drink Swan Water Bottle",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":8.35427784919739,
+    "fQ":19.1709032058716,
     "median":23.5805673599243,
     "mean":26.5365482286403,
-    "tQ":49.5688219070435,
-    "maxStates":6
+    "tQ":36.5545454025269,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Drink Swan Water Bottle",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":12.4737527370453,
+    "fQ":21.9224033355713,
     "median":26.258602142334,
     "mean":30.5491774298928,
-    "tQ":54.6162872314453,
-    "maxStates":6
+    "tQ":36.68359375,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Drink Swan Water Bottle",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":6.51151163578033,
+    "fQ":13.8909304141998,
     "median":22.8674554824829,
     "mean":25.5477936267853,
-    "tQ":59.2477863311768,
-    "maxStates":6
+    "tQ":26.5820736885071,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Drink Swan Water Bottle",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":4.56757488250732,
+    "fQ":8.80277156829834,
     "median":9.99007701873779,
     "mean":11.981823517726,
-    "tQ":20.9443332672119,
-    "maxStates":6
+    "tQ":14.9005918502808,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Drink Swan Water Bottle",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":4.81467037200928,
+    "fQ":8.50203037261963,
     "median":12.9198150634766,
     "mean":11.9324793134417,
-    "tQ":17.5383974075317,
-    "maxStates":6
+    "tQ":15.3899207115173,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Drink Swan Water Bottle",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":4.06338515281677,
+    "fQ":7.25670695304871,
     "median":12.7912302017212,
     "mean":11.0292558670044,
-    "tQ":16.7534948348999,
-    "maxStates":6
+    "tQ":14.2098393440247,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Maize White",
     "date":"2009-12-01",
-    "countStates":6,
-    "fQ":2.65282419919968,
+    "fQ":9.29808688163757,
     "median":15.4005312919617,
     "mean":23.721313855052,
-    "tQ":57.3959974288939,
-    "maxStates":6
+    "tQ":35.716607093811,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Maize White",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":7.11141216754913,
+    "fQ":13.5120732784271,
     "median":29.4776382446289,
     "mean":37.5437329038978,
-    "tQ":87.6641502380371,
-    "maxStates":6
+    "tQ":51.4305257797241,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Maize White",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":11.4993265628815,
+    "fQ":19.435932636261,
     "median":37.9205265045166,
     "mean":36.1460482965816,
-    "tQ":75.7287124633789,
-    "maxStates":6
+    "tQ":42.6528739929199,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Maize White",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":14.5230548858643,
+    "fQ":17.2817001342773,
     "median":27.5317459106445,
     "mean":34.013671875,
-    "tQ":67.7765014648437,
-    "maxStates":6
+    "tQ":45.9224815368652,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Maize White",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":12.2322865962982,
+    "fQ":15.4647753238678,
     "median":25.3358249664307,
     "mean":35.9191927909851,
-    "tQ":99.0383506774902,
-    "maxStates":6
+    "tQ":36.9363164901733,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Maize White",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":22.4217157363892,
+    "fQ":23.64674949646,
     "median":26.03160572052,
     "mean":37.2265335718791,
-    "tQ":77.4849157333374,
-    "maxStates":6
+    "tQ":32.2170948982239,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Maize White",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":12.0866608381271,
+    "fQ":19.9762239456177,
     "median":24.5615730285645,
     "mean":27.2339005947113,
-    "tQ":54.1674156188965,
-    "maxStates":6
+    "tQ":33.2287063598633,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Maize Yellow",
     "date":"2009-12-01",
-    "countStates":6,
-    "fQ":3.56465198993683,
+    "fQ":6.3167290687561,
     "median":16.0400829315186,
     "mean":21.4121267761503,
-    "tQ":52.6262882232666,
-    "maxStates":6
+    "tQ":29.6384744644165,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Maize Yellow",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":6.22302527427673,
+    "fQ":10.3197286128998,
     "median":30.4642114639282,
     "mean":30.5569697514824,
-    "tQ":57.0208461761475,
-    "maxStates":6
+    "tQ":46.0915031433105,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Maize Yellow",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":12.1380161762238,
+    "fQ":16.6263790130615,
     "median":22.5600662231445,
     "mean":30.9178733030955,
-    "tQ":60.6782411575317,
-    "maxStates":6
+    "tQ":45.6158657073975,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Maize Yellow",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":9.54964008331299,
+    "fQ":17.679967880249,
     "median":21.2213706970215,
     "mean":26.3406784351055,
-    "tQ":69.228677368164,
-    "maxStates":6
+    "tQ":22.1313018798828,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Maize Yellow",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":11.8497983932495,
+    "fQ":12.868542432785,
     "median":22.4465751647949,
     "mean":28.1164181232452,
-    "tQ":64.2292200088501,
-    "maxStates":6
+    "tQ":34.9868402481079,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Maize Yellow",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":16.1045405864716,
+    "fQ":18.5482835769653,
     "median":27.0871114730835,
     "mean":25.1484808921814,
-    "tQ":33.181914806366,
-    "maxStates":6
+    "tQ":29.8718342781067,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Maize Yellow",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":9.53908290863037,
+    "fQ":12.302577495575,
     "median":14.0781116485596,
     "mean":16.8895430246989,
-    "tQ":29.1435710906982,
-    "maxStates":6
+    "tQ":22.1823253631592,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Rice Imported",
     "date":"2009-12-01",
-    "countStates":5,
-    "fQ":2.21019819676876,
+    "fQ":5.37146902084351,
     "median":6.7725133895874,
     "mean":19.4092024068038,
-    "tQ":74.3507507324218,
-    "maxStates":6
+    "tQ":17.7504258155823,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Rice Imported",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":3.50185788869858,
+    "fQ":11.6698467731476,
     "median":19.7613258361816,
     "mean":22.322614569664,
-    "tQ":35.0489864349365,
-    "maxStates":6
+    "tQ":23.0877528190613,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Rice Imported",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":10.471545791626,
+    "fQ":12.694286108017,
     "median":18.4461851119995,
     "mean":19.3443190813065,
-    "tQ":26.9714668273926,
-    "maxStates":6
+    "tQ":22.7379670143127,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Rice Imported",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":5.02756061553955,
+    "fQ":6.9735985994339,
     "median":13.6428146362305,
     "mean":16.6000266075134,
-    "tQ":41.3526105880737,
-    "maxStates":6
+    "tQ":20.4948778152466,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Rice Imported",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":7.92885155677795,
+    "fQ":11.829434633255,
     "median":16.0419540405273,
     "mean":19.7385815779368,
-    "tQ":44.5307487487793,
-    "maxStates":6
+    "tQ":21.7598152160645,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Rice Imported",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":9.42728996276855,
+    "fQ":13.2026853561401,
     "median":14.1694765090942,
     "mean":15.3727989196777,
-    "tQ":23.1352531433105,
-    "maxStates":6
+    "tQ":17.3389139175415,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Rice Imported",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":3.82821488380432,
+    "fQ":4.771812915802,
     "median":13.6693868637085,
     "mean":12.2558289527893,
-    "tQ":21.683235168457,
-    "maxStates":6
+    "tQ":17.3037328720093,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Rice Local",
     "date":"2009-12-01",
-    "countStates":5,
-    "fQ":3.2239629983902,
+    "fQ":4.75944995880127,
     "median":9.22813129425049,
     "mean":19.3384089218943,
-    "tQ":55.2482101440429,
-    "maxStates":6
+    "tQ":29.9045715332031,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Rice Local",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":6.67059638500214,
+    "fQ":7.58302569389343,
     "median":13.6740322113037,
     "mean":19.0502027114232,
-    "tQ":64.2646007537842,
-    "maxStates":6
+    "tQ":18.3006858825684,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Rice Local",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":11.2868593454361,
+    "fQ":12.2789206504822,
     "median":14.5013961791992,
     "mean":20.28839143912,
-    "tQ":50.5530576705933,
-    "maxStates":6
+    "tQ":25.5361342430115,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Rice Local",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":13.9560204029083,
+    "fQ":15.8474180698395,
     "median":22.0419921875,
     "mean":20.9921173368182,
-    "tQ":28.9490742683411,
-    "maxStates":6
+    "tQ":24.6612696647644,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Rice Local",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":7.12936639785767,
+    "fQ":17.1075859069824,
     "median":19.7210388183594,
     "mean":18.3134351510268,
-    "tQ":25.5187385559082,
-    "maxStates":6
+    "tQ":24.0834045410156,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Rice Local",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":9.18109154701233,
+    "fQ":12.6516699790955,
     "median":17.154182434082,
     "mean":17.6144553820292,
-    "tQ":28.5701837539673,
-    "maxStates":6
+    "tQ":19.5991716384888,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Rice Local",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":5.19263622164726,
+    "fQ":7.85620760917664,
     "median":12.0042886734009,
     "mean":12.7388821323713,
-    "tQ":28.4729038238525,
-    "maxStates":6
+    "tQ":15.1829934120178,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Sorghum",
     "date":"2009-12-01",
-    "countStates":6,
-    "fQ":3.90125238895416,
+    "fQ":8.26111364364624,
     "median":12.7163782119751,
     "mean":18.5552602164886,
-    "tQ":54.9404392242432,
-    "maxStates":6
+    "tQ":20.5468740463257,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Sorghum",
     "date":"2010-06-01",
-    "countStates":6,
-    "fQ":3.82103171348572,
+    "fQ":10.7788119316101,
     "median":16.589038848877,
     "mean":33.8869119315471,
-    "tQ":112.13857421875,
-    "maxStates":6
+    "tQ":38.2489414215088,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Sorghum",
     "date":"2010-12-01",
-    "countStates":6,
-    "fQ":9.25749611854553,
+    "fQ":18.4947848320007,
     "median":24.1117944717407,
     "mean":34.3464103962513,
-    "tQ":96.0993213653564,
-    "maxStates":6
+    "tQ":32.9670171737671,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Sorghum",
     "date":"2011-06-01",
-    "countStates":6,
-    "fQ":16.6355929851532,
+    "fQ":18.8606219291687,
     "median":23.1503210067749,
     "mean":25.2469928605216,
-    "tQ":40.6008718490601,
-    "maxStates":6
+    "tQ":29.6520299911499,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Sorghum",
     "date":"2011-12-01",
-    "countStates":6,
-    "fQ":14.2545514583588,
+    "fQ":16.5833334922791,
     "median":21.7831707000732,
     "mean":24.1432894865672,
-    "tQ":37.0659032821655,
-    "maxStates":6
+    "tQ":33.4430837631226,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Sorghum",
     "date":"2012-06-01",
-    "countStates":6,
-    "fQ":13.503041267395,
+    "fQ":17.0523493289948,
     "median":24.893120765686,
     "mean":26.233559290568,
-    "tQ":43.1749715805054,
-    "maxStates":6
+    "tQ":31.4441952705383,
+    "minState":32,
+    "maxState":37
   },
   {
     "zoneCode":6,
     "item":"Sorghum",
     "date":"2012-12-01",
-    "countStates":6,
-    "fQ":7.1943480014801,
+    "fQ":9.63228416442871,
     "median":11.1915988922119,
     "mean":21.0926421801249,
-    "tQ":75.311302947998,
-    "maxStates":6
+    "tQ":21.0641479492188,
+    "minState":32,
+    "maxState":37
   }
 ]

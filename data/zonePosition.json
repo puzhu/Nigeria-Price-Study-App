@@ -1,0 +1,26 @@
+[
+  {
+    "zoneCode":1,
+    "position":3.5
+  },
+  {
+    "zoneCode":2,
+    "position":9.5
+  },
+  {
+    "zoneCode":3,
+    "position":15
+  },
+  {
+    "zoneCode":4,
+    "position":21
+  },
+  {
+    "zoneCode":5,
+    "position":28
+  },
+  {
+    "zoneCode":6,
+    "position":34.5
+  }
+]

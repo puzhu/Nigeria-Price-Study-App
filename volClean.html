@@ -14,8 +14,8 @@
 <div id="main">
 	<div id="volChart"></div>
   <select id="productSelect">
-    <option>Cement Dangote</option>
-    <option>Rice Local</option>
+    <option value = 'Cement Dangote'>Cement</option>
+    <option value = 'Rice Local'>Rice Local</option>
   </select>
 </div>
 
@@ -39,14 +39,14 @@ function uniq_fast(a) { // quickly drop duplicate values from an array
 var monthYear = d3.time.format("%b %y"); //converts to Month-Year
 var monthFormat = d3.time.format("%Y-%m").parse; //Parse dates and converts to a d3 time format
 
-
 function draw(volatility){ // Calculates the Chart Scales and the Y-Scale for the panel (independent of the product selections)
   var yChartDomain = uniq_fast(volatility.map(function(d){return d.zoneCode})); //the height of the chart is set to the zones
   console.log(yChartDomain);
 
   d3.select('#productSelect')
-    .on('click', function(d) {
-        redraw(d);
+    .on('change', function(d) {
+        //redraw(d)
+        console.log(d3.select(this).property('value'))
     });
   function redraw(product){ //recalibrates the x-PanelScale and redraws the means and dots based on the product selection
     data = volatility.filter(function(d) { return d.item === product })
@@ -68,9 +68,8 @@ queue()
 
 
 function ready(error, volatility, zones, zoneStates){
-  console.log(volatility)
+  
   draw(volatility);
-
 
 }
 

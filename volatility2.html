@@ -138,7 +138,7 @@ function ready(error, volatility, zones, zoneStates){
       .append('line')
       .attr({
         x1: function(d){return xPanelScale(d.fQ) + xChartScale(d.date)},
-        y1: function(d) {return yChartScale(d.zoneCode) + yPanelScale(panelPadding.top)},
+        y1: function(d) {return yChartScale(d.zoneCode) + yPanelScale(1)},
         x2: function(d){return xPanelScale(d.fQ) + xChartScale(d.date)},
         y2: function(d){return yPanelScale(d.maxStates) + yChartScale(d.zoneCode)}
       })
@@ -153,7 +153,7 @@ function ready(error, volatility, zones, zoneStates){
       .append('line')
       .attr({
         x1: function(d){return xPanelScale(d.tQ) + xChartScale(d.date)},
-        y1: function(d) {return yChartScale(d.zoneCode) + yPanelScale(panelPadding.top)},
+        y1: function(d) {return yChartScale(d.zoneCode) + yPanelScale(1)},
         x2: function(d){return xPanelScale(d.tQ) + xChartScale(d.date)},
         y2: function(d){return yPanelScale(d.maxStates) + yChartScale(d.zoneCode)}
       })
@@ -182,7 +182,7 @@ function ready(error, volatility, zones, zoneStates){
       .append('line')
       .attr({
         x1: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-        y1: function(d) {return yChartScale(d.zoneCode) + yPanelScale(panelPadding.top)},
+        y1: function(d) {return yChartScale(d.zoneCode) + yPanelScale(1)},
         x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
         y2: function(d){return yPanelScale(d.maxStates) + yChartScale(d.zoneCode)}
       })

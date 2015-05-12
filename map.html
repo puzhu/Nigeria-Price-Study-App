@@ -26,6 +26,11 @@
 	stroke-linejoin:round;
 	stroke-linecap:round;
 }
+.state-boundary-hover {
+	stroke:black;
+	fill:none;
+	stroke-width:1.5px;
+}
 body {
 	font-family: 'Franklin Gothic Medium','Franklin Gothic', 'ITC Franklin Gothic', Arial, sans-serif;
 }
@@ -53,7 +58,6 @@ body {
 function drawMap(nigeriaStates,priceData) {
 	var dateFormat = d3.time.format("%Y-%m-%d");
 	var monthFormat = d3.time.format("%b-%y");
-
 
 	var startDate = dateFormat.parse('2009-01-01');
 	var endDate = dateFormat.parse('2012-12-01');
@@ -194,7 +198,23 @@ function drawMap(nigeriaStates,priceData) {
 			} else {
 				return color(value);
 			}
-		});
+		})
+		.on("mouseover", mouseover)
+		.on("mouseout", mouseout);
+
+	function mouseover(d) {
+		console.log(d.properties.state_name)
+		map.append("path")
+			.datum(topojson.mesh(nigeriaStates, nigeriaStates.objects.NGA_adm1, function(a, b) { return a.properties.state_name===d.properties.state_name || b.properties.state_name===d.properties.state_name ; }))
+			.attr({
+				d: path,
+				'class': 'state-boundary-hover'
+			});
+	}
+
+	function mouseout(d) {
+		d3.select('.state-boundary-hover').remove();
+	}
 
 	map.append("path")
 		.datum(topojson.mesh(nigeriaStates, nigeriaStates.objects.NGA_adm1, function(a, b) { return a !== b ; }))
@@ -202,15 +222,6 @@ function drawMap(nigeriaStates,priceData) {
 			d: path,
 			'class': 'state-boundary'
 		});
-
-  	d3.select('#productSelect')
-    	.on('change', function(d) {
-
-        var product = d3.select(this).property('value')
-        // get the other inputs (dates) as well
-        redrawMap(product)
-
-    });
 
 	function redrawMap(item) {
 		var mapData = getMapData(startDate,endDate,priceData,item);

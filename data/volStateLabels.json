@@ -2,186 +2,223 @@
   {
     "state":"Ekiti",
     "zoneCode":1,
-    "stateCode":1
+    "boxPosition":1,
+    "yPosition":1
   },
   {
     "state":"Lagos",
     "zoneCode":1,
-    "stateCode":2
+    "boxPosition":1,
+    "yPosition":2
   },
   {
     "state":"Ogun",
     "zoneCode":1,
-    "stateCode":3
+    "boxPosition":1,
+    "yPosition":3
   },
   {
     "state":"Ondo",
     "zoneCode":1,
-    "stateCode":4
+    "boxPosition":1,
+    "yPosition":4
   },
   {
     "state":"Osun",
     "zoneCode":1,
-    "stateCode":5
+    "boxPosition":1,
+    "yPosition":5
   },
   {
     "state":"Oyo",
     "zoneCode":1,
-    "stateCode":6
+    "boxPosition":1,
+    "yPosition":6
   },
   {
     "state":"Akwa Ibom",
     "zoneCode":2,
-    "stateCode":7
+    "boxPosition":3,
+    "yPosition":9
   },
   {
     "state":"Bayelsa",
     "zoneCode":2,
-    "stateCode":8
+    "boxPosition":3,
+    "yPosition":10
   },
   {
     "state":"Cross River",
     "zoneCode":2,
-    "stateCode":9
+    "boxPosition":3,
+    "yPosition":11
   },
   {
     "state":"Delta",
     "zoneCode":2,
-    "stateCode":10
+    "boxPosition":3,
+    "yPosition":12
   },
   {
     "state":"Edo",
     "zoneCode":2,
-    "stateCode":11
+    "boxPosition":3,
+    "yPosition":13
   },
   {
     "state":"Rivers",
     "zoneCode":2,
-    "stateCode":12
+    "boxPosition":3,
+    "yPosition":14
   },
   {
     "state":"Abia",
     "zoneCode":3,
-    "stateCode":13
+    "boxPosition":5,
+    "yPosition":17
   },
   {
     "state":"Anambra",
     "zoneCode":3,
-    "stateCode":14
+    "boxPosition":5,
+    "yPosition":18
   },
   {
     "state":"Ebonyi",
     "zoneCode":3,
-    "stateCode":15
+    "boxPosition":5,
+    "yPosition":19
   },
   {
     "state":"Enugu",
     "zoneCode":3,
-    "stateCode":16
+    "boxPosition":5,
+    "yPosition":20
   },
   {
     "state":"Imo",
     "zoneCode":3,
-    "stateCode":17
+    "boxPosition":5,
+    "yPosition":21
   },
   {
     "state":"Jigawa",
     "zoneCode":4,
-    "stateCode":18
+    "boxPosition":7,
+    "yPosition":24
   },
   {
     "state":"Kaduna",
     "zoneCode":4,
-    "stateCode":19
+    "boxPosition":7,
+    "yPosition":25
   },
   {
     "state":"Kano",
     "zoneCode":4,
-    "stateCode":20
+    "boxPosition":7,
+    "yPosition":26
   },
   {
     "state":"Katsina",
     "zoneCode":4,
-    "stateCode":21
+    "boxPosition":7,
+    "yPosition":27
   },
   {
     "state":"Kebbi",
     "zoneCode":4,
-    "stateCode":22
+    "boxPosition":7,
+    "yPosition":28
   },
   {
     "state":"Sokoto",
     "zoneCode":4,
-    "stateCode":23
+    "boxPosition":7,
+    "yPosition":29
   },
   {
     "state":"Zamfara",
     "zoneCode":4,
-    "stateCode":24
+    "boxPosition":7,
+    "yPosition":30
   },
   {
     "state":"Benue",
     "zoneCode":5,
-    "stateCode":25
+    "boxPosition":9,
+    "yPosition":33
   },
   {
     "state":"FCT",
     "zoneCode":5,
-    "stateCode":26
+    "boxPosition":9,
+    "yPosition":34
   },
   {
     "state":"Kogi",
     "zoneCode":5,
-    "stateCode":27
+    "boxPosition":9,
+    "yPosition":35
   },
   {
     "state":"Kwara",
     "zoneCode":5,
-    "stateCode":28
+    "boxPosition":9,
+    "yPosition":36
   },
   {
     "state":"Nasarawa",
     "zoneCode":5,
-    "stateCode":29
+    "boxPosition":9,
+    "yPosition":37
   },
   {
     "state":"Niger",
     "zoneCode":5,
-    "stateCode":30
+    "boxPosition":9,
+    "yPosition":38
   },
   {
     "state":"Plateau",
     "zoneCode":5,
-    "stateCode":31
+    "boxPosition":9,
+    "yPosition":39
   },
   {
     "state":"Adamawa",
     "zoneCode":6,
-    "stateCode":32
+    "boxPosition":11,
+    "yPosition":42
   },
   {
     "state":"Bauchi",
     "zoneCode":6,
-    "stateCode":33
+    "boxPosition":11,
+    "yPosition":43
   },
   {
     "state":"Borno",
     "zoneCode":6,
-    "stateCode":34
+    "boxPosition":11,
+    "yPosition":44
   },
   {
     "state":"Gombe",
     "zoneCode":6,
-    "stateCode":35
+    "boxPosition":11,
+    "yPosition":45
   },
   {
     "state":"Taraba",
     "zoneCode":6,
-    "stateCode":36
+    "boxPosition":11,
+    "yPosition":46
   },
   {
     "state":"Yobe",
     "zoneCode":6,
-    "stateCode":37
+    "boxPosition":11,
+    "yPosition":47
   }
 ]

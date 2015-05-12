@@ -9,11 +9,40 @@
 <script src="libraries/topojson.v1.min.js"></script>
 <script src="libraries/queue.v1.min.js"></script>
 <style>
+.key path {
+	display:none;
+}
+.key line {
+	stroke:#000;
+	shape-rendering:crispEdges;
+}
+.key text {
+	font-size:13px;
+}
+.state-boundary {
+	fill:none;
+	stroke:rgb(240,240,240);
+	stroke-width:.5px;
+	stroke-linejoin:round;
+	stroke-linecap:round;
+}
+body {
+	font-family: 'Franklin Gothic Medium','Franklin Gothic', 'ITC Franklin Gothic', Arial, sans-serif;
+}
 </style>
 </head>
 
 <body>
 <div id="main">
+	<select id="productSelect">
+		<option selected value="Cement Dangote">Cement Dangote</option>
+		<option value="Drink Swan Water Bottle">Drink Swan Water Bottle</option>
+		<option value="Maize White">Maize White</option>
+		<option value="Maize Yellow">Maize Yellow</option>
+		<option value="Rice Imported">Rice Imported</option>
+		<option value="Rice Local">Rice Local</option>
+		<option value="Sorghum">Sorghum</option>
+	</select>
 	<div id="mapContainer"></div>
 	<div id="lineChartContainer"></div>
 </div>
@@ -21,52 +50,15 @@
 
 <script>
 
-var dateFormat = d3.time.format("%Y-%m-%d");
-var monthFormat = d3.time.format("%b-%y");
+function drawMap(nigeriaStates,priceData) {
+	var dateFormat = d3.time.format("%Y-%m-%d");
+	var monthFormat = d3.time.format("%b-%y");
 
-function deString(d) {
-	if (d==="") { return NaN;
-	} else {
-		return +d;
-	}
-}
-function uniq_fast(a) { // quickly drop duplicate values from an array
-	var seen = {};
-	var out = [];
-	var len = a.length;
-	var j = 0;
-	for(var i = 0; i < len; i++) {
-	   var item = a[i];
-	   if(seen[item] !== 1) {
-	         seen[item] = 1;
-	         out[j++] = item;
-	   }
-	}
-	return out;
-}
-function processPrices(d, i) {
-	var state = {
-		state: d.state,
-		price: deString(d.meanPrice),
-		item: d.item,
-		date: dateFormat.parse(d.date),
-		weight: deString(d.weight)
-	};
-	return state;
-}
-
-queue()
-	.defer(d3.json, "maps/nga-states-topo-05.json")
-	.defer(d3.csv, "data/priceStateData.csv",processPrices)
-	.await(ready);
-
-function ready(error,nigeriaStates,priceData) {
-
-	console.log(priceData)
 
 	var startDate = dateFormat.parse('2009-01-01');
 	var endDate = dateFormat.parse('2012-12-01');
-	var product = "Cement Dangote";
+	var sel = document.getElementById('productSelect');
+	var product = sel.options[sel.selectedIndex].value;
 	var mapData = getMapData(startDate,endDate,priceData,product);
 
 	function getMapData(startDate,endDate,priceData,item) {
@@ -98,7 +90,6 @@ function ready(error,nigeriaStates,priceData) {
 		});
 		return array;
 	}
-
 	/*Declaring Constants*/
 	var mapContainerSize = {'height':500,'width':600};
 	var mapSize = {'height':500,'width':500};
@@ -168,25 +159,27 @@ function ready(error,nigeriaStates,priceData) {
 
     g.call(axis);
 
-    g.selectAll("path").style("display","none");
-    g.selectAll("line").style("stroke", "#000").style("shape-rendering", "crispEdges");
-    g.selectAll('text').style('font-family','Helvetica Neue').style('font-size',"13px").attr('transform','translate(2,1)')
-
    	// add the price data to the map properties
 	var stateFeatures = topojson.feature(nigeriaStates, nigeriaStates.objects.NGA_adm1).features;
 
-	for(var i = 0; i < mapData.length; i++){
-		//pulling the states from csv file
-		var dataState = mapData[i].state;
-		//pulling corresponding price values
-		var dataValue = mapData[i].price;
+	function mergeGeoPrice(mapData,stateFeatures) {
+		for(var i = 0; i < mapData.length; i++){
+			//pulling the states from csv file
+			var dataState = mapData[i].state;
+			//pulling corresponding price values
+			var dataValue = mapData[i].price;
 
-		//adding the price value to the map properties
-		var feature = stateFeatures.filter(function(d) { return d.properties.state_name===dataState});
-		if (feature.length>0) feature[0].properties.price = dataValue;
+			//adding the price value to the map properties
+			var feature = stateFeatures.filter(function(d) { return d.properties.state_name===dataState});
+			if (feature.length>0) feature[0].properties.price = dataValue;
+		}
+		return stateFeatures
 	}
 
-	map.selectAll('.states')
+	stateFeatures = mergeGeoPrice(mapData,stateFeatures);
+
+
+	var states = map.selectAll('.states')
 		.data(stateFeatures)
 		.enter()
 		.append('path')
@@ -202,19 +195,95 @@ function ready(error,nigeriaStates,priceData) {
 				return color(value);
 			}
 		});
+
 	map.append("path")
 		.datum(topojson.mesh(nigeriaStates, nigeriaStates.objects.NGA_adm1, function(a, b) { return a !== b ; }))
 		.attr({
 			d: path,
 			'class': 'state-boundary'
-		})
-		.style("fill","none")
-		.style("stroke","rgb(240,240,240)")
-		.style("stroke-width",".5px")
-		.style("stroke-linejoin","round")
-		.style("stroke-linecap", "round");
+		});
+
+  	d3.select('#productSelect')
+    	.on('change', function(d) {
+
+        var product = d3.select(this).property('value')
+        // get the other inputs (dates) as well
+        redrawMap(product)
+
+    });
+
+	function redrawMap(item) {
+		var mapData = getMapData(startDate,endDate,priceData,item);
+		
+		// set the color and axis functions
+		var max = d3.max(mapData, function(d) { return d.price; });
+		var min = d3.min(mapData, function(d) { return d.price; });
+		var bounds = setBins(max,min);
+		color.domain(bounds);
+		y.domain([min*.95, max*1.05]);
+    	axis.scale(y).tickValues([min*.95].concat(bounds));
+    	g.call(axis)
+
+    	stateFeatures = mergeGeoPrice(mapData,stateFeatures);
+
+		states
+			.data(stateFeatures)
+			.style('fill', function(d, i){
+				var value = d.properties.price;
+				if(isNaN(value) || value==undefined) { // 2 negative cases: 1) state exists in csv file but no price value (NaN). 2) state doesnt exist in csv file but exists in map file (undefined).
+					return "#ccc";
+				} else {
+					return color(value);
+				}
+			});
+	}
+
+	function uniq_fast(a) { // quickly drop duplicate values from an array
+		var seen = {};
+		var out = [];
+		var len = a.length;
+		var j = 0;
+		for(var i = 0; i < len; i++) {
+		   var item = a[i];
+		   if(seen[item] !== 1) {
+		         seen[item] = 1;
+		         out[j++] = item;
+		   }
+		}
+		return out;
+	}
 }
 
+
+queue()
+	.defer(d3.json, "maps/nga-states-topo-05.json")
+	.defer(d3.csv, "data/priceStateData.csv",processPrices)
+	.await(ready);
+
+function ready(error,nigeriaStates,priceData) {
+	
+	drawMap(nigeriaStates,priceData);
+	
+	
+}
+
+function processPrices(d, i) {
+	var dateFormat = d3.time.format("%Y-%m-%d");
+	function deString(d) {
+		if (d==="") { return NaN;
+		} else {
+			return +d;
+		}
+	}
+	var state = {
+		state: d.state,
+		price: deString(d.meanPrice),
+		item: d.item,
+		date: dateFormat.parse(d.date),
+		weight: deString(d.weight)
+	};
+	return state;
+}
 
 
 

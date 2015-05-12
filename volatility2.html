@@ -7,6 +7,13 @@
 <script src="libraries/queue.v1.min.js"></script>
 <style>
 
+body {
+font-family: 'Franklin Gothic Medium','Franklin Gothic', 'ITC Franklin Gothic', Arial, sans-serif;
+}
+line {
+  stroke-width:1;
+  stroke:rgb(50,50,50);
+}
 </style>
 </head>
 <body>
@@ -69,37 +76,40 @@ function ready(error, volatility, zones, zoneStates, zonePosition){
 
   //Creating the canvas
   var containerSize = {'height': 600, 'width': 1000}
-  var margin = {top: 0.02 * containerSize.height , right: 0.01 * containerSize.width, bottom: 0.02 * containerSize.height, left: 0.04 * containerSize.width} //controls the spacing between the edge of the container and the inner chart
-  var padding = {top: 0.06 * containerSize.height, right: 0.006 * containerSize.width, bottom: 0.06 * containerSize.height, left: 0.006 * containerSize.width} //controls the size of the chart
-  var chartSize = {'height': containerSize.height - margin.top - margin.bottom, 'width': containerSize.width - margin.right - margin.bottom}
-  var width = chartSize.width - padding.left - padding.right
-  var height = chartSize.height - padding.top - padding.bottom
-
+  var containerMargin = {top: 0.02 * containerSize.height , right: 0.01 * containerSize.width, bottom: 0.02 * containerSize.height, left: 100} //controls the spacing between the edge of the container and the inner chart
+  var containerPadding = {top: 0.06 * containerSize.height, right: 0.006 * containerSize.width, bottom: 0.06 * containerSize.height, left: 0.01 * containerSize.width} //controls the size of the chart
+  var chartSize = {'height': containerSize.height - containerMargin.top - containerMargin.bottom, 'width': containerSize.width - containerMargin.right - containerMargin.left}
+  var width = chartSize.width - containerPadding.left - containerPadding.right
+  var height = chartSize.height - containerPadding.top - containerPadding.bottom
+console.log(chartSize)
   var volChart = d3.select('#volChart').append('svg') //http://bl.ocks.org/mbostock/3019563
         .attr({
           height: containerSize.height,
           width: containerSize.width
         })
       .append('g')
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      .attr("transform", "translate(" + containerMargin.left + "," + containerMargin.top + ")");
 
   /*var yChartScale = d3.scale.ordinal()
       .domain(yChartDomain)
       .rangeRoundBands([0, height], 0.05);*/
-
+console.log(containerPadding)
   var xChartScale = d3.scale.ordinal()
       .domain(xChartDomain)
-      .rangeRoundBands([0, width], 0.05)
+      .rangeRoundBands([containerPadding.left, width+containerPadding.left], .1)
+  console.log(xChartScale.range())
 
-  var panelPadding = {top: 0.01 * containerSize.height, right: 0.001 * containerSize.width, bottom: 0.01 * containerSize.height, left: 0.03 * containerSize.width}
+  var panelcontainerPadding = {top: .01 * containerSize.height, right: 0 * containerSize.width, bottom: .01 * containerSize.height, left: 0 * containerSize.width}
   var panelWidth = xChartScale.rangeBand()
+  console.log(panelWidth)
+
   var yPanelScale = d3.scale.ordinal()
       .domain(yPanelDomain)
-      .rangeBands([panelPadding.top, height], 0.2)
+      .rangeBands([panelcontainerPadding.top, panelcontainerPadding.top+height], 0.2)
 
   var xPanelScale = d3.scale.linear()
       .domain(xPanelDomain)
-      .range([panelPadding.left, panelWidth])
+      .range([panelcontainerPadding.left, panelcontainerPadding.left+panelWidth])
 
   var colorScales = d3.scale.linear() //could change the scale later
         .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
@@ -123,18 +133,32 @@ function ready(error, volatility, zones, zoneStates, zonePosition){
         y2: function(d){return yChartScale(d)}
       })
       .style("stroke", "#9e9e9e"); */
+  // volChart.append('g') //vertical grid lines
+  //     .selectAll(".vlines")
+  //     .data(xChartDomain)
+  //     .enter()
+  //     .append('line')
+  //     .attr({
+  //       x1: function(d){return xChartScale(d)},
+  //       y1: 0,
+  //       x2: function(d){return xChartScale(d)},
+  //       y2: height+containerPadding.top
+  //     })
+  //     .style("stroke", "#9e9e9e");
+
   volChart.append('g') //vertical grid lines
-      .selectAll(".vlines")
+      .selectAll(".vboxes")
       .data(xChartDomain)
       .enter()
-      .append('line')
+      .append('rect')
       .attr({
-        x1: function(d){return xChartScale(d)},
-        y1: 0,
-        x2: function(d){return xChartScale(d)},
-        y2: height
+        x: function(d){return xChartScale(d)},
+        y: 0,
+        height: height+containerPadding.top,
+        width: xChartScale.rangeBand()
       })
-      .style("stroke", "#9e9e9e");
+      .style("stroke", "none")
+      .style("fill", "rgb(230,230,230)");
 /*
   volChart.append('g') //the first line in the box
       .selectAll(".boxLines")
@@ -188,12 +212,58 @@ function ready(error, volatility, zones, zoneStates, zonePosition){
       .append('line')
       .attr({
         x1: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-        y1: function(d) {return yPanelScale(d.minState) + panelPadding.bottom*(d.zoneCode - 1)}, //yChartScale(d.zoneCode) + yPanelScale(1) + yPanelScale.rangeBand() * d.zoneCode},
+        y1: function(d) {return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}, //yChartScale(d.zoneCode) + yPanelScale(1) + yPanelScale.rangeBand() * d.zoneCode},
         x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-        y2: function(d){return yPanelScale(d.maxState) + panelPadding.bottom*(d.zoneCode - 1)}// + yChartScale(d.zoneCode) + yPanelScale.rangeBand() * d.zoneCode}
+        y2: function(d){return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}// + yChartScale(d.zoneCode) + yPanelScale.rangeBand() * d.zoneCode}
       })
-      .style("stroke", "#C0C0C0")
-      .attr('stroke-width', 2)
+
+  volChart.append('g') //mean
+      .selectAll(".boxLines")
+      .data(zoneData)
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) - 3},
+        y1: function(d) {return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1) - 3}, //yChartScale(d.zoneCode) + yPanelScale(1) + yPanelScale.rangeBand() * d.zoneCode},
+        x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+        y2: function(d){return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}// + yChartScale(d.zoneCode) + yPanelScale.rangeBand() * d.zoneCode}
+      })
+
+  volChart.append('g') //mean
+      .selectAll(".boxLines")
+      .data(zoneData)
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) + 3},
+        y1: function(d) {return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1) - 3}, //yChartScale(d.zoneCode) + yPanelScale(1) + yPanelScale.rangeBand() * d.zoneCode},
+        x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+        y2: function(d){return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}// + yChartScale(d.zoneCode) + yPanelScale.rangeBand() * d.zoneCode}
+      })
+
+  volChart.append('g') //mean
+      .selectAll(".boxLines")
+      .data(zoneData)
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) - 3},
+        y1: function(d) {return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1) + 3}, //yChartScale(d.zoneCode) + yPanelScale(1) + yPanelScale.rangeBand() * d.zoneCode},
+        x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+        y2: function(d){return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}// + yChartScale(d.zoneCode) + yPanelScale.rangeBand() * d.zoneCode}
+      })
+
+  volChart.append('g') //mean
+      .selectAll(".boxLines")
+      .data(zoneData)
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) + 3},
+        y1: function(d) {return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1) + 3}, //yChartScale(d.zoneCode) + yPanelScale(1) + yPanelScale.rangeBand() * d.zoneCode},
+        x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+        y2: function(d){return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}// + yChartScale(d.zoneCode) + yPanelScale.rangeBand() * d.zoneCode}
+      })
 
   volChart.append('g') //the circles
       .selectAll('.dots')
@@ -203,7 +273,7 @@ function ready(error, volatility, zones, zoneStates, zonePosition){
       .attr({
         r: 2,
         cx: function(d){return xChartScale(d.date) + xPanelScale(d.volMoving)},
-        cy: function(d){return yPanelScale(d.stateCode) + panelPadding.bottom*(d.zoneCode - 1)}
+        cy: function(d){return yPanelScale(d.stateCode) + panelcontainerPadding.bottom*(d.zoneCode - 1)}
       })
       .style({
           fill: function(d){return colorScales(d.volMoving)}
@@ -215,10 +285,10 @@ function ready(error, volatility, zones, zoneStates, zonePosition){
       .data(zonePosition)
       .enter()
       .append('text')
-      .text(function(d){return (d.zoneCode)})
+      .text(function(d){return ('Z'+d.zoneCode)})
       .attr({
-        x: -3*padding.left,
-        y: function(d){return (yPanelScale(Math.floor(d.position)) + yPanelScale(Math.ceil(d.position)))/2 + panelPadding.bottom*(d.zoneCode - 1)}
+        x: -80,
+        y: function(d){return (yPanelScale(Math.floor(d.position)) + yPanelScale(Math.ceil(d.position)))/2 + panelcontainerPadding.bottom*(d.zoneCode - 1)}
       })
       .style('alignment-baseline', 'central')
       .style('text-anchor', 'start');
@@ -232,7 +302,7 @@ function ready(error, volatility, zones, zoneStates, zonePosition){
       .text(function(d){return monthYear(d)})
       .attr({
         x: function(d){return xChartScale(d) + panelWidth/2},
-        y: 0
+        y: -8
       })
       .style('font-size', 12)
       .style('alignment-baseline', 'central')
@@ -246,8 +316,8 @@ function ready(error, volatility, zones, zoneStates, zonePosition){
       .append('text')
       .text(function(d){return d.state})
       .attr({
-        x: 0.8*panelPadding.left,
-        y: function(d){return yPanelScale(d.stateCode) + panelPadding.bottom*(d.zoneCode - 1)}
+        x: 10,
+        y: function(d){return yPanelScale(d.stateCode) + panelcontainerPadding.bottom*(d.zoneCode - 1)}
       })
       .style('font-size', 12)
       .style('alignment-baseline', 'central')

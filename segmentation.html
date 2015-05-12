@@ -12,11 +12,91 @@
 <body>
 
 <div id="main">
-	<div id="volChart"></div>
+	<div id="segChart"></div>
 </div>
 
 </body>
 <script>
+
+//Constructed Functions and variables for the cade
+function uniq_fast(a) { // quickly drop duplicate values from an array
+      var seen = {};
+      var out = [];
+      var len = a.length;
+      var j = 0;
+      for(var i = 0; i < len; i++) {
+           var item = a[i];
+           if(seen[item] !== 1) {
+                 seen[item] = 1;
+                 out[j++] = item;
+           }
+      }
+      return out;
+  }
+var monthYear = d3.time.format("%b %y"); //converts to Month-Year
+var monthFormat = d3.time.format("%Y-%m").parse; //Parse dates and converts to a d3 time format
+
+function filterData(data, input){ //generic funciton to filter data based on an input
+  return data.filter(function(d) {return d.item === input})
+}
+
+//loading the data
+queue()
+  .defer(d3.json, "data/segmentation.json")
+  .defer(d3.json, "data/segDots.json")
+  .await(ready);
+
+function ready(error, segmentation, segDots){
+  var itemNames = uniq_fast(segDots.map(function(d){return d.item})).sort();
+
+  var maxPosition = d3.max(segDots, function(d){return d.dotPosition})
+
+  var xDomain = []
+  for (i = 1; i <= maxPosition; i++){
+    xDomain.push(i)
+  }
+  console.log(xDomain)
+
+  var yDomain = d3.extent(segmentation, function(d){return d.seg});
+  var colorDomain = yDomain;
+
+  //creating the canvas
+  var containerSize = {'height': 200, 'width': 400}
+  var containerMargin = {top: containerSize.height * 0.001, right: containerSize.width * 0.001, }
+  var segChart = d3.select('#segChart').append('svg')
+      .attr({
+        width: containerSize.width,
+        height: containerSize.height
+      })
+
+  var xScale = d3.scale.ordinal()
+      .domain(xDomain)
+      .rangeBands([0, containerSize.width], 0.05)
+
+  var yScale = d3.scale.linear()
+      .domain(yDomain)
+      .range([0, containerSize.height])
+
+  var colorScale = d3.scale.linear() //could change the scale later
+      .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
+      .range(["#0000ff","#ff0000"])
+      .interpolate(d3.interpolateHcl);
+
+  //drawing
+  segChart.append('g')
+      .selectAll('.dots')
+      .data(segmentation)
+      .enter()
+      .append('circle')
+      .attr({
+        r: 2,
+        cx: function(d){return xScale(d.dotPosition) + (d.boxPosition - 1) * 30},
+        cy: function(d){return yScale(d.seg)}
+      })
+      .style({
+          fill: function(d){return colorScale(d.seg)}
+        })
+}
 
 </script>
 </html>

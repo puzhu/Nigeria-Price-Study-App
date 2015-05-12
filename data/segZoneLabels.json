@@ -4,293 +4,335 @@
     "zoneCode":1,
     "mean":47.8333333333333,
     "median":48.5,
-    "dotPosition":1
+    "dotPosition":1,
+    "boxPosition":1
   },
   {
     "item":"Cement Dangote",
     "zoneCode":2,
     "mean":68.3333333333333,
     "median":73,
-    "dotPosition":2
+    "dotPosition":2,
+    "boxPosition":1
   },
   {
     "item":"Cement Dangote",
     "zoneCode":3,
     "mean":54.8333333333333,
     "median":75.5,
-    "dotPosition":3
+    "dotPosition":3,
+    "boxPosition":1
   },
   {
     "item":"Cement Dangote",
     "zoneCode":4,
     "mean":52,
     "median":77,
-    "dotPosition":4
+    "dotPosition":4,
+    "boxPosition":1
   },
   {
     "item":"Cement Dangote",
     "zoneCode":5,
     "mean":56,
     "median":73,
-    "dotPosition":5
+    "dotPosition":5,
+    "boxPosition":1
   },
   {
     "item":"Cement Dangote",
     "zoneCode":6,
     "mean":46.7142857142857,
     "median":71,
-    "dotPosition":6
+    "dotPosition":6,
+    "boxPosition":1
   },
   {
     "item":"Drink Swan Water Bottle",
     "zoneCode":1,
     "mean":75.2,
     "median":79,
-    "dotPosition":7
+    "dotPosition":9,
+    "boxPosition":3
   },
   {
     "item":"Drink Swan Water Bottle",
     "zoneCode":2,
     "mean":75.5,
     "median":75.5,
-    "dotPosition":8
+    "dotPosition":10,
+    "boxPosition":3
   },
   {
     "item":"Drink Swan Water Bottle",
     "zoneCode":3,
     "mean":60.5,
     "median":87,
-    "dotPosition":9
+    "dotPosition":11,
+    "boxPosition":3
   },
   {
     "item":"Drink Swan Water Bottle",
     "zoneCode":4,
     "mean":69.5555555555556,
     "median":83,
-    "dotPosition":10
+    "dotPosition":12,
+    "boxPosition":3
   },
   {
     "item":"Drink Swan Water Bottle",
     "zoneCode":5,
     "mean":72.1428571428571,
     "median":95,
-    "dotPosition":11
+    "dotPosition":13,
+    "boxPosition":3
   },
   {
     "item":"Drink Swan Water Bottle",
     "zoneCode":6,
     "mean":54.2222222222222,
     "median":46,
-    "dotPosition":12
+    "dotPosition":14,
+    "boxPosition":3
   },
   {
     "item":"Maize White",
     "zoneCode":1,
     "mean":60.1666666666667,
     "median":63,
-    "dotPosition":13
+    "dotPosition":17,
+    "boxPosition":5
   },
   {
     "item":"Maize White",
     "zoneCode":2,
     "mean":81.2,
     "median":82,
-    "dotPosition":14
+    "dotPosition":18,
+    "boxPosition":5
   },
   {
     "item":"Maize White",
     "zoneCode":3,
     "mean":58.6666666666667,
     "median":80,
-    "dotPosition":15
+    "dotPosition":19,
+    "boxPosition":5
   },
   {
     "item":"Maize White",
     "zoneCode":4,
     "mean":64.9,
     "median":88,
-    "dotPosition":16
+    "dotPosition":20,
+    "boxPosition":5
   },
   {
     "item":"Maize White",
     "zoneCode":5,
     "mean":66.625,
     "median":84,
-    "dotPosition":17
+    "dotPosition":21,
+    "boxPosition":5
   },
   {
     "item":"Maize White",
     "zoneCode":6,
     "mean":73.6666666666667,
     "median":98,
-    "dotPosition":18
+    "dotPosition":22,
+    "boxPosition":5
   },
   {
     "item":"Maize Yellow",
     "zoneCode":1,
     "mean":51.8333333333333,
     "median":44.5,
-    "dotPosition":19
+    "dotPosition":25,
+    "boxPosition":7
   },
   {
     "item":"Maize Yellow",
     "zoneCode":2,
     "mean":77.2,
     "median":85,
-    "dotPosition":20
+    "dotPosition":26,
+    "boxPosition":7
   },
   {
     "item":"Maize Yellow",
     "zoneCode":3,
     "mean":48.5,
     "median":57.5,
-    "dotPosition":21
+    "dotPosition":27,
+    "boxPosition":7
   },
   {
     "item":"Maize Yellow",
     "zoneCode":4,
     "mean":41.6,
     "median":33.5,
-    "dotPosition":22
+    "dotPosition":28,
+    "boxPosition":7
   },
   {
     "item":"Maize Yellow",
     "zoneCode":5,
     "mean":66.375,
     "median":88,
-    "dotPosition":23
+    "dotPosition":29,
+    "boxPosition":7
   },
   {
     "item":"Maize Yellow",
     "zoneCode":6,
     "mean":61.8888888888889,
     "median":86,
-    "dotPosition":24
+    "dotPosition":30,
+    "boxPosition":7
   },
   {
     "item":"Rice Imported",
     "zoneCode":1,
     "mean":54.5,
     "median":56.5,
-    "dotPosition":25
+    "dotPosition":33,
+    "boxPosition":9
   },
   {
     "item":"Rice Imported",
     "zoneCode":2,
     "mean":81.8,
     "median":80,
-    "dotPosition":26
+    "dotPosition":34,
+    "boxPosition":9
   },
   {
     "item":"Rice Imported",
     "zoneCode":3,
     "mean":31.5,
     "median":27.5,
-    "dotPosition":27
+    "dotPosition":35,
+    "boxPosition":9
   },
   {
     "item":"Rice Imported",
     "zoneCode":4,
     "mean":65,
     "median":89,
-    "dotPosition":28
+    "dotPosition":36,
+    "boxPosition":9
   },
   {
     "item":"Rice Imported",
     "zoneCode":5,
     "mean":63.8571428571429,
     "median":82,
-    "dotPosition":29
+    "dotPosition":37,
+    "boxPosition":9
   },
   {
     "item":"Rice Imported",
     "zoneCode":6,
     "mean":61.7777777777778,
     "median":86,
-    "dotPosition":30
+    "dotPosition":38,
+    "boxPosition":9
   },
   {
     "item":"Rice Local",
     "zoneCode":1,
     "mean":40.1666666666667,
     "median":28,
-    "dotPosition":31
+    "dotPosition":41,
+    "boxPosition":11
   },
   {
     "item":"Rice Local",
     "zoneCode":2,
     "mean":80.5,
     "median":80,
-    "dotPosition":32
+    "dotPosition":42,
+    "boxPosition":11
   },
   {
     "item":"Rice Local",
     "zoneCode":3,
     "mean":22,
     "median":3,
-    "dotPosition":33
+    "dotPosition":43,
+    "boxPosition":11
   },
   {
     "item":"Rice Local",
     "zoneCode":4,
     "mean":61.3,
     "median":85.5,
-    "dotPosition":34
+    "dotPosition":44,
+    "boxPosition":11
   },
   {
     "item":"Rice Local",
     "zoneCode":5,
     "mean":67.375,
     "median":87.5,
-    "dotPosition":35
+    "dotPosition":45,
+    "boxPosition":11
   },
   {
     "item":"Rice Local",
     "zoneCode":6,
     "mean":66.2222222222222,
     "median":81,
-    "dotPosition":36
+    "dotPosition":46,
+    "boxPosition":11
   },
   {
     "item":"Sorghum",
     "zoneCode":1,
     "mean":52.8333333333333,
     "median":46.5,
-    "dotPosition":37
+    "dotPosition":49,
+    "boxPosition":13
   },
   {
     "item":"Sorghum",
     "zoneCode":2,
     "mean":79.6,
     "median":78,
-    "dotPosition":38
+    "dotPosition":50,
+    "boxPosition":13
   },
   {
     "item":"Sorghum",
     "zoneCode":3,
     "mean":61.8333333333333,
     "median":89.5,
-    "dotPosition":39
+    "dotPosition":51,
+    "boxPosition":13
   },
   {
     "item":"Sorghum",
     "zoneCode":4,
     "mean":71.2222222222222,
     "median":91,
-    "dotPosition":40
+    "dotPosition":52,
+    "boxPosition":13
   },
   {
     "item":"Sorghum",
     "zoneCode":5,
     "mean":72,
     "median":80,
-    "dotPosition":41
+    "dotPosition":53,
+    "boxPosition":13
   },
   {
     "item":"Sorghum",
     "zoneCode":6,
     "mean":59.7142857142857,
     "median":73,
-    "dotPosition":42
+    "dotPosition":54,
+    "boxPosition":13
   }
 ]

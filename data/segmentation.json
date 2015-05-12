@@ -8,8 +8,8 @@
     "stateCode":13,
     "mean":58.6666666666667,
     "median":80,
-    "dotPosition":15,
-    "boxPosition":3
+    "dotPosition":19,
+    "boxPosition":5
   },
   {
     "item":"Rice Local",
@@ -20,8 +20,8 @@
     "stateCode":13,
     "mean":22,
     "median":3,
-    "dotPosition":33,
-    "boxPosition":6
+    "dotPosition":43,
+    "boxPosition":11
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -32,8 +32,8 @@
     "stateCode":13,
     "mean":60.5,
     "median":87,
-    "dotPosition":9,
-    "boxPosition":2
+    "dotPosition":11,
+    "boxPosition":3
   },
   {
     "item":"Maize Yellow",
@@ -44,8 +44,8 @@
     "stateCode":13,
     "mean":48.5,
     "median":57.5,
-    "dotPosition":21,
-    "boxPosition":4
+    "dotPosition":27,
+    "boxPosition":7
   },
   {
     "item":"Maize Yellow",
@@ -56,8 +56,8 @@
     "stateCode":13,
     "mean":48.5,
     "median":57.5,
-    "dotPosition":21,
-    "boxPosition":4
+    "dotPosition":27,
+    "boxPosition":7
   },
   {
     "item":"Rice Local",
@@ -68,8 +68,8 @@
     "stateCode":13,
     "mean":22,
     "median":3,
-    "dotPosition":33,
-    "boxPosition":6
+    "dotPosition":43,
+    "boxPosition":11
   },
   {
     "item":"Cement Dangote",
@@ -92,8 +92,8 @@
     "stateCode":13,
     "mean":61.8333333333333,
     "median":89.5,
-    "dotPosition":39,
-    "boxPosition":7
+    "dotPosition":51,
+    "boxPosition":13
   },
   {
     "item":"Rice Imported",
@@ -104,8 +104,8 @@
     "stateCode":13,
     "mean":31.5,
     "median":27.5,
-    "dotPosition":27,
-    "boxPosition":5
+    "dotPosition":35,
+    "boxPosition":9
   },
   {
     "item":"Rice Local",
@@ -116,8 +116,8 @@
     "stateCode":13,
     "mean":22,
     "median":3,
-    "dotPosition":33,
-    "boxPosition":6
+    "dotPosition":43,
+    "boxPosition":11
   },
   {
     "item":"Sorghum",
@@ -128,8 +128,8 @@
     "stateCode":32,
     "mean":59.7142857142857,
     "median":73,
-    "dotPosition":42,
-    "boxPosition":7
+    "dotPosition":54,
+    "boxPosition":13
   },
   {
     "item":"Maize White",
@@ -140,8 +140,8 @@
     "stateCode":32,
     "mean":73.6666666666667,
     "median":98,
-    "dotPosition":18,
-    "boxPosition":3
+    "dotPosition":22,
+    "boxPosition":5
   },
   {
     "item":"Rice Local",
@@ -152,8 +152,8 @@
     "stateCode":32,
     "mean":66.2222222222222,
     "median":81,
-    "dotPosition":36,
-    "boxPosition":6
+    "dotPosition":46,
+    "boxPosition":11
   },
   {
     "item":"Maize Yellow",
@@ -164,8 +164,8 @@
     "stateCode":32,
     "mean":61.8888888888889,
     "median":86,
-    "dotPosition":24,
-    "boxPosition":4
+    "dotPosition":30,
+    "boxPosition":7
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -176,8 +176,8 @@
     "stateCode":32,
     "mean":54.2222222222222,
     "median":46,
-    "dotPosition":12,
-    "boxPosition":2
+    "dotPosition":14,
+    "boxPosition":3
   },
   {
     "item":"Rice Imported",
@@ -188,8 +188,8 @@
     "stateCode":32,
     "mean":61.7777777777778,
     "median":86,
-    "dotPosition":30,
-    "boxPosition":5
+    "dotPosition":38,
+    "boxPosition":9
   },
   {
     "item":"Rice Local",
@@ -200,8 +200,8 @@
     "stateCode":7,
     "mean":80.5,
     "median":80,
-    "dotPosition":32,
-    "boxPosition":6
+    "dotPosition":42,
+    "boxPosition":11
   },
   {
     "item":"Rice Imported",
@@ -212,8 +212,8 @@
     "stateCode":7,
     "mean":81.8,
     "median":80,
-    "dotPosition":26,
-    "boxPosition":5
+    "dotPosition":34,
+    "boxPosition":9
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -224,8 +224,8 @@
     "stateCode":7,
     "mean":75.5,
     "median":75.5,
-    "dotPosition":8,
-    "boxPosition":2
+    "dotPosition":10,
+    "boxPosition":3
   },
   {
     "item":"Sorghum",
@@ -236,8 +236,8 @@
     "stateCode":7,
     "mean":79.6,
     "median":78,
-    "dotPosition":38,
-    "boxPosition":7
+    "dotPosition":50,
+    "boxPosition":13
   },
   {
     "item":"Cement Dangote",
@@ -260,8 +260,8 @@
     "stateCode":7,
     "mean":77.2,
     "median":85,
-    "dotPosition":20,
-    "boxPosition":4
+    "dotPosition":26,
+    "boxPosition":7
   },
   {
     "item":"Maize White",
@@ -272,8 +272,8 @@
     "stateCode":7,
     "mean":81.2,
     "median":82,
-    "dotPosition":14,
-    "boxPosition":3
+    "dotPosition":18,
+    "boxPosition":5
   },
   {
     "item":"Maize White",
@@ -284,8 +284,8 @@
     "stateCode":14,
     "mean":58.6666666666667,
     "median":80,
-    "dotPosition":15,
-    "boxPosition":3
+    "dotPosition":19,
+    "boxPosition":5
   },
   {
     "item":"Rice Local",
@@ -296,8 +296,8 @@
     "stateCode":14,
     "mean":22,
     "median":3,
-    "dotPosition":33,
-    "boxPosition":6
+    "dotPosition":43,
+    "boxPosition":11
   },
   {
     "item":"Rice Imported",
@@ -308,8 +308,8 @@
     "stateCode":14,
     "mean":31.5,
     "median":27.5,
-    "dotPosition":27,
-    "boxPosition":5
+    "dotPosition":35,
+    "boxPosition":9
   },
   {
     "item":"Sorghum",
@@ -320,8 +320,8 @@
     "stateCode":14,
     "mean":61.8333333333333,
     "median":89.5,
-    "dotPosition":39,
-    "boxPosition":7
+    "dotPosition":51,
+    "boxPosition":13
   },
   {
     "item":"Maize Yellow",
@@ -332,8 +332,8 @@
     "stateCode":14,
     "mean":48.5,
     "median":57.5,
-    "dotPosition":21,
-    "boxPosition":4
+    "dotPosition":27,
+    "boxPosition":7
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -344,8 +344,8 @@
     "stateCode":14,
     "mean":60.5,
     "median":87,
-    "dotPosition":9,
-    "boxPosition":2
+    "dotPosition":11,
+    "boxPosition":3
   },
   {
     "item":"Cement Dangote",
@@ -368,8 +368,8 @@
     "stateCode":33,
     "mean":54.2222222222222,
     "median":46,
-    "dotPosition":12,
-    "boxPosition":2
+    "dotPosition":14,
+    "boxPosition":3
   },
   {
     "item":"Maize Yellow",
@@ -380,8 +380,8 @@
     "stateCode":33,
     "mean":61.8888888888889,
     "median":86,
-    "dotPosition":24,
-    "boxPosition":4
+    "dotPosition":30,
+    "boxPosition":7
   },
   {
     "item":"Rice Local",
@@ -392,8 +392,8 @@
     "stateCode":33,
     "mean":66.2222222222222,
     "median":81,
-    "dotPosition":36,
-    "boxPosition":6
+    "dotPosition":46,
+    "boxPosition":11
   },
   {
     "item":"Cement Dangote",
@@ -416,8 +416,8 @@
     "stateCode":33,
     "mean":59.7142857142857,
     "median":73,
-    "dotPosition":42,
-    "boxPosition":7
+    "dotPosition":54,
+    "boxPosition":13
   },
   {
     "item":"Rice Imported",
@@ -428,8 +428,8 @@
     "stateCode":33,
     "mean":61.7777777777778,
     "median":86,
-    "dotPosition":30,
-    "boxPosition":5
+    "dotPosition":38,
+    "boxPosition":9
   },
   {
     "item":"Rice Local",
@@ -440,8 +440,8 @@
     "stateCode":33,
     "mean":66.2222222222222,
     "median":81,
-    "dotPosition":36,
-    "boxPosition":6
+    "dotPosition":46,
+    "boxPosition":11
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -452,8 +452,8 @@
     "stateCode":33,
     "mean":54.2222222222222,
     "median":46,
-    "dotPosition":12,
-    "boxPosition":2
+    "dotPosition":14,
+    "boxPosition":3
   },
   {
     "item":"Maize White",
@@ -464,8 +464,8 @@
     "stateCode":33,
     "mean":73.6666666666667,
     "median":98,
-    "dotPosition":18,
-    "boxPosition":3
+    "dotPosition":22,
+    "boxPosition":5
   },
   {
     "item":"Maize Yellow",
@@ -476,8 +476,8 @@
     "stateCode":33,
     "mean":61.8888888888889,
     "median":86,
-    "dotPosition":24,
-    "boxPosition":4
+    "dotPosition":30,
+    "boxPosition":7
   },
   {
     "item":"Rice Imported",
@@ -488,8 +488,8 @@
     "stateCode":33,
     "mean":61.7777777777778,
     "median":86,
-    "dotPosition":30,
-    "boxPosition":5
+    "dotPosition":38,
+    "boxPosition":9
   },
   {
     "item":"Maize White",
@@ -500,8 +500,8 @@
     "stateCode":33,
     "mean":73.6666666666667,
     "median":98,
-    "dotPosition":18,
-    "boxPosition":3
+    "dotPosition":22,
+    "boxPosition":5
   },
   {
     "item":"Cement Dangote",
@@ -536,8 +536,8 @@
     "stateCode":33,
     "mean":54.2222222222222,
     "median":46,
-    "dotPosition":12,
-    "boxPosition":2
+    "dotPosition":14,
+    "boxPosition":3
   },
   {
     "item":"Rice Imported",
@@ -548,8 +548,8 @@
     "stateCode":33,
     "mean":61.7777777777778,
     "median":86,
-    "dotPosition":30,
-    "boxPosition":5
+    "dotPosition":38,
+    "boxPosition":9
   },
   {
     "item":"Rice Local",
@@ -560,8 +560,8 @@
     "stateCode":33,
     "mean":66.2222222222222,
     "median":81,
-    "dotPosition":36,
-    "boxPosition":6
+    "dotPosition":46,
+    "boxPosition":11
   },
   {
     "item":"Maize White",
@@ -572,8 +572,8 @@
     "stateCode":33,
     "mean":73.6666666666667,
     "median":98,
-    "dotPosition":18,
-    "boxPosition":3
+    "dotPosition":22,
+    "boxPosition":5
   },
   {
     "item":"Maize Yellow",
@@ -584,8 +584,8 @@
     "stateCode":33,
     "mean":61.8888888888889,
     "median":86,
-    "dotPosition":24,
-    "boxPosition":4
+    "dotPosition":30,
+    "boxPosition":7
   },
   {
     "item":"Sorghum",
@@ -596,8 +596,8 @@
     "stateCode":33,
     "mean":59.7142857142857,
     "median":73,
-    "dotPosition":42,
-    "boxPosition":7
+    "dotPosition":54,
+    "boxPosition":13
   },
   {
     "item":"Cement Dangote",
@@ -620,8 +620,8 @@
     "stateCode":25,
     "mean":63.8571428571429,
     "median":82,
-    "dotPosition":29,
-    "boxPosition":5
+    "dotPosition":37,
+    "boxPosition":9
   },
   {
     "item":"Maize Yellow",
@@ -632,8 +632,8 @@
     "stateCode":25,
     "mean":66.375,
     "median":88,
-    "dotPosition":23,
-    "boxPosition":4
+    "dotPosition":29,
+    "boxPosition":7
   },
   {
     "item":"Sorghum",
@@ -644,8 +644,8 @@
     "stateCode":25,
     "mean":72,
     "median":80,
-    "dotPosition":41,
-    "boxPosition":7
+    "dotPosition":53,
+    "boxPosition":13
   },
   {
     "item":"Rice Local",
@@ -656,8 +656,8 @@
     "stateCode":25,
     "mean":67.375,
     "median":87.5,
-    "dotPosition":35,
-    "boxPosition":6
+    "dotPosition":45,
+    "boxPosition":11
   },
   {
     "item":"Maize White",
@@ -668,8 +668,8 @@
     "stateCode":25,
     "mean":66.625,
     "median":84,
-    "dotPosition":17,
-    "boxPosition":3
+    "dotPosition":21,
+    "boxPosition":5
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -680,8 +680,8 @@
     "stateCode":25,
     "mean":72.1428571428571,
     "median":95,
-    "dotPosition":11,
-    "boxPosition":2
+    "dotPosition":13,
+    "boxPosition":3
   },
   {
     "item":"Cement Dangote",
@@ -704,8 +704,8 @@
     "stateCode":34,
     "mean":73.6666666666667,
     "median":98,
-    "dotPosition":18,
-    "boxPosition":3
+    "dotPosition":22,
+    "boxPosition":5
   },
   {
     "item":"Rice Local",
@@ -716,8 +716,8 @@
     "stateCode":34,
     "mean":66.2222222222222,
     "median":81,
-    "dotPosition":36,
-    "boxPosition":6
+    "dotPosition":46,
+    "boxPosition":11
   },
   {
     "item":"Maize White",
@@ -728,8 +728,8 @@
     "stateCode":34,
     "mean":73.6666666666667,
     "median":98,
-    "dotPosition":18,
-    "boxPosition":3
+    "dotPosition":22,
+    "boxPosition":5
   },
   {
     "item":"Sorghum",
@@ -740,8 +740,8 @@
     "stateCode":34,
     "mean":59.7142857142857,
     "median":73,
-    "dotPosition":42,
-    "boxPosition":7
+    "dotPosition":54,
+    "boxPosition":13
   },
   {
     "item":"Cement Dangote",
@@ -764,8 +764,8 @@
     "stateCode":34,
     "mean":61.8888888888889,
     "median":86,
-    "dotPosition":24,
-    "boxPosition":4
+    "dotPosition":30,
+    "boxPosition":7
   },
   {
     "item":"Rice Imported",
@@ -776,8 +776,8 @@
     "stateCode":34,
     "mean":61.7777777777778,
     "median":86,
-    "dotPosition":30,
-    "boxPosition":5
+    "dotPosition":38,
+    "boxPosition":9
   },
   {
     "item":"Sorghum",
@@ -788,8 +788,8 @@
     "stateCode":34,
     "mean":59.7142857142857,
     "median":73,
-    "dotPosition":42,
-    "boxPosition":7
+    "dotPosition":54,
+    "boxPosition":13
   },
   {
     "item":"Rice Local",
@@ -800,8 +800,8 @@
     "stateCode":34,
     "mean":66.2222222222222,
     "median":81,
-    "dotPosition":36,
-    "boxPosition":6
+    "dotPosition":46,
+    "boxPosition":11
   },
   {
     "item":"Maize Yellow",
@@ -812,8 +812,8 @@
     "stateCode":34,
     "mean":61.8888888888889,
     "median":86,
-    "dotPosition":24,
-    "boxPosition":4
+    "dotPosition":30,
+    "boxPosition":7
   },
   {
     "item":"Rice Imported",
@@ -824,8 +824,8 @@
     "stateCode":34,
     "mean":61.7777777777778,
     "median":86,
-    "dotPosition":30,
-    "boxPosition":5
+    "dotPosition":38,
+    "boxPosition":9
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -836,8 +836,8 @@
     "stateCode":34,
     "mean":54.2222222222222,
     "median":46,
-    "dotPosition":12,
-    "boxPosition":2
+    "dotPosition":14,
+    "boxPosition":3
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -848,8 +848,8 @@
     "stateCode":34,
     "mean":54.2222222222222,
     "median":46,
-    "dotPosition":12,
-    "boxPosition":2
+    "dotPosition":14,
+    "boxPosition":3
   },
   {
     "item":"Maize Yellow",
@@ -860,8 +860,8 @@
     "stateCode":9,
     "mean":77.2,
     "median":85,
-    "dotPosition":20,
-    "boxPosition":4
+    "dotPosition":26,
+    "boxPosition":7
   },
   {
     "item":"Rice Imported",
@@ -872,8 +872,8 @@
     "stateCode":9,
     "mean":81.8,
     "median":80,
-    "dotPosition":26,
-    "boxPosition":5
+    "dotPosition":34,
+    "boxPosition":9
   },
   {
     "item":"Maize White",
@@ -884,8 +884,8 @@
     "stateCode":9,
     "mean":81.2,
     "median":82,
-    "dotPosition":14,
-    "boxPosition":3
+    "dotPosition":18,
+    "boxPosition":5
   },
   {
     "item":"Sorghum",
@@ -896,8 +896,8 @@
     "stateCode":9,
     "mean":79.6,
     "median":78,
-    "dotPosition":38,
-    "boxPosition":7
+    "dotPosition":50,
+    "boxPosition":13
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -908,8 +908,8 @@
     "stateCode":9,
     "mean":75.5,
     "median":75.5,
-    "dotPosition":8,
-    "boxPosition":2
+    "dotPosition":10,
+    "boxPosition":3
   },
   {
     "item":"Rice Local",
@@ -920,8 +920,8 @@
     "stateCode":9,
     "mean":80.5,
     "median":80,
-    "dotPosition":32,
-    "boxPosition":6
+    "dotPosition":42,
+    "boxPosition":11
   },
   {
     "item":"Cement Dangote",
@@ -944,8 +944,8 @@
     "stateCode":10,
     "mean":79.6,
     "median":78,
-    "dotPosition":38,
-    "boxPosition":7
+    "dotPosition":50,
+    "boxPosition":13
   },
   {
     "item":"Maize White",
@@ -956,8 +956,8 @@
     "stateCode":10,
     "mean":81.2,
     "median":82,
-    "dotPosition":14,
-    "boxPosition":3
+    "dotPosition":18,
+    "boxPosition":5
   },
   {
     "item":"Rice Local",
@@ -968,8 +968,8 @@
     "stateCode":10,
     "mean":80.5,
     "median":80,
-    "dotPosition":32,
-    "boxPosition":6
+    "dotPosition":42,
+    "boxPosition":11
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -980,8 +980,8 @@
     "stateCode":10,
     "mean":75.5,
     "median":75.5,
-    "dotPosition":8,
-    "boxPosition":2
+    "dotPosition":10,
+    "boxPosition":3
   },
   {
     "item":"Maize Yellow",
@@ -992,8 +992,8 @@
     "stateCode":10,
     "mean":77.2,
     "median":85,
-    "dotPosition":20,
-    "boxPosition":4
+    "dotPosition":26,
+    "boxPosition":7
   },
   {
     "item":"Rice Imported",
@@ -1004,8 +1004,8 @@
     "stateCode":10,
     "mean":81.8,
     "median":80,
-    "dotPosition":26,
-    "boxPosition":5
+    "dotPosition":34,
+    "boxPosition":9
   },
   {
     "item":"Sorghum",
@@ -1016,8 +1016,8 @@
     "stateCode":15,
     "mean":61.8333333333333,
     "median":89.5,
-    "dotPosition":39,
-    "boxPosition":7
+    "dotPosition":51,
+    "boxPosition":13
   },
   {
     "item":"Cement Dangote",
@@ -1040,8 +1040,8 @@
     "stateCode":15,
     "mean":58.6666666666667,
     "median":80,
-    "dotPosition":15,
-    "boxPosition":3
+    "dotPosition":19,
+    "boxPosition":5
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -1052,8 +1052,8 @@
     "stateCode":15,
     "mean":60.5,
     "median":87,
-    "dotPosition":9,
-    "boxPosition":2
+    "dotPosition":11,
+    "boxPosition":3
   },
   {
     "item":"Maize White",
@@ -1064,8 +1064,8 @@
     "stateCode":11,
     "mean":81.2,
     "median":82,
-    "dotPosition":14,
-    "boxPosition":3
+    "dotPosition":18,
+    "boxPosition":5
   },
   {
     "item":"Rice Imported",
@@ -1076,8 +1076,8 @@
     "stateCode":11,
     "mean":81.8,
     "median":80,
-    "dotPosition":26,
-    "boxPosition":5
+    "dotPosition":34,
+    "boxPosition":9
   },
   {
     "item":"Sorghum",
@@ -1088,8 +1088,8 @@
     "stateCode":11,
     "mean":79.6,
     "median":78,
-    "dotPosition":38,
-    "boxPosition":7
+    "dotPosition":50,
+    "boxPosition":13
   },
   {
     "item":"Maize Yellow",
@@ -1100,8 +1100,8 @@
     "stateCode":11,
     "mean":77.2,
     "median":85,
-    "dotPosition":20,
-    "boxPosition":4
+    "dotPosition":26,
+    "boxPosition":7
   },
   {
     "item":"Rice Local",
@@ -1112,8 +1112,8 @@
     "stateCode":11,
     "mean":80.5,
     "median":80,
-    "dotPosition":32,
-    "boxPosition":6
+    "dotPosition":42,
+    "boxPosition":11
   },
   {
     "item":"Sorghum",
@@ -1124,8 +1124,8 @@
     "stateCode":1,
     "mean":52.8333333333333,
     "median":46.5,
-    "dotPosition":37,
-    "boxPosition":7
+    "dotPosition":49,
+    "boxPosition":13
   },
   {
     "item":"Cement Dangote",
@@ -1160,8 +1160,8 @@
     "stateCode":1,
     "mean":51.8333333333333,
     "median":44.5,
-    "dotPosition":19,
-    "boxPosition":4
+    "dotPosition":25,
+    "boxPosition":7
   },
   {
     "item":"Rice Local",
@@ -1172,8 +1172,8 @@
     "stateCode":1,
     "mean":40.1666666666667,
     "median":28,
-    "dotPosition":31,
-    "boxPosition":6
+    "dotPosition":41,
+    "boxPosition":11
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -1184,8 +1184,8 @@
     "stateCode":1,
     "mean":75.2,
     "median":79,
-    "dotPosition":7,
-    "boxPosition":2
+    "dotPosition":9,
+    "boxPosition":3
   },
   {
     "item":"Maize Yellow",
@@ -1196,8 +1196,8 @@
     "stateCode":1,
     "mean":51.8333333333333,
     "median":44.5,
-    "dotPosition":19,
-    "boxPosition":4
+    "dotPosition":25,
+    "boxPosition":7
   },
   {
     "item":"Maize White",
@@ -1208,8 +1208,8 @@
     "stateCode":1,
     "mean":60.1666666666667,
     "median":63,
-    "dotPosition":13,
-    "boxPosition":3
+    "dotPosition":17,
+    "boxPosition":5
   },
   {
     "item":"Maize Yellow",
@@ -1220,8 +1220,8 @@
     "stateCode":16,
     "mean":48.5,
     "median":57.5,
-    "dotPosition":21,
-    "boxPosition":4
+    "dotPosition":27,
+    "boxPosition":7
   },
   {
     "item":"Maize White",
@@ -1232,8 +1232,8 @@
     "stateCode":16,
     "mean":58.6666666666667,
     "median":80,
-    "dotPosition":15,
-    "boxPosition":3
+    "dotPosition":19,
+    "boxPosition":5
   },
   {
     "item":"Cement Dangote",
@@ -1256,8 +1256,8 @@
     "stateCode":16,
     "mean":31.5,
     "median":27.5,
-    "dotPosition":27,
-    "boxPosition":5
+    "dotPosition":35,
+    "boxPosition":9
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -1268,8 +1268,8 @@
     "stateCode":16,
     "mean":60.5,
     "median":87,
-    "dotPosition":9,
-    "boxPosition":2
+    "dotPosition":11,
+    "boxPosition":3
   },
   {
     "item":"Rice Local",
@@ -1280,8 +1280,8 @@
     "stateCode":16,
     "mean":22,
     "median":3,
-    "dotPosition":33,
-    "boxPosition":6
+    "dotPosition":43,
+    "boxPosition":11
   },
   {
     "item":"Sorghum",
@@ -1292,8 +1292,8 @@
     "stateCode":16,
     "mean":61.8333333333333,
     "median":89.5,
-    "dotPosition":39,
-    "boxPosition":7
+    "dotPosition":51,
+    "boxPosition":13
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -1304,8 +1304,8 @@
     "stateCode":26,
     "mean":72.1428571428571,
     "median":95,
-    "dotPosition":11,
-    "boxPosition":2
+    "dotPosition":13,
+    "boxPosition":3
   },
   {
     "item":"Rice Local",
@@ -1316,8 +1316,8 @@
     "stateCode":26,
     "mean":67.375,
     "median":87.5,
-    "dotPosition":35,
-    "boxPosition":6
+    "dotPosition":45,
+    "boxPosition":11
   },
   {
     "item":"Sorghum",
@@ -1328,8 +1328,8 @@
     "stateCode":26,
     "mean":72,
     "median":80,
-    "dotPosition":41,
-    "boxPosition":7
+    "dotPosition":53,
+    "boxPosition":13
   },
   {
     "item":"Maize Yellow",
@@ -1340,8 +1340,8 @@
     "stateCode":26,
     "mean":66.375,
     "median":88,
-    "dotPosition":23,
-    "boxPosition":4
+    "dotPosition":29,
+    "boxPosition":7
   },
   {
     "item":"Cement Dangote",
@@ -1364,8 +1364,8 @@
     "stateCode":26,
     "mean":72,
     "median":80,
-    "dotPosition":41,
-    "boxPosition":7
+    "dotPosition":53,
+    "boxPosition":13
   },
   {
     "item":"Rice Imported",
@@ -1376,8 +1376,8 @@
     "stateCode":26,
     "mean":63.8571428571429,
     "median":82,
-    "dotPosition":29,
-    "boxPosition":5
+    "dotPosition":37,
+    "boxPosition":9
   },
   {
     "item":"Maize White",
@@ -1388,8 +1388,8 @@
     "stateCode":26,
     "mean":66.625,
     "median":84,
-    "dotPosition":17,
-    "boxPosition":3
+    "dotPosition":21,
+    "boxPosition":5
   },
   {
     "item":"Cement Dangote",
@@ -1412,8 +1412,8 @@
     "stateCode":26,
     "mean":67.375,
     "median":87.5,
-    "dotPosition":35,
-    "boxPosition":6
+    "dotPosition":45,
+    "boxPosition":11
   },
   {
     "item":"Rice Imported",
@@ -1424,8 +1424,8 @@
     "stateCode":26,
     "mean":63.8571428571429,
     "median":82,
-    "dotPosition":29,
-    "boxPosition":5
+    "dotPosition":37,
+    "boxPosition":9
   },
   {
     "item":"Maize Yellow",
@@ -1436,8 +1436,8 @@
     "stateCode":26,
     "mean":66.375,
     "median":88,
-    "dotPosition":23,
-    "boxPosition":4
+    "dotPosition":29,
+    "boxPosition":7
   },
   {
     "item":"Maize White",
@@ -1448,8 +1448,8 @@
     "stateCode":26,
     "mean":66.625,
     "median":84,
-    "dotPosition":17,
-    "boxPosition":3
+    "dotPosition":21,
+    "boxPosition":5
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -1460,8 +1460,8 @@
     "stateCode":26,
     "mean":72.1428571428571,
     "median":95,
-    "dotPosition":11,
-    "boxPosition":2
+    "dotPosition":13,
+    "boxPosition":3
   },
   {
     "item":"Rice Imported",
@@ -1472,8 +1472,8 @@
     "stateCode":35,
     "mean":61.7777777777778,
     "median":86,
-    "dotPosition":30,
-    "boxPosition":5
+    "dotPosition":38,
+    "boxPosition":9
   },
   {
     "item":"Cement Dangote",
@@ -1496,8 +1496,8 @@
     "stateCode":35,
     "mean":61.8888888888889,
     "median":86,
-    "dotPosition":24,
-    "boxPosition":4
+    "dotPosition":30,
+    "boxPosition":7
   },
   {
     "item":"Maize White",
@@ -1508,8 +1508,8 @@
     "stateCode":35,
     "mean":73.6666666666667,
     "median":98,
-    "dotPosition":18,
-    "boxPosition":3
+    "dotPosition":22,
+    "boxPosition":5
   },
   {
     "item":"Sorghum",
@@ -1520,8 +1520,8 @@
     "stateCode":35,
     "mean":59.7142857142857,
     "median":73,
-    "dotPosition":42,
-    "boxPosition":7
+    "dotPosition":54,
+    "boxPosition":13
   },
   {
     "item":"Rice Local",
@@ -1532,8 +1532,8 @@
     "stateCode":35,
     "mean":66.2222222222222,
     "median":81,
-    "dotPosition":36,
-    "boxPosition":6
+    "dotPosition":46,
+    "boxPosition":11
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -1544,8 +1544,8 @@
     "stateCode":35,
     "mean":54.2222222222222,
     "median":46,
-    "dotPosition":12,
-    "boxPosition":2
+    "dotPosition":14,
+    "boxPosition":3
   },
   {
     "item":"Rice Local",
@@ -1556,8 +1556,8 @@
     "stateCode":17,
     "mean":22,
     "median":3,
-    "dotPosition":33,
-    "boxPosition":6
+    "dotPosition":43,
+    "boxPosition":11
   },
   {
     "item":"Sorghum",
@@ -1568,8 +1568,8 @@
     "stateCode":17,
     "mean":61.8333333333333,
     "median":89.5,
-    "dotPosition":39,
-    "boxPosition":7
+    "dotPosition":51,
+    "boxPosition":13
   },
   {
     "item":"Maize White",
@@ -1580,8 +1580,8 @@
     "stateCode":17,
     "mean":58.6666666666667,
     "median":80,
-    "dotPosition":15,
-    "boxPosition":3
+    "dotPosition":19,
+    "boxPosition":5
   },
   {
     "item":"Cement Dangote",
@@ -1604,8 +1604,8 @@
     "stateCode":17,
     "mean":48.5,
     "median":57.5,
-    "dotPosition":21,
-    "boxPosition":4
+    "dotPosition":27,
+    "boxPosition":7
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -1616,8 +1616,8 @@
     "stateCode":17,
     "mean":60.5,
     "median":87,
-    "dotPosition":9,
-    "boxPosition":2
+    "dotPosition":11,
+    "boxPosition":3
   },
   {
     "item":"Cement Dangote",
@@ -1640,8 +1640,8 @@
     "stateCode":17,
     "mean":61.8333333333333,
     "median":89.5,
-    "dotPosition":39,
-    "boxPosition":7
+    "dotPosition":51,
+    "boxPosition":13
   },
   {
     "item":"Maize White",
@@ -1652,8 +1652,8 @@
     "stateCode":17,
     "mean":58.6666666666667,
     "median":80,
-    "dotPosition":15,
-    "boxPosition":3
+    "dotPosition":19,
+    "boxPosition":5
   },
   {
     "item":"Rice Local",
@@ -1664,8 +1664,8 @@
     "stateCode":17,
     "mean":22,
     "median":3,
-    "dotPosition":33,
-    "boxPosition":6
+    "dotPosition":43,
+    "boxPosition":11
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -1676,8 +1676,8 @@
     "stateCode":17,
     "mean":60.5,
     "median":87,
-    "dotPosition":9,
-    "boxPosition":2
+    "dotPosition":11,
+    "boxPosition":3
   },
   {
     "item":"Rice Imported",
@@ -1688,8 +1688,8 @@
     "stateCode":17,
     "mean":31.5,
     "median":27.5,
-    "dotPosition":27,
-    "boxPosition":5
+    "dotPosition":35,
+    "boxPosition":9
   },
   {
     "item":"Maize Yellow",
@@ -1700,8 +1700,8 @@
     "stateCode":17,
     "mean":48.5,
     "median":57.5,
-    "dotPosition":21,
-    "boxPosition":4
+    "dotPosition":27,
+    "boxPosition":7
   },
   {
     "item":"Sorghum",
@@ -1712,8 +1712,8 @@
     "stateCode":18,
     "mean":71.2222222222222,
     "median":91,
-    "dotPosition":40,
-    "boxPosition":7
+    "dotPosition":52,
+    "boxPosition":13
   },
   {
     "item":"Maize White",
@@ -1724,8 +1724,8 @@
     "stateCode":18,
     "mean":64.9,
     "median":88,
-    "dotPosition":16,
-    "boxPosition":3
+    "dotPosition":20,
+    "boxPosition":5
   },
   {
     "item":"Cement Dangote",
@@ -1748,8 +1748,8 @@
     "stateCode":18,
     "mean":41.6,
     "median":33.5,
-    "dotPosition":22,
-    "boxPosition":4
+    "dotPosition":28,
+    "boxPosition":7
   },
   {
     "item":"Maize Yellow",
@@ -1760,8 +1760,8 @@
     "stateCode":18,
     "mean":41.6,
     "median":33.5,
-    "dotPosition":22,
-    "boxPosition":4
+    "dotPosition":28,
+    "boxPosition":7
   },
   {
     "item":"Cement Dangote",
@@ -1784,8 +1784,8 @@
     "stateCode":18,
     "mean":65,
     "median":89,
-    "dotPosition":28,
-    "boxPosition":5
+    "dotPosition":36,
+    "boxPosition":9
   },
   {
     "item":"Rice Imported",
@@ -1796,8 +1796,8 @@
     "stateCode":18,
     "mean":65,
     "median":89,
-    "dotPosition":28,
-    "boxPosition":5
+    "dotPosition":36,
+    "boxPosition":9
   },
   {
     "item":"Rice Local",
@@ -1808,8 +1808,8 @@
     "stateCode":18,
     "mean":61.3,
     "median":85.5,
-    "dotPosition":34,
-    "boxPosition":6
+    "dotPosition":44,
+    "boxPosition":11
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -1820,8 +1820,8 @@
     "stateCode":18,
     "mean":69.5555555555556,
     "median":83,
-    "dotPosition":10,
-    "boxPosition":2
+    "dotPosition":12,
+    "boxPosition":3
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -1832,8 +1832,8 @@
     "stateCode":18,
     "mean":69.5555555555556,
     "median":83,
-    "dotPosition":10,
-    "boxPosition":2
+    "dotPosition":12,
+    "boxPosition":3
   },
   {
     "item":"Maize White",
@@ -1844,8 +1844,8 @@
     "stateCode":18,
     "mean":64.9,
     "median":88,
-    "dotPosition":16,
-    "boxPosition":3
+    "dotPosition":20,
+    "boxPosition":5
   },
   {
     "item":"Rice Local",
@@ -1856,8 +1856,8 @@
     "stateCode":18,
     "mean":61.3,
     "median":85.5,
-    "dotPosition":34,
-    "boxPosition":6
+    "dotPosition":44,
+    "boxPosition":11
   },
   {
     "item":"Sorghum",
@@ -1868,8 +1868,8 @@
     "stateCode":18,
     "mean":71.2222222222222,
     "median":91,
-    "dotPosition":40,
-    "boxPosition":7
+    "dotPosition":52,
+    "boxPosition":13
   },
   {
     "item":"Cement Dangote",
@@ -1892,8 +1892,8 @@
     "stateCode":19,
     "mean":64.9,
     "median":88,
-    "dotPosition":16,
-    "boxPosition":3
+    "dotPosition":20,
+    "boxPosition":5
   },
   {
     "item":"Maize Yellow",
@@ -1904,8 +1904,8 @@
     "stateCode":19,
     "mean":41.6,
     "median":33.5,
-    "dotPosition":22,
-    "boxPosition":4
+    "dotPosition":28,
+    "boxPosition":7
   },
   {
     "item":"Sorghum",
@@ -1916,8 +1916,8 @@
     "stateCode":19,
     "mean":71.2222222222222,
     "median":91,
-    "dotPosition":40,
-    "boxPosition":7
+    "dotPosition":52,
+    "boxPosition":13
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -1928,8 +1928,8 @@
     "stateCode":19,
     "mean":69.5555555555556,
     "median":83,
-    "dotPosition":10,
-    "boxPosition":2
+    "dotPosition":12,
+    "boxPosition":3
   },
   {
     "item":"Rice Local",
@@ -1940,8 +1940,8 @@
     "stateCode":19,
     "mean":61.3,
     "median":85.5,
-    "dotPosition":34,
-    "boxPosition":6
+    "dotPosition":44,
+    "boxPosition":11
   },
   {
     "item":"Rice Imported",
@@ -1952,8 +1952,8 @@
     "stateCode":19,
     "mean":65,
     "median":89,
-    "dotPosition":28,
-    "boxPosition":5
+    "dotPosition":36,
+    "boxPosition":9
   },
   {
     "item":"Maize White",
@@ -1964,8 +1964,8 @@
     "stateCode":20,
     "mean":64.9,
     "median":88,
-    "dotPosition":16,
-    "boxPosition":3
+    "dotPosition":20,
+    "boxPosition":5
   },
   {
     "item":"Sorghum",
@@ -1976,8 +1976,8 @@
     "stateCode":20,
     "mean":71.2222222222222,
     "median":91,
-    "dotPosition":40,
-    "boxPosition":7
+    "dotPosition":52,
+    "boxPosition":13
   },
   {
     "item":"Rice Local",
@@ -1988,8 +1988,8 @@
     "stateCode":20,
     "mean":61.3,
     "median":85.5,
-    "dotPosition":34,
-    "boxPosition":6
+    "dotPosition":44,
+    "boxPosition":11
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -2000,8 +2000,8 @@
     "stateCode":20,
     "mean":69.5555555555556,
     "median":83,
-    "dotPosition":10,
-    "boxPosition":2
+    "dotPosition":12,
+    "boxPosition":3
   },
   {
     "item":"Maize Yellow",
@@ -2012,8 +2012,8 @@
     "stateCode":20,
     "mean":41.6,
     "median":33.5,
-    "dotPosition":22,
-    "boxPosition":4
+    "dotPosition":28,
+    "boxPosition":7
   },
   {
     "item":"Cement Dangote",
@@ -2036,8 +2036,8 @@
     "stateCode":20,
     "mean":65,
     "median":89,
-    "dotPosition":28,
-    "boxPosition":5
+    "dotPosition":36,
+    "boxPosition":9
   },
   {
     "item":"Rice Imported",
@@ -2048,8 +2048,8 @@
     "stateCode":21,
     "mean":65,
     "median":89,
-    "dotPosition":28,
-    "boxPosition":5
+    "dotPosition":36,
+    "boxPosition":9
   },
   {
     "item":"Rice Local",
@@ -2060,8 +2060,8 @@
     "stateCode":21,
     "mean":61.3,
     "median":85.5,
-    "dotPosition":34,
-    "boxPosition":6
+    "dotPosition":44,
+    "boxPosition":11
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -2072,8 +2072,8 @@
     "stateCode":21,
     "mean":69.5555555555556,
     "median":83,
-    "dotPosition":10,
-    "boxPosition":2
+    "dotPosition":12,
+    "boxPosition":3
   },
   {
     "item":"Maize White",
@@ -2084,8 +2084,8 @@
     "stateCode":21,
     "mean":64.9,
     "median":88,
-    "dotPosition":16,
-    "boxPosition":3
+    "dotPosition":20,
+    "boxPosition":5
   },
   {
     "item":"Cement Dangote",
@@ -2108,8 +2108,8 @@
     "stateCode":21,
     "mean":41.6,
     "median":33.5,
-    "dotPosition":22,
-    "boxPosition":4
+    "dotPosition":28,
+    "boxPosition":7
   },
   {
     "item":"Sorghum",
@@ -2120,8 +2120,8 @@
     "stateCode":21,
     "mean":71.2222222222222,
     "median":91,
-    "dotPosition":40,
-    "boxPosition":7
+    "dotPosition":52,
+    "boxPosition":13
   },
   {
     "item":"Maize Yellow",
@@ -2132,8 +2132,8 @@
     "stateCode":22,
     "mean":41.6,
     "median":33.5,
-    "dotPosition":22,
-    "boxPosition":4
+    "dotPosition":28,
+    "boxPosition":7
   },
   {
     "item":"Cement Dangote",
@@ -2156,8 +2156,8 @@
     "stateCode":22,
     "mean":69.5555555555556,
     "median":83,
-    "dotPosition":10,
-    "boxPosition":2
+    "dotPosition":12,
+    "boxPosition":3
   },
   {
     "item":"Rice Imported",
@@ -2168,8 +2168,8 @@
     "stateCode":22,
     "mean":65,
     "median":89,
-    "dotPosition":28,
-    "boxPosition":5
+    "dotPosition":36,
+    "boxPosition":9
   },
   {
     "item":"Maize White",
@@ -2180,8 +2180,8 @@
     "stateCode":22,
     "mean":64.9,
     "median":88,
-    "dotPosition":16,
-    "boxPosition":3
+    "dotPosition":20,
+    "boxPosition":5
   },
   {
     "item":"Rice Local",
@@ -2192,8 +2192,8 @@
     "stateCode":22,
     "mean":61.3,
     "median":85.5,
-    "dotPosition":34,
-    "boxPosition":6
+    "dotPosition":44,
+    "boxPosition":11
   },
   {
     "item":"Sorghum",
@@ -2204,8 +2204,8 @@
     "stateCode":22,
     "mean":71.2222222222222,
     "median":91,
-    "dotPosition":40,
-    "boxPosition":7
+    "dotPosition":52,
+    "boxPosition":13
   },
   {
     "item":"Cement Dangote",
@@ -2228,8 +2228,8 @@
     "stateCode":27,
     "mean":67.375,
     "median":87.5,
-    "dotPosition":35,
-    "boxPosition":6
+    "dotPosition":45,
+    "boxPosition":11
   },
   {
     "item":"Maize White",
@@ -2240,8 +2240,8 @@
     "stateCode":27,
     "mean":66.625,
     "median":84,
-    "dotPosition":17,
-    "boxPosition":3
+    "dotPosition":21,
+    "boxPosition":5
   },
   {
     "item":"Maize Yellow",
@@ -2252,8 +2252,8 @@
     "stateCode":27,
     "mean":66.375,
     "median":88,
-    "dotPosition":23,
-    "boxPosition":4
+    "dotPosition":29,
+    "boxPosition":7
   },
   {
     "item":"Sorghum",
@@ -2264,8 +2264,8 @@
     "stateCode":27,
     "mean":72,
     "median":80,
-    "dotPosition":41,
-    "boxPosition":7
+    "dotPosition":53,
+    "boxPosition":13
   },
   {
     "item":"Rice Imported",
@@ -2276,8 +2276,8 @@
     "stateCode":28,
     "mean":63.8571428571429,
     "median":82,
-    "dotPosition":29,
-    "boxPosition":5
+    "dotPosition":37,
+    "boxPosition":9
   },
   {
     "item":"Rice Local",
@@ -2288,8 +2288,8 @@
     "stateCode":28,
     "mean":67.375,
     "median":87.5,
-    "dotPosition":35,
-    "boxPosition":6
+    "dotPosition":45,
+    "boxPosition":11
   },
   {
     "item":"Maize Yellow",
@@ -2300,8 +2300,8 @@
     "stateCode":28,
     "mean":66.375,
     "median":88,
-    "dotPosition":23,
-    "boxPosition":4
+    "dotPosition":29,
+    "boxPosition":7
   },
   {
     "item":"Sorghum",
@@ -2312,8 +2312,8 @@
     "stateCode":28,
     "mean":72,
     "median":80,
-    "dotPosition":41,
-    "boxPosition":7
+    "dotPosition":53,
+    "boxPosition":13
   },
   {
     "item":"Maize White",
@@ -2324,8 +2324,8 @@
     "stateCode":28,
     "mean":66.625,
     "median":84,
-    "dotPosition":17,
-    "boxPosition":3
+    "dotPosition":21,
+    "boxPosition":5
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -2336,8 +2336,8 @@
     "stateCode":28,
     "mean":72.1428571428571,
     "median":95,
-    "dotPosition":11,
-    "boxPosition":2
+    "dotPosition":13,
+    "boxPosition":3
   },
   {
     "item":"Sorghum",
@@ -2348,8 +2348,8 @@
     "stateCode":28,
     "mean":72,
     "median":80,
-    "dotPosition":41,
-    "boxPosition":7
+    "dotPosition":53,
+    "boxPosition":13
   },
   {
     "item":"Cement Dangote",
@@ -2372,8 +2372,8 @@
     "stateCode":2,
     "mean":75.2,
     "median":79,
-    "dotPosition":7,
-    "boxPosition":2
+    "dotPosition":9,
+    "boxPosition":3
   },
   {
     "item":"Rice Local",
@@ -2384,8 +2384,8 @@
     "stateCode":2,
     "mean":40.1666666666667,
     "median":28,
-    "dotPosition":31,
-    "boxPosition":6
+    "dotPosition":41,
+    "boxPosition":11
   },
   {
     "item":"Maize White",
@@ -2396,8 +2396,8 @@
     "stateCode":2,
     "mean":60.1666666666667,
     "median":63,
-    "dotPosition":13,
-    "boxPosition":3
+    "dotPosition":17,
+    "boxPosition":5
   },
   {
     "item":"Sorghum",
@@ -2408,8 +2408,8 @@
     "stateCode":2,
     "mean":52.8333333333333,
     "median":46.5,
-    "dotPosition":37,
-    "boxPosition":7
+    "dotPosition":49,
+    "boxPosition":13
   },
   {
     "item":"Maize Yellow",
@@ -2420,8 +2420,8 @@
     "stateCode":2,
     "mean":51.8333333333333,
     "median":44.5,
-    "dotPosition":19,
-    "boxPosition":4
+    "dotPosition":25,
+    "boxPosition":7
   },
   {
     "item":"Cement Dangote",
@@ -2444,8 +2444,8 @@
     "stateCode":29,
     "mean":67.375,
     "median":87.5,
-    "dotPosition":35,
-    "boxPosition":6
+    "dotPosition":45,
+    "boxPosition":11
   },
   {
     "item":"Maize White",
@@ -2456,8 +2456,8 @@
     "stateCode":29,
     "mean":66.625,
     "median":84,
-    "dotPosition":17,
-    "boxPosition":3
+    "dotPosition":21,
+    "boxPosition":5
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -2468,8 +2468,8 @@
     "stateCode":29,
     "mean":72.1428571428571,
     "median":95,
-    "dotPosition":11,
-    "boxPosition":2
+    "dotPosition":13,
+    "boxPosition":3
   },
   {
     "item":"Rice Imported",
@@ -2480,8 +2480,8 @@
     "stateCode":29,
     "mean":63.8571428571429,
     "median":82,
-    "dotPosition":29,
-    "boxPosition":5
+    "dotPosition":37,
+    "boxPosition":9
   },
   {
     "item":"Cement Dangote",
@@ -2504,8 +2504,8 @@
     "stateCode":29,
     "mean":72,
     "median":80,
-    "dotPosition":41,
-    "boxPosition":7
+    "dotPosition":53,
+    "boxPosition":13
   },
   {
     "item":"Maize Yellow",
@@ -2516,8 +2516,8 @@
     "stateCode":29,
     "mean":66.375,
     "median":88,
-    "dotPosition":23,
-    "boxPosition":4
+    "dotPosition":29,
+    "boxPosition":7
   },
   {
     "item":"Sorghum",
@@ -2528,8 +2528,8 @@
     "stateCode":30,
     "mean":72,
     "median":80,
-    "dotPosition":41,
-    "boxPosition":7
+    "dotPosition":53,
+    "boxPosition":13
   },
   {
     "item":"Cement Dangote",
@@ -2552,8 +2552,8 @@
     "stateCode":30,
     "mean":63.8571428571429,
     "median":82,
-    "dotPosition":29,
-    "boxPosition":5
+    "dotPosition":37,
+    "boxPosition":9
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -2564,8 +2564,8 @@
     "stateCode":30,
     "mean":72.1428571428571,
     "median":95,
-    "dotPosition":11,
-    "boxPosition":2
+    "dotPosition":13,
+    "boxPosition":3
   },
   {
     "item":"Rice Local",
@@ -2576,8 +2576,8 @@
     "stateCode":30,
     "mean":67.375,
     "median":87.5,
-    "dotPosition":35,
-    "boxPosition":6
+    "dotPosition":45,
+    "boxPosition":11
   },
   {
     "item":"Maize Yellow",
@@ -2588,8 +2588,8 @@
     "stateCode":30,
     "mean":66.375,
     "median":88,
-    "dotPosition":23,
-    "boxPosition":4
+    "dotPosition":29,
+    "boxPosition":7
   },
   {
     "item":"Maize White",
@@ -2600,8 +2600,8 @@
     "stateCode":30,
     "mean":66.625,
     "median":84,
-    "dotPosition":17,
-    "boxPosition":3
+    "dotPosition":21,
+    "boxPosition":5
   },
   {
     "item":"Sorghum",
@@ -2612,8 +2612,8 @@
     "stateCode":3,
     "mean":52.8333333333333,
     "median":46.5,
-    "dotPosition":37,
-    "boxPosition":7
+    "dotPosition":49,
+    "boxPosition":13
   },
   {
     "item":"Rice Imported",
@@ -2624,8 +2624,8 @@
     "stateCode":3,
     "mean":54.5,
     "median":56.5,
-    "dotPosition":25,
-    "boxPosition":5
+    "dotPosition":33,
+    "boxPosition":9
   },
   {
     "item":"Rice Local",
@@ -2636,8 +2636,8 @@
     "stateCode":3,
     "mean":40.1666666666667,
     "median":28,
-    "dotPosition":31,
-    "boxPosition":6
+    "dotPosition":41,
+    "boxPosition":11
   },
   {
     "item":"Maize White",
@@ -2648,8 +2648,8 @@
     "stateCode":3,
     "mean":60.1666666666667,
     "median":63,
-    "dotPosition":13,
-    "boxPosition":3
+    "dotPosition":17,
+    "boxPosition":5
   },
   {
     "item":"Maize Yellow",
@@ -2660,8 +2660,8 @@
     "stateCode":4,
     "mean":51.8333333333333,
     "median":44.5,
-    "dotPosition":19,
-    "boxPosition":4
+    "dotPosition":25,
+    "boxPosition":7
   },
   {
     "item":"Rice Imported",
@@ -2672,8 +2672,8 @@
     "stateCode":4,
     "mean":54.5,
     "median":56.5,
-    "dotPosition":25,
-    "boxPosition":5
+    "dotPosition":33,
+    "boxPosition":9
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -2684,8 +2684,8 @@
     "stateCode":4,
     "mean":75.2,
     "median":79,
-    "dotPosition":7,
-    "boxPosition":2
+    "dotPosition":9,
+    "boxPosition":3
   },
   {
     "item":"Cement Dangote",
@@ -2708,8 +2708,8 @@
     "stateCode":4,
     "mean":60.1666666666667,
     "median":63,
-    "dotPosition":13,
-    "boxPosition":3
+    "dotPosition":17,
+    "boxPosition":5
   },
   {
     "item":"Sorghum",
@@ -2720,8 +2720,8 @@
     "stateCode":4,
     "mean":52.8333333333333,
     "median":46.5,
-    "dotPosition":37,
-    "boxPosition":7
+    "dotPosition":49,
+    "boxPosition":13
   },
   {
     "item":"Rice Local",
@@ -2732,8 +2732,8 @@
     "stateCode":4,
     "mean":40.1666666666667,
     "median":28,
-    "dotPosition":31,
-    "boxPosition":6
+    "dotPosition":41,
+    "boxPosition":11
   },
   {
     "item":"Maize White",
@@ -2744,8 +2744,8 @@
     "stateCode":5,
     "mean":60.1666666666667,
     "median":63,
-    "dotPosition":13,
-    "boxPosition":3
+    "dotPosition":17,
+    "boxPosition":5
   },
   {
     "item":"Rice Imported",
@@ -2756,8 +2756,8 @@
     "stateCode":5,
     "mean":54.5,
     "median":56.5,
-    "dotPosition":25,
-    "boxPosition":5
+    "dotPosition":33,
+    "boxPosition":9
   },
   {
     "item":"Rice Local",
@@ -2768,8 +2768,8 @@
     "stateCode":5,
     "mean":40.1666666666667,
     "median":28,
-    "dotPosition":31,
-    "boxPosition":6
+    "dotPosition":41,
+    "boxPosition":11
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -2780,8 +2780,8 @@
     "stateCode":5,
     "mean":75.2,
     "median":79,
-    "dotPosition":7,
-    "boxPosition":2
+    "dotPosition":9,
+    "boxPosition":3
   },
   {
     "item":"Sorghum",
@@ -2792,8 +2792,8 @@
     "stateCode":5,
     "mean":52.8333333333333,
     "median":46.5,
-    "dotPosition":37,
-    "boxPosition":7
+    "dotPosition":49,
+    "boxPosition":13
   },
   {
     "item":"Maize Yellow",
@@ -2804,8 +2804,8 @@
     "stateCode":5,
     "mean":51.8333333333333,
     "median":44.5,
-    "dotPosition":19,
-    "boxPosition":4
+    "dotPosition":25,
+    "boxPosition":7
   },
   {
     "item":"Cement Dangote",
@@ -2828,8 +2828,8 @@
     "stateCode":6,
     "mean":51.8333333333333,
     "median":44.5,
-    "dotPosition":19,
-    "boxPosition":4
+    "dotPosition":25,
+    "boxPosition":7
   },
   {
     "item":"Maize White",
@@ -2840,8 +2840,8 @@
     "stateCode":6,
     "mean":60.1666666666667,
     "median":63,
-    "dotPosition":13,
-    "boxPosition":3
+    "dotPosition":17,
+    "boxPosition":5
   },
   {
     "item":"Cement Dangote",
@@ -2864,8 +2864,8 @@
     "stateCode":6,
     "mean":54.5,
     "median":56.5,
-    "dotPosition":25,
-    "boxPosition":5
+    "dotPosition":33,
+    "boxPosition":9
   },
   {
     "item":"Sorghum",
@@ -2876,8 +2876,8 @@
     "stateCode":6,
     "mean":52.8333333333333,
     "median":46.5,
-    "dotPosition":37,
-    "boxPosition":7
+    "dotPosition":49,
+    "boxPosition":13
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -2888,8 +2888,8 @@
     "stateCode":6,
     "mean":75.2,
     "median":79,
-    "dotPosition":7,
-    "boxPosition":2
+    "dotPosition":9,
+    "boxPosition":3
   },
   {
     "item":"Rice Local",
@@ -2900,8 +2900,8 @@
     "stateCode":6,
     "mean":40.1666666666667,
     "median":28,
-    "dotPosition":31,
-    "boxPosition":6
+    "dotPosition":41,
+    "boxPosition":11
   },
   {
     "item":"Maize White",
@@ -2912,8 +2912,8 @@
     "stateCode":31,
     "mean":66.625,
     "median":84,
-    "dotPosition":17,
-    "boxPosition":3
+    "dotPosition":21,
+    "boxPosition":5
   },
   {
     "item":"Rice Imported",
@@ -2924,8 +2924,8 @@
     "stateCode":31,
     "mean":63.8571428571429,
     "median":82,
-    "dotPosition":29,
-    "boxPosition":5
+    "dotPosition":37,
+    "boxPosition":9
   },
   {
     "item":"Sorghum",
@@ -2936,8 +2936,8 @@
     "stateCode":31,
     "mean":72,
     "median":80,
-    "dotPosition":41,
-    "boxPosition":7
+    "dotPosition":53,
+    "boxPosition":13
   },
   {
     "item":"Maize Yellow",
@@ -2948,8 +2948,8 @@
     "stateCode":31,
     "mean":66.375,
     "median":88,
-    "dotPosition":23,
-    "boxPosition":4
+    "dotPosition":29,
+    "boxPosition":7
   },
   {
     "item":"Cement Dangote",
@@ -2972,8 +2972,8 @@
     "stateCode":31,
     "mean":72.1428571428571,
     "median":95,
-    "dotPosition":11,
-    "boxPosition":2
+    "dotPosition":13,
+    "boxPosition":3
   },
   {
     "item":"Rice Local",
@@ -2984,8 +2984,8 @@
     "stateCode":31,
     "mean":67.375,
     "median":87.5,
-    "dotPosition":35,
-    "boxPosition":6
+    "dotPosition":45,
+    "boxPosition":11
   },
   {
     "item":"Cement Dangote",
@@ -3008,8 +3008,8 @@
     "stateCode":12,
     "mean":81.2,
     "median":82,
-    "dotPosition":14,
-    "boxPosition":3
+    "dotPosition":18,
+    "boxPosition":5
   },
   {
     "item":"Sorghum",
@@ -3020,8 +3020,8 @@
     "stateCode":12,
     "mean":79.6,
     "median":78,
-    "dotPosition":38,
-    "boxPosition":7
+    "dotPosition":50,
+    "boxPosition":13
   },
   {
     "item":"Rice Imported",
@@ -3032,8 +3032,8 @@
     "stateCode":12,
     "mean":81.8,
     "median":80,
-    "dotPosition":26,
-    "boxPosition":5
+    "dotPosition":34,
+    "boxPosition":9
   },
   {
     "item":"Maize Yellow",
@@ -3044,8 +3044,8 @@
     "stateCode":12,
     "mean":77.2,
     "median":85,
-    "dotPosition":20,
-    "boxPosition":4
+    "dotPosition":26,
+    "boxPosition":7
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -3056,8 +3056,8 @@
     "stateCode":12,
     "mean":75.5,
     "median":75.5,
-    "dotPosition":8,
-    "boxPosition":2
+    "dotPosition":10,
+    "boxPosition":3
   },
   {
     "item":"Maize Yellow",
@@ -3068,8 +3068,8 @@
     "stateCode":23,
     "mean":41.6,
     "median":33.5,
-    "dotPosition":22,
-    "boxPosition":4
+    "dotPosition":28,
+    "boxPosition":7
   },
   {
     "item":"Rice Imported",
@@ -3080,8 +3080,8 @@
     "stateCode":23,
     "mean":65,
     "median":89,
-    "dotPosition":28,
-    "boxPosition":5
+    "dotPosition":36,
+    "boxPosition":9
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -3092,8 +3092,8 @@
     "stateCode":23,
     "mean":69.5555555555556,
     "median":83,
-    "dotPosition":10,
-    "boxPosition":2
+    "dotPosition":12,
+    "boxPosition":3
   },
   {
     "item":"Maize White",
@@ -3104,8 +3104,8 @@
     "stateCode":23,
     "mean":64.9,
     "median":88,
-    "dotPosition":16,
-    "boxPosition":3
+    "dotPosition":20,
+    "boxPosition":5
   },
   {
     "item":"Maize White",
@@ -3116,8 +3116,8 @@
     "stateCode":23,
     "mean":64.9,
     "median":88,
-    "dotPosition":16,
-    "boxPosition":3
+    "dotPosition":20,
+    "boxPosition":5
   },
   {
     "item":"Cement Dangote",
@@ -3152,8 +3152,8 @@
     "stateCode":23,
     "mean":61.3,
     "median":85.5,
-    "dotPosition":34,
-    "boxPosition":6
+    "dotPosition":44,
+    "boxPosition":11
   },
   {
     "item":"Maize White",
@@ -3164,8 +3164,8 @@
     "stateCode":23,
     "mean":64.9,
     "median":88,
-    "dotPosition":16,
-    "boxPosition":3
+    "dotPosition":20,
+    "boxPosition":5
   },
   {
     "item":"Rice Imported",
@@ -3176,8 +3176,8 @@
     "stateCode":23,
     "mean":65,
     "median":89,
-    "dotPosition":28,
-    "boxPosition":5
+    "dotPosition":36,
+    "boxPosition":9
   },
   {
     "item":"Rice Local",
@@ -3188,8 +3188,8 @@
     "stateCode":23,
     "mean":61.3,
     "median":85.5,
-    "dotPosition":34,
-    "boxPosition":6
+    "dotPosition":44,
+    "boxPosition":11
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -3200,8 +3200,8 @@
     "stateCode":23,
     "mean":69.5555555555556,
     "median":83,
-    "dotPosition":10,
-    "boxPosition":2
+    "dotPosition":12,
+    "boxPosition":3
   },
   {
     "item":"Rice Imported",
@@ -3212,8 +3212,8 @@
     "stateCode":23,
     "mean":65,
     "median":89,
-    "dotPosition":28,
-    "boxPosition":5
+    "dotPosition":36,
+    "boxPosition":9
   },
   {
     "item":"Maize Yellow",
@@ -3224,8 +3224,8 @@
     "stateCode":23,
     "mean":41.6,
     "median":33.5,
-    "dotPosition":22,
-    "boxPosition":4
+    "dotPosition":28,
+    "boxPosition":7
   },
   {
     "item":"Sorghum",
@@ -3236,8 +3236,8 @@
     "stateCode":23,
     "mean":71.2222222222222,
     "median":91,
-    "dotPosition":40,
-    "boxPosition":7
+    "dotPosition":52,
+    "boxPosition":13
   },
   {
     "item":"Rice Local",
@@ -3248,8 +3248,8 @@
     "stateCode":23,
     "mean":61.3,
     "median":85.5,
-    "dotPosition":34,
-    "boxPosition":6
+    "dotPosition":44,
+    "boxPosition":11
   },
   {
     "item":"Maize Yellow",
@@ -3260,8 +3260,8 @@
     "stateCode":23,
     "mean":41.6,
     "median":33.5,
-    "dotPosition":22,
-    "boxPosition":4
+    "dotPosition":28,
+    "boxPosition":7
   },
   {
     "item":"Sorghum",
@@ -3272,8 +3272,8 @@
     "stateCode":23,
     "mean":71.2222222222222,
     "median":91,
-    "dotPosition":40,
-    "boxPosition":7
+    "dotPosition":52,
+    "boxPosition":13
   },
   {
     "item":"Sorghum",
@@ -3284,8 +3284,8 @@
     "stateCode":36,
     "mean":59.7142857142857,
     "median":73,
-    "dotPosition":42,
-    "boxPosition":7
+    "dotPosition":54,
+    "boxPosition":13
   },
   {
     "item":"Rice Imported",
@@ -3296,8 +3296,8 @@
     "stateCode":36,
     "mean":61.7777777777778,
     "median":86,
-    "dotPosition":30,
-    "boxPosition":5
+    "dotPosition":38,
+    "boxPosition":9
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -3308,8 +3308,8 @@
     "stateCode":36,
     "mean":54.2222222222222,
     "median":46,
-    "dotPosition":12,
-    "boxPosition":2
+    "dotPosition":14,
+    "boxPosition":3
   },
   {
     "item":"Rice Local",
@@ -3320,8 +3320,8 @@
     "stateCode":36,
     "mean":66.2222222222222,
     "median":81,
-    "dotPosition":36,
-    "boxPosition":6
+    "dotPosition":46,
+    "boxPosition":11
   },
   {
     "item":"Maize White",
@@ -3332,8 +3332,8 @@
     "stateCode":36,
     "mean":73.6666666666667,
     "median":98,
-    "dotPosition":18,
-    "boxPosition":3
+    "dotPosition":22,
+    "boxPosition":5
   },
   {
     "item":"Cement Dangote",
@@ -3356,8 +3356,8 @@
     "stateCode":36,
     "mean":61.8888888888889,
     "median":86,
-    "dotPosition":24,
-    "boxPosition":4
+    "dotPosition":30,
+    "boxPosition":7
   },
   {
     "item":"Rice Imported",
@@ -3368,8 +3368,8 @@
     "stateCode":37,
     "mean":61.7777777777778,
     "median":86,
-    "dotPosition":30,
-    "boxPosition":5
+    "dotPosition":38,
+    "boxPosition":9
   },
   {
     "item":"Maize Yellow",
@@ -3380,8 +3380,8 @@
     "stateCode":37,
     "mean":61.8888888888889,
     "median":86,
-    "dotPosition":24,
-    "boxPosition":4
+    "dotPosition":30,
+    "boxPosition":7
   },
   {
     "item":"Rice Local",
@@ -3392,8 +3392,8 @@
     "stateCode":37,
     "mean":66.2222222222222,
     "median":81,
-    "dotPosition":36,
-    "boxPosition":6
+    "dotPosition":46,
+    "boxPosition":11
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -3404,8 +3404,8 @@
     "stateCode":37,
     "mean":54.2222222222222,
     "median":46,
-    "dotPosition":12,
-    "boxPosition":2
+    "dotPosition":14,
+    "boxPosition":3
   },
   {
     "item":"Maize White",
@@ -3416,8 +3416,8 @@
     "stateCode":37,
     "mean":73.6666666666667,
     "median":98,
-    "dotPosition":18,
-    "boxPosition":3
+    "dotPosition":22,
+    "boxPosition":5
   },
   {
     "item":"Rice Local",
@@ -3428,8 +3428,8 @@
     "stateCode":24,
     "mean":61.3,
     "median":85.5,
-    "dotPosition":34,
-    "boxPosition":6
+    "dotPosition":44,
+    "boxPosition":11
   },
   {
     "item":"Maize White",
@@ -3440,8 +3440,8 @@
     "stateCode":24,
     "mean":64.9,
     "median":88,
-    "dotPosition":16,
-    "boxPosition":3
+    "dotPosition":20,
+    "boxPosition":5
   },
   {
     "item":"Sorghum",
@@ -3452,8 +3452,8 @@
     "stateCode":24,
     "mean":71.2222222222222,
     "median":91,
-    "dotPosition":40,
-    "boxPosition":7
+    "dotPosition":52,
+    "boxPosition":13
   },
   {
     "item":"Rice Imported",
@@ -3464,8 +3464,8 @@
     "stateCode":24,
     "mean":65,
     "median":89,
-    "dotPosition":28,
-    "boxPosition":5
+    "dotPosition":36,
+    "boxPosition":9
   },
   {
     "item":"Cement Dangote",
@@ -3488,8 +3488,8 @@
     "stateCode":24,
     "mean":41.6,
     "median":33.5,
-    "dotPosition":22,
-    "boxPosition":4
+    "dotPosition":28,
+    "boxPosition":7
   },
   {
     "item":"Drink Swan Water Bottle",
@@ -3500,7 +3500,7 @@
     "stateCode":24,
     "mean":69.5555555555556,
     "median":83,
-    "dotPosition":10,
-    "boxPosition":2
+    "dotPosition":12,
+    "boxPosition":3
   }
 ]

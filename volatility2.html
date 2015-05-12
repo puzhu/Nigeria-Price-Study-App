@@ -62,7 +62,7 @@ function ready(error, volatility, zones, zoneStates, zonePosition){
   //Loading the data and creating domain and data variables
   var data = filterData(volatility, input); //loading the volatility data based on input
   var zoneData = filterData(zones, input); //loading the zones data based on the input
-  
+
   /*We have two sets of domains. One for the chart and the other for each individual panel. The chart domain is mapped to the number of zones and the number of dates. While the panel domains are set to the number of states per zone and the volatility values*/
   //var yChartDomain = uniq_fast(zoneData.map(function(d){return d.zoneCode})); //the height of the chart is set to the zones
   var xChartDomain = uniq_fast(zoneData.map(function(d){return monthFormat(d.date.slice(0,7))})).sort(function(a,b) { return a - b;});//the width of chart is based on the number of dates.
@@ -116,36 +116,7 @@ console.log(containerPadding)
         .range(["#0000ff","#ff0000"])
         .interpolate(d3.interpolateHcl);
 
-  //var yFont = 0.8 * yPanelScale(1)
-  //var xFont = yPanelScale(1)
-  //var radius = Math.max(0.15 * yPanelScale(1), 0.07 * xPanelScale(1))
-
   //Drawing the chart
-  /*volChart.append('g')
-      .selectAll(".hlines") //Horizontal grid lines
-      .data(yChartDomain)
-      .enter()
-      .append('line')
-      .attr({
-        x1: 0,
-        y1: function(d){return yChartScale(d)},
-        x2: width,
-        y2: function(d){return yChartScale(d)}
-      })
-      .style("stroke", "#9e9e9e"); */
-  // volChart.append('g') //vertical grid lines
-  //     .selectAll(".vlines")
-  //     .data(xChartDomain)
-  //     .enter()
-  //     .append('line')
-  //     .attr({
-  //       x1: function(d){return xChartScale(d)},
-  //       y1: 0,
-  //       x2: function(d){return xChartScale(d)},
-  //       y2: height+containerPadding.top
-  //     })
-  //     .style("stroke", "#9e9e9e");
-
   volChart.append('g') //vertical grid lines
       .selectAll(".vboxes")
       .data(xChartDomain)
@@ -158,52 +129,7 @@ console.log(containerPadding)
         width: xChartScale.rangeBand()
       })
       .style("stroke", "none")
-      .style("fill", "rgb(230,230,230)");
-/*
-  volChart.append('g') //the first line in the box
-      .selectAll(".boxLines")
-      .data(zoneData)
-      .enter()
-      .append('line')
-      .attr({
-        x1: function(d){return xPanelScale(d.fQ) + xChartScale(d.date)},
-        y1: function(d) {return yChartScale(d.zoneCode) + yPanelScale(1)},
-        x2: function(d){return xPanelScale(d.fQ) + xChartScale(d.date)},
-        y2: function(d){return yPanelScale(d.maxStates) + yChartScale(d.zoneCode)}
-      })
-      .style("stroke", "#9e9e9e")
-      .style("stroke-dasharray", ("2, 2"))
-      //.style("stroke-dasharray", ("3, 3")) 
-
-  volChart.append('g') //last line in the box
-      .selectAll(".boxLines")
-      .data(zoneData)
-      .enter()
-      .append('line')
-      .attr({
-        x1: function(d){return xPanelScale(d.tQ) + xChartScale(d.date)},
-        y1: function(d) {return yChartScale(d.zoneCode) + yPanelScale(1)},
-        x2: function(d){return xPanelScale(d.tQ) + xChartScale(d.date)},
-        y2: function(d){return yPanelScale(d.maxStates) + yChartScale(d.zoneCode)}
-      })
-      .style("stroke", "#9e9e9e")
-      .style("stroke-dasharray", ("2, 2"))
-      //.style("stroke-dasharray", ("3, 3"))
-
-  /*volChart.append('g') //median
-      .selectAll(".boxLines")
-      .data(zoneData)
-      .enter()
-      .append('line')
-      .attr({
-        x1: function(d){return xPanelScale(d.median) + xChartScale(d.date)},
-        y1: function(d) {return yChartScale(d.zoneCode)},
-        x2: function(d){return xPanelScale(d.median) + xChartScale(d.date)},
-        y2: function(d){return yPanelScale(d.maxStates) + yChartScale(d.zoneCode)}
-      })
-      .style("stroke", "#0000FF")
-      .style("stroke-dasharray", ("2, 2")) */
-  
+      .style("fill", "rgb(252,255,252)");
 
   volChart.append('g') //mean
       .selectAll(".boxLines")
@@ -212,9 +138,9 @@ console.log(containerPadding)
       .append('line')
       .attr({
         x1: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-        y1: function(d) {return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}, //yChartScale(d.zoneCode) + yPanelScale(1) + yPanelScale.rangeBand() * d.zoneCode},
+        y1: function(d) {return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1)},
         x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-        y2: function(d){return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}// + yChartScale(d.zoneCode) + yPanelScale.rangeBand() * d.zoneCode}
+        y2: function(d){return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}
       })
 
   volChart.append('g') //mean
@@ -224,9 +150,9 @@ console.log(containerPadding)
       .append('line')
       .attr({
         x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) - 3},
-        y1: function(d) {return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1) - 3}, //yChartScale(d.zoneCode) + yPanelScale(1) + yPanelScale.rangeBand() * d.zoneCode},
+        y1: function(d) {return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1) - 3}, 
         x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-        y2: function(d){return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}// + yChartScale(d.zoneCode) + yPanelScale.rangeBand() * d.zoneCode}
+        y2: function(d){return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}
       })
 
   volChart.append('g') //mean
@@ -236,9 +162,9 @@ console.log(containerPadding)
       .append('line')
       .attr({
         x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) + 3},
-        y1: function(d) {return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1) - 3}, //yChartScale(d.zoneCode) + yPanelScale(1) + yPanelScale.rangeBand() * d.zoneCode},
+        y1: function(d) {return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1) - 3}, 
         x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-        y2: function(d){return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}// + yChartScale(d.zoneCode) + yPanelScale.rangeBand() * d.zoneCode}
+        y2: function(d){return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}
       })
 
   volChart.append('g') //mean
@@ -248,9 +174,9 @@ console.log(containerPadding)
       .append('line')
       .attr({
         x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) - 3},
-        y1: function(d) {return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1) + 3}, //yChartScale(d.zoneCode) + yPanelScale(1) + yPanelScale.rangeBand() * d.zoneCode},
+        y1: function(d) {return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1) + 3},
         x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-        y2: function(d){return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}// + yChartScale(d.zoneCode) + yPanelScale.rangeBand() * d.zoneCode}
+        y2: function(d){return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}
       })
 
   volChart.append('g') //mean
@@ -260,9 +186,9 @@ console.log(containerPadding)
       .append('line')
       .attr({
         x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) + 3},
-        y1: function(d) {return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1) + 3}, //yChartScale(d.zoneCode) + yPanelScale(1) + yPanelScale.rangeBand() * d.zoneCode},
+        y1: function(d) {return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1) + 3}, 
         x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-        y2: function(d){return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}// + yChartScale(d.zoneCode) + yPanelScale.rangeBand() * d.zoneCode}
+        y2: function(d){return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}
       })
 
   volChart.append('g') //the circles
@@ -278,7 +204,7 @@ console.log(containerPadding)
       .style({
           fill: function(d){return colorScales(d.volMoving)}
         });
-  
+
   volChart.append('g')
       .attr('class', 'y-labels')
       .selectAll('text')

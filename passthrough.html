@@ -35,22 +35,22 @@ function uniq_fast(a) { // quickly drop duplicate values from an array
   }
 //loading the data
 queue()
-  .defer(d3.json, "data/segmentation.json") //the  main dataset
-  .defer(d3.json, "data/segZoneLabels.json") //the dataset for first layer of x-labels for zones
-  .defer(d3.json, "data/segItemLabels.json") //the dataset for item labels
+  .defer(d3.json, "data/passthrough.json") //the  main dataset
+  .defer(d3.json, "data/passZoneLabels.json") //the dataset for first layer of x-labels for zones
+  .defer(d3.json, "data/passItemLabels.json") //the dataset for item labels
   .await(ready);
 
-function ready(error, segmentation, segZoneLabels, segItemLabels){
-  var maxPosition = d3.max(segmentation, function(d){return d.dotPosition});
+function ready(error, passthrough, passZoneLabels, passItemLabels) {
+  var maxPosition = d3.max(passthrough, function(d){return d.dotPosition});
   var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
   for (i = 1; i <= maxPosition; i++){
     xDomain.push(i)
   };
-  var yDomain = d3.extent(segmentation, function(d){return d.seg}); // the domain of the y-axis is set to the range of segmentation values
+  var yDomain = d3.extent(passthrough, function(d){return d.pT}); // the domain of the y-axis is set to the range of passthrough values
   var colorDomain = yDomain; //same with the color scale
 
   //creating the canvas
-  var containerSize = {'height': 200, 'width': 600}
+  var containerSize = {'height': 200, 'width': 400}
   var containerMargin = {top: 0.02 * containerSize.height , right: 0.01 * containerSize.width, bottom: 0.2 * containerSize.height, left: 0.01 * containerSize.width} //controls the spacing between the edge of the container and the inner chart
   var containerPadding = {top: 0.06 * containerSize.height, right: 0.006 * containerSize.width, bottom: 0.06 * containerSize.height, left: 0.01 * containerSize.width} //controls the size of the chart
   var chartSize = {'height': containerSize.height - containerMargin.top - containerMargin.bottom, 'width': containerSize.width - containerMargin.right - containerMargin.left}
@@ -70,7 +70,7 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
 
       console.log(xDomain)
 
-  var yScale = d3.scale.linear() //set to the range of seg values
+  var yScale = d3.scale.linear() //set to the range of passthrough values
       .domain(yDomain)
       .range([containerPadding.top, containerPadding.top+height])
 
@@ -84,23 +84,23 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
   //drawing
   segChart.append('g')
       .selectAll('.dots')
-      .data(segmentation)
+      .data(passthrough)
       .enter()
       .append('circle')
       .attr({
         r: 2,
         // cx: function(d){return xScale(d.dotPosition) + (d.boxPosition - 1) * 10},
         cx: function(d){return xScale(d.dotPosition)},
-        cy: function(d){return yScale(d.seg)}
+        cy: function(d){return yScale(d.pT)}
       })
       .style({
-          fill: function(d){return colorScale(d.seg)}
+          fill: function(d){return colorScale(d.pT)}
         })
 
   segChart.append('g')
       .attr('class', 'zone-labels') //corresponding to each column of dots
       .selectAll('text')
-      .data(segZoneLabels)
+      .data(passZoneLabels)
       .enter()
       .append('text')
       .text(function(d){return d.zoneCode})
@@ -114,7 +114,7 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
   segChart.append('g')
       .attr('class', 'item-labels')
       .selectAll('text')
-      .data(segItemLabels)
+      .data(passItemLabels)
       .enter()
       .append('text')
       .text(function(d){return d.item})

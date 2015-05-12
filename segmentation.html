@@ -47,22 +47,19 @@ queue()
   .await(ready);
 
 function ready(error, segmentation, segDots){
-  var itemNames = uniq_fast(segDots.map(function(d){return d.item})).sort();
-
-  var maxPosition = d3.max(segDots, function(d){return d.dotPosition})
-
-  var xDomain = []
+  var maxPosition = d3.max(segDots, function(d){return d.dotPosition});
+  var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
   for (i = 1; i <= maxPosition; i++){
     xDomain.push(i)
-  }
-  console.log(xDomain)
-
-  var yDomain = d3.extent(segmentation, function(d){return d.seg});
-  var colorDomain = yDomain;
+  };
+  var yDomain = d3.extent(segmentation, function(d){return d.seg}); // the domain of the y-axis is set to the range of segmentation values
+  var colorDomain = yDomain; //same with the color scale
 
   //creating the canvas
-  var containerSize = {'height': 200, 'width': 400}
-  var containerMargin = {top: containerSize.height * 0.001, right: containerSize.width * 0.001, }
+  var containerSize = {'height': 200, 'width': 400} //the outer container dimensions
+  var containerMargin = {top: containerSize.height * 0.001, right: containerSize.width * 0.001, bottom: containerSize.height * 0.001, left: containerSize.width * 0.001} // the margins within the container
+  var containerPadding = {top: containerSize.height * 0.001, right: containerSize.width * 0.001, bottom: containerSize.height * 0.001, left: containerSize.width * 0.001} //padding between the drawing area and the outer edge of the chart.
+
   var segChart = d3.select('#segChart').append('svg')
       .attr({
         width: containerSize.width,

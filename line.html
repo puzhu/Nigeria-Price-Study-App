@@ -9,16 +9,58 @@
 <script src="libraries/topojson.v1.min.js"></script>
 <script src="libraries/queue.v1.min.js"></script>
 <style>
+body {
+	font-family: 'Franklin Gothic Medium','Franklin Gothic', 'ITC Franklin Gothic', Arial, sans-serif;
+}
 .voronoi path {
   fill: none;
   stroke:none;
   pointer-events: all;
+}
+.x.axis path {
+	display: none;
+}
+.x.axis text, .y.axis text {
+	font-size:13px;
+}
+.x.axis line {
+	shape-rendering:crispEdges;
+	stroke: black;
+}
+.y.axis path {
+	display: none;
+/*	stroke:lightgrey;
+	stroke-width:1px;*/
+}
+.y.axis line {
+	stroke:lightgrey;
+	stroke-width:1px;
+}
+.state--hover {
+	stroke:red;
+}
+.stateLines path {
+	fill:none;
+	stroke-width: 1px;
+	stroke: rgb(150,150,150);
+}
+.focus {
+	pointer-events:none;
 }
 </style>
 </head>
 
 <body>
 <div id="main">
+	<select id="productSelect">
+		<option selected value="Cement Dangote">Cement Dangote</option>
+		<option value="Drink Swan Water Bottle">Drink Swan Water Bottle</option>
+		<option value="Maize White">Maize White</option>
+		<option value="Maize Yellow">Maize Yellow</option>
+		<option value="Rice Imported">Rice Imported</option>
+		<option value="Rice Local">Rice Local</option>
+		<option value="Sorghum">Sorghum</option>
+	</select>
 	<div id="mapContainer"></div>
 	<div id="lineChartContainer"></div>
 </div>
@@ -68,30 +110,42 @@ queue()
 
 function ready(error,priceData) {
 
-	var product = "Cement Dangote";
-	priceData = priceData.filter(function(d) { return d.item===product});
-	var months = uniq_fast(priceData.map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
+	drawLine(priceData);
+	
+}
 
-	var lineData = reshapeMonthlyPrice(priceData);
+function drawLine(priceData) {
+
+	d3.selection.prototype.moveToFront = function() {
+	  return this.each(function(){
+	    this.parentNode.appendChild(this);
+	  });
+	};
+	var sel = document.getElementById('productSelect');
+	var product = sel.options[sel.selectedIndex].value;
+
+	var months = uniq_fast(priceData.filter(function(e) {return e.item===product}).map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
+
+	var lineData = reshapeMonthlyPrice(priceData,product);
 
 	var lineContainerSize = {'width': 800, 'height': 400};
 	var lineChartSize = {'width': 800, 'height': 400};
-	var margin = {top: 7, right: 5, bottom: 25, left: 35};
+	var margin = {top: 7, right: 5, bottom: 25, left: 45};
 	var w = lineChartSize.width - margin.right - margin.left;
 	var h = lineChartSize.height - margin.top - margin.bottom;
 	
 	//Creating the canvas
 	var lineContainer = d3.select('#lineChartContainer').append('svg')
-						.attr({
-							width: lineContainerSize.width,
-							height: lineContainerSize.height
-						});
+		.attr({
+			width: lineContainerSize.width,
+			height: lineContainerSize.height
+		});
 	var lineChart = lineContainer.append('g')
-					.attr({
-						width: w,
-						height: h,
-						transform: "translate(" + margin.left + "," + margin.top + ")"
-					});
+		.attr({
+			width: w,
+			height: h,
+			transform: "translate(" + margin.left + "," + margin.top + ")"
+		});
 
 	lineChart.append("clipPath")
 		.attr('id', 'lineclip')
@@ -103,20 +157,16 @@ function ready(error,priceData) {
 
 	//Defining charting variables
 	var xScale = d3.time.scale()
-				.domain(d3.extent(months))
-				.range([0, w]);
+		.domain(d3.extent(months))
+		.range([0, w]);
 	var yScale = d3.scale.linear()
-				.domain([0, d3.max(priceData.map(function(d) { return d.price; }))*1.05])
-				.range([h, 0]);
-
-	// var yAxis = d3.svg.axis()
-	// 			.scale(yScale)
-	// 			.orient('left')
+		.domain([0, d3.max(priceData.filter(function(e) {return e.item===product}).map(function(d) { return d.price; }))*1.05])
+		.range([h, 0]);
 
     var line = d3.svg.line()
-    .defined(function(d) { return (d !== null && !isNaN(d.price)); })
-    .x(function(d) { return xScale(d.month); })
-    .y(function(d) { return yScale(d.price); });
+	    .defined(function(d) { return (d !== null && !isNaN(d.price)); })
+	    .x(function(d) { return xScale(d.month); })
+	    .y(function(d) { return yScale(d.price); });
 
 	var xAxis = d3.svg.axis()
         .scale(xScale)
@@ -131,17 +181,7 @@ function ready(error,priceData) {
     var xAxisNodes = lineChart.append("g")
           .attr("class", "x axis")
           .attr("transform", "translate(0," + h + ")")
-          .style("shape-rendering", "crispEdges")
-          .style("font-size", "10px")
           .call(xAxis);
-
-    d3.selectAll(".x.axis path").style("display","none");
-    xAxisNodes.selectAll("line")
-        .style("stroke", function(d,i) {
-            return "black";
-        });
-
-    xAxisNodes.selectAll("text").style('font-family','Helvetica Neue').style('font-size',"12px");
 
 	var yAxis = d3.svg.axis()
         .scale(yScale).ticks(5)
@@ -152,56 +192,65 @@ function ready(error,priceData) {
 
     var g = lineChart.append("g")
         .attr("class", "y axis")
-        .style("font-size", "10px")
-        .call(yAxis)
-        .style("shape-rendering", "crispEdges");
-
-    d3.selectAll(".y.axis path").style("display","none").style("stroke","lightgrey").style("stroke-width","1px");
-    d3.selectAll(".y.axis line").style("stroke","lightgrey").style("stroke-width","1px");
-
-    d3.selectAll(".y.axis text").style('font-family','Helvetica Neue').style('font-size',"12px");
+        .call(yAxis);
 
 
-	lineChart.append("g")
-	.attr("class", "stateLines")
-	.selectAll("path")
-	.data(lineData)
-	.enter().append("path")
-	.attr("d", function(d) { d.line = this; return line(d.values); })
-	.attr("clip-path", 'url(#lineclip)')
-	.style("fill","none")
-    .style("stroke-width","1px")
-    .style("stroke",function(d,i) { 
-		return "#4D4D4D"
-    });
+	var states = lineChart.append("g")
+		.attr("class", "stateLines")
+		.selectAll("path")
+		.data(lineData)
+		.enter().append("path")
+		.attr("d", function(d) { d.line = this; return line(d.values); })
+		.attr("clip-path", 'url(#lineclip)');
 
-    console.log(d3.nest()
-	          .key(function(d) { return xScale(d.month) + "," + yScale(d.price); })
-	          .rollup(function(v) { return v[0]; })
-	          .entries(d3.merge(lineData.map(function(d) { return d.values; })))
-	          .map(function(d) { return d.values; }))
 	var voronoi = d3.geom.voronoi()
 	    .x(function(d) { return xScale(d.month); })
 	    .y(function(d) { return yScale(d.price); })
 	    .clipExtent([[0, 0], [w, h]]);
 
-	  var voronoiGroup = lineChart.append("g")
-	      .attr("class", "voronoi");
 
-	  voronoiGroup.selectAll("path")
-	      .data(voronoi(d3.nest()
-	          .key(function(d) { return xScale(d.month) + "," + yScale(d.price); })
-	          .rollup(function(v) { return v[0]; })
-	          .entries(d3.merge(lineData.map(function(d) { return d.values; })))
-	          .map(function(d) { return d.values; })))
+  	var voronoiGroup = lineChart.append("g")
+		.attr("class", "voronoi")
+		.selectAll("path")
+		.data(voronoi(d3.nest()
+			.key(function(d) { return xScale(d.month) + "," + yScale(d.price); })
+			.rollup(function(v) { return v[0]; })
+			.entries(d3.merge(lineData.map(function(d) { return d.values; })))
+			.map(function(d) { return d.values; })))
 	    .enter().append("path")
-	      .attr("d", function(d) { return "M" + d.join("L") + "Z"; })
-	      .datum(function(d) { return d.point; })
-	      .style("cursor","default")
-	      // .on("mouseover", mouseover)
-	      // .on("mouseout", mouseout);
+		.attr("d", function(d) { return "M" + d.join("L") + "Z"; })
+		.datum(function(d) { return d.point; })
+		.style("cursor","default")
+		.on("mouseover", mouseover)
+		.on("mouseout", mouseout);
 
-	function reshapeMonthlyPrice(monthlyPrice) {
+	var focus = lineChart.append("g")
+		.attr("transform", "translate(-100,-100)")
+		.attr("class", "focus");
+
+	focus.append("circle")
+		.attr("r", 3.5)
+		.style("fill","red")
+		.style("stroke","none");
+
+	function mouseover(d) {
+		focus.attr("transform", "translate(" + xScale(d.month) + "," + yScale(d.price) + ")");
+		var line = states.filter(function(e) {return e.state===d.state}).style('stroke','red').style('stroke-width','2px').moveToFront();
+		console.log('hi')
+		// d3.select(d.city.line).classed("state--hover", true);
+		// d.city.line.parentNode.appendChild(d.city.line);
+		
+		// focus.select("text").text(d.city.name);
+	}
+
+	function mouseout(d) {
+		var line = states.filter(function(e) {return e.state===d.state}).style('stroke','rgb(150,150,150)').style('stroke-width','1px');
+		// d3.select(d.city.line).classed("state--hover", false);
+		focus.attr("transform", "translate(-100,-100)");
+	}
+
+	function reshapeMonthlyPrice(monthlyPrice,product) {
+		monthlyPrice = monthlyPrice.filter(function(d) { return d.item===product});
 		var mainArray = [];
 		for (var i=0;i<monthlyPrice.length;i++) {
 			if (mainArray.filter(function(d) {return d.state===monthlyPrice[i].state}).length===0) { // does the state have its own list item yet?
@@ -229,41 +278,47 @@ function ready(error,priceData) {
 		}
 		return mainArray;
 	}
-	function centerToStates(priceData,item) {
-		var array= []
-		var states = uniq_fast(priceData.map(function(d) {return d.state}))
-		states.forEach(function(d) {
-			var stateData = priceData.filter(function(e) {return e.state===d && e.item===item});
-			var meanPrice = NaN;
-			var weightTotal = NaN;
 
-			stateData.forEach(function(e) {
-				if (isNaN(meanPrice) && !isNaN(e.price)) {
-					meanPrice = e.price*e.weight;
-				}
-				else if (!isNaN(meanPrice) && !isNaN(e.price)) {
-					meanPrice += e.price*e.weight;
-				}
+	d3.select('#productSelect').on('change', function(d) {
+        var product = d3.select(this).property('value');
+        redrawLine(product);
+    });
 
-				if (isNaN(weightTotal) && !isNaN(e.weight)) {
-					weightTotal = e.weight;
-				}
-				else if (!isNaN(weightTotal) && !isNaN(e.weight)) {
-					weightTotal += e.weight;
-				}
-			});
+	function redrawLine(item) {
+		var months = uniq_fast(priceData.filter(function(e) {return e.item===item}).map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
+		var lineData = reshapeMonthlyPrice(priceData,item);
 
-			meanPrice = (meanPrice/weightTotal);
-			array.push({'state':d,'price':meanPrice})
-		});
-		return array;
+		xScale.domain(d3.extent(months));
+		yScale.domain([0, d3.max(priceData.filter(function(e) {return e.item===item}).map(function(d) { return d.price; }))*1.05]);
+		xAxisNodes.call(xAxis);
+		g.call(yAxis);
+
+		states = states.data(lineData);
+		states.exit().remove();
+		states.enter().append('path');
+		states.attr("class","stateLines")
+			.attr("d",function(d) { d.line = this; return line(d.values); })
+			.attr("clip-path", 'url(#lineclip)');
+
+	  	
+	  	voronoiGroup = voronoiGroup.data(voronoi(d3.nest()
+			.key(function(d) { return xScale(d.month) + "," + yScale(d.price); })
+			.rollup(function(v) { return v[0]; })
+			.entries(d3.merge(lineData.map(function(d) { return d.values; })))
+			.map(function(d) { return d.values; })));
+			
+		voronoiGroup.exit().remove();
+		voronoiGroup.enter().append("path");
+		voronoiGroup
+			.attr('class','voronoi')
+			.attr("d", function(d) { return "M" + d.join("L") + "Z"; })
+			.datum(function(d) { return d.point; })
+			.style("cursor","default")
+			.on("mouseover", mouseover)
+			.on("mouseout", mouseout);
+
 	}
-	
-
-
 }
-
-
 
 </script>
 </html>

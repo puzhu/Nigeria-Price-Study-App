@@ -6,9 +6,9 @@
 <script src="libraries/topojson.v1.min.js"></script>
 <script src="libraries/queue.v1.min.js"></script>
 <style>
-body {
+/*body {
 font-family: 'Franklin Gothic Medium','Franklin Gothic', 'ITC Franklin Gothic', Arial, sans-serif;
-}
+}*/
 line {
   stroke-width:1;
   stroke:rgb(50,50,50);
@@ -202,6 +202,7 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
         x: -80,
         y: function(d){return (yPanelScale(Math.floor(d.position)) + yPanelScale(Math.ceil(d.position)))/2}
       })
+      .style('font-size', 16)
       .style('alignment-baseline', 'central')
       .style('text-anchor', 'start');
 
@@ -216,7 +217,7 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
         x: function(d){return xChartScale(d) + panelWidth/2},
         y: 20
       })
-      .style('font-size', 12)
+      .style('font-size', 16)
       .style('alignment-baseline', 'central')
       .style('text-anchor', 'middle');
 
@@ -231,7 +232,7 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
         x: 10,
         y: function(d){return yPanelScale(d.yPosition)}
       })
-      .style('font-size', 12)
+      .style('font-size', 10)
       .style('alignment-baseline', 'central')
       .style('text-anchor', 'end');
 
@@ -240,7 +241,7 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
         var product = d3.select(this).property('value')
         redraw(product)
     })
-  
+
 
   function redraw(product){ //recalibrates the x-PanelScale and redraws the means and dots based on the product selection
     var data = filterData(volatility, product); //loading the volatility data based on input

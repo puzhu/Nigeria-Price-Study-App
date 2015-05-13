@@ -6,7 +6,10 @@
 <script src="libraries/topojson.v1.min.js"></script>
 <script src="libraries/queue.v1.min.js"></script>
 <style>
-
+line {
+  stroke-width:1;
+  stroke:rgb(50,50,50);
+}
 </style>
 </head>
 <body>
@@ -33,6 +36,11 @@ function uniq_fast(a) { // quickly drop duplicate values from an array
       }
       return out;
   }
+
+function filterData(data, input){ //generic funciton to filter data based on an input
+  return data.filter(function(d) {return d.yPosition == input})
+  }
+
 //loading the data
 queue()
   .defer(d3.json, "data/segmentation.json") //the  main dataset
@@ -41,6 +49,7 @@ queue()
   .await(ready);
 
 function ready(error, segmentation, segZoneLabels, segItemLabels){
+  console.log(filterData(segItemLabels, 0))
   var maxPosition = d3.max(segmentation, function(d){return d.dotPosition});
   var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
   for (i = 1; i <= maxPosition; i++){
@@ -76,11 +85,12 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
 
   var colorScale = d3.scale.linear() //could change the scale later
       .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
-      .range(["#0000ff","#ff0000"])
+      .range(["#ff0000", "#0000ff"])
       .interpolate(d3.interpolateHcl);
   var zoneNameGap = 30
   var itemNameGap = 10 + zoneNameGap
   var itemNamestagger = 10
+  
   //drawing
   segChart.append('g')
       .selectAll('.dots')
@@ -96,6 +106,42 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
       .style({
           fill: function(d){return colorScale(d.seg)}
         })
+
+  segChart.append('g')
+      .selectAll('.meanCross')
+      .data(segZoneLabels)
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return xScale(d.dotPosition) - 2},
+        y1: function(d){return yScale(d.mean) - 2},
+        x2: function(d){return xScale(d.dotPosition) + 2},
+        y2: function(d){return yScale(d.mean) + 2}
+      })
+
+  segChart.append('g')
+      .selectAll('.meanCross')
+      .data(segZoneLabels)
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return xScale(d.dotPosition) + 2},
+        y1: function(d){return yScale(d.mean) - 2},
+        x2: function(d){return xScale(d.dotPosition) - 2},
+        y2: function(d){return yScale(d.mean) + 2}
+      })
+
+  segChart.append('g')
+      .selectAll('.meanLines')
+      .data(filterData(segItemLabels, 0))
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return xScale(d.minX)},
+        y1: function(d){return yScale(d.mean)},
+        x2: function(d){return xScale(d.maxX)},
+        y2: function(d){return yScale(d.mean)}
+      })
 
   segChart.append('g')
       .attr('class', 'zone-labels') //corresponding to each column of dots

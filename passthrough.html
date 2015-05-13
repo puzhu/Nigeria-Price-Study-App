@@ -6,7 +6,10 @@
 <script src="libraries/topojson.v1.min.js"></script>
 <script src="libraries/queue.v1.min.js"></script>
 <style>
-
+line {
+  stroke-width:1;
+  stroke:rgb(50,50,50);
+}
 </style>
 </head>
 <body>
@@ -33,6 +36,11 @@ function uniq_fast(a) { // quickly drop duplicate values from an array
       }
       return out;
   }
+
+function filterData(data, input){ //generic funciton to filter data based on an input
+  return data.filter(function(d) {return d.yPosition == input})
+  }
+
 //loading the data
 queue()
   .defer(d3.json, "data/passthrough.json") //the  main dataset
@@ -56,7 +64,7 @@ function ready(error, passthrough, passZoneLabels, passItemLabels) {
   var chartSize = {'height': containerSize.height - containerMargin.top - containerMargin.bottom, 'width': containerSize.width - containerMargin.right - containerMargin.left}
   var width = chartSize.width - containerPadding.left - containerPadding.right
   var height = chartSize.height - containerPadding.top - containerPadding.bottom
-  var segChart = d3.select('#segChart').append('svg') //http://bl.ocks.org/mbostock/3019563
+  var passChart = d3.select('#segChart').append('svg') //http://bl.ocks.org/mbostock/3019563
         .attr({
           height: containerSize.height,
           width: containerSize.width
@@ -82,7 +90,7 @@ function ready(error, passthrough, passZoneLabels, passItemLabels) {
   var itemNameGap = 10 + zoneNameGap
   var itemNamestagger = 10
   //drawing
-  segChart.append('g')
+  passChart.append('g')
       .selectAll('.dots')
       .data(passthrough)
       .enter()
@@ -97,7 +105,43 @@ function ready(error, passthrough, passZoneLabels, passItemLabels) {
           fill: function(d){return colorScale(d.pT)}
         })
 
-  segChart.append('g')
+  passChart.append('g')
+      .selectAll('.meanCross')
+      .data(passZoneLabels)
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return xScale(d.dotPosition) - 2},
+        y1: function(d){return yScale(d.mean) - 2},
+        x2: function(d){return xScale(d.dotPosition) + 2},
+        y2: function(d){return yScale(d.mean) + 2}
+      })
+
+  passChart.append('g')
+      .selectAll('.meanCross')
+      .data(passZoneLabels)
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return xScale(d.dotPosition) + 2},
+        y1: function(d){return yScale(d.mean) - 2},
+        x2: function(d){return xScale(d.dotPosition) - 2},
+        y2: function(d){return yScale(d.mean) + 2}
+      })
+
+  passChart.append('g')
+      .selectAll('.meanLines')
+      .data(filterData(passItemLabels, 0))
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return xScale(d.minX)},
+        y1: function(d){return yScale(d.mean)},
+        x2: function(d){return xScale(d.maxX)},
+        y2: function(d){return yScale(d.mean)}
+      })
+
+  passChart.append('g')
       .attr('class', 'zone-labels') //corresponding to each column of dots
       .selectAll('text')
       .data(passZoneLabels)
@@ -111,7 +155,7 @@ function ready(error, passthrough, passZoneLabels, passItemLabels) {
       .style('text-anchor', 'middle')
       .style('font-size', 10)
 
-  segChart.append('g')
+  passChart.append('g')
       .attr('class', 'item-labels')
       .selectAll('text')
       .data(passItemLabels)

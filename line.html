@@ -67,33 +67,16 @@ body {
 </body>
 
 <script>
-var monthFormatChart = d3.time.format("%m/%y");
-var dateFormat = d3.time.format("%Y-%m-%d");
-
-function uniq_fast(a) { // quickly drop duplicate values from an array
-    var seen = {};
-    var out = [];
-    var len = a.length;
-    var j = 0;
-    for(var i = 0; i < len; i++) {
-         var item = a[i];
-         if(seen[item] !== 1) {
-               seen[item] = 1;
-               out[j++] = item;
-         }
-    }
-    return out;
-}
-
-function deString(d) {
-	if (d==="") { 
-		return NaN;
-	} else {
-		return +d;
-	}
-}
 
 function processPrices(d, i) {
+	var dateFormat = d3.time.format("%Y-%m-%d");
+	function deString(d) {
+		if (d==="") { 
+			return NaN;
+		} else {
+			return +d;
+		}
+	}
 	var state = {
 		state: d.state,
 		price: deString(d.meanPrice),
@@ -116,6 +99,22 @@ function ready(error,priceData) {
 
 function drawLine(priceData) {
 
+	var monthFormatChart = d3.time.format("%m/%y");
+	var dateFormat = d3.time.format("%Y-%m-%d");
+	function uniq_fast(a) { // quickly drop duplicate values from an array
+	    var seen = {};
+	    var out = [];
+	    var len = a.length;
+	    var j = 0;
+	    for(var i = 0; i < len; i++) {
+	         var item = a[i];
+	         if(seen[item] !== 1) {
+	               seen[item] = 1;
+	               out[j++] = item;
+	         }
+	    }
+	    return out;
+	}
 	d3.selection.prototype.moveToFront = function() {
 	  return this.each(function(){
 	    this.parentNode.appendChild(this);
@@ -259,7 +258,7 @@ function drawLine(priceData) {
 					values: [{
 						state:monthlyPrice[i].state,
 						month:monthlyPrice[i].date,
-						price:deString(monthlyPrice[i].price)
+						price:monthlyPrice[i].price
 					}]
 				};
 				mainArray.push(state);
@@ -267,7 +266,7 @@ function drawLine(priceData) {
 				var values = {
 					state:monthlyPrice[i].state,
 					month:monthlyPrice[i].date,
-					price:deString(monthlyPrice[i].price)
+					price:monthlyPrice[i].price
 				};
 				mainArray.filter(function(d) {return d.state===monthlyPrice[i].state})[0].values.push(values);
 

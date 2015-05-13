@@ -27,9 +27,11 @@
 	stroke-linecap:round;
 }
 .state-boundary-hover {
+
 	stroke:black;
 	fill:none;
 	stroke-width:1.5px;
+
 }
 body {
 	font-family: 'Franklin Gothic Medium','Franklin Gothic', 'ITC Franklin Gothic', Arial, sans-serif;
@@ -263,6 +265,10 @@ function drawMap(nigeriaStates,priceData) {
 		}
 		return out;
 	}
+	d3.select('#productSelect').on('change.map', function(d) {
+        var product = d3.select(this).property('value');
+        redrawMap(product);
+    });
 }
 
 

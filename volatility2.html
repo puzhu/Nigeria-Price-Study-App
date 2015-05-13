@@ -50,30 +50,31 @@ function filterData(data, input){ //generic funciton to filter data based on an 
 //queing the data file
 queue()
   .defer(d3.json, "data/volatility.json")
-  .defer(d3.json, "data/zones.json")
-  .defer(d3.json, "data/zoneStates.json")
-  .defer(d3.json, "data/zonePosition.json")
+  .defer(d3.json, "data/volBoxValues.json")
+  .defer(d3.json, "data/volStateLabels.json")
+  .defer(d3.json, "data/volZonePosition.json")
   .await(ready);
 //creating the function ready
-function ready(error, volatility, zones, zoneStates, zonePosition){
-  //console.log(zoneStates, zones, volatility)
-  var input = "Rice Local" //This would be the input value based on user input
+function ready(error, volatility, volBoxValues, volStateLabels, volZonePosition){
+  console.log(volStateLabels)
+  var input = "Sorghum" //This would be the input value based on user input
+  
 
   //Loading the data and creating domain and data variables
   var data = filterData(volatility, input); //loading the volatility data based on input
-  var zoneData = filterData(zones, input); //loading the zones data based on the input
+  var zoneData = filterData(volBoxValues, input); //loading the zones data based on the input
 
   /*We have two sets of domains. One for the chart and the other for each individual panel. The chart domain is mapped to the number of zones and the number of dates. While the panel domains are set to the number of states per zone and the volatility values*/
-  //var yChartDomain = uniq_fast(zoneData.map(function(d){return d.zoneCode})); //the height of the chart is set to the zones
   var xChartDomain = uniq_fast(zoneData.map(function(d){return monthFormat(d.date.slice(0,7))})).sort(function(a,b) { return a - b;});//the width of chart is based on the number of dates.
   var xPanelDomain = d3.extent(data, function(d){return d.volMoving}); // the width of each panel is set to the range of volatility for the selected input
-  var maxStateCount = uniq_fast(zoneStates.map(function(d){return d.state})).length
+  var maxYPosition = d3.max(volStateLabels, function(d){return d.yPosition})
   var yPanelDomain = [] //the states within each panel are positioned using this domain with a stagger for each zone added
-  for(i = 1; i <= maxStateCount; i++){
+  for(i = 1; i <= maxYPosition; i++){
     yPanelDomain.push(i)
   }
   var colorDomain = d3.extent(data, function(d){return d.volMoving}) //the color domain is set to the range of volatility values
-
+  console.log(xChartDomain, yPanelDomain)
+  
   //Creating the canvas
   var containerSize = {'height': 600, 'width': 1000}
   var containerMargin = {top: 0.02 * containerSize.height , right: 0.01 * containerSize.width, bottom: 0.02 * containerSize.height, left: 100} //controls the spacing between the edge of the container and the inner chart
@@ -81,7 +82,7 @@ function ready(error, volatility, zones, zoneStates, zonePosition){
   var chartSize = {'height': containerSize.height - containerMargin.top - containerMargin.bottom, 'width': containerSize.width - containerMargin.right - containerMargin.left}
   var width = chartSize.width - containerPadding.left - containerPadding.right
   var height = chartSize.height - containerPadding.top - containerPadding.bottom
-console.log(chartSize)
+
   var volChart = d3.select('#volChart').append('svg') //http://bl.ocks.org/mbostock/3019563
         .attr({
           height: containerSize.height,
@@ -90,26 +91,20 @@ console.log(chartSize)
       .append('g')
       .attr("transform", "translate(" + containerMargin.left + "," + containerMargin.top + ")");
 
-  /*var yChartScale = d3.scale.ordinal()
-      .domain(yChartDomain)
-      .rangeRoundBands([0, height], 0.05);*/
-console.log(containerPadding)
   var xChartScale = d3.scale.ordinal()
       .domain(xChartDomain)
       .rangeRoundBands([containerPadding.left, width+containerPadding.left], .1)
-  console.log(xChartScale.range())
 
-  var panelcontainerPadding = {top: .01 * containerSize.height, right: 0 * containerSize.width, bottom: .01 * containerSize.height, left: 0 * containerSize.width}
-  var panelWidth = xChartScale.rangeBand()
-  console.log(panelWidth)
+  var panelWidth = containerPadding.right+xChartScale.rangeBand()
+  //console.log(panelWidth)
 
   var yPanelScale = d3.scale.ordinal()
       .domain(yPanelDomain)
-      .rangeBands([panelcontainerPadding.top, panelcontainerPadding.top+height], 0.2)
+      .rangeBands([containerPadding.top, containerPadding.top+height], 0.2)
 
   var xPanelScale = d3.scale.linear()
       .domain(xPanelDomain)
-      .range([panelcontainerPadding.left, panelcontainerPadding.left+panelWidth])
+      .range([containerPadding.right, panelWidth])
 
   var colorScales = d3.scale.linear() //could change the scale later
         .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
@@ -117,16 +112,16 @@ console.log(containerPadding)
         .interpolate(d3.interpolateHcl);
 
   //Drawing the chart
-  volChart.append('g') //vertical grid lines
+  volChart.append('g') //vertical panels
       .selectAll(".vboxes")
       .data(xChartDomain)
       .enter()
       .append('rect')
       .attr({
         x: function(d){return xChartScale(d)},
-        y: 0,
-        height: height+containerPadding.top,
-        width: xChartScale.rangeBand()
+        y: 20,
+        height: height + 20,
+        width: panelWidth
       })
       .style("stroke", "none")
       .style("fill", "rgb(252,255,252)");
@@ -138,83 +133,83 @@ console.log(containerPadding)
       .append('line')
       .attr({
         x1: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-        y1: function(d) {return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1)},
+        y1: function(d) {return yPanelScale(d.minY)},
         x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-        y2: function(d){return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}
+        y2: function(d){return yPanelScale(d.maxY)}
       })
-
-  volChart.append('g') //mean
+  volChart.append('g') //left-top
       .selectAll(".boxLines")
       .data(zoneData)
       .enter()
       .append('line')
       .attr({
         x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) - 3},
-        y1: function(d) {return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1) - 3}, 
+        y1: function(d) {return yPanelScale(d.minY) - 3},
         x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-        y2: function(d){return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}
+        y2: function(d){return yPanelScale(d.minY)}
       })
-
-  volChart.append('g') //mean
+  volChart.append('g') //right-top
       .selectAll(".boxLines")
       .data(zoneData)
       .enter()
       .append('line')
       .attr({
         x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) + 3},
-        y1: function(d) {return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1) - 3}, 
+        y1: function(d) {return yPanelScale(d.minY) - 3},
         x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-        y2: function(d){return yPanelScale(d.minState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}
+        y2: function(d){return yPanelScale(d.minY)}
       })
-
-  volChart.append('g') //mean
+  volChart.append('g') //bottom-left
       .selectAll(".boxLines")
       .data(zoneData)
       .enter()
       .append('line')
       .attr({
         x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) - 3},
-        y1: function(d) {return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1) + 3},
+        y1: function(d) {return yPanelScale(d.maxY) + 3},
         x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-        y2: function(d){return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}
+        y2: function(d){return yPanelScale(d.maxY)}
       })
-
-  volChart.append('g') //mean
+  volChart.append('g') //bottom-right
       .selectAll(".boxLines")
       .data(zoneData)
       .enter()
       .append('line')
       .attr({
         x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) + 3},
-        y1: function(d) {return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1) + 3}, 
+        y1: function(d) {return yPanelScale(d.maxY) + 3},
         x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-        y2: function(d){return yPanelScale(d.maxState) + panelcontainerPadding.bottom*(d.zoneCode - 1)}
+        y2: function(d){return yPanelScale(d.maxY)}
       })
 
-  volChart.append('g') //the circles
+  var dots = volChart.append('g') //the circles
       .selectAll('.dots')
       .data(data)
-      .enter()
+
+  dots.enter()
       .append('circle')
       .attr({
         r: 2,
         cx: function(d){return xChartScale(d.date) + xPanelScale(d.volMoving)},
-        cy: function(d){return yPanelScale(d.stateCode) + panelcontainerPadding.bottom*(d.zoneCode - 1)}
+        cy: function(d){return yPanelScale(d.yPosition)}
       })
       .style({
           fill: function(d){return colorScales(d.volMoving)}
-        });
+        })
+
+  dots.exit()
+      .remove();
 
   volChart.append('g')
       .attr('class', 'y-labels')
       .selectAll('text')
-      .data(zonePosition)
+      .data(volZonePosition)
       .enter()
       .append('text')
       .text(function(d){return ('Z'+d.zoneCode)})
       .attr({
         x: -80,
-        y: function(d){return (yPanelScale(Math.floor(d.position)) + yPanelScale(Math.ceil(d.position)))/2 + panelcontainerPadding.bottom*(d.zoneCode - 1)}
+        y: function(d){return (yPanelScale(Math.floor(d.position)) + yPanelScale(Math.ceil(d.position)))/2}
       })
       .style('alignment-baseline', 'central')
       .style('text-anchor', 'start');
@@ -228,7 +223,7 @@ console.log(containerPadding)
       .text(function(d){return monthYear(d)})
       .attr({
         x: function(d){return xChartScale(d) + panelWidth/2},
-        y: -8
+        y: 20
       })
       .style('font-size', 12)
       .style('alignment-baseline', 'central')
@@ -237,13 +232,13 @@ console.log(containerPadding)
   volChart.append('g')
       .attr('class', "state-labels")
       .selectAll('text')
-      .data(zoneStates)
+      .data(volStateLabels)
       .enter()
       .append('text')
       .text(function(d){return d.state})
       .attr({
         x: 10,
-        y: function(d){return yPanelScale(d.stateCode) + panelcontainerPadding.bottom*(d.zoneCode - 1)}
+        y: function(d){return yPanelScale(d.yPosition)}
       })
       .style('font-size', 12)
       .style('alignment-baseline', 'central')

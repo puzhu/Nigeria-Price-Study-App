@@ -29,6 +29,21 @@ line {
   pointer-events: all;
 }
 
+.hover-show {
+  stroke:black;
+  stroke-width:0.5px;
+  fill-opacity: 1;
+}
+
+.hover-hide {
+  fill-opacity: 0.3;
+}
+
+/*.dots{
+  fill-opacity: 0.8;
+}*/
+
+
 </style>
 </head>
 <body>
@@ -51,7 +66,8 @@ line {
 
 
 function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Calculates the Chart Scales and the Y-Scale for the panel (independent of the product selections)
-  //Constructed Functions and variables for the cade
+  //console.log(volStateLabels)
+  //CONSTRUCTED VARAIABLES AND FUNCTIONS FOR THE CODE
   function uniq_fast(a) { // quickly drop duplicate values from an array
       var seen = {};
       var out = [];
@@ -69,41 +85,28 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
   function filterData(data, input){ //generic funciton to filter data based on an input
   return data.filter(function(d) {return d.item === input})
   }
+
   var monthYear = d3.time.format("%b %y"); //converts to Month-Year
   var monthFormat = d3.time.format("%Y-%m").parse; //Parse dates and converts to a d3 time format
   var monthFormatToString = d3.time.format("%Y-%m")
 
-
-
-
-  var sel = document.getElementById('productSelect');
-  var product = sel.options[sel.selectedIndex].value;
-  var data = filterData(volatility, product); //loading the volatility data based on input
-
+  //DEFAULT DATA SELECTIONS FOR INITIAL LOAD
+  var sel = document.getElementById('productSelect');//selecting the current product
+  var product = sel.options[sel.selectedIndex].value; //recording the product name selected
+  var data = filterData(volatility, product); //loading the volatility data based on input (this would be used for the initial chart)
   var zoneData = filterData(volBoxValues, product); //loading the zones data based on the input
 
-
-  //Calculating Domains
+  //CALCULATING DOMAINS FROM THE DATA
   var xChartDomain = uniq_fast(volatility.map(function(d){return monthFormat(d.date.slice(0,7))})).sort(function(a,b) { return a - b;});//the width of chart is based on the number of dates.
-  var maxYPosition = d3.max(volStateLabels, function(d){return d.yPosition})
+  var maxYPosition = d3.max(volStateLabels, function(d){return d.yPosition}) //the yPosition determines the spacing and position of the y labels and dots
   var yPanelDomain = [] //the states within each panel are positioned using this domain with a stagger for each zone added
   for(i = 1; i <= maxYPosition; i++){
     yPanelDomain.push(i)
   }
-  var xPanelDomain = [0, Math.ceil(d3.max(volatility, function(d){return d.volMoving})/10)*10]; // the width of each panel is set to the range of volatility for the selected input
+  var xPanelDomain = [0, Math.ceil(d3.max(volatility, function(d){return d.volMoving})/10)*10]; // the width of each panel is set to the range of volatility for the selected input. The formula sets it so that its rounded to the nearest 10
   var colorDomain = xPanelDomain //the color domain is set to the range of volatility values
-console.log(data)
-  function mouseover(d){
-    console.log(d)
-    xChartDomain.forEach(function(e){
-      var centers = data.filter(function(f){ return f.state===d.state && monthFormatToString(e) === f.date.slice(0,7)})
-      var mean = d3.mean(centers, function(g){return g.volMoving})
-      console.log(mean)
-    })
 
-  }
-
-  //Creating the canvas
+  //CREATING THE CANVAS
   var containerSize = {'height': 600, 'width': 1000}
   var containerMargin = {top: 0.02 * containerSize.height , right: 0.01 * containerSize.width, bottom: 0.02 * containerSize.height, left: 100} //controls the spacing between the edge of the container and the inner chart
   var containerPadding = {top: 0.06 * containerSize.height, right: 0.006 * containerSize.width, bottom: 0.06 * containerSize.height, left: 0.01 * containerSize.width} //controls the size of the chart
@@ -123,8 +126,7 @@ console.log(data)
       .domain(xChartDomain)
       .rangeRoundBands([containerPadding.left, width+containerPadding.left], .1)
 
-  var panelWidth = containerPadding.right+xChartScale.rangeBand()
-  //console.log(panelWidth)
+  var panelWidth = containerPadding.right + xChartScale.rangeBand()
 
   var yPanelScale = d3.scale.ordinal()
       .domain(yPanelDomain)
@@ -148,8 +150,10 @@ console.log(data)
 
   var stateFont = 10
   var bigFont = 16
-  //Drawing the chart
-  volChart.append('g') //vertical panels
+
+
+  //DRAWING THE CHART ELEMENTS
+  volChart.append('g') //vertical panel backgrounds
       .selectAll(".vboxes")
       .data(xChartDomain)
       .enter()
@@ -163,7 +167,7 @@ console.log(data)
       .style("stroke", "none")
       .style("fill", "rgb(252,255,252)");
 
-  volChart.append('g') //zonal labels
+  volChart.append('g') //zonal labels (the first level of Y labels)
       .attr('class', 'y-labels')
       .selectAll('text')
       .data(volZonePosition)
@@ -179,7 +183,7 @@ console.log(data)
       .style('text-anchor', 'start')
       .style('cursor', 'default')
 
-  volChart.append('g') //date labels
+  volChart.append('g') //date labels (along the x-axis)
       .attr('class', 'x-labels')
       .selectAll('text')
       .data(xChartDomain)
@@ -195,7 +199,7 @@ console.log(data)
       .style('text-anchor', 'middle')
       .style('cursor', 'default');
 
-  volChart.append('g') //state labels
+  volChart.append('g') //state labels (second layer of y-labels)
       .attr('class', "state-labels")
       .selectAll('text')
       .data(volStateLabels)
@@ -211,7 +215,7 @@ console.log(data)
       .style('text-anchor', 'end')
       .style('cursor', 'default');
 
-  var meanLine = volChart.append('g') //mean
+  var meanLine = volChart.append('g') //mean for each zone date combo is marked by a line
       .selectAll(".boxLines")
       .data(zoneData)
       .enter()
@@ -222,52 +226,8 @@ console.log(data)
         x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
         y2: function(d){return yPanelScale(d.maxY)}
       })
-  // volChart.append('g') //left-top
-  //     .selectAll(".boxLines")
-  //     .data(zoneData)
-  //     .enter()
-  //     .append('line')
-  //     .attr({
-  //       x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) - 3},
-  //       y1: function(d) {return yPanelScale(d.minY) - 3},
-  //       x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-  //       y2: function(d){return yPanelScale(d.minY)}
-  //     })
-  // volChart.append('g') //right-top
-  //     .selectAll(".boxLines")
-  //     .data(zoneData)
-  //     .enter()
-  //     .append('line')
-  //     .attr({
-  //       x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) + 3},
-  //       y1: function(d) {return yPanelScale(d.minY) - 3},
-  //       x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-  //       y2: function(d){return yPanelScale(d.minY)}
-  //     })
-  // volChart.append('g') //bottom-left
-  //     .selectAll(".boxLines")
-  //     .data(zoneData)
-  //     .enter()
-  //     .append('line')
-  //     .attr({
-  //       x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) - 3},
-  //       y1: function(d) {return yPanelScale(d.maxY) + 3},
-  //       x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-  //       y2: function(d){return yPanelScale(d.maxY)}
-  //     })
-  // volChart.append('g') //bottom-right
-  //     .selectAll(".boxLines")
-  //     .data(zoneData)
-  //     .enter()
-  //     .append('line')
-  //     .attr({
-  //       x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) + 3},
-  //       y1: function(d) {return yPanelScale(d.maxY) + 3},
-  //       x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
-  //       y2: function(d){return yPanelScale(d.maxY)}
-  //     })
 
-  var rects = volChart
+  var rects = volChart // these rects help apply hover functions to an entire line instead of indivisual dots
       .selectAll('.hover-rects')
       .data(volStateLabels)
       .enter()
@@ -281,54 +241,95 @@ console.log(data)
       })
       .style('fill', 'none')
       .on('mouseover', mouseover)
+      .on('mouseout', mouseout)
 
+  var hoverMean = volChart.selectAll('.hoverMean') //this would place an X for each mean
+      .data(zoneData)
+      .enter()
+      .append('text')
+      .text('X')
+      .attr({
+        x: function(d){return xChartScale(d.date)}, //the left side of each panel
+        y: 100 + containerSize.height, //marking it out of the charting area
+        class: 'hoverMean'
+      })
+      .style('font-size', 14)
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'middle')
+      .style('cursor', 'default')
+      .on('mouseover', mouseover)
 
-  var dots = volChart.append('g') //the circles
+  var dots = volChart.append('g') //the circles representing center values
       .selectAll('.dots')
-      .data(data).enter()
+      .data(data)
+      .enter()
       .append('circle')
       .attr({
-        r: 2,
+        r: 3,
         cx: function(d){return xChartScale(d.date) + xPanelScale(d.volMoving)},
-        cy: function(d){return yPanelScale(d.yPosition)}
+        cy: function(d){return yPanelScale(d.yPosition)},
+        class: 'dots',
+        id: function(d){return d.state}
       })
       .style({
           fill: function(d){return colorScales(d.volMoving)}
         })
-      
-  
-  var axisNodes = volChart.append('g') //Adding the axis
+
+  var axisNodes = volChart.append('g') //Adding the axis to the bottom of the first panel
       .attr('class', 'x-axis')
       .attr("transform", "translate(" + (2*containerPadding.left) + ","+ (height + 40) + ")")
       .call(xAxis)
 
-
-  
-  d3.select('#productSelect')
+  //MARKING THE NEW PRODUCT SELECTION AND CALLING THE REDRAW FUNCTION
+  d3.select('#productSelect') //changes the product based on user input from the dropdown menu
     .on('change', function(d) {
         var product = d3.select(this).property('value')
         redraw(product)
     })
 
+  //DEFINING THE HOVER FUNCTIONS BASED ON SELECTED DATA
+  function mouseover(d){ // isolating the values based on hover
+    var meanData = [] //empty array to store the mean volatility for each panel (date) and hovered state
+    xChartDomain.forEach(function(e){ //loops over each date in the domain to select data of interest and calculate the mean
+      var centers = data.filter(function(f){ return f.state===d.state && monthFormatToString(e) === f.date.slice(0,7)}) //filters data by hovered state and all dates
+      var mean = d3.mean(centers, function(g){return g.volMoving}) //calculates the mean for each date
+      var meantemp = {}; //empty mean array to store values for each date that is being looped through
+      meantemp['yPosition'] = d.yPosition;
+      meantemp['date'] = e
+      if(typeof mean == "undefined"){meantemp['value'] = 10000} else {meantemp['value'] = mean} //undefined is set to above 1000 to be outside the charting area
+      meanData.push(meantemp)
+      })
+    d3.selectAll('.hoverMean').data(meanData).attr({x: function(d){return xChartScale(d.date) + xPanelScale(d.value)}, y: function(d){return yPanelScale(d.yPosition)}})
+    d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", true)//.classed("hover-show", false)
+    d3.selectAll('.dots#'+d.state).classed("hover-show", true)//.classed("hover-hide", false)
+  }
 
+  function mouseout(d){
+    d3.selectAll('.hoverMean').attr({x: 1000, y: 1000})
+    d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", false)
+    d3.selectAll('.dots#' + d.state).classed("hover-show", false)
+  }
+
+  //CREATING THE REDRAW FUNCTION FOR ELEMENTS THAT NEED TO CHANGE WHEN A NEW PRODUCT IS SELECTED
   function redraw(product){ //recalibrates the x-PanelScale and redraws the means and dots based on the product selection
-    var data = filterData(volatility, product); //loading the volatility data based on input
-    var zoneData = filterData(volBoxValues, product); //loading the zones data based on the input
+    data = filterData(volatility, product); //loading the volatility data based on input
+    zoneData = filterData(volBoxValues, product); //loading the zones data based on the input
 
-    var colorDomain = xPanelDomain //updating the color domain
-
-    dots = dots.data(data);
+    dots = dots.data(data); //updating the dots
     dots.exit().remove();
     dots.enter().append('circle');
     dots.attr({
-        r: 2,
+        r: 3,
         cx: function(d){return xChartScale(d.date) + xPanelScale(d.volMoving)},
-        cy: function(d){return yPanelScale(d.yPosition)}
+        cy: function(d){return yPanelScale(d.yPosition)},
+        class: 'dots',
+        id: function(d){return d.state}
       })
       .style({
           fill: function(d){return colorScales(d.volMoving)}
         })
-    meanLine = meanLine.data(zoneData)
+
+    meanLine = meanLine.data(zoneData) //updating the mean line
     meanLine.exit().remove()
     meanLine.enter().append('line');
     meanLine.attr({
@@ -337,12 +338,15 @@ console.log(data)
       x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
       y2: function(d){return yPanelScale(d.maxY)}
     })
+
+    hoverMean.attr({
+      x: function(d){return xChartScale(d.date)}, //the left side of each panel
+      y: 100 + containerSize.height, //marking it out of the charting area
+      class: 'hoverMean'
+    })
+    hoverMean.on('mouseover', mouseover)
   }
 }
-
-
-
-
 
 
 queue()
@@ -353,11 +357,8 @@ queue()
   .await(ready);
 
 
-
 function ready(error, volatility, volBoxValues, volStateLabels, volZonePosition){
-  
   draw(volatility, volBoxValues, volStateLabels, volZonePosition);
-
 }
 
 //queing the data file

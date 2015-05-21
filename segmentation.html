@@ -10,6 +10,18 @@ line {
   stroke-width:1;
   stroke:rgb(50,50,50);
 }
+.y-axis path,
+.y-axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+    stroke-width:1px;
+}
+
+.y-axis text {
+    font-family: sans-serif;
+    font-size: 9px;
+}
 </style>
 </head>
 <body>
@@ -21,7 +33,7 @@ line {
 </body>
 <script>
 
-//Constructed Functions and variables for the cade
+//CONSTRUCTED FUNCTIONS FOR THE CODE
 function uniq_fast(a) { // quickly drop duplicate values from an array
       var seen = {};
       var out = [];
@@ -36,12 +48,11 @@ function uniq_fast(a) { // quickly drop duplicate values from an array
       }
       return out;
   }
-
 function filterData(data, input){ //generic funciton to filter data based on an input
   return data.filter(function(d) {return d.yPosition == input})
   }
 
-//loading the data
+//LOADING THE DATA
 queue()
   .defer(d3.json, "data/segmentation.json") //the  main dataset
   .defer(d3.json, "data/segZoneLabels.json") //the dataset for first layer of x-labels for zones
@@ -49,22 +60,22 @@ queue()
   .await(ready);
 
 function ready(error, segmentation, segZoneLabels, segItemLabels){
-  console.log(filterData(segItemLabels, 0))
+  //GETTING THE DATA AND DOMAINS READY
   var maxPosition = d3.max(segmentation, function(d){return d.dotPosition});
   var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
   for (i = 1; i <= maxPosition; i++){
     xDomain.push(i)
   };
-  var yDomain = d3.extent(segmentation, function(d){return d.seg}); // the domain of the y-axis is set to the range of segmentation values
+  var yDomain = d3.extent(segmentation, function(d){return d.seg}); //the domain of the y-axis is set to the range of segmentation values
   var colorDomain = yDomain; //same with the color scale
 
-  //creating the canvas
-  var containerSize = {'height': 200, 'width': 600}
-  var containerMargin = {top: 0.02 * containerSize.height , right: 0.01 * containerSize.width, bottom: 0.2 * containerSize.height, left: 0.01 * containerSize.width} //controls the spacing between the edge of the container and the inner chart
-  var containerPadding = {top: 0.06 * containerSize.height, right: 0.006 * containerSize.width, bottom: 0.06 * containerSize.height, left: 0.01 * containerSize.width} //controls the size of the chart
-  var chartSize = {'height': containerSize.height - containerMargin.top - containerMargin.bottom, 'width': containerSize.width - containerMargin.right - containerMargin.left}
-  var width = chartSize.width - containerPadding.left - containerPadding.right
-  var height = chartSize.height - containerPadding.top - containerPadding.bottom
+  //CREATING THE CANVAS
+  var containerSize = {'height': 200, 'width': 600};
+  var containerMargin = {top: 0.02 * containerSize.height , right: 0.01 * containerSize.width, bottom: 0.2 * containerSize.height, left: 0.01 * containerSize.width}; //controls the spacing between the edge of the container and the inner chart
+  var containerPadding = {top: 0.06 * containerSize.height, right: 0.006 * containerSize.width, bottom: 0.06 * containerSize.height, left: 0.01 * containerSize.width}; //controls the size of the chart
+  var chartSize = {'height': containerSize.height - containerMargin.top - containerMargin.bottom, 'width': containerSize.width - containerMargin.right - containerMargin.left};
+  var width = chartSize.width - containerPadding.left - containerPadding.right;
+  var height = chartSize.height - containerPadding.top - containerPadding.bottom;
   var segChart = d3.select('#segChart').append('svg') //http://bl.ocks.org/mbostock/3019563
         .attr({
           height: containerSize.height,
@@ -75,23 +86,95 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
 
   var xScale = d3.scale.ordinal() //the ordinal scale uses dotpositions to place them on charts
       .domain(xDomain)
-      .rangeRoundBands([containerPadding.left, width+containerPadding.left], .1)
-
-      console.log(xDomain)
+      .rangeRoundBands([containerPadding.left, width+containerPadding.left], .1);
 
   var yScale = d3.scale.linear() //set to the range of seg values
       .domain(yDomain)
-      .range([containerPadding.top, containerPadding.top+height])
+      .range([containerPadding.top+height, containerPadding.top]);
+
+  var yAxis = d3.svg.axis()
+      .scale(yScale)
+      .orient("left")
+      .tickSize(3)
+      .ticks(5)
+      .tickPadding(8);
 
   var colorScale = d3.scale.linear() //could change the scale later
       .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
-      .range(["#ff0000", "#0000ff"])
-      .interpolate(d3.interpolateHcl);
-  var zoneNameGap = 30
-  var itemNameGap = 10 + zoneNameGap
-  var itemNamestagger = 10
-  
-  //drawing
+      .range(["#0000ff", "#ff0000"])
+      .interpolate(d3.interpolateLab);
+  var zoneNameGap = 30;
+  var itemNameGap = 10 + zoneNameGap;
+  var itemNamestagger = 10;
+  var xFont = 10;
+
+  //DRAWING THE DIFFERENT ELEMENTS
+  segChart.append('g')
+      .selectAll('.meanCross')
+      .data(segZoneLabels)
+      .enter()
+      .append('text')
+      .text('x')
+      .attr({
+        x: function(d){return xScale(d.dotPosition)},
+        y: function(d){return yScale(d.mean)}
+      })
+      .style('font-size', xFont)
+      .style('font-weight', 'bold')
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'middle')
+      .style('cursor', 'default');
+
+  segChart.append('g')
+      .attr('class', 'zone-labels') //corresponding to each column of dots
+      .selectAll('text')
+      .data(segZoneLabels)
+      .enter()
+      .append('text')
+      .text(function(d){return d.zoneCode})
+      .attr({
+        x: function(d) {return xScale(d.dotPosition)},
+        y: height + zoneNameGap
+      })
+      .style('text-anchor', 'middle')
+      .style('font-size', xFont)
+      .style('cursor', 'default');
+
+  segChart.append('g')
+      .attr('class', 'item-labels')
+      .selectAll('text')
+      .data(segItemLabels)
+      .enter()
+      .append('text')
+      .text(function(d){return d.item})
+      .attr({
+        x: function(d){return (xScale(Math.floor(d.xPosition)) + xScale(Math.ceil(d.xPosition)))/2 },
+        y: function(d){return height + itemNameGap + itemNamestagger*d.yPosition} //yPosition is a 0-1 variable
+      })
+      .style('text-anchor', 'middle')
+      .style('font-size', xFont)
+      .style('cursor', 'default');
+
+  var rects = segChart.append('g')
+      .selectAll('.hover-rects')
+      .data(segZoneLabels)
+      .enter()
+      .append('rect')
+      .attr({
+        x: function(d) {return xScale(d.dotPosition) - containerPadding.left},
+        y: 0,
+        height: height + zoneNameGap,
+        width: xFont
+      })
+      .style("fill", "none")
+      .style('cursor', 'default');
+
+  segChart.append('g') //Adding the axis to the bottom of the first panel
+      .attr('class', 'y-axis')
+      .attr("transform", "translate(" + (3*containerPadding.left) + ", 0)")
+      .style('cursor', 'default')
+      .call(yAxis)
+
   segChart.append('g')
       .selectAll('.dots')
       .data(segmentation)
@@ -99,36 +182,9 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
       .append('circle')
       .attr({
         r: 2,
-        // cx: function(d){return xScale(d.dotPosition) + (d.boxPosition - 1) * 10},
         cx: function(d){return xScale(d.dotPosition)},
-        cy: function(d){return yScale(d.seg)}
-      })
-      .style({
-          fill: function(d){return colorScale(d.seg)}
-        })
-
-  segChart.append('g')
-      .selectAll('.meanCross')
-      .data(segZoneLabels)
-      .enter()
-      .append('line')
-      .attr({
-        x1: function(d){return xScale(d.dotPosition) - 2},
-        y1: function(d){return yScale(d.mean) - 2},
-        x2: function(d){return xScale(d.dotPosition) + 2},
-        y2: function(d){return yScale(d.mean) + 2}
-      })
-
-  segChart.append('g')
-      .selectAll('.meanCross')
-      .data(segZoneLabels)
-      .enter()
-      .append('line')
-      .attr({
-        x1: function(d){return xScale(d.dotPosition) + 2},
-        y1: function(d){return yScale(d.mean) - 2},
-        x2: function(d){return xScale(d.dotPosition) - 2},
-        y2: function(d){return yScale(d.mean) + 2}
+        cy: function(d){return yScale(d.seg)},
+        fill: function(d){return colorScale(d.seg)}
       })
 
   segChart.append('g')
@@ -143,33 +199,21 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
         y2: function(d){return yScale(d.mean)}
       })
 
-  segChart.append('g')
-      .attr('class', 'zone-labels') //corresponding to each column of dots
-      .selectAll('text')
-      .data(segZoneLabels)
-      .enter()
-      .append('text')
-      .text(function(d){return d.zoneCode})
-      .attr({
-        x: function(d) {return xScale(d.dotPosition)},
-        y: height + zoneNameGap
-      })
-      .style('text-anchor', 'middle')
-      .style('font-size', 10)
+  //DEFINING THE MOUSEOVER FUNCTION
+  function mouseoverRect(d){
 
-  segChart.append('g')
-      .attr('class', 'item-labels')
-      .selectAll('text')
-      .data(segItemLabels)
-      .enter()
-      .append('text')
-      .text(function(d){return d.item})
-      .attr({
-        x: function(d){return (xScale(Math.floor(d.xPosition)) + xScale(Math.ceil(d.xPosition)))/2 },
-        y: function(d){return height + itemNameGap + itemNamestagger*d.yPosition} //yPosition is a 0-1 variable
-      })
-      .style('text-anchor', 'middle')
-      .style('font-size', 10)
+  }
+  function mouseoutRect(d){
+
+  }
+  function mouseoverDot(d){
+
+  }
+  function mouseoutDot(d){
+    
+  }
+
+
 }
 
 </script>

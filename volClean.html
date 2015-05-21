@@ -6,9 +6,6 @@
 <script src="libraries/topojson.v1.min.js"></script>
 <script src="libraries/queue.v1.min.js"></script>
 <style>
-/*body {
-font-family: 'Franklin Gothic Medium','Franklin Gothic', 'ITC Franklin Gothic', Arial, sans-serif;
-}*/
 line {
   stroke-width:1;
   stroke:rgb(50,50,50);
@@ -31,19 +28,15 @@ line {
 
 .hover-show {
   stroke:black;
-  stroke-width:0.5px;
+  stroke-width:0.7px;
   fill-opacity: 1;
 }
 
 .hover-hide {
-  fill-opacity: 0.3;
+  fill: silver;
+  stroke:black;
+  stroke-width:0.2px;
 }
-
-/*.dots{
-  fill-opacity: 0.8;
-}*/
-
-
 </style>
 </head>
 <body>
@@ -145,8 +138,10 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
 
   var colorScales = d3.scale.linear() //could change the scale later
         .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
-        .range(["#0000ff","#ff0000"])
-        .interpolate(d3.interpolateHcl);
+        .range(["#C0C0C0","#8B0000"])
+        //.range(["#C0C0C0","#0000FF"])
+        //.range(["#0000ff","#ff0000"])
+        .interpolate(d3.interpolateRgb);
 
   var stateFont = 10
   var bigFont = 16
@@ -227,22 +222,6 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
         y2: function(d){return yPanelScale(d.maxY)}
       })
 
-  var rects = volChart // these rects help apply hover functions to an entire line instead of indivisual dots
-      .selectAll('.hover-rects')
-      .data(volStateLabels)
-      .enter()
-      .append('rect')
-      .attr({
-        x: -36,
-        y:function(d){return yPanelScale(d.yPosition) - stateFont/2},
-        height: stateFont,
-        width: (width+containerPadding.left + 36),
-        class: 'hover-rects'
-      })
-      .style('fill', 'none')
-      .on('mouseover', mouseover)
-      .on('mouseout', mouseout)
-
   var hoverMean = volChart.selectAll('.hoverMean') //this would place an X for each mean
       .data(zoneData)
       .enter()
@@ -257,7 +236,23 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
       .style('alignment-baseline', 'central')
       .style('text-anchor', 'middle')
       .style('cursor', 'default')
-      .on('mouseover', mouseover)
+
+
+  var rects = volChart // these rects help apply hover functions to an entire line instead of indivisual dots
+      .selectAll('.hover-rects')
+      .data(volStateLabels)
+      .enter()
+      .append('rect')
+      .attr({
+        x: -36,
+        y:function(d){return yPanelScale(d.yPosition) - stateFont/2},
+        height: 1.1*stateFont,
+        width: (width+containerPadding.left + 36),
+        class: 'hover-rects'
+      })
+      .style('fill', 'none')
+      .on('mouseover', mouseoverRect)
+      .on('mouseout', mouseoutRect)
 
   var dots = volChart.append('g') //the circles representing center values
       .selectAll('.dots')
@@ -269,11 +264,11 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
         cx: function(d){return xChartScale(d.date) + xPanelScale(d.volMoving)},
         cy: function(d){return yPanelScale(d.yPosition)},
         class: 'dots',
-        id: function(d){return d.state}
+        id: function(d){return d.state},
+        fill: function(d){return colorScales(d.volMoving)}
       })
-      .style({
-          fill: function(d){return colorScales(d.volMoving)}
-        })
+      .on('mouseover', mouseoverDots)
+      .on('mouseout', mouseoutDots)
 
   var axisNodes = volChart.append('g') //Adding the axis to the bottom of the first panel
       .attr('class', 'x-axis')
@@ -288,7 +283,7 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
     })
 
   //DEFINING THE HOVER FUNCTIONS BASED ON SELECTED DATA
-  function mouseover(d){ // isolating the values based on hover
+  function mouseoverRect(d){ // isolating the values based on hover
     var meanData = [] //empty array to store the mean volatility for each panel (date) and hovered state
     xChartDomain.forEach(function(e){ //loops over each date in the domain to select data of interest and calculate the mean
       var centers = data.filter(function(f){ return f.state===d.state && monthFormatToString(e) === f.date.slice(0,7)}) //filters data by hovered state and all dates
@@ -304,7 +299,29 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
     d3.selectAll('.dots#'+d.state).classed("hover-show", true)//.classed("hover-hide", false)
   }
 
-  function mouseout(d){
+  function mouseoutRect(d){
+    d3.selectAll('.hoverMean').attr({x: 1000, y: 1000})
+    d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", false)
+    d3.selectAll('.dots#' + d.state).classed("hover-show", false)
+  }
+
+  function mouseoverDots(d){
+    var meanData = []
+    xChartDomain.forEach(function(e){
+      var centers = data.filter(function(f){return f.state === d.state && monthFormatToString(e) === f.date.slice(0,7)});
+      var mean = d3.mean(centers, function(g){return g.volMoving});
+      var meantemp = {};
+      meantemp['yPosition'] = d.yPosition;
+      meantemp['date'] = e;
+      if(typeof mean == "undefined"){meantemp['value'] = 10000} else {meantemp['value'] = mean};
+      meanData.push(meantemp);
+    })
+    d3.selectAll('.hoverMean').data(meanData).attr({x: function(d){return xChartScale(d.date) + xPanelScale(d.value)}, y: function(d){return yPanelScale(d.yPosition)}})
+    d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", true)
+    d3.selectAll('.dots#'+d.state).classed("hover-show", true)
+  }
+
+  function mouseoutDots(d){
     d3.selectAll('.hoverMean').attr({x: 1000, y: 1000})
     d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", false)
     d3.selectAll('.dots#' + d.state).classed("hover-show", false)
@@ -323,11 +340,9 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
         cx: function(d){return xChartScale(d.date) + xPanelScale(d.volMoving)},
         cy: function(d){return yPanelScale(d.yPosition)},
         class: 'dots',
-        id: function(d){return d.state}
+        id: function(d){return d.state},
+        fill: function(d){return colorScales(d.volMoving)}
       })
-      .style({
-          fill: function(d){return colorScales(d.volMoving)}
-        })
 
     meanLine = meanLine.data(zoneData) //updating the mean line
     meanLine.exit().remove()
@@ -344,7 +359,6 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
       y: 100 + containerSize.height, //marking it out of the charting area
       class: 'hoverMean'
     })
-    hoverMean.on('mouseover', mouseover)
   }
 }
 

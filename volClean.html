@@ -141,7 +141,7 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
         .range(["#C0C0C0","#8B0000"])
         //.range(["#C0C0C0","#0000FF"])
         //.range(["#0000ff","#ff0000"])
-        .interpolate(d3.interpolateRgb);
+        .interpolate(d3.interpolateLab);
 
   var stateFont = 10
   var bigFont = 16
@@ -160,7 +160,7 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
         width: panelWidth
       })
       .style("stroke", "none")
-      .style("fill", "rgb(252,255,252)");
+      .style("fill", "rgb(253,253,253)");
 
   volChart.append('g') //zonal labels (the first level of Y labels)
       .attr('class', 'y-labels')
@@ -192,7 +192,8 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
       .style('font-size', bigFont)
       .style('alignment-baseline', 'central')
       .style('text-anchor', 'middle')
-      .style('cursor', 'default');
+      .style('cursor', 'default')
+      //.style('font-weight', 'bold');
 
   volChart.append('g') //state labels (second layer of y-labels)
       .attr('class', "state-labels")
@@ -319,6 +320,7 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
     d3.selectAll('.hoverMean').data(meanData).attr({x: function(d){return xChartScale(d.date) + xPanelScale(d.value)}, y: function(d){return yPanelScale(d.yPosition)}})
     d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", true)
     d3.selectAll('.dots#'+d.state).classed("hover-show", true)
+    //tooltips
   }
 
   function mouseoutDots(d){

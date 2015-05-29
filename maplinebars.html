@@ -176,7 +176,7 @@ function ready(error,priceData,nigeriaStates) {
 	drawMap(nigeriaStates,priceData);
 }
 
-
+/*THE DRAW FUNCTION FOR THE MAP*/
 function drawMap(nigeriaStates,priceData) {
 	var dateFormat = d3.time.format("%Y-%m-%d");
 	var monthFormat = d3.time.format("%b-%y");
@@ -188,7 +188,7 @@ function drawMap(nigeriaStates,priceData) {
 	var mapData = getMapData(startDate,endDate,priceData,product);
 
 	/*Declaring Constants*/
-	var mapContainerSize = {'height':500,'width':600};
+	var mapContainerSize = {'height':500,'width':500};
 	var mapSize = {'height':500,'width':500};
 
 	/*Creating the canvas*/
@@ -348,10 +348,10 @@ function drawMap(nigeriaStates,priceData) {
 				}
 			});
 	}
-
-	
 }
 
+
+/*THE DRAW FUNCTION FOR THE LINE CHART*/
 function drawLine(priceData) {
 
 	var monthFormatChart = d3.time.format("%m/%y");

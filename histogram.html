@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<head>
+<script src="libraries/d3.v3.min.js"></script>
+<script src="libraries/topojson.v1.min.js"></script>
+<script src="libraries/queue.v1.min.js"></script>
+<style>
+
+</style>
+</head>
+<body>
+
+<div id="main">
+  <select id="productSelect">
+    <option selected value="Cement Dangote">Cement Dangote</option>
+    <option value="Drink Swan Water Bottle">Drink Swan Water Bottle</option>
+    <option value="Maize White">Maize White</option>
+    <option value="Maize Yellow">Maize Yellow</option>
+    <option value="Rice Imported">Rice Imported</option>
+    <option value="Rice Local">Rice Local</option>
+    <option value="Sorghum">Sorghum</option>
+  </select>
+  <div id="histChart"></div>
+</div>
+
+</body>
+<script>
+queue()
+  .defer(d3.json, "data/priceAllData.json") //the  main dataset
+  .await(ready);
+
+function ready(error, allData){
+  var dateFormat = d3.time.format("%Y-%m-%d");
+  var monthFormat = d3.time.format("%b-%y");
+
+  var startDate = dateFormat.parse('2009-01-01'); //This will be based on user inputs
+  var endDate = dateFormat.parse('2012-12-01'); //This will be based on user inputs
+  var sel = document.getElementById('productSelect'); //selecting the default based on currentinput
+  var product = sel.options[sel.selectedIndex].value;
+
+  var data = allData.filter(function(d){return d.item == product && dateFormat.parse(d.date)>= startDate && dateFormat.parse(d.date) <= endDate}) 
+  var numBins = 20;
+
+  var containerSize = {'height': 600, 'width': 300};
+  var margin = {top: 0.06*containerSize.height , right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
+  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.3*containerSize.height, left: 0.02*containerSize.width};
+  var width = containerSize.width - margin.right - margin.left; //Chart width
+  var height = containerSize.height - margin.top - margin.bottom; //Chart height
+
+  var histChart = d3.select('#histChart').append('svg') //http://bl.ocks.org/mbostock/3019563
+        .attr({
+          height: height + margin.top + margin.bottom,
+          width: width + margin.left + margin.right
+        })
+      .append('g')
+      .attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");
+
+  var yScale = d3.scale.linear()
+      .domain(d3.extent(data, function(d){return d.meanPrice}))
+      .range([height, 0])
+
+  var histogram = d3.layout.histogram()
+      .bins(yScale.ticks(numBins))
+      .value(function(d){return d.meanPrice})
+
+  var histData = histogram(data)
+  console.log(histData)
+
+  /*CREATING SCALES*/
+ var xDomain = []
+  for(i=0; i<d3.max(histData, function(d){return d.y;}); i++){
+    xDomain.push(i)
+  }
+  var xScale = d3.scale.ordinal()
+      .domain(xDomain)
+      .rangeBands([0, width], 0.01)
+
+
+  /*DRAWING ELEMENTS*/
+  var dots = histChart.append('g')
+    .selectAll('.dots')
+    .data(histData)
+    .enter()
+    .append('circle')
+    .attr({
+      r:2,
+      cx:function(d,i){return xScale(d.y)},
+      cy:100
+    })
+
+}
+
+
+</script>
+</html>

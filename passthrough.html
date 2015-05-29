@@ -10,6 +10,33 @@ line {
   stroke-width:1;
   stroke:rgb(50,50,50);
 }
+.y-axis path,
+.y-axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+    stroke-width:1px;
+}
+
+.y-axis text {
+    font-family: sans-serif;
+    font-size: 9px;
+}
+.zoneHoverShow{
+  stroke:black;
+  stroke-width:0.7px;
+}
+.zoneHoverHide {
+  fill: silver;
+  stroke:black;
+  stroke-width:0.2px;
+}
+.meanHoverShow{
+  font-size: 16px;
+}
+.meanHoverHide{
+
+}
 </style>
 </head>
 <body>
@@ -41,7 +68,7 @@ function filterData(data, input){ //generic funciton to filter data based on an 
   return data.filter(function(d) {return d.yPosition == input})
   }
 
-//loading the data
+/*LOADING THE DATA*/
 queue()
   .defer(d3.json, "data/passthrough.json") //the  main dataset
   .defer(d3.json, "data/passZoneLabels.json") //the dataset for first layer of x-labels for zones
@@ -49,6 +76,8 @@ queue()
   .await(ready);
 
 function ready(error, passthrough, passZoneLabels, passItemLabels) {
+
+  /*GETTING THE DATA READY AND IDENTIFYING THE DOMAINS FOR THE CHARTING VARIABLES*/
   var maxPosition = d3.max(passthrough, function(d){return d.dotPosition});
   var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
   for (i = 1; i <= maxPosition; i++){
@@ -57,77 +86,132 @@ function ready(error, passthrough, passZoneLabels, passItemLabels) {
   var yDomain = d3.extent(passthrough, function(d){return d.pT}); // the domain of the y-axis is set to the range of passthrough values
   var colorDomain = yDomain; //same with the color scale
 
-  //creating the canvas
-  var containerSize = {'height': 200, 'width': 400}
-  var containerMargin = {top: 0.02 * containerSize.height , right: 0.01 * containerSize.width, bottom: 0.2 * containerSize.height, left: 0.01 * containerSize.width} //controls the spacing between the edge of the container and the inner chart
-  var containerPadding = {top: 0.06 * containerSize.height, right: 0.006 * containerSize.width, bottom: 0.06 * containerSize.height, left: 0.01 * containerSize.width} //controls the size of the chart
-  var chartSize = {'height': containerSize.height - containerMargin.top - containerMargin.bottom, 'width': containerSize.width - containerMargin.right - containerMargin.left}
-  var width = chartSize.width - containerPadding.left - containerPadding.right
-  var height = chartSize.height - containerPadding.top - containerPadding.bottom
+  //CREATING THE CANVAS
+  var containerSize = {'height': 200, 'width': 420};
+  var margin = {top: 0.06*containerSize.height , right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
+  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.3*containerSize.height, left: 0.02*containerSize.width};
+  var width = containerSize.width - margin.right - margin.left; //Chart width
+  var height = containerSize.height - margin.top - margin.bottom; //Chart height
+  console.log(padding)
   var passChart = d3.select('#segChart').append('svg') //http://bl.ocks.org/mbostock/3019563
         .attr({
-          height: containerSize.height,
-          width: containerSize.width
+          height: height + margin.top + margin.bottom,
+          width: width + margin.left + margin.right
         })
       .append('g')
-      .attr("transform", "translate(" + containerMargin.left + "," + containerMargin.top + ")");
-
+      .attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
+  
   var xScale = d3.scale.ordinal() //the ordinal scale uses dotpositions to place them on charts
       .domain(xDomain)
-      .rangeRoundBands([containerPadding.left, width+containerPadding.left], .1)
+      .rangeBands([padding.left, width], .1);
 
-      console.log(xDomain)
-
-  var yScale = d3.scale.linear() //set to the range of passthrough values
+  var yScale = d3.scale.linear() //set to the range of seg values
       .domain(yDomain)
-      .range([containerPadding.top, containerPadding.top+height])
+      .range([height - padding.bottom, 0]);
+
+  var yAxis = d3.svg.axis()
+      .scale(yScale)
+      .orient("left")
+      .tickSize(3)
+      .ticks(5)
+      .tickPadding(8);
 
   var colorScale = d3.scale.linear() //could change the scale later
       .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
-      .range(["#0000ff","#ff0000"])
-      .interpolate(d3.interpolateHcl);
-  var zoneNameGap = 30
-  var itemNameGap = 10 + zoneNameGap
-  var itemNamestagger = 10
-  //drawing
+      .range(["#C0C0C0", "#ff0000"])
+      .interpolate(d3.interpolateLab);
+
+  var dotRadius = 3;
+  var xFont = 10;
+  var itemNamestagger = 10;
+
+  //DRAWING THE DIFFERENT ELEMENTS ON THE CANVAS
+  passChart.append('g')
+      .selectAll('.meanCross')
+      .data(passZoneLabels)
+      .enter()
+      .append('text')
+      .text('x')
+      .attr({
+        x: function(d){return xScale(d.dotPosition)},
+        y: function(d){return yScale(d.mean)},
+        class: 'meanCross'
+      })
+      .attr('font-size', xFont)
+      .style('font-weight', 'bold')
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'middle')
+      .style('cursor', 'default');
+
+  passChart.append('g')
+      .attr('class', 'zone-labels') //corresponding to each column of dots
+      .selectAll('text')
+      .data(passZoneLabels)
+      .enter()
+      .append('text')
+      .text(function(d){return d.zoneCode})
+      .attr({
+        x: function(d) {return xScale(d.dotPosition)},
+        y: height - padding.bottom/1.5,
+        class: 'zoneLab'
+      })
+      .style('text-anchor', 'middle')
+      .attr('font-size', xFont)
+      .style('cursor', 'default');
+
+  passChart.append('g')
+      .attr('class', 'item-labels')
+      .selectAll('text')
+      .data(passItemLabels)
+      .enter()
+      .append('text')
+      .text(function(d){return d.item})
+      .attr({
+        x: function(d){return (xScale(Math.floor(d.xPosition)) + xScale(Math.ceil(d.xPosition)))/2 },
+        y: function(d){return height - padding.bottom/2.5 + itemNamestagger*d.yPosition} //yPosition is a 0-1 variable
+      })
+      .style('text-anchor', 'middle')
+      .style('font-size', xFont)
+      .style('cursor', 'default');
+
+  passChart.append('g')
+      .selectAll('.hover-rects')
+      .data(passZoneLabels)
+      .enter()
+      .append('rect')
+      .attr({
+        x: function(d) {return xScale(d.dotPosition) - dotRadius},
+        y: 0,
+        height: height - padding.bottom/1.5,
+        width: 2*dotRadius,
+        class: 'zoneMean',
+        id: function(d){return d.zoneCode}
+      })
+      .style("fill-opacity", "0")
+      .style('cursor', 'default')
+      .on('mouseover', mouseoverRect)
+      .on('mouseout', mouseoutRect);
+
+  passChart.append('g') //Adding the axis to the bottom of the first panel
+      .attr('class', 'y-axis')
+      //.attr("transform", "translate(" + (3*padding.left) + ", 0)")
+      .style('cursor', 'default')
+      .call(yAxis)
+
   passChart.append('g')
       .selectAll('.dots')
       .data(passthrough)
       .enter()
       .append('circle')
       .attr({
-        r: 2,
-        // cx: function(d){return xScale(d.dotPosition) + (d.boxPosition - 1) * 10},
+        r: dotRadius,
         cx: function(d){return xScale(d.dotPosition)},
-        cy: function(d){return yScale(d.pT)}
+        cy: function(d){return yScale(d.pT)},
+        fill: function(d){return colorScale(d.pT)},
+        class: 'dots'
       })
-      .style({
-          fill: function(d){return colorScale(d.pT)}
-        })
-
-  passChart.append('g')
-      .selectAll('.meanCross')
-      .data(passZoneLabels)
-      .enter()
-      .append('line')
-      .attr({
-        x1: function(d){return xScale(d.dotPosition) - 2},
-        y1: function(d){return yScale(d.mean) - 2},
-        x2: function(d){return xScale(d.dotPosition) + 2},
-        y2: function(d){return yScale(d.mean) + 2}
-      })
-
-  passChart.append('g')
-      .selectAll('.meanCross')
-      .data(passZoneLabels)
-      .enter()
-      .append('line')
-      .attr({
-        x1: function(d){return xScale(d.dotPosition) + 2},
-        y1: function(d){return yScale(d.mean) - 2},
-        x2: function(d){return xScale(d.dotPosition) - 2},
-        y2: function(d){return yScale(d.mean) + 2}
-      })
+      .on('mouseover', mouseoverDot)
+      .on('mouseout', mouseoutDot)
 
   passChart.append('g')
       .selectAll('.meanLines')
@@ -141,33 +225,34 @@ function ready(error, passthrough, passZoneLabels, passItemLabels) {
         y2: function(d){return yScale(d.mean)}
       })
 
-  passChart.append('g')
-      .attr('class', 'zone-labels') //corresponding to each column of dots
-      .selectAll('text')
-      .data(passZoneLabels)
-      .enter()
-      .append('text')
-      .text(function(d){return d.zoneCode})
-      .attr({
-        x: function(d) {return xScale(d.dotPosition)},
-        y: height + zoneNameGap
-      })
-      .style('text-anchor', 'middle')
-      .style('font-size', 10)
+  //DEFINING THE MOUSEOVER FUNCTION
+  function mouseoverRect(d){
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', true)
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', true)
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
+  }
+  function mouseoutRect(d){
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', false)
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', false)
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
+  }
+  function mouseoverDot(d){
+    console.log(d)
+    d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', true)
+    d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
+    //tooltips for centre name state name and value
+  }
+  function mouseoutDot(d){
+    d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', false)
+    d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', false).attr({r: dotRadius})
+  }
 
-  passChart.append('g')
-      .attr('class', 'item-labels')
-      .selectAll('text')
-      .data(passItemLabels)
-      .enter()
-      .append('text')
-      .text(function(d){return d.item})
-      .attr({
-        x: function(d){return (xScale(Math.floor(d.xPosition)) + xScale(Math.ceil(d.xPosition)))/2 },
-        y: function(d){return height + itemNameGap + itemNamestagger*d.yPosition} //yPosition is a 0-1 variable
-      })
-      .style('text-anchor', 'middle')
-      .style('font-size', 10)
 }
 
 </script>

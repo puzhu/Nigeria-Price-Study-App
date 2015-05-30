@@ -67,7 +67,7 @@ function filterData(data, input){ //generic funciton to filter data based on an 
   return data.filter(function(d) {return d.yPosition == input})
   }
 
-//LOADING THE DATA
+/*LOADING THE DATA*/
 queue()
   .defer(d3.json, "data/segmentation.json") //the  main dataset
   .defer(d3.json, "data/segZoneLabels.json") //the dataset for first layer of x-labels for zones
@@ -76,7 +76,7 @@ queue()
 
 function ready(error, segmentation, segZoneLabels, segItemLabels){
   //console.log(segmentation, segZoneLabels, segItemLabels)
-  //GETTING THE DATA AND DOMAINS READY
+  /*GETTING THE DATA AND DOMAINS READY*/
   var maxPosition = d3.max(segmentation, function(d){return d.dotPosition});
   var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
   for (i = 1; i <= maxPosition; i++){
@@ -85,7 +85,7 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
   var yDomain = d3.extent(segmentation, function(d){return d.seg}); //the domain of the y-axis is set to the range of segmentation values
   var colorDomain = yDomain; //same with the color scale
 
-  //CREATING THE CANVAS
+  /*CREATING THE CANVAS*/
   var containerSize = {'height': 200, 'width': 560};
   var margin = {top: 0.06*containerSize.height , right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
   var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.3*containerSize.height, left: 0.02*containerSize.width};

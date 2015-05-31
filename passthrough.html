@@ -42,7 +42,7 @@ line {
 <body>
 
 <div id="main">
-	<div id="segChart"></div>
+	<div id="passthroughContainer"></div>
 </div>
 
 </body>
@@ -93,7 +93,7 @@ function ready(error, passthrough, passZoneLabels, passItemLabels) {
   var width = containerSize.width - margin.right - margin.left; //Chart width
   var height = containerSize.height - margin.top - margin.bottom; //Chart height
   console.log(padding)
-  var passChart = d3.select('#segChart').append('svg') //http://bl.ocks.org/mbostock/3019563
+  var passChart = d3.select('#passthroughContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
         .attr({
           height: height + margin.top + margin.bottom,
           width: width + margin.left + margin.right

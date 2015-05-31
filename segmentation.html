@@ -5,6 +5,7 @@
 <script src="libraries/d3.v3.min.js"></script>
 <script src="libraries/topojson.v1.min.js"></script>
 <script src="libraries/queue.v1.min.js"></script>
+<script src="libraries/d3.tip.v0.6.3.js"></script>
 <style>
 line {
   stroke-width:1;
@@ -37,6 +38,35 @@ line {
 .meanHoverHide{
   color: silver;
 }
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+.d3-tip.e:after {
+  content: "\25C0";
+  margin: -4px 0 0 0;
+  top: 50%;
+  left: -8px;
+}
+
 </style>
 </head>
 <body>
@@ -76,6 +106,7 @@ queue()
 
 function ready(error, segmentation, segZoneLabels, segItemLabels){
   //console.log(segmentation, segZoneLabels, segItemLabels)
+  
   /*GETTING THE DATA AND DOMAINS READY*/
   var maxPosition = d3.max(segmentation, function(d){return d.dotPosition});
   var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
@@ -124,6 +155,15 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
   var xFont = 10;
   var itemNamestagger = 10;
 
+  //TOOL-TIP
+  var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([0, 10])
+      .direction('e')
+      .html(function(d) {
+          return "<strong>Segmentation:</strong> <span style='color:red'>" + d.seg + "</span>";
+    })
+    segChart.call(tip)
   //DRAWING THE DIFFERENT ELEMENTS
   segChart.append('g')
       .selectAll('.zoneLab') //corresponding to each column of dots
@@ -193,7 +233,8 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
       })
       .attr("fill-opacity", "0.8")
       .on('mouseover', mouseoverDot)
-      .on('mouseout', mouseoutDot)
+      .on('mouseout', mouseoutDot);
+
 
   segChart.append('g')
       .selectAll('.meanCross')
@@ -247,11 +288,13 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
     //console.log(d)
     d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', true)
     d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
+    tip.show(d)
     //tooltips for centre name state name and value
   }
   function mouseoutDot(d){
     d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', false)
     d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', false).attr({r: dotRadius})
+    tip.hide(d)
   }
   function mouseoverCross(d){
       console.log(d)

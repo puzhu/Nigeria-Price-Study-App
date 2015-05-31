@@ -5,6 +5,7 @@
 <script src="libraries/d3.v3.min.js"></script>
 <script src="libraries/topojson.v1.min.js"></script>
 <script src="libraries/queue.v1.min.js"></script>
+
 <style>
 line {
   stroke-width:1;
@@ -37,6 +38,7 @@ line {
 .meanHoverHide{
 
 }
+
 </style>
 </head>
 <body>
@@ -185,7 +187,7 @@ function ready(error, passthrough, passZoneLabels, passItemLabels) {
       .selectAll('.dots')
       .data(passthrough)
       .enter()
-      .append('circle')
+      .append('svg:circle')
       .attr({
         r: dotRadius,
         cx: function(d){return xScale(d.dotPosition)},
@@ -195,6 +197,15 @@ function ready(error, passthrough, passZoneLabels, passItemLabels) {
       })
       .on('mouseover', mouseoverDot)
       .on('mouseout', mouseoutDot)
+
+  $('svg circle').tipsy({ 
+        gravity: 'w', 
+        html: true, 
+        title: function() {
+          var d = this.__data__, c = d.pT;
+          return 'Hi there! My color is <span style="color:' + c + '">' + c + '</span>'; 
+        }
+      });
 
   passChart.append('g')
       .selectAll('.meanCross')

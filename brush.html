@@ -102,9 +102,14 @@ slider.selectAll("rect")
 slider.select(".background")
     .attr("height", height);
 
-var handle = slider.append("circle")
+var handle1 = slider.append("circle")
     .attr("class", "handle")
-    .attr("transform", "translate(0," + height / 2 + ")")
+    .attr("transform", "translate("+x(new Date(2013, 2, 1))+"," + height / 2 + ")")
+    .attr("r", 9);
+
+var handle2 = slider.append("circle")
+    .attr("class", "handle")
+    .attr("transform", "translate("+x(new Date(2013, 2, 3))+"," + height / 2 + ")")
     .attr("r", 9);
 
 function brushed() {

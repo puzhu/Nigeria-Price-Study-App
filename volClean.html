@@ -139,7 +139,7 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
 
   var colorScales = d3.scale.linear() //could change the scale later
         .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
-        .range(["#C0C0C0","#8B0000"])
+        .range(["#C0C0C0","#FF0000"])
         //.range(["#C0C0C0","#0000FF"])
         //.range(["#0000ff","#ff0000"])
         .interpolate(d3.interpolateLab);

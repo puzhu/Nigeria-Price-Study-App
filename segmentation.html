@@ -27,7 +27,7 @@ line {
   stroke-width:0.2px;
 }
 .zoneHoverHide {
-  fill: silver;
+  fill: none;
   stroke:black;
   stroke-width:0.2px;
 }
@@ -126,23 +126,6 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
 
   //DRAWING THE DIFFERENT ELEMENTS
   segChart.append('g')
-      .selectAll('.meanCross')
-      .data(segZoneLabels)
-      .enter()
-      .append('text')
-      .text('x')
-      .attr({
-        x: function(d){return xScale(d.dotPosition)},
-        y: function(d){return yScale(d.mean)},
-        class: 'meanCross'
-      })
-      .attr('font-size', xFont)
-      .style('font-weight', 'bold')
-      .style('alignment-baseline', 'central')
-      .style('text-anchor', 'middle')
-      .style('cursor', 'default');
-
-  segChart.append('g')
       .selectAll('.zoneLab') //corresponding to each column of dots
       .data(segZoneLabels)
       .enter()
@@ -213,6 +196,25 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
       .on('mouseout', mouseoutDot)
 
   segChart.append('g')
+      .selectAll('.meanCross')
+      .data(segZoneLabels)
+      .enter()
+      .append('text')
+      .text('x')
+      .attr({
+        x: function(d){return xScale(d.dotPosition)},
+        y: function(d){return yScale(d.mean)},
+        class: 'meanCross'
+      })
+      .attr('font-size', xFont)
+      .style('font-weight', 'bold')
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'middle')
+      .style('cursor', 'default')
+      .on('mouseover', mouseoverCross)
+      .on('mouseout', mouseoutCross);
+
+  segChart.append('g')
       .selectAll('.meanLines')
       .data(filterData(segItemLabels, 0))
       .enter()
@@ -242,7 +244,7 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
     d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
   }
   function mouseoverDot(d){
-    console.log(d)
+    //console.log(d)
     d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', true)
     d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
     //tooltips for centre name state name and value
@@ -251,7 +253,23 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
     d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', false)
     d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', false).attr({r: dotRadius})
   }
-
+  function mouseoverCross(d){
+      console.log(d)
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', true)
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
+  }
+  function mouseoutCross(d){
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', false)
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', false).attr({r: dotRadius})
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
+  }
 
 }
 

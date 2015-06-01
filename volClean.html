@@ -238,6 +238,7 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
         x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
         y2: function(d){return yPanelScale(d.maxY)}
       })
+      .style('pointer-events', 'none')
 
   var rects = volChart // these rects help apply hover functions to an entire line instead of indivisual dots
       .selectAll('.hover-rects')
@@ -285,8 +286,8 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
       .style('alignment-baseline', 'central')
       .style('text-anchor', 'middle')
       .style('cursor', 'default')
-      .on('mouseover', mouseoverCross)
-      .on('mouseout', mouseoutCross)
+      //.on('mouseover', mouseoverCross)
+      //.on('mouseout', mouseoutCross)
       .style('pointer-events', 'none')
 
   var axisNodes = volChart.append('g') //Adding the axis to the bottom of the first panel
@@ -347,7 +348,6 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
     d3.selectAll('.dots#' + d.state).classed("hover-show", false).attr({r: dotRadius})
     tip.hide(d)
   }
-
   function mouseoverCross(d){
     var meanData = []
     xChartDomain.forEach(function(e){
@@ -364,12 +364,12 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
     d3.selectAll('.dots#'+d.state).classed("hover-show", true).attr({r: 1.5*dotRadius})
     //tooltips
   }
-
   function mouseoutCross(d){
     d3.selectAll('.hoverMean').attr({x: 1000, y: 1000})
     d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", false)
     d3.selectAll('.dots#' + d.state).classed("hover-show", false).attr({r: dotRadius})
   }
+
   //CREATING THE REDRAW FUNCTION FOR ELEMENTS THAT NEED TO CHANGE WHEN A NEW PRODUCT IS SELECTED
   function redraw(product){ //recalibrates the x-PanelScale and redraws the means and dots based on the product selection
     data = filterData(volatility, product); //loading the volatility data based on input

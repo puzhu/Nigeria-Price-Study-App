@@ -97,7 +97,7 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
   var width = containerSize.width - margin.right - margin.left; //Chart width
   var height = containerSize.height - margin.top - margin.bottom; //Chart height
 
-  var segChart = d3.select('#segChart').append('svg') //http://bl.ocks.org/mbostock/3019563
+  var segChart = d3.select('#segmentationContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
         .attr({
           height: height + margin.top + margin.bottom,
           width: width + margin.left + margin.right

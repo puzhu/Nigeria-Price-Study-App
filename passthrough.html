@@ -5,6 +5,8 @@
 <script src="libraries/d3.v3.min.js"></script>
 <script src="libraries/topojson.v1.min.js"></script>
 <script src="libraries/queue.v1.min.js"></script>
+<script src="libraries/d3.tip.v0.6.3.js"></script>
+<link rel="stylesheet" href="libraries/tool-tip-style.css">
 
 <style>
 line {
@@ -123,6 +125,18 @@ function ready(error, passthrough, passZoneLabels, passItemLabels) {
       .range(["#C0C0C0", "#ff0000"])
       .interpolate(d3.interpolateLab);
 
+  //TOOL-TIP
+  var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([14, 10])
+      .direction('e')
+      .html(function(d) {
+          return "<strong>State:</strong> <span style='color:silver'>" + d.state + "</span>" + "<br>" + 
+          "<strong>Passthrough:</strong> <span style=" + "'" + "color:" + colorScale(d.pT) +"'" +">" + d3.round(d.pT, 1) + "</span>"
+          ;
+    })
+    passChart.call(tip)
+
   var dotRadius = 3;
   var xFont = 10;
   var itemNamestagger = 10;
@@ -198,15 +212,6 @@ function ready(error, passthrough, passZoneLabels, passItemLabels) {
       .on('mouseover', mouseoverDot)
       .on('mouseout', mouseoutDot)
 
-  $('svg circle').tipsy({ 
-        gravity: 'w', 
-        html: true, 
-        title: function() {
-          var d = this.__data__, c = d.pT;
-          return 'Hi there! My color is <span style="color:' + c + '">' + c + '</span>'; 
-        }
-      });
-
   passChart.append('g')
       .selectAll('.meanCross')
       .data(passZoneLabels)
@@ -224,7 +229,8 @@ function ready(error, passthrough, passZoneLabels, passItemLabels) {
       .style('text-anchor', 'middle')
       .style('cursor', 'default')
       .on('mouseover', mouseoverCross)
-      .on('mouseout', mouseoutCross);
+      .on('mouseout', mouseoutCross)
+      .style('pointer-events', 'none');
 
 
   passChart.append('g')
@@ -260,11 +266,12 @@ function ready(error, passthrough, passZoneLabels, passItemLabels) {
     console.log(d)
     d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', true)
     d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
-    //tooltips for centre name state name and value
+    tip.show(d)
   }
   function mouseoutDot(d){
     d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', false)
     d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', false).attr({r: dotRadius})
+    tip.hide(d)
   }
   function mouseoverCross(d){
     d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', true)

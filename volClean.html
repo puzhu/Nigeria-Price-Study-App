@@ -5,6 +5,8 @@
 <script src="libraries/d3.v3.min.js"></script>
 <script src="libraries/topojson.v1.min.js"></script>
 <script src="libraries/queue.v1.min.js"></script>
+<script src="libraries/d3.tip.v0.6.3.js"></script>
+<link rel="stylesheet" href="libraries/tool-tip-style.css">
 <style>
 line {
   stroke-width:1;
@@ -27,15 +29,15 @@ line {
 }
 
 .hover-show {
-  stroke:white;
-  stroke-width:0.7px;
+  stroke:black;
+  stroke-width:0.2px;
   fill-opacity: 1;
   font-size: 16px;
 }
 
 .hover-hide {
   fill: none;
-  stroke:white;
+  stroke:black;
   stroke-width:0.2px;
 }
 </style>
@@ -103,7 +105,7 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
   //CREATING THE CANVAS
   var containerSize = {'height': 600, 'width': 1000};
   var margin = {top: 0.06*containerSize.height , right: 0.06*containerSize.width, bottom: 0.06*containerSize.height, left: 0.06*containerSize.width};
-  var padding = {top: 0.03*containerSize.height, right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
+  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
   var width = containerSize.width - margin.right - margin.left; //Chart width
   var height = containerSize.height - margin.top - margin.bottom; //Chart height
 
@@ -117,10 +119,9 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
 
   var xChartScale = d3.scale.ordinal()
       .domain(xChartDomain)
-      .rangeRoundBands([padding.left, width], .1)
+      .rangeRoundBands([padding.left, width], .03)
 
-  var panelPadding = 10
-  var panelWidth = xChartScale.rangeBand() + 8
+  var panelWidth = xChartScale.rangeBand()
 
   var yPanelScale = d3.scale.ordinal()
       .domain(yPanelDomain)
@@ -128,7 +129,7 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
 
   var xPanelScale = d3.scale.linear()
       .domain(xPanelDomain)
-      .range([padding.left, panelWidth])
+      .range([padding.left, panelWidth - padding.right])
 
   var xAxis = d3.svg.axis()
       .scale(xPanelScale)
@@ -138,16 +139,27 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
       .tickPadding(8)
 
   var colorScales = d3.scale.linear() //could change the scale later
-        .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
-        .range(["#C0C0C0","#FF0000"])
-        //.range(["#C0C0C0","#0000FF"])
-        //.range(["#0000ff","#ff0000"])
-        .interpolate(d3.interpolateLab);
+      .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
+      .range(["#C0C0C0","#FF0000"])
+      //.range(["#C0C0C0","#0000FF"])
+      //.range(["#0000ff","#ff0000"])
+      .interpolate(d3.interpolateLab);
 
+  //TOOL-TIP
+  var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([14, 10])
+      .direction('e')
+      .html(function(d) {
+          return "<strong>State:</strong> <span style='color:silver'>" + d.state + "</span>" + "<br>" + 
+          "<strong>Centre:</strong> <span style='color:silver'>" + d.centre + "</span>" + "<br>" +
+          "<strong>Volatility:</strong> <span style=" + "'" + "color:" + colorScales(d.volMoving) +"'" +">" + d3.round(d.volMoving, 2) + "</span>"
+          ;
+    })
+  volChart.call(tip)
   var stateFont = 10;
   var bigFont = 16;
   var dotRadius = 3;
-
 
   //DRAWING THE CHART ELEMENTS
   volChart.append('g') //vertical panel backgrounds
@@ -161,8 +173,9 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
         height: height - padding.bottom,
         width: panelWidth
       })
-      .style("stroke", "none")
-      .style("fill", "rgb(160,160,160)");
+      .style("stroke", "rgb(10,10,10)")
+      .style("stroke-width", "0.3px")
+      .style("fill", "none");
 
   volChart.append('g') //zonal labels (the first level of Y labels)
       .attr('class', 'y-labels')
@@ -232,10 +245,10 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
       .enter()
       .append('rect')
       .attr({
-        x: 20,
+        x: -40,
         y:function(d){return yPanelScale(d.yPosition) - stateFont/2},
         height: 1.1*stateFont,
-        width: width-20,
+        width: width + 30,
         class: 'hover-rects'
       })
       .style('fill', 'none')
@@ -274,6 +287,7 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
       .style('cursor', 'default')
       .on('mouseover', mouseoverCross)
       .on('mouseout', mouseoutCross)
+      .style('pointer-events', 'none')
 
   var axisNodes = volChart.append('g') //Adding the axis to the bottom of the first panel
       .attr('class', 'x-axis')
@@ -302,7 +316,7 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
     d3.selectAll('.hoverMean').data(meanData).attr({x: function(d){return xChartScale(d.date) + xPanelScale(d.value)}, y: function(d){return yPanelScale(d.yPosition)}})
     d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", true)
     d3.selectAll('.dots#'+d.state).classed("hover-show", true).attr({r: 1.5*dotRadius})
-    d3.selectAll('.stateLabels').filter(function(z){return z.state == d.state}).classed("hover-show", true)
+    //d3.selectAll('.stateLabels').filter(function(z){return z.state === d.state}).attr('font-size', '16px')
   }
 
   function mouseoutRect(d){
@@ -325,12 +339,13 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
     d3.selectAll('.hoverMean').data(meanData).attr({x: function(d){return xChartScale(d.date) + xPanelScale(d.value)}, y: function(d){return yPanelScale(d.yPosition)}})
     d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", true)
     d3.selectAll('.dots#'+d.state).classed("hover-show", true).attr({r: 1.5*dotRadius})
-    //tooltips
+    tip.show(d)
   }
   function mouseoutDots(d){
     d3.selectAll('.hoverMean').attr({x: 1000, y: 1000})
     d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", false)
     d3.selectAll('.dots#' + d.state).classed("hover-show", false).attr({r: dotRadius})
+    tip.hide(d)
   }
 
   function mouseoverCross(d){

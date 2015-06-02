@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
-
 <meta charset="utf-8">
-
 <head>
 <title>Nigeria Price Monitor</title>
 <script src="libraries/d3.v3.min.js"></script>
@@ -10,12 +8,13 @@
 <script src="libraries/queue.v1.min.js"></script>
 <script src="libraries/jquery-1.8.3.min.js"></script>
 <script src="libraries/bootstrap/js/bootstrap.min.js"></script>
-
+<script src="libraries/d3.tip.v0.6.3.js"></script>
+<link rel="stylesheet" href="libraries/tool-tip-style.css">
 <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css">
 
 <style>
 body {
-	font-family: 'Franklin Gothic Medium','Franklin Gothic', 'ITC Franklin Gothic', Arial, sans-serif;
+	/*font-family: 'Franklin Gothic Medium','Franklin Gothic', 'ITC Franklin Gothic', Arial, sans-serif;*/
 }
 #main {
 	width:960px;
@@ -65,7 +64,7 @@ body {
 	shape-rendering:crispEdges;
 }
 .key text {
-	font-size:13px;
+	font-size:12px;
 }
 .state-boundary {
 	fill:none;
@@ -86,25 +85,138 @@ body {
 .boundary-hover {
 	fill:none;
 }
-
+#mapOuter, #lineOuter {
+	float:left;
+}
 #mapContainer {
 	/*border:1px solid black;*/
 	width:480px;
 	height:400px;
-	float:left;
 }
 #lineChartContainer {
 	/*border:1px solid black;*/
 	height:400px;
 	width:480px;
+}
+#segmentationOuter,#passthroughOuter {
 	float:left;
 }
+#segmentationContainer line {
+  stroke-width:1;
+  stroke:rgb(50,50,50);
+}
+#segmentationContainer .y-axis path,
+#segmentationContainer .y-axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+    stroke-width:1px;
+}
 
+#segmentationContainer .y-axis text {
+    font-family: sans-serif;
+    font-size: 9px;
+}
+#segmentationContainer .zoneHoverShow{
+  stroke:black;
+  stroke-width:0.2px;
+}
+#segmentationContainer .zoneHoverHide {
+  fill: none;
+  stroke:black;
+  stroke-width:0.2px;
+}
+#segmentationContainer .meanHoverShow{
+  font-size: 16px;
+}
+#segmentationContainer .meanHoverHide{
+  color: silver;
+}
+
+#passthroughContainer line {
+  stroke-width:1;
+  stroke:rgb(50,50,50);
+}
+#passthroughContainer .y-axis path,
+#passthroughContainer .y-axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+    stroke-width:1px;
+}
+
+#passthroughContainer .y-axis text {
+    font-family: sans-serif;
+    font-size: 9px;
+}
+#passthroughContainer .zoneHoverShow{
+  stroke:black;
+  stroke-width:0.7px;
+}
+#passthroughContainer .zoneHoverHide {
+  fill: none;
+  stroke:black;
+  stroke-width:0.2px;
+}
+#passthroughContainer .meanHoverShow{
+  font-size: 16px;
+}
+
+#volatilityContainer rect {
+	shape-rendering: crispEdges;
+}
+#volatilityContainer line {
+  stroke-width:1;
+  stroke:rgb(50,50,50);
+}
+#volatilityContainer .x-axis path,
+#volatilityContainer .x-axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+    stroke-width:1px;
+}
+
+#volatilityContainer .x-axis text {
+    font-family: sans-serif;
+    font-size: 9px;
+}
+#volatilityContainer .hover-rects {
+  pointer-events: all;
+}
+
+#volatilityContainer .hover-show {
+  stroke:black;
+  stroke-width:0.2px;
+  fill-opacity: 1;
+  font-size: 16px;
+}
+
+#volatilityContainer .hover-hide {
+  fill: none;
+  stroke:black;
+  stroke-width:0.2px;
+}
+
+.histAxis path {
+  display: none;
+/*  stroke:lightgrey;
+  stroke-width:1px;*/
+}
+.histAxis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+.histAxis text {
+	font-size:10px;
+}
 </style>
 </head>
 
 <body>
 <div id="main">
+	<h1>Nigeria Price Monitor</h1>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="#prices" data-toggle="tab">Prices</a></li>
 		<li><a href="#indicators" data-toggle="tab">Indicators</a></li>
@@ -112,7 +224,7 @@ body {
 	<div class="tab-content">
 		<div class="tab-pane active" id="prices">
 			<div id="selectorDiv">
-				<select id="productSelect">
+				<select id="productSelectPrice">
 					<option selected value="Cement Dangote">Cement Dangote</option>
 					<option value="Drink Swan Water Bottle">Drink Swan Water Bottle</option>
 					<option value="Maize White">Maize White</option>
@@ -121,20 +233,52 @@ body {
 					<option value="Rice Local">Rice Local</option>
 					<option value="Sorghum">Sorghum</option>
 				</select>
+				<span>Start Date:</span>
+				<select id="startDateSelect">
+					<option selected value="01-2009">January 2009</option>
+				</select>
+				<span>End Date:</span>
+				<select id="endDateSelect">
+					<option selected value="12-2012">December 2012</option>
+				</select>
 			</div>
 			<div id="chartsDiv">
-				<div id="mapContainer"></div>
-				<div id="lineChartContainer"></div>
+				<div id="mapOuter">
+					<h3>Average prices</h3>
+					<div id="mapContainer"></div>
+				</div>
+				<div id="lineOuter">
+					<h3>Prices over time</h3>
+					<div id="lineChartContainer"></div>
+				</div>
 			</div>
 		</div>
 		<div class="tab-pane" id="indicators">
 			<div id="tab2row1">
-				<div id="segmentationContainer"></div>
-				<div id="passthroughContainer"></div>
+				<div id="segmentationOuter">
+					<h3>Segmentation</h3>
+					<div id="segmentationContainer"></div>
+				</div>
+				<div id="passthroughOuter">
+					<h3>Passthrough</h3>
+					<div id="passthroughContainer"></div>
+				</div>
 			</div>
-				<div id="tab2row2">
+			<div id="tab2row2">
+				<div id="volatilityOuter">
+					<h3>Volatility</h3>
+					<select id="productSelectVolatility">
+						<option selected value="Cement Dangote">Cement Dangote</option>
+						<option value="Drink Swan Water Bottle">Drink Swan Water Bottle</option>
+						<option value="Maize White">Maize White</option>
+						<option value="Maize Yellow">Maize Yellow</option>
+						<option value="Rice Imported">Rice Imported</option>
+						<option value="Rice Local">Rice Local</option>
+						<option value="Sorghum">Sorghum</option>
+    				</select>
+					<div id="volatilityContainer"></div>
+				</div>
 			</div>
-
 		</div>
 	</div>
 </div>
@@ -155,6 +299,7 @@ function uniq_fast(a) { // quickly drop duplicate values from an array
 		}
 		return out;
 	}
+
 function processPrices(d, i) {
 	var dateFormat = d3.time.format("%Y-%m-%d");
 	function deString(d) {
@@ -213,11 +358,26 @@ function getMapData(startDate,endDate,priceData,item) { //getting the data ready
 queue()
 	.defer(d3.csv, "data/priceStateData.csv", processPrices) //converts into the desired format
 	.defer(d3.json, "maps/nga-states-topo-05.json")
+	.defer(d3.json, "data/segmentation.json") //the  main dataset
+	.defer(d3.json, "data/segZoneLabels.json") //the dataset for first layer of x-labels for zones
+	.defer(d3.json, "data/segItemLabels.json") //the dataset for item labels
+	.defer(d3.json, "data/passthrough.json") //the  main dataset
+	.defer(d3.json, "data/passZoneLabels.json") //the dataset for first layer of x-labels for zones
+	.defer(d3.json, "data/passItemLabels.json") //the dataset for item labels
+	.defer(d3.json, "data/volatility.json")
+	.defer(d3.json, "data/volBoxValues.json")
+	.defer(d3.json, "data/volStateLabels.json")
+	.defer(d3.json, "data/volZonePosition.json")
+ 	.defer(d3.json, "data/priceAllData.json") //the  main dataset
 	.await(ready);
 
-function ready(error,priceData,nigeriaStates) {
+function ready(error,priceData,nigeriaStates,segmentation,segZoneLabels,segItemLabels,passthrough,passZoneLabels,passItemLabels,volatility,volBoxValues,volStateLabels,volZonePosition,allData) {
 	drawLine(priceData);
 	drawMap(nigeriaStates,priceData);
+	drawSegmentation(segmentation,segZoneLabels,segItemLabels);
+	drawPassthrough(passthrough,passZoneLabels,passItemLabels);
+ 	drawVolatility(volatility, volBoxValues, volStateLabels, volZonePosition);
+ 	drawHistogram(allData);
 }
 
 
@@ -227,7 +387,7 @@ function drawMap(nigeriaStates,priceData) {
 
 	var startDate = dateFormat.parse('2009-01-01'); //This will be based on user inputs
 	var endDate = dateFormat.parse('2012-12-01'); //This will be based on user inputs
-	var sel = document.getElementById('productSelect'); //selecting the default based on currentinput
+	var sel = document.getElementById('productSelectPrice'); //selecting the default based on current input
 	var product = sel.options[sel.selectedIndex].value;
 	var mapData = getMapData(startDate,endDate,priceData,product);
 
@@ -239,7 +399,8 @@ function drawMap(nigeriaStates,priceData) {
 	var mapContainer = d3.select('#mapContainer').append('svg')
 		.attr({
 			width: mapContainerSize.width,
-			height: mapContainerSize.height
+			height: mapContainerSize.height,
+			'class': 'mapSVG'
 		});
 
 	var map = mapContainer.append('g')
@@ -251,8 +412,8 @@ function drawMap(nigeriaStates,priceData) {
 	/*Defining mapping variables*/
 	var projection = d3.geo.mercator()
 		.center([8.9,9])
-		.scale(1600)
-		.translate([mapSize.width/2, mapSize.height/2]);
+		.scale(1350)
+		.translate([mapSize.width*.35, mapSize.height*.34]);
 
 	var path = d3.geo.path()
 		.projection(projection);
@@ -270,12 +431,12 @@ function drawMap(nigeriaStates,priceData) {
 		.domain(bounds)
 		.range(colorArray);
 
-	var y = d3.scale.linear().domain([min*.95, max*1.05]).range([220, 0]);
+	var y = d3.scale.linear().domain([min*.95, max*1.05]).range([180, 0]);
     var axis = d3.svg.axis().scale(y).orient("left").tickSize(12).tickValues([min*.95].concat(bounds));
 
     var g = mapContainer.append("g")
         .attr("class", "key")
-        .attr("transform", "translate("+(mapSize.width*.95)+","+(mapSize.height*.28)+")");
+        .attr("transform", "translate("+(mapSize.width*.83)+","+(mapSize.height*.08)+")");
 
     g.selectAll("rect")
         .data(color.range().map(function(d, i) {
@@ -288,7 +449,8 @@ function drawMap(nigeriaStates,priceData) {
         .enter().append("rect")
         .attr("height", function(d,i) { return d.x0 - d.x1})
         .attr("y", function(d, i) { return d.x1; })
-        .attr("width", 4)
+        .attr("width", 6)
+        .attr("x",-6)
         .style("fill", function(d) { return d.z; });
 
     g.call(axis);
@@ -362,7 +524,7 @@ function drawMap(nigeriaStates,priceData) {
 			.attr("id",function(e) {return d.replace(' ','')});
 	});
 
-	d3.select('#productSelect').on('change.map', function(d) {
+	d3.select('#productSelectPrice').on('change.map', function(d) {
         var product = d3.select(this).property('value');
         redrawMap(product);
     });
@@ -419,7 +581,7 @@ function drawLine(priceData) {
 	    this.parentNode.appendChild(this);
 	  });
 	};
-	var sel = document.getElementById('productSelect');
+	var sel = document.getElementById('productSelectPrice');
 	var product = sel.options[sel.selectedIndex].value;
 
 	var months = uniq_fast(priceData.filter(function(e) {return e.item===product}).map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
@@ -577,7 +739,7 @@ function drawLine(priceData) {
 		return mainArray;
 	}
 
-	d3.select('#productSelect').on('change.line', function(d) {
+	d3.select('#productSelectPrice').on('change.line', function(d) {
         var product = d3.select(this).property('value');
         redrawLine(product);
     });
@@ -618,5 +780,937 @@ function drawLine(priceData) {
 	}
 }
 
+function drawSegmentation(segmentation,segZoneLabels,segItemLabels) {
+  /*GETTING THE DATA AND DOMAINS READY*/
+  var maxPosition = d3.max(segmentation, function(d){return d.dotPosition});
+  var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
+  for (i = 1; i <= maxPosition; i++){
+    xDomain.push(i)
+  };
+  var yDomain = d3.extent(segmentation, function(d){return d.seg}); //the domain of the y-axis is set to the range of segmentation values
+  var colorDomain = yDomain; //same with the color scale
+
+  /*CREATING THE CANVAS*/
+  var containerSize = {'height': 200, 'width': 480};
+  var margin = {top: 0.06*containerSize.height , right: 0.05*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
+  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.3*containerSize.height, left: 0.02*containerSize.width};
+  var width = containerSize.width - margin.right - margin.left; //Chart width
+  var height = containerSize.height - margin.top - margin.bottom; //Chart height
+
+  var segChart = d3.select('#segmentationContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
+        .attr({
+          height: height + margin.top + margin.bottom,
+          width: width + margin.left + margin.right
+        })
+      .append('g')
+      .attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
+
+  var xScale = d3.scale.ordinal() //the ordinal scale uses dotpositions to place them on charts
+      .domain(xDomain)
+      .rangeBands([padding.left, width], .1);
+
+  var yScale = d3.scale.linear() //set to the range of seg values
+      .domain(yDomain)
+      .range([height - padding.bottom, 0]);
+
+  var yAxis = d3.svg.axis()
+      .scale(yScale)
+      .orient("left")
+      .tickSize(3)
+      .ticks(5)
+      .tickPadding(8);
+
+  var colorScale = d3.scale.linear() //could change the scale later
+      .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
+      .range(["#C0C0C0", "#ff0000"])
+      .interpolate(d3.interpolateLab);
+
+  var dotRadius = 3;
+  var xFont = 10;
+  var itemNamestagger = 10;
+
+  //TOOL-TIP
+  var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([14, 10])
+      .direction('e')
+      .html(function(d) {
+          return "<strong>State:</strong> <span style='color:silver'>" + d.state + "</span>" + "<br>" + 
+          "<strong>Centre:</strong> <span style='color:silver'>" + d.centre + "</span>" + "<br>" +
+          "<strong>Segmentation:</strong> <span style=" + "'" + "color:" + colorScale(d.seg) +"'" +">" + d.seg + "</span>"
+          ;
+    })
+    segChart.call(tip)
+
+  //DRAWING THE DIFFERENT ELEMENTS
+  segChart.append('g')
+      .selectAll('.zoneLab') //corresponding to each column of dots
+      .data(segZoneLabels)
+      .enter()
+      .append('text')
+      .text(function(d){return d.zoneCode})
+      .attr({
+        x: function(d) {return xScale(d.dotPosition)},
+        y: height - padding.bottom/1.5,
+        class: 'zoneLab'
+      })
+      .style('text-anchor', 'middle')
+      .attr('font-size', xFont)
+      .style('cursor', 'default');
+
+  segChart.append('g')
+      .attr('class', 'item-labels')
+      .selectAll('text')
+      .data(segItemLabels)
+      .enter()
+      .append('text')
+      .text(function(d){return d.item})
+      .attr({
+        x: function(d){return (xScale(Math.floor(d.xPosition)) + xScale(Math.ceil(d.xPosition)))/2 },
+        y: function(d){return height - padding.bottom/2.5 + itemNamestagger*d.yPosition} //yPosition is a 0-1 variable
+      })
+      .style('text-anchor', 'middle')
+      .style('font-size', xFont)
+      .style('cursor', 'default');
+
+  segChart.append('g')
+      .selectAll('.hover-rects')
+      .data(segZoneLabels)
+      .enter()
+      .append('rect')
+      .attr({
+        x: function(d) {return xScale(d.dotPosition) - dotRadius},
+        y: 0,
+        height: height - padding.bottom/1.5,
+        width: 2*dotRadius,
+        class: 'zoneMean',
+        id: function(d){return d.zoneCode}
+      })
+      .attr("fill-opacity", "0")
+      .style('cursor', 'default')
+      .style('pointer-events', 'all')
+      .on('mouseover', mouseoverRect)
+      .on('mouseout', mouseoutRect);
+
+  segChart.append('g') //Adding the axis to the bottom of the first panel
+      .attr('class', 'y-axis')
+      .style('cursor', 'default')
+      .call(yAxis)
+
+  segChart.append('g')
+      .selectAll('.dots')
+      .data(segmentation)
+      .enter()
+      .append('circle')
+      .attr({
+        r: dotRadius,
+        cx: function(d){return xScale(d.dotPosition)},
+        cy: function(d){return yScale(d.seg)},
+        fill: function(d){return colorScale(d.seg)},
+        class: 'dots'
+      })
+      .attr("fill-opacity", "0.8")
+      .on('mouseover', mouseoverDot)
+      .on('mouseout', mouseoutDot);
+
+
+  segChart.append('g')
+      .selectAll('.meanCross')
+      .data(segZoneLabels)
+      .enter()
+      .append('text')
+      .text('x')
+      .attr({
+        x: function(d){return xScale(d.dotPosition)},
+        y: function(d){return yScale(d.mean)},
+        class: 'meanCross'
+      })
+      .attr('font-size', xFont)
+      .style('font-weight', 'bold')
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'middle')
+      .style('cursor', 'default')
+      .on('mouseover', mouseoverCross)
+      .on('mouseout', mouseoutCross)
+      .style('pointer-events', 'none');
+
+  segChart.append('g')
+      .selectAll('.meanLines')
+      .data(filterData(segItemLabels, 0))
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return xScale(d.minX)},
+        y1: function(d){return yScale(d.mean)},
+        x2: function(d){return xScale(d.maxX)},
+        y2: function(d){return yScale(d.mean)}
+      })
+
+  //DEFINING THE MOUSEOVER FUNCTION
+  function mouseoverRect(d){
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', true)
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
+  }
+  function mouseoutRect(d){
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', false)
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', false).attr({r: dotRadius})
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
+  }
+  function mouseoverDot(d){
+    //console.log(d)
+    d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', true)
+    d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
+    tip.show(d)
+    //tooltips for centre name state name and value
+  }
+  function mouseoutDot(d){
+    d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', false)
+    d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', false).attr({r: dotRadius})
+    tip.hide(d)
+  }
+  function mouseoverCross(d){
+
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', true)
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
+  }
+  function mouseoutCross(d){
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', false)
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', false).attr({r: dotRadius})
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
+  }
+  function filterData(data, input){ //generic funciton to filter data based on an input
+    return data.filter(function(d) {return d.yPosition == input})
+  }
+}
+
+function drawPassthrough(passthrough,passZoneLabels,passItemLabels) {
+
+  /*GETTING THE DATA READY AND IDENTIFYING THE DOMAINS FOR THE CHARTING VARIABLES*/
+  var maxPosition = d3.max(passthrough, function(d){return d.dotPosition});
+  var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
+  for (i = 1; i <= maxPosition; i++){
+    xDomain.push(i)
+  };
+  var yDomain = d3.extent(passthrough, function(d){return d.pT}); // the domain of the y-axis is set to the range of passthrough values
+  var colorDomain = yDomain; //same with the color scale
+
+  //CREATING THE CANVAS
+  var containerSize = {'height': 200, 'width': 480};
+  var margin = {top: 0.06*containerSize.height , right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.04*containerSize.width};
+  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.3*containerSize.height, left: 0.04*containerSize.width};
+  var width = containerSize.width - margin.right - margin.left; //Chart width
+  var height = containerSize.height - margin.top - margin.bottom; //Chart height
+
+  var passChart = d3.select('#passthroughContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
+        .attr({
+          height: height + margin.top + margin.bottom,
+          width: width + margin.left + margin.right
+        })
+      .append('g')
+      .attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
+  
+  var xScale = d3.scale.ordinal() //the ordinal scale uses dotpositions to place them on charts
+      .domain(xDomain)
+      .rangeBands([padding.left, width], .1);
+
+  var yScale = d3.scale.linear() //set to the range of seg values
+      .domain(yDomain)
+      .range([height - padding.bottom, 0]);
+
+  var yAxis = d3.svg.axis()
+      .scale(yScale)
+      .orient("left")
+      .tickSize(3)
+      .ticks(5)
+      .tickPadding(8);
+
+  var colorScale = d3.scale.linear() //could change the scale later
+      .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
+      .range(["#C0C0C0", "#ff0000"])
+      .interpolate(d3.interpolateLab);
+
+  //TOOL-TIP
+  var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([14, 10])
+      .direction('e')
+      .html(function(d) {
+          return "<strong>State:</strong> <span style='color:silver'>" + d.state + "</span>" + "<br>" + 
+          "<strong>Passthrough:</strong> <span style=" + "'" + "color:" + colorScale(d.pT) +"'" +">" + d3.round(d.pT, 1) + "</span>"
+          ;
+    })
+    passChart.call(tip)
+
+  var dotRadius = 3;
+  var xFont = 10;
+  var itemNamestagger = 10;
+
+  //DRAWING THE DIFFERENT ELEMENTS ON THE CANVAS
+  passChart.append('g')
+      .attr('class', 'zone-labels') //corresponding to each column of dots
+      .selectAll('text')
+      .data(passZoneLabels)
+      .enter()
+      .append('text')
+      .text(function(d){return d.zoneCode})
+      .attr({
+        x: function(d) {return xScale(d.dotPosition)},
+        y: height - padding.bottom/1.5,
+        class: 'zoneLab'
+      })
+      .style('text-anchor', 'middle')
+      .attr('font-size', xFont)
+      .style('cursor', 'default');
+
+  passChart.append('g')
+      .attr('class', 'item-labels')
+      .selectAll('text')
+      .data(passItemLabels)
+      .enter()
+      .append('text')
+      .text(function(d){return d.item})
+      .attr({
+        x: function(d){return (xScale(Math.floor(d.xPosition)) + xScale(Math.ceil(d.xPosition)))/2 },
+        y: function(d){return height - padding.bottom/2.5 + itemNamestagger*d.yPosition} //yPosition is a 0-1 variable
+      })
+      .style('text-anchor', 'middle')
+      .style('font-size', xFont)
+      .style('cursor', 'default');
+
+  passChart.append('g')
+      .selectAll('.hover-rects')
+      .data(passZoneLabels)
+      .enter()
+      .append('rect')
+      .attr({
+        x: function(d) {return xScale(d.dotPosition) - dotRadius},
+        y: 0,
+        height: height - padding.bottom/1.5,
+        width: 2*dotRadius,
+        class: 'zoneMean',
+        id: function(d){return d.zoneCode}
+      })
+      .style("fill-opacity", "0")
+      .style('cursor', 'default')
+      .on('mouseover', mouseoverRect)
+      .on('mouseout', mouseoutRect);
+
+  passChart.append('g') //Adding the axis to the bottom of the first panel
+      .attr('class', 'y-axis')
+      //.attr("transform", "translate(" + (3*padding.left) + ", 0)")
+      .style('cursor', 'default')
+      .call(yAxis)
+
+  passChart.append('g')
+      .selectAll('.dots')
+      .data(passthrough)
+      .enter()
+      .append('svg:circle')
+      .attr({
+        r: dotRadius,
+        cx: function(d){return xScale(d.dotPosition)},
+        cy: function(d){return yScale(d.pT)},
+        fill: function(d){return colorScale(d.pT)},
+        class: 'dots'
+      })
+      .on('mouseover', mouseoverDot)
+      .on('mouseout', mouseoutDot)
+
+  passChart.append('g')
+      .selectAll('.meanCross')
+      .data(passZoneLabels)
+      .enter()
+      .append('text')
+      .text('x')
+      .attr({
+        x: function(d){return xScale(d.dotPosition)},
+        y: function(d){return yScale(d.mean)},
+        class: 'meanCross'
+      })
+      .attr('font-size', xFont)
+      .style('font-weight', 'bold')
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'middle')
+      .style('cursor', 'default')
+      .on('mouseover', mouseoverCross)
+      .on('mouseout', mouseoutCross)
+      .style('pointer-events', 'none');
+
+
+  passChart.append('g')
+      .selectAll('.meanLines')
+      .data(filterData(passItemLabels, 0))
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return xScale(d.minX)},
+        y1: function(d){return yScale(d.mean)},
+        x2: function(d){return xScale(d.maxX)},
+        y2: function(d){return yScale(d.mean)}
+      })
+
+  //DEFINING THE MOUSEOVER FUNCTION
+  function mouseoverRect(d){
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', true)
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
+  }
+  function mouseoutRect(d){
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', false)
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', false).attr({r: dotRadius})
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
+  }
+  function mouseoverDot(d){
+    d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', true)
+    d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
+    tip.show(d)
+  }
+  function mouseoutDot(d){
+    d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', false)
+    d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', false).attr({r: dotRadius})
+    tip.hide(d)
+  }
+  function mouseoverCross(d){
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', true)
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', true)
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
+  }
+  function mouseoutCross(d){
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', false)
+    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', false)
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
+    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
+    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
+  }
+  function filterData(data, input){ //generic funciton to filter data based on an input
+  	return data.filter(function(d) {return d.yPosition == input})
+  }
+}
+
+
+function drawVolatility(volatility, volBoxValues, volStateLabels, volZonePosition){ // Calculates the Chart Scales and the Y-Scale for the panel (independent of the product selections)
+  //console.log(volStateLabels)
+  //CONSTRUCTED VARAIABLES AND FUNCTIONS FOR THE CODE
+
+  function filterData(data, input){ //generic funciton to filter data based on an input
+  	return data.filter(function(d) {return d.item === input})
+  }
+
+  var monthYear = d3.time.format("%b %y"); //converts to Month-Year
+  var monthFormat = d3.time.format("%Y-%m").parse; //Parse dates and converts to a d3 time format
+  var monthFormatToString = d3.time.format("%Y-%m")
+
+  //DEFAULT DATA SELECTIONS FOR INITIAL LOAD
+  var sel = document.getElementById('productSelectVolatility');//selecting the current product
+  var product = sel.options[sel.selectedIndex].value; //recording the product name selected
+  var data = filterData(volatility, product); //loading the volatility data based on input (this would be used for the initial chart)
+  var zoneData = filterData(volBoxValues, product); //loading the zones data based on the input
+
+  //CALCULATING DOMAINS FROM THE DATA
+  var xChartDomain = uniq_fast(volatility.map(function(d){return monthFormat(d.date.slice(0,7))})).sort(function(a,b) { return a - b;});//the width of chart is based on the number of dates.
+  var maxYPosition = d3.max(volStateLabels, function(d){return d.yPosition}) //the yPosition determines the spacing and position of the y labels and dots
+  var yPanelDomain = [] //the states within each panel are positioned using this domain with a stagger for each zone added
+  for(i = 1; i <= maxYPosition; i++){
+    yPanelDomain.push(i)
+  }
+  var xPanelDomain = [0, Math.ceil(d3.max(volatility, function(d){return d.volMoving})/10)*10]; // the width of each panel is set to the range of volatility for the selected input. The formula sets it so that its rounded to the nearest 10
+  var colorDomain = xPanelDomain //the color domain is set to the range of volatility values
+
+  //CREATING THE CANVAS
+  var containerSize = {'height': 600, 'width': 960};
+  var margin = {top: 0.06*containerSize.height , right: 0.06*containerSize.width, bottom: 0.06*containerSize.height, left: 0.06*containerSize.width};
+  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
+  var width = containerSize.width - margin.right - margin.left; //Chart width
+  var height = containerSize.height - margin.top - margin.bottom; //Chart height
+
+  var volChart = d3.select('#volatilityContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
+        .attr({
+          height: height + margin.top + margin.bottom,
+          width: width + margin.left + margin.right
+        })
+      .append('g')
+      .attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
+
+  var xChartScale = d3.scale.ordinal()
+      .domain(xChartDomain)
+      .rangeRoundBands([padding.left, width], .03)
+
+  var panelWidth = xChartScale.rangeBand()
+
+  var yPanelScale = d3.scale.ordinal()
+      .domain(yPanelDomain)
+      .rangeBands([padding.top, height], 0.2)
+
+  var xPanelScale = d3.scale.linear()
+      .domain(xPanelDomain)
+      .range([padding.left, panelWidth - padding.right])
+
+  var xAxis = d3.svg.axis()
+      .scale(xPanelScale)
+      .orient("bottom")
+      .tickSize(7)
+      .ticks(4)
+      .tickPadding(8)
+
+  var colorScales = d3.scale.linear() //could change the scale later
+      .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
+      .range(["#C0C0C0","#FF0000"])
+      //.range(["#C0C0C0","#0000FF"])
+      //.range(["#0000ff","#ff0000"])
+      .interpolate(d3.interpolateLab);
+
+  //TOOL-TIP
+  var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([14, 10])
+      .direction('e')
+      .html(function(d) {
+          return "<strong>State:</strong> <span style='color:silver'>" + d.state + "</span>" + "<br>" + 
+          "<strong>Centre:</strong> <span style='color:silver'>" + d.centre + "</span>" + "<br>" +
+          "<strong>Volatility:</strong> <span style=" + "'" + "color:" + colorScales(d.volMoving) +"'" +">" + d3.round(d.volMoving, 2) + "</span>"
+          ;
+    })
+  volChart.call(tip)
+  var stateFont = 10;
+  var bigFont = 16;
+  var dotRadius = 3;
+
+  //DRAWING THE CHART ELEMENTS
+  volChart.append('g') //vertical panel backgrounds
+      .selectAll(".vboxes")
+      .data(xChartDomain)
+      .enter()
+      .append('rect')
+      .attr({
+        x: function(d){return xChartScale(d)},
+        y: 0,
+        height: height - padding.bottom,
+        width: panelWidth
+      })
+      .style("stroke", "rgb(10,10,10)")
+      .style("stroke-width", "1px")
+      .style("fill", "none");
+
+  volChart.append('g') //zonal labels (the first level of Y labels)
+      .attr('class', 'y-labels')
+      .selectAll('text')
+      .data(volZonePosition)
+      .enter()
+      .append('text')
+      .text(function(d){return ('Z'+d.zoneCode)})
+      .attr({
+        x: -margin.left,
+        y: function(d){return (yPanelScale(Math.floor(d.position)) + yPanelScale(Math.ceil(d.position)))/2}
+      })
+      .style('font-size', bigFont)
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'start')
+      .style('cursor', 'default')
+
+  volChart.append('g') //date labels (along the x-axis)
+      .attr('class', 'x-labels')
+      .selectAll('text')
+      .data(xChartDomain)
+      .enter()
+      .append('text')
+      .text(function(d){return monthYear(d)})
+      .attr({
+        x: function(d){return xChartScale(d) + panelWidth/2},
+        y: 0
+      })
+      .style('font-size', bigFont)
+      .style('alignment-baseline', 'after-edge')
+      .style('text-anchor', 'middle')
+      .style('cursor', 'default')
+      //.style('font-weight', 'bold');
+
+  volChart.append('g') //state labels (second layer of y-labels)
+      .attr('class', "stateLabels")
+      .selectAll('text')
+      .data(volStateLabels)
+      .enter()
+      .append('text')
+      .text(function(d){return d.state})
+      .attr({
+        x: xChartScale(xChartDomain[0]) - 4,
+        y: function(d){return yPanelScale(d.yPosition)},
+        class: '.stateLabels'
+      })
+      .attr('font-size', stateFont)
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'end')
+      .style('cursor', 'default')
+
+  var meanLine = volChart.append('g') //mean for each zone date combo is marked by a line
+      .selectAll(".boxLines")
+      .data(zoneData)
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+        y1: function(d) {return yPanelScale(d.minY)},
+        x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+        y2: function(d){return yPanelScale(d.maxY)}
+      })
+      .style('pointer-events', 'none')
+
+  var rects = volChart // these rects help apply hover functions to an entire line instead of indivisual dots
+      .selectAll('.hover-rects')
+      .data(volStateLabels)
+      .enter()
+      .append('rect')
+      .attr({
+        x: -40,
+        y:function(d){return yPanelScale(d.yPosition) - stateFont/2},
+        height: 1.1*stateFont,
+        width: width + 30,
+        class: 'hover-rects'
+      })
+      .style('fill', 'none')
+      .on('mouseover', mouseoverRect)
+      .on('mouseout', mouseoutRect)
+
+  var dots = volChart.append('g') //the circles representing center values
+      .selectAll('.dots')
+      .data(data)
+      .enter()
+      .append('circle')
+      .attr({
+        r: dotRadius,
+        cx: function(d){return xChartScale(d.date) + xPanelScale(d.volMoving)},
+        cy: function(d){return yPanelScale(d.yPosition)},
+        class: 'dots',
+        id: function(d){return d.state},
+        fill: function(d){return colorScales(d.volMoving)}
+      })
+      .on('mouseover', mouseoverDots)
+      .on('mouseout', mouseoutDots)
+
+  var hoverMean = volChart.selectAll('.hoverMean') //this would place an X for each mean
+      .data(zoneData)
+      .enter()
+      .append('text')
+      .text('X')
+      .attr({
+        x: function(d){return xChartScale(d.date)}, //the left side of each panel
+        y: 100 + containerSize.height, //marking it out of the charting area
+        class: 'hoverMean'
+      })
+      .style('font-size', 14)
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'middle')
+      .style('cursor', 'default')
+      //.on('mouseover', mouseoverCross)
+      //.on('mouseout', mouseoutCross)
+      .style('pointer-events', 'none')
+
+  var axisNodes = volChart.append('g') //Adding the axis to the bottom of the first panel
+      .attr('class', 'x-axis')
+      .attr("transform", "translate(" + xChartScale(xChartDomain[0]) + ","+ (height) + ")")
+      .call(xAxis)
+
+  //MARKING THE NEW PRODUCT SELECTION AND CALLING THE REDRAW FUNCTION
+  d3.select('#productSelectVolatility') //changes the product based on user input from the dropdown menu
+    .on('change', function(d) {
+        var product = d3.select(this).property('value')
+        redraw(product)
+    })
+
+  //DEFINING THE HOVER FUNCTIONS BASED ON SELECTED DATA
+  function mouseoverRect(d){ // isolating the values based on hover
+    var meanData = [] //empty array to store the mean volatility for each panel (date) and hovered state
+    xChartDomain.forEach(function(e){ //loops over each date in the domain to select data of interest and calculate the mean
+      var centers = data.filter(function(f){ return f.state===d.state && monthFormatToString(e) === f.date.slice(0,7)}) //filters data by hovered state and all dates
+      var mean = d3.mean(centers, function(g){return g.volMoving}) //calculates the mean for each date
+      var meantemp = {}; //empty mean array to store values for each date that is being looped through
+      meantemp['yPosition'] = d.yPosition;
+      meantemp['date'] = e
+      if(typeof mean == "undefined"){meantemp['value'] = 10000} else {meantemp['value'] = mean} //undefined is set to above 1000 to be outside the charting area
+      meanData.push(meantemp)
+      })
+    d3.selectAll('.hoverMean').data(meanData).attr({x: function(d){return xChartScale(d.date) + xPanelScale(d.value)}, y: function(d){return yPanelScale(d.yPosition)}})
+    d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", true)
+    d3.selectAll('.dots#'+d.state).classed("hover-show", true).attr({r: 1.5*dotRadius})
+    //d3.selectAll('.stateLabels').filter(function(z){return z.state === d.state}).attr('font-size', '16px')
+  }
+
+  function mouseoutRect(d){
+    d3.selectAll('.hoverMean').attr({x: 1000, y: 1000})
+    d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", false)
+    d3.selectAll('.dots#' + d.state).classed("hover-show", false).attr({r: dotRadius})
+  }
+
+  function mouseoverDots(d){
+    var meanData = []
+    xChartDomain.forEach(function(e){
+      var centers = data.filter(function(f){return f.state === d.state && monthFormatToString(e) === f.date.slice(0,7)});
+      var mean = d3.mean(centers, function(g){return g.volMoving});
+      var meantemp = {};
+      meantemp['yPosition'] = d.yPosition;
+      meantemp['date'] = e;
+      if(typeof mean == "undefined"){meantemp['value'] = 10000} else {meantemp['value'] = mean};
+      meanData.push(meantemp);
+    })
+    d3.selectAll('.hoverMean').data(meanData).attr({x: function(d){return xChartScale(d.date) + xPanelScale(d.value)}, y: function(d){return yPanelScale(d.yPosition)}})
+    d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", true)
+    d3.selectAll('.dots#'+d.state).classed("hover-show", true).attr({r: 1.5*dotRadius})
+    tip.show(d)
+  }
+  function mouseoutDots(d){
+    d3.selectAll('.hoverMean').attr({x: 1000, y: 1000})
+    d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", false)
+    d3.selectAll('.dots#' + d.state).classed("hover-show", false).attr({r: dotRadius})
+    tip.hide(d)
+  }
+  function mouseoverCross(d){
+    var meanData = []
+    xChartDomain.forEach(function(e){
+      var centers = data.filter(function(f){return f.state === d.state && monthFormatToString(e) === f.date.slice(0,7)});
+      var mean = d3.mean(centers, function(g){return g.volMoving});
+      var meantemp = {};
+      meantemp['yPosition'] = d.yPosition;
+      meantemp['date'] = e;
+      if(typeof mean == "undefined"){meantemp['value'] = 10000} else {meantemp['value'] = mean};
+      meanData.push(meantemp);
+    })
+    d3.selectAll('.hoverMean').data(meanData).attr({x: function(d){return xChartScale(d.date) + xPanelScale(d.value)}, y: function(d){return yPanelScale(d.yPosition)}})
+    d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", true)
+    d3.selectAll('.dots#'+d.state).classed("hover-show", true).attr({r: 1.5*dotRadius})
+    //tooltips
+  }
+  function mouseoutCross(d){
+    d3.selectAll('.hoverMean').attr({x: 1000, y: 1000})
+    d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", false)
+    d3.selectAll('.dots#' + d.state).classed("hover-show", false).attr({r: dotRadius})
+  }
+
+  //CREATING THE REDRAW FUNCTION FOR ELEMENTS THAT NEED TO CHANGE WHEN A NEW PRODUCT IS SELECTED
+  function redraw(product){ //recalibrates the x-PanelScale and redraws the means and dots based on the product selection
+    data = filterData(volatility, product); //loading the volatility data based on input
+    zoneData = filterData(volBoxValues, product); //loading the zones data based on the input
+
+    dots = dots.data(data); //updating the dots
+    dots.exit().remove();
+    dots.enter().append('circle');
+    dots.attr({
+        r: dotRadius,
+        cx: function(d){return xChartScale(d.date) + xPanelScale(d.volMoving)},
+        cy: function(d){return yPanelScale(d.yPosition)},
+        class: 'dots',
+        id: function(d){return d.state},
+        fill: function(d){return colorScales(d.volMoving)}
+      })
+
+    meanLine = meanLine.data(zoneData) //updating the mean line
+    meanLine.exit().remove()
+    meanLine.enter().append('line');
+    meanLine.attr({
+      x1: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+      y1: function(d) {return yPanelScale(d.minY)},
+      x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+      y2: function(d){return yPanelScale(d.maxY)}
+    })
+
+    hoverMean.attr({
+      x: function(d){return xChartScale(d.date)}, //the left side of each panel
+      y: 100 + containerSize.height, //marking it out of the charting area
+      class: 'hoverMean'
+    })
+  }
+}
+
+function drawHistogram(allData) {
+  //FILTERING THE DATA BASED ON SELECTED INPUTS
+  var dateFormat = d3.time.format("%Y-%m-%d");
+  var monthFormat = d3.time.format("%b-%y");
+
+  var startDate = dateFormat.parse('2009-01-01'); //This will be based on user inputs
+  var endDate = dateFormat.parse('2012-12-01'); //This will be based on user inputs
+  var sel = document.getElementById('productSelectPrice'); //selecting the default based on currentinput
+  var product = sel.options[sel.selectedIndex].value;
+  var data = allData.filter(function(d){return d.item == product && dateFormat.parse(d.date)>= startDate && dateFormat.parse(d.date) <= endDate});
+
+  //CREATING THE CANVAS AND SCALES BASED ON FILTERED DATA
+  var containerSize = {'height': 180, 'width': 440};
+  var margin = {top: 0.06*containerSize.height , right: 0.001*containerSize.width, bottom: 0.3*containerSize.height, left: 0.2*containerSize.width};
+  var padding = {top: 0.06*containerSize.height, right: 0.001*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
+  var width = containerSize.width - margin.right - margin.left; //Chart width
+  var height = containerSize.height - margin.top - margin.bottom; //Chart height
+
+  var histChart = d3.select('.mapSVG').append('svg') //http://bl.ocks.org/mbostock/3019563
+      .append('g')
+        .attr({
+          height: height + margin.top + margin.bottom,
+          width: width + margin.left + margin.right,
+          'class':'histogramChart'
+       	})
+      .attr("transform", "translate(" + (40) + "," + 260+ ")");
+
+  var yScale = d3.scale.linear()
+      .domain(d3.extent(data, function(d){return d.meanPrice}))
+      .range([height, padding.top]);
+
+  //CREATING THE HISTOGRAM DATA
+  var numBins = 20;
+  var histogram = d3.layout.histogram()
+      .bins(yScale.ticks(numBins))
+      .value(function(d){return d.meanPrice});
+
+  var histData = getData(data, histogram);
+
+  //CALCULATING THE x-Axis AND COLOUR SCALES BASED ON THE HISTOGRAM DATA
+  var maxX = d3.max(histData, function(d){return d.x})
+  var xDomain =  [];
+  for(i=1; i<=maxX; i++){
+    xDomain.push(i)
+  }
+  var xScale = d3.scale.ordinal()
+      .domain(xDomain)
+      .rangeBands([0, width], 0.01)
+
+  var max = d3.max(histData, function(d) { return d.meanPrice; });
+  var min = d3.min(histData, function(d) { return d.meanPrice; });
+
+  var bounds = setBins(max,min);
+
+  /*var colorArray = ['rgb(255,51,51)','rgb(200,30,100)','rgb(130,15,150)','rgb(60,5,200)','rgb(0,0,255)'];
+  colorArray.reverse();
+
+  var color = d3.scale.threshold()
+    .domain(bounds)
+    .range(colorArray);
+*/
+  var axis = d3.svg.axis()//setting the axis based on the yScale
+    .scale(yScale)
+    .orient("left")
+    .tickSize(4)
+    .tickValues([min*.95]
+    .concat(bounds));
+
+  //var rectWidth = 10;
+  var dotChartSeparation = 5
+  var dotRadius = 1
+
+  //DRAWING THE ELEMENTS
+  var axisLine = histChart.append("g")
+        .attr('class', 'histAxis')
+        .call(axis)
+
+/*  axisLine.selectAll("rect")
+        .data(color.range().map(function(d, i) {
+          return {
+            x0: i ? yScale(color.domain()[i - 1]) : yScale.range()[0],
+            x1: i < color.domain().length ? yScale(color.domain()[i]) : y.range()[1],
+            z: d
+          };
+        }))
+        .enter().append("rect")
+        .attr("height", function(d,i) { return d.x0 - d.x1})
+        .attr("y", function(d, i) { return d.x1; })
+        .attr("width", rectWidth)
+        .style("fill", function(d) { return d.z; });*/
+
+  var dots = histChart.append('g')
+      .selectAll('.dots')
+      .data(histData)
+      .enter()
+      .append('circle')
+      .attr({
+        r: dotRadius,
+        cx: function(d){return xScale(d.x) + dotChartSeparation},
+        cy: function(d){return yScale(d.y)}, //the dy centers the dots between the two ticks
+        class: '.dots'
+      })
+      .attr('fill', 'silver');
+
+  //MARKING THE NEW PRODUCT SELECTION AND CALLING THE REDRAW FUNCTION
+  d3.select('#productSelectPrice') //changes the product based on user input from the dropdown menu
+    .on('change.histogram', function(d) {
+        var product = d3.select(this).property('value')
+        redraw(product)
+    })
+
+  //REDRAWING ELEMENTS BASED ON PRODUCT SELECTIONS
+  function redraw(product, startDate, endDate){
+    startDate = dateFormat.parse('2009-01-01'); //This will be based on user inputs
+    endDate = dateFormat.parse('2012-12-01'); //This will be based on user inputs
+    data = allData.filter(function(d){return d.item == product && dateFormat.parse(d.date)>= startDate && dateFormat.parse(d.date) <= endDate});
+    yScale.domain(d3.extent(data, function(d){return d.meanPrice}));
+    histogram.bins(yScale.ticks(numBins))
+    histData = getData(data, histogram)
+    max = d3.max(histData, function(d) { return d.meanPrice; });
+    min = d3.min(histData, function(d) { return d.meanPrice; });
+    bounds = setBins(max,min)
+
+    maxX = d3.max(histData, function(d){return d.x})
+    xDomain =  [];
+    for(i=1; i<=maxX; i++){
+      xDomain.push(i)
+    }
+    xScale.domain(xDomain)
+
+    dots = dots.data(histData); //updating the dots
+    dots.exit().remove();
+    dots.enter().append('circle');
+    dots.attr({
+        r: dotRadius,
+        cx: function(d){return xScale(d.x) + dotChartSeparation},
+        cy: function(d){return yScale(d.y )}, //the dy centers the dots between the two ticks
+        class: '.dots'
+      })
+    .attr('fill', 'silver');
+
+    
+    //color.domain(bounds)
+    axis = d3.svg.axis()//setting the axis based on the yScale
+        .scale(yScale)
+        .orient("left")
+        .tickSize(4)
+        .tickValues([min*.95]
+        .concat(bounds));
+    axisLine.call(axis)
+  }
+
+  function getData(data, histogram){
+    var histData = histogram(data); //create the array of arrays with hist data
+    array = [];//empty array to populate
+    histData.forEach(function(d){
+      var y = d.x // gives the vertical position of the dots
+      var dy = d.dx //the width of the bin
+      var x = d.y //this gives the number of dots
+      d.forEach(function(e, i){
+        e.y = y;
+        e.dy = dy;
+        e.x = x - i; //reversing the order since the hist layout sets the highest value in the lowest position in the array
+        array.push(e)
+      })
+    })
+    return array
+  }
+}
 </script>
 </html>

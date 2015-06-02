@@ -45,7 +45,7 @@ line {
 <body>
 
 <div id="main">
-    <select id="productSelect">
+    <select id="productSelectVolatility">
       <option selected value="Cement Dangote">Cement Dangote</option>
       <option value="Drink Swan Water Bottle">Drink Swan Water Bottle</option>
       <option value="Maize White">Maize White</option>
@@ -54,14 +54,14 @@ line {
       <option value="Rice Local">Rice Local</option>
       <option value="Sorghum">Sorghum</option>
     </select>
-    <div id="volChart"></div>
+    <div id="volatilityContainer"></div>
 </div>
 
 </body>
 <script>
 
 
-function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Calculates the Chart Scales and the Y-Scale for the panel (independent of the product selections)
+function drawVolatility(volatility, volBoxValues, volStateLabels, volZonePosition){ // Calculates the Chart Scales and the Y-Scale for the panel (independent of the product selections)
   //console.log(volStateLabels)
   //CONSTRUCTED VARAIABLES AND FUNCTIONS FOR THE CODE
   function uniq_fast(a) { // quickly drop duplicate values from an array
@@ -87,7 +87,7 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
   var monthFormatToString = d3.time.format("%Y-%m")
 
   //DEFAULT DATA SELECTIONS FOR INITIAL LOAD
-  var sel = document.getElementById('productSelect');//selecting the current product
+  var sel = document.getElementById('productSelectVolatility');//selecting the current product
   var product = sel.options[sel.selectedIndex].value; //recording the product name selected
   var data = filterData(volatility, product); //loading the volatility data based on input (this would be used for the initial chart)
   var zoneData = filterData(volBoxValues, product); //loading the zones data based on the input
@@ -103,13 +103,13 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
   var colorDomain = xPanelDomain //the color domain is set to the range of volatility values
 
   //CREATING THE CANVAS
-  var containerSize = {'height': 600, 'width': 1000};
+  var containerSize = {'height': 600, 'width': 960};
   var margin = {top: 0.06*containerSize.height , right: 0.06*containerSize.width, bottom: 0.06*containerSize.height, left: 0.06*containerSize.width};
   var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
   var width = containerSize.width - margin.right - margin.left; //Chart width
   var height = containerSize.height - margin.top - margin.bottom; //Chart height
 
-  var volChart = d3.select('#volChart').append('svg') //http://bl.ocks.org/mbostock/3019563
+  var volChart = d3.select('#volatilityContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
         .attr({
           height: height + margin.top + margin.bottom,
           width: width + margin.left + margin.right
@@ -296,7 +296,7 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
       .call(xAxis)
 
   //MARKING THE NEW PRODUCT SELECTION AND CALLING THE REDRAW FUNCTION
-  d3.select('#productSelect') //changes the product based on user input from the dropdown menu
+  d3.select('#productSelectVolatility') //changes the product based on user input from the dropdown menu
     .on('change', function(d) {
         var product = d3.select(this).property('value')
         redraw(product)

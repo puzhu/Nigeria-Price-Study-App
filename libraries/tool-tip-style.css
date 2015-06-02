@@ -3,9 +3,9 @@
   font-weight: normal;
   font-size: 11px;
   padding: 6px;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgb(0, 0, 0);
   color: #fff;
-  border-radius: 6px;
+  /*border-radius: 6px;*/
   pointer-events: none;
 }
 
@@ -16,7 +16,7 @@
   font-size: 10px;
   width: 100%;
   line-height: 1;
-  color: rgba(0, 0, 0, 0.8);
+  color: rgb(0, 0, 0);
   position: absolute;
   pointer-events: none;
 }

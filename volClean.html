@@ -316,14 +316,14 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
       })
     d3.selectAll('.hoverMean').data(meanData).attr({x: function(d){return xChartScale(d.date) + xPanelScale(d.value)}, y: function(d){return yPanelScale(d.yPosition)}})
     d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", true)
-    d3.selectAll('.dots#'+d.state).classed("hover-show", true).attr({r: 1.5*dotRadius})
-    //d3.selectAll('.stateLabels').filter(function(z){return z.state === d.state}).attr('font-size', '16px')
+    d3.selectAll('.dots').filter(function(t){return t.state == d.state}).classed("hover-show", true).attr({r: 1.5*dotRadius})
+    d3.selectAll('.stateLabels').filter(function(t){return t.state == d.state}).attr('font-size', '16px')
   }
 
   function mouseoutRect(d){
     d3.selectAll('.hoverMean').attr({x: 1000, y: 1000})
     d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", false)
-    d3.selectAll('.dots#' + d.state).classed("hover-show", false).attr({r: dotRadius})
+    d3.selectAll('.dots').filter(function(t){return t.state == d.state}).classed("hover-show", false).attr({r: dotRadius})
   }
 
   function mouseoverDots(d){
@@ -339,13 +339,13 @@ function draw(volatility, volBoxValues, volStateLabels, volZonePosition){ // Cal
     })
     d3.selectAll('.hoverMean').data(meanData).attr({x: function(d){return xChartScale(d.date) + xPanelScale(d.value)}, y: function(d){return yPanelScale(d.yPosition)}})
     d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", true)
-    d3.selectAll('.dots#'+d.state).classed("hover-show", true).attr({r: 1.5*dotRadius})
+    d3.selectAll('.dots').filter(function(t){return t.state == d.state}).classed("hover-show", true).attr({r: 1.5*dotRadius})
     tip.show(d)
   }
   function mouseoutDots(d){
     d3.selectAll('.hoverMean').attr({x: 1000, y: 1000})
     d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", false)
-    d3.selectAll('.dots#' + d.state).classed("hover-show", false).attr({r: dotRadius})
+    d3.selectAll('.dots').filter(function(t){return t.state == d.state}).classed("hover-show", false).attr({r: dotRadius})
     tip.hide(d)
   }
   function mouseoverCross(d){

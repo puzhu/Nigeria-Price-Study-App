@@ -454,6 +454,18 @@ function drawMap(nigeriaStates,priceData) {
         .style("fill", function(d) { return d.z; });
 
     g.call(axis);
+    
+    //TOOL-TIP
+  	var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([14, 10])
+      .direction('e')
+      .html(function(d) {
+          return "<strong>State:</strong> <span style='color:silver'>" + d.properties.state_name+ "</span>" + "<br>" +
+          "<strong>Mean Price:</strong> <span style=" + "'" + "color:" + color(d.properties.price) +"'" +">" + d3.round(d.properties.price,2) + "</span>"
+          ;
+    })
+    map.call(tip)
 
    	// add the price data to the map properties
 	var stateFeatures = topojson.feature(nigeriaStates, nigeriaStates.objects.NGA_adm1).features;
@@ -497,12 +509,15 @@ function drawMap(nigeriaStates,priceData) {
 		var stateName = d.properties.state_name.replace(' ','')
 		d3.selectAll('.boundary-hover#'+stateName).filter(function(e) { return e}).classed('boundary-hover-hide',false).classed('boundary-hover-show',true)
 		d3.selectAll('.stateLines').filter(function(e) {return e.state===d.properties.state_name}).style('stroke','red').style('stroke-width','2px').moveToFront();
+		//d3.selectAll('.histDots').filter(function(e) {return e.state===d.properties.state_name}).style('fill', 'red')
+		tip.show(d)
 	}
 
 	function mouseout(d) {
 		var stateName = d.properties.state_name.replace(' ','')
 		d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',true).classed('boundary-hover-show',false)
 		d3.selectAll('.stateLines').filter(function(e) {return e.state===d.properties.state_name}).style('stroke','rgb(150,150,150)').style('stroke-width','1px');
+		tip.hide(d)
 	}
 
 	map.append("path")
@@ -554,8 +569,6 @@ function drawMap(nigeriaStates,priceData) {
 				}
 			});
 	}
-
-	
 }
 
 function drawLine(priceData) {
@@ -699,6 +712,7 @@ function drawLine(priceData) {
 		focus.attr("transform", "translate(" + xScale(d.month) + "," + yScale(d.price) + ")");
 		states.filter(function(e) {return e.state===d.state}).style('stroke','red').style('stroke-width','2px').moveToFront();
 		d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',false).classed('boundary-hover-show',true)
+		d3.selectAll('.histDots').filter(function(t){return t.state === d.state}).style('fill', 'red')
 	}
 	function mouseout(d) {
 		var stateName = d.state.replace(' ','')
@@ -766,7 +780,7 @@ function drawLine(priceData) {
 			.rollup(function(v) { return v[0]; })
 			.entries(d3.merge(lineData.map(function(d) { return d.values; })))
 			.map(function(d) { return d.values; })));
-			
+
 		voronoiGroup.exit().remove();
 		voronoiGroup.enter().append("path");
 		voronoiGroup
@@ -1635,7 +1649,7 @@ function drawHistogram(allData) {
         .style("fill", function(d) { return d.z; });*/
 
   var dots = histChart.append('g')
-      .selectAll('.dots')
+      .selectAll('histDots')
       .data(histData)
       .enter()
       .append('circle')
@@ -1643,7 +1657,7 @@ function drawHistogram(allData) {
         r: dotRadius,
         cx: function(d){return xScale(d.x) + dotChartSeparation},
         cy: function(d){return yScale(d.y)}, //the dy centers the dots between the two ticks
-        class: '.dots'
+        class: '.histDots'
       })
       .attr('fill', 'silver');
 
@@ -1680,7 +1694,7 @@ function drawHistogram(allData) {
         r: dotRadius,
         cx: function(d){return xScale(d.x) + dotChartSeparation},
         cy: function(d){return yScale(d.y )}, //the dy centers the dots between the two ticks
-        class: '.dots'
+        class: '.histDots'
       })
     .attr('fill', 'silver');
 

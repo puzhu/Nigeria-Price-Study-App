@@ -1,0 +1,198 @@
+body {
+	/*font-family: 'Franklin Gothic Medium','Franklin Gothic', 'ITC Franklin Gothic', Arial, sans-serif;*/
+}
+#main {
+	width:960px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.voronoi path {
+  fill: none;
+  stroke:none;
+  pointer-events: all;
+}
+.x.axis path {
+	display: none;
+}
+.x.axis text, .y.axis text {
+	font-size:13px;
+}
+.x.axis line {
+	shape-rendering:crispEdges;
+	stroke: black;
+}
+.y.axis path {
+	display: none;
+/*	stroke:lightgrey;
+	stroke-width:1px;*/
+}
+.y.axis line {
+	stroke:lightgrey;
+	stroke-width:1px;
+}
+.state--hover {
+	stroke:red;
+}
+.stateLines {
+	fill:none;
+	stroke-width: 1px;
+	stroke: rgb(150,150,150);
+}
+.focus {
+	pointer-events:none;
+}
+.key path {
+	display:none;
+}
+.key line {
+	stroke:#000;
+	shape-rendering:crispEdges;
+}
+.key text {
+	font-size:12px;
+}
+.state-boundary {
+	fill:none;
+	stroke:rgb(240,240,240);
+	stroke-width:.5px;
+	stroke-linejoin:round;
+	stroke-linecap:round;
+}
+.boundary-hover-show {
+	stroke:black;
+	fill:none;
+	stroke-width:1.5px;
+}
+.boundary-hover-hide {
+	stroke:none;
+	fill:none;
+}
+.boundary-hover {
+	fill:none;
+}
+#mapOuter, #lineOuter {
+	float:left;
+}
+#mapContainer {
+	/*border:1px solid black;*/
+	width:480px;
+	height:400px;
+}
+#lineChartContainer {
+	/*border:1px solid black;*/
+	height:400px;
+	width:480px;
+}
+#segmentationOuter,#passthroughOuter {
+	float:left;
+}
+#segmentationContainer line {
+  stroke-width:1;
+  stroke:rgb(50,50,50);
+}
+#segmentationContainer .y-axis path,
+#segmentationContainer .y-axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+    stroke-width:1px;
+}
+
+#segmentationContainer .y-axis text {
+    font-family: sans-serif;
+    font-size: 9px;
+}
+#segmentationContainer .zoneHoverShow{
+  stroke:black;
+  stroke-width:0.2px;
+}
+#segmentationContainer .zoneHoverHide {
+  fill: none;
+  stroke:black;
+  stroke-width:0.2px;
+}
+#segmentationContainer .meanHoverShow{
+  font-size: 16px;
+}
+#segmentationContainer .meanHoverHide{
+  color: silver;
+}
+
+#passthroughContainer line {
+  stroke-width:1;
+  stroke:rgb(50,50,50);
+}
+#passthroughContainer .y-axis path,
+#passthroughContainer .y-axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+    stroke-width:1px;
+}
+
+#passthroughContainer .y-axis text {
+    font-family: sans-serif;
+    font-size: 9px;
+}
+#passthroughContainer .zoneHoverShow{
+  stroke:black;
+  stroke-width:0.7px;
+}
+#passthroughContainer .zoneHoverHide {
+  fill: none;
+  stroke:black;
+  stroke-width:0.2px;
+}
+#passthroughContainer .meanHoverShow{
+  font-size: 16px;
+}
+
+#volatilityContainer rect {
+	shape-rendering: crispEdges;
+}
+#volatilityContainer line {
+  stroke-width:1;
+  stroke:rgb(50,50,50);
+}
+#volatilityContainer .x-axis path,
+#volatilityContainer .x-axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+    stroke-width:1px;
+}
+
+#volatilityContainer .x-axis text {
+    font-family: sans-serif;
+    font-size: 9px;
+}
+#volatilityContainer .hover-rects {
+  pointer-events: all;
+}
+
+#volatilityContainer .hover-show {
+  stroke:black;
+  stroke-width:0.2px;
+  fill-opacity: 1;
+  font-size: 16px;
+}
+
+#volatilityContainer .hover-hide {
+  fill: none;
+  stroke:black;
+  stroke-width:0.2px;
+}
+
+.histAxis path {
+  display: none;
+/*  stroke:lightgrey;
+  stroke-width:1px;*/
+}
+.histAxis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+.histAxis text {
+	font-size:10px;
+}

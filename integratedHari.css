@@ -1,0 +1,131 @@
+#main {
+	width: 90%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/*Outer set of divs*/
+#selectorDiv{
+	border:1px solid black;
+}
+#chartsDiv{
+	float: left;
+	width: 69%;
+	border:1px solid black;
+}
+#textDiv{
+	float: left;
+	width:29%;
+	border:1px solid black;
+}
+
+/*Common CSS for axis classes*/
+.yAxis path{
+	fill: none;
+	stroke: black;
+}
+.yAxis line{
+	stroke:grey;
+	stroke-width:1px;
+}
+
+/*Map Div and CSS*/
+#mapOuter{
+	float: left;
+	width:59%;
+	height: 300px;
+}
+#mapContainer{
+	width:95%;
+	height:75%;
+	margin:auto;
+}
+.key path {
+	display:none;
+}
+.key line {
+	stroke:#000;
+	shape-rendering:crispEdges;
+}
+.key text {
+	font-size:12px;
+}
+.state-boundary {
+	fill:none;
+	stroke:rgb(240,240,240);
+	stroke-width:.5px;
+	stroke-linejoin:round;
+	stroke-linecap:round;
+}
+.boundary-hover {
+	fill:none;
+}
+.boundary-hover-show {
+	stroke:black;
+	fill:none;
+	stroke-width:1.5px;
+}
+.boundary-hover-hide {
+	stroke:none;
+	fill:none;
+}
+
+/*Hist div and CSS*/
+#histOuter{
+	float: left;
+	width:39%;
+	height: 300px;
+}
+#histChartContainer{
+	width:95%;
+	height:75%;
+	margin:auto;
+}
+
+/*Line CSS*/
+#lineOuter{
+	clear: both;
+	width:98%;
+	height: 300px;
+}
+#lineChartContainer{
+	width:98%;
+	height:75%;
+	margin: auto;
+}
+.voronoi path {
+  fill: none;
+  stroke:none;
+  pointer-events: all;
+}
+.x.axis path {
+	display: none;
+}
+.x.axis text, .y.axis text {
+	font-size:13px;
+}
+.x.axis line {
+	shape-rendering:crispEdges;
+	stroke: black;
+}
+.y.axis path {
+	display: none;
+/*	stroke:lightgrey;
+	stroke-width:1px;*/
+}
+.y.axis line {
+	stroke:lightgrey;
+	stroke-width:1px;
+}
+.state--hover {
+	stroke:red;
+}
+.stateLines {
+	fill:none;
+	stroke-width: 1px;
+	stroke: rgb(150,150,150);
+}
+.focus {
+	pointer-events:none;
+}
+

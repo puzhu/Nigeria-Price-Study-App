@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
+
 <head>
 <title>Nigeria Price Monitor</title>
 <script src="libraries/d3.v3.min.js"></script>
@@ -11,207 +12,7 @@
 <script src="libraries/d3.tip.v0.6.3.js"></script>
 <link rel="stylesheet" href="libraries/tool-tip-style.css">
 <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css">
-
-<style>
-body {
-	/*font-family: 'Franklin Gothic Medium','Franklin Gothic', 'ITC Franklin Gothic', Arial, sans-serif;*/
-}
-#main {
-	width:960px;
-	margin-left:auto;
-	margin-right:auto;
-}
-.voronoi path {
-  fill: none;
-  stroke:none;
-  pointer-events: all;
-}
-.x.axis path {
-	display: none;
-}
-.x.axis text, .y.axis text {
-	font-size:13px;
-}
-.x.axis line {
-	shape-rendering:crispEdges;
-	stroke: black;
-}
-.y.axis path {
-	display: none;
-/*	stroke:lightgrey;
-	stroke-width:1px;*/
-}
-.y.axis line {
-	stroke:lightgrey;
-	stroke-width:1px;
-}
-.state--hover {
-	stroke:red;
-}
-.stateLines {
-	fill:none;
-	stroke-width: 1px;
-	stroke: rgb(150,150,150);
-}
-.focus {
-	pointer-events:none;
-}
-.key path {
-	display:none;
-}
-.key line {
-	stroke:#000;
-	shape-rendering:crispEdges;
-}
-.key text {
-	font-size:12px;
-}
-.state-boundary {
-	fill:none;
-	stroke:rgb(240,240,240);
-	stroke-width:.5px;
-	stroke-linejoin:round;
-	stroke-linecap:round;
-}
-.boundary-hover-show {
-	stroke:black;
-	fill:none;
-	stroke-width:1.5px;
-}
-.boundary-hover-hide {
-	stroke:none;
-	fill:none;
-}
-.boundary-hover {
-	fill:none;
-}
-#mapOuter, #lineOuter {
-	float:left;
-}
-#mapContainer {
-	/*border:1px solid black;*/
-	width:480px;
-	height:400px;
-}
-#lineChartContainer {
-	/*border:1px solid black;*/
-	height:400px;
-	width:480px;
-}
-#segmentationOuter,#passthroughOuter {
-	float:left;
-}
-#segmentationContainer line {
-  stroke-width:1;
-  stroke:rgb(50,50,50);
-}
-#segmentationContainer .y-axis path,
-#segmentationContainer .y-axis line {
-    fill: none;
-    stroke: black;
-    shape-rendering: crispEdges;
-    stroke-width:1px;
-}
-
-#segmentationContainer .y-axis text {
-    font-family: sans-serif;
-    font-size: 9px;
-}
-#segmentationContainer .zoneHoverShow{
-  stroke:black;
-  stroke-width:0.2px;
-}
-#segmentationContainer .zoneHoverHide {
-  fill: none;
-  stroke:black;
-  stroke-width:0.2px;
-}
-#segmentationContainer .meanHoverShow{
-  font-size: 16px;
-}
-#segmentationContainer .meanHoverHide{
-  color: silver;
-}
-
-#passthroughContainer line {
-  stroke-width:1;
-  stroke:rgb(50,50,50);
-}
-#passthroughContainer .y-axis path,
-#passthroughContainer .y-axis line {
-    fill: none;
-    stroke: black;
-    shape-rendering: crispEdges;
-    stroke-width:1px;
-}
-
-#passthroughContainer .y-axis text {
-    font-family: sans-serif;
-    font-size: 9px;
-}
-#passthroughContainer .zoneHoverShow{
-  stroke:black;
-  stroke-width:0.7px;
-}
-#passthroughContainer .zoneHoverHide {
-  fill: none;
-  stroke:black;
-  stroke-width:0.2px;
-}
-#passthroughContainer .meanHoverShow{
-  font-size: 16px;
-}
-
-#volatilityContainer rect {
-	shape-rendering: crispEdges;
-}
-#volatilityContainer line {
-  stroke-width:1;
-  stroke:rgb(50,50,50);
-}
-#volatilityContainer .x-axis path,
-#volatilityContainer .x-axis line {
-    fill: none;
-    stroke: black;
-    shape-rendering: crispEdges;
-    stroke-width:1px;
-}
-
-#volatilityContainer .x-axis text {
-    font-family: sans-serif;
-    font-size: 9px;
-}
-#volatilityContainer .hover-rects {
-  pointer-events: all;
-}
-
-#volatilityContainer .hover-show {
-  stroke:black;
-  stroke-width:0.2px;
-  fill-opacity: 1;
-  font-size: 16px;
-}
-
-#volatilityContainer .hover-hide {
-  fill: none;
-  stroke:black;
-  stroke-width:0.2px;
-}
-
-.histAxis path {
-  display: none;
-/*  stroke:lightgrey;
-  stroke-width:1px;*/
-}
-.histAxis line {
-    fill: none;
-    stroke: black;
-    shape-rendering: crispEdges;
-}
-.histAxis text {
-	font-size:10px;
-}
-</style>
+<link rel="stylesheet" href="integrated.css">
 </head>
 
 <body>
@@ -247,8 +48,12 @@ body {
 					<h3>Average prices</h3>
 					<div id="mapContainer"></div>
 				</div>
+				<div id="histOuter">
+					<h3>Prices from centers</h3>
+					<div id="histChartContainer"></div>
+				</div>
 				<div id="lineOuter">
-					<h3>Prices over time</h3>
+					<h3>Avg. Monthly Prices</h3>
 					<div id="lineChartContainer"></div>
 				</div>
 			</div>
@@ -325,35 +130,8 @@ function setBins(max,min) {
 		}
 		return bounds;
 }
-function getMapData(startDate,endDate,priceData,item) { //getting the data ready
-	var array= []
-	var states = uniq_fast(priceData.map(function(d) {return d.state})) //creates the unique list of states
-	states.forEach(function(d) { //loop through states to calculate the mean price
-		var stateData = priceData.filter(function(e) {return e.state===d && e.date>=startDate && e.date<=endDate && e.item===item});
-		var meanPrice = NaN;
-		var weightTotal = NaN;
-
-		stateData.forEach(function(e) {
-			if (isNaN(meanPrice) && !isNaN(e.price)) {
-				meanPrice = e.price*e.weight;
-			}
-			else if (!isNaN(meanPrice) && !isNaN(e.price)) {
-				meanPrice += e.price*e.weight;
-			}
-
-			if (isNaN(weightTotal) && !isNaN(e.weight)) {
-				weightTotal = e.weight;
-			}
-			else if (!isNaN(weightTotal) && !isNaN(e.weight)) {
-				weightTotal += e.weight;
-			}
-		});
-
-		meanPrice = (meanPrice/weightTotal);
-		array.push({'state':d,'price':meanPrice})
-	});
-	return array;
-}
+var dateFormat = d3.time.format("%Y-%m-%d");
+var monthFormat = d3.time.format("%b-%y");
 
 queue()
 	.defer(d3.csv, "data/priceStateData.csv", processPrices) //converts into the desired format
@@ -382,8 +160,36 @@ function ready(error,priceData,nigeriaStates,segmentation,segZoneLabels,segItemL
 
 
 function drawMap(nigeriaStates,priceData) {
-	var dateFormat = d3.time.format("%Y-%m-%d");
-	var monthFormat = d3.time.format("%b-%y");
+
+	function getMapData(startDate,endDate,priceData,item) { //getting the data ready
+		var array= []
+		var states = uniq_fast(priceData.map(function(d) {return d.state})) //creates the unique list of states
+		states.forEach(function(d) { //loop through states to calculate the mean price
+			var stateData = priceData.filter(function(e) {return e.state===d && e.date>=startDate && e.date<=endDate && e.item===item});
+			var meanPrice = NaN;
+			var weightTotal = NaN;
+
+			stateData.forEach(function(e) {
+				if (isNaN(meanPrice) && !isNaN(e.price)) {
+					meanPrice = e.price*e.weight;
+				}
+				else if (!isNaN(meanPrice) && !isNaN(e.price)) {
+					meanPrice += e.price*e.weight;
+				}
+
+				if (isNaN(weightTotal) && !isNaN(e.weight)) {
+					weightTotal = e.weight;
+				}
+				else if (!isNaN(weightTotal) && !isNaN(e.weight)) {
+					weightTotal += e.weight;
+				}
+			});
+
+			meanPrice = (meanPrice/weightTotal);
+			array.push({'state':d,'price':meanPrice})
+		});
+		return array;
+	}
 
 	var startDate = dateFormat.parse('2009-01-01'); //This will be based on user inputs
 	var endDate = dateFormat.parse('2012-12-01'); //This will be based on user inputs
@@ -509,7 +315,7 @@ function drawMap(nigeriaStates,priceData) {
 		var stateName = d.properties.state_name.replace(' ','')
 		d3.selectAll('.boundary-hover#'+stateName).filter(function(e) { return e}).classed('boundary-hover-hide',false).classed('boundary-hover-show',true)
 		d3.selectAll('.stateLines').filter(function(e) {return e.state===d.properties.state_name}).style('stroke','red').style('stroke-width','2px').moveToFront();
-		//d3.selectAll('.histDots').filter(function(e) {return e.state===d.properties.state_name}).style('fill', 'red')
+		d3.selectAll('.histDots').filter(function(e) {return e.state===d.properties.state_name}).style('fill', 'red').attr({r: 3})
 		tip.show(d)
 	}
 
@@ -1468,14 +1274,14 @@ function drawVolatility(volatility, volBoxValues, volStateLabels, volZonePositio
       })
     d3.selectAll('.hoverMean').data(meanData).attr({x: function(d){return xChartScale(d.date) + xPanelScale(d.value)}, y: function(d){return yPanelScale(d.yPosition)}})
     d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", true)
-    d3.selectAll('.dots#'+d.state).classed("hover-show", true).attr({r: 1.5*dotRadius})
+    d3.selectAll('.dots').filter(function(t){return t.state == d.state}).classed("hover-show", true).attr({r: 1.5*dotRadius})
     //d3.selectAll('.stateLabels').filter(function(z){return z.state === d.state}).attr('font-size', '16px')
   }
 
   function mouseoutRect(d){
     d3.selectAll('.hoverMean').attr({x: 1000, y: 1000})
     d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", false)
-    d3.selectAll('.dots#' + d.state).classed("hover-show", false).attr({r: dotRadius})
+    d3.selectAll('.dots').filter(function(t){return t.state == d.state}).classed("hover-show", false).attr({r: dotRadius})
   }
 
   function mouseoverDots(d){
@@ -1558,10 +1364,25 @@ function drawVolatility(volatility, volBoxValues, volStateLabels, volZonePositio
 }
 
 function drawHistogram(allData) {
-  //FILTERING THE DATA BASED ON SELECTED INPUTS
-  var dateFormat = d3.time.format("%Y-%m-%d");
-  var monthFormat = d3.time.format("%b-%y");
 
+  function getData(data, histogram){
+	    var histData = histogram(data); //create the array of arrays with hist data
+	    array = [];//empty array to populate
+	    histData.forEach(function(d){
+	      var y = d.x // gives the vertical position of the dots
+	      var dy = d.dx //the width of the bin
+	      var x = d.y //this gives the number of dots
+	      d.forEach(function(e, i){
+	        e.y = y;
+	        e.dy = dy;
+	        e.x = x - i; //reversing the order since the hist layout sets the highest value in the lowest position in the array
+	        array.push(e)
+	      })
+	    })
+	    return array
+  }
+
+  //FILTERING THE DATA BASED ON SELECTED INPUTS
   var startDate = dateFormat.parse('2009-01-01'); //This will be based on user inputs
   var endDate = dateFormat.parse('2012-12-01'); //This will be based on user inputs
   var sel = document.getElementById('productSelectPrice'); //selecting the default based on currentinput
@@ -1580,7 +1401,7 @@ function drawHistogram(allData) {
         .attr({
           height: height + margin.top + margin.bottom,
           width: width + margin.left + margin.right,
-          'class':'histogramChart'
+          //'class':'histogramChart'
        	})
       .attr("transform", "translate(" + (40) + "," + 260+ ")");
 
@@ -1611,13 +1432,6 @@ function drawHistogram(allData) {
 
   var bounds = setBins(max,min);
 
-  /*var colorArray = ['rgb(255,51,51)','rgb(200,30,100)','rgb(130,15,150)','rgb(60,5,200)','rgb(0,0,255)'];
-  colorArray.reverse();
-
-  var color = d3.scale.threshold()
-    .domain(bounds)
-    .range(colorArray);
-*/
   var axis = d3.svg.axis()//setting the axis based on the yScale
     .scale(yScale)
     .orient("left")
@@ -1633,20 +1447,6 @@ function drawHistogram(allData) {
   var axisLine = histChart.append("g")
         .attr('class', 'histAxis')
         .call(axis)
-
-/*  axisLine.selectAll("rect")
-        .data(color.range().map(function(d, i) {
-          return {
-            x0: i ? yScale(color.domain()[i - 1]) : yScale.range()[0],
-            x1: i < color.domain().length ? yScale(color.domain()[i]) : y.range()[1],
-            z: d
-          };
-        }))
-        .enter().append("rect")
-        .attr("height", function(d,i) { return d.x0 - d.x1})
-        .attr("y", function(d, i) { return d.x1; })
-        .attr("width", rectWidth)
-        .style("fill", function(d) { return d.z; });*/
 
   var dots = histChart.append('g')
       .selectAll('histDots')
@@ -1709,22 +1509,7 @@ function drawHistogram(allData) {
     axisLine.call(axis)
   }
 
-  function getData(data, histogram){
-    var histData = histogram(data); //create the array of arrays with hist data
-    array = [];//empty array to populate
-    histData.forEach(function(d){
-      var y = d.x // gives the vertical position of the dots
-      var dy = d.dx //the width of the bin
-      var x = d.y //this gives the number of dots
-      d.forEach(function(e, i){
-        e.y = y;
-        e.dy = dy;
-        e.x = x - i; //reversing the order since the hist layout sets the highest value in the lowest position in the array
-        array.push(e)
-      })
-    })
-    return array
-  }
+
 }
 </script>
 </html>

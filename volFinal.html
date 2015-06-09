@@ -58,7 +58,7 @@ function uniq_fast(a) { // quickly drop duplicate values from an array
            }
       }
       return out;
-  }
+}
 function processVolatility(d, i) { //formats price data for the map
       function deString(d) {
         if (d==="") {
@@ -129,14 +129,51 @@ function drawVolatility(volatility, volLabels, volDateLabels){
   var sel = document.getElementById('productSelectVolatility');//selecting the current product
   var product = sel.options[sel.selectedIndex].value; //recording the product name selected
   var data = volatility.filter(function(d){return d.item === product});
-  console.log(data)
+  /*var uniqDates = uniq_fast(data.map(function(d){return d.date})).sort(function(a,b) { return a - b;})
+  var test = data.filter(function(d){return monthFormatToString(d.date) === monthFormatToString(uniqDates[0])})
+  console.log(test)*/
 
-  function getMean(data){
-    var uniqDates = uniq_fast(data.map(function(d){return d.date}));
-    var uniqZones = uniq_fast(data.map(function(d){return d.zoneCode}));
-    console.log(uniqDates, uniqZones)
+  function getMean(data, xScale, yScale){
+    var uniqDates = uniq_fast(data.map(function(d){return d.date})).sort(function(a,b) { return a - b;});
+    var uniqZones = uniq_fast(data.map(function(d){return d.zoneCode})).sort(function(a,b) { return a - b;});
+    var outerArray = []
+    var dateData = []
+    var zoneData = []
+    uniqDates.forEach(function(d,i){
+      var minX = i*8 + 1
+      var maxX = i*8 + 6
+      var tempData = data.filter(function(e){return monthFormatToString(e.date) === monthFormatToString(d)})
+      var meanDate = d3.mean(tempData, function(p){return p.volMoving})
+      dateData.push({
+        'minX': xScale(minX),
+        'maxX': xScale(maxX),
+        'meanDate': yScale(meanDate),
+        'date': d
+            })
+      uniqZones.forEach(function(t,j){
+        var xPosition = i*8 + (j+1)
+        var tempData2 = tempData.filter(function(e){return e.zoneCode === t})
+        var meanZone = d3.mean(tempData2, function(p){return p.volMoving})
+        if(meanZone === undefined){
+          zoneData.push({
+            'xPosition': 10000,
+            'meanZone': 10000,
+            'date': d,
+            'zoneCode': t
+          })
+        } else {
+          zoneData.push({
+            'xPosition': xScale(xPosition),
+            'meanZone': yScale(meanZone),
+            'date': d,
+            'zoneCode': t
+          })
+        }
+      })
+    })
+    outerArray.push(dateData, zoneData)
+    return outerArray
   }
-  getMean(data)
   //EXTRACTING THE X AND Y DOMAINS FROM THE DATA
   var maxX = d3.max(data, function(d){return d.xPosition});
   var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
@@ -185,6 +222,8 @@ function drawVolatility(volatility, volLabels, volDateLabels){
   var xFont = 10;
   var itemNamestagger = 10;
 
+  //GETTING THE MEAN DATA READY
+  var means = getMean(data, xScale, yScale)
 
 
   //DRAWING THE ELEMENTS
@@ -236,6 +275,29 @@ function drawVolatility(volatility, volLabels, volDateLabels){
       })
       .style('stroke', 'black')
       .style('stroke-width', '0.2px')
+
+  var meanCross = volChart.append('g')
+      .selectAll('.meanCross')
+      .data(means[1])
+      .enter()
+      .append('text')
+      .text('x')
+      .attr({
+        x: function(d){return d.xPosition},
+        y: function(d){return d.meanZone}
+      })
+      .attr('font-size', xFont)
+      .style('font-weight', 'bold')
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'middle')
+      .style('cursor', 'default')
+
+  var meanLines = volChart.append('g')
+      .selectAll('.meanLines')
+      .data(means[0])
+      .enter()
+      .append('line')
+
 }
 
   /*var meanCross = volChart.append('g')

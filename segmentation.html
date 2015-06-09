@@ -79,8 +79,8 @@ queue()
   .await(ready);
 
 function ready(error, segmentation, segZoneLabels, segItemLabels){
-  //console.log(segmentation, segZoneLabels, segItemLabels)
-  
+  console.log(segmentation, segZoneLabels, segItemLabels)
+
   /*GETTING THE DATA AND DOMAINS READY*/
   var maxPosition = d3.max(segmentation, function(d){return d.dotPosition});
   var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
@@ -91,7 +91,7 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
   var colorDomain = yDomain; //same with the color scale
 
   /*CREATING THE CANVAS*/
-  var containerSize = {'height': 200, 'width': 480};
+  var containerSize = {'height': 500, 'width': 480};
   var margin = {top: 0.06*containerSize.height , right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
   var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.3*containerSize.height, left: 0.02*containerSize.width};
   var width = containerSize.width - margin.right - margin.left; //Chart width
@@ -264,11 +264,9 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
     d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
   }
   function mouseoverDot(d){
-    //console.log(d)
     d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', true)
     d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
     tip.show(d)
-    //tooltips for centre name state name and value
   }
   function mouseoutDot(d){
     d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', false)

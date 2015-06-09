@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<head>
+<script src="libraries/d3.v3.min.js"></script>
+<script src="libraries/topojson.v1.min.js"></script>
+<script src="libraries/queue.v1.min.js"></script>
+<script src="libraries/d3.tip.v0.6.3.js"></script>
+<link rel="stylesheet" href="libraries/tool-tip-style.css">
+<style>
+
+.yAxis path,
+.yAxis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+    stroke-width:1px;
+}
+.yAxis text {
+    font-family: sans-serif;
+    font-size: 9px;
+}
+
+</style>
+</head>
+<body>
+
+<div id="main">
+    <select id="productSelectVolatility">
+      <option selected value="Cement Dangote">Cement Dangote</option>
+      <option value="Drink Swan Water Bottle">Drink Swan Water Bottle</option>
+      <option value="Maize White">Maize White</option>
+      <option value="Maize Yellow">Maize Yellow</option>
+      <option value="Rice Imported">Rice Imported</option>
+      <option value="Rice Local">Rice Local</option>
+      <option value="Sorghum">Sorghum</option>
+    </select>
+    <div id="volChartContainer"></div>
+</div>
+
+</body>
+<script>
+//FUNCITONS USED FOR DRAW
+var dateFormat = d3.time.format("%Y-%m-%d");
+var monthFormat = d3.time.format("b%-y%");
+var monthYear = d3.time.format("%b %y")
+var monthFormatToString = d3.time.format("%Y-%m");
+function uniq_fast(a) { // quickly drop duplicate values from an array
+      var seen = {};
+      var out = [];
+      var len = a.length;
+      var j = 0;
+      for(var i = 0; i < len; i++) {
+           var item = a[i];
+           if(seen[item] !== 1) {
+                 seen[item] = 1;
+                 out[j++] = item;
+           }
+      }
+      return out;
+  }
+function processVolatility(d, i) { //formats price data for the map
+      function deString(d) {
+        if (d==="") {
+          return NaN;
+        } else {
+          return +d;
+        }
+      }
+      var array = {
+        centre: d.centre,
+        state: d.state,
+        zoneCode: deString(d.zoneCode),
+        volMoving: deString(d.volMoving),
+        item: d.item,
+        date: dateFormat.parse(d.date),
+        xPosition: deString(d.xPosition)
+      };
+      return array;
+}
+function processVolLabels(d, i) { //formats price data for the map
+      function deString(d) {
+        if (d==="") {
+          return NaN;
+        } else {
+          return +d;
+        }
+      }
+      var array = {
+        zoneCode: deString(d.zoneCode),
+        meanVolZone: deString(d.meanVolZone),
+        date: dateFormat.parse(d.date),
+        xPosition: deString(d.xPosition)
+      };
+      return array;
+}
+function processVolDateLabels(d, i) { //formats price data for the map
+      function deString(d) {
+        if (d==="") {
+          return NaN;
+        } else {
+          return +d;
+        }
+      }
+      var array = {
+        meanVolDate: deString(d.meanVolDate),
+        date: dateFormat.parse(d.date),
+        xPosition: deString(d.xPosition)
+      };
+      return array;
+}
+
+//QUEUING THE DATA FOR USE
+queue()
+  .defer(d3.csv, "data/volatility.csv", processVolatility)
+  .defer(d3.csv, "data/volLabels.csv", processVolLabels)
+  .defer(d3.csv, "data/volDateLabels.csv", processVolDateLabels)
+  .await(ready);
+
+//THE READY FUNCTION WHICH CALLS THE DRAW
+function ready(error, volatility, volLabels, volDateLabels){
+  drawVolatility(volatility, volLabels, volDateLabels);
+}
+
+//THE DRAW FUNCTION FOR VOLATILITY
+function drawVolatility(volatility, volLabels, volDateLabels){
+ // console.log(monthFormat(volDateLabels[0].date))
+  //GETTING THE DATA READY USING INITIAL SELECTIONS
+  var sel = document.getElementById('productSelectVolatility');//selecting the current product
+  var product = sel.options[sel.selectedIndex].value; //recording the product name selected
+  var data = volatility.filter(function(d){return d.item === product});
+  console.log(data)
+
+
+  function processLabelData(data){
+    console.log(data)
+    var uniqDates = uniq_fast(data.map(function(d){return d.date}));
+    var uniqZones = uniq_fast(data.map(function(d){return d.zoneCode}));
+    var labelDataDate = [];
+    var labelDataZone = [];
+    console.log(uniqDates)
+    console.log(data.filter(function(e) { return e.date === uniqDates[0]}));
+    uniqDates.forEach(function(d,i) {
+      var minX = i*8 + 1;
+      var maxX = i*8 + 6;
+      // console.log(d)
+      var tempData = data.filter(function(e) { return e.date === d});
+      // console.log(tempData)
+      // var meanLine = d3.mean(tempData, function(t){return t.volMoving})
+      var meanLine = 0;
+      labelDataDate.push({
+        'minX':xScale(minX),
+        'maxX':xScale(maxX),
+        'mean':yScale(meanLine)
+      });
+//       uniqZones.forEach(function(r, j){
+//         //console.log(r)
+//         var xPosition = i*8 + (j+1);
+//         //console.log(data.filter(function(z){return z.date === d && z.zoneCode === r}))
+//         var meanX = d3.mean(data.filter(function(z){return z.date === d && z.zoneCode === r}), function(t){return t.volMoving})
+// /*
+//         if(isNaN(meanX)){
+//           mean = 1000
+//         } else {
+//           lableData = {
+//             zoneCode: e,
+//             date: d,
+//             meanVolDate: mean*/
+//       });
+    });
+  }
+
+
+
+
+  //EXTRACTING THE X AND Y DOMAINS FROM THE DATA
+  var maxX = d3.max(data, function(d){return d.xPosition});
+  var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
+  for (i = 1; i <= maxX; i++){
+    xDomain.push(i)
+  };
+  var yDomain = d3.extent(data, function(d){return d.volMoving}) //the y-axis is set to the range of volatility values
+  var colorDomain = yDomain
+
+  //CREATING THE CANVAS AND MAKING THE SCALES
+  var containerSize = {'height': 380, 'width': 540};//d3.select('#volChartContainer').node().getBoundingClientRect()
+  var margin = {top: 0.08*containerSize.height , right: 0.006*containerSize.width, bottom: 0.08*containerSize.height, left: 0.15*containerSize.width};
+  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.04*containerSize.height, left: 0.06*containerSize.width};
+  var width = containerSize.width - margin.right - margin.left; //Chart width
+  var height = containerSize.height - margin.top - margin.bottom; //Chart height
+
+  var volChart = d3.select('#volChartContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
+      .attr({
+        height: height + margin.top + margin.bottom,
+        width: width + margin.left + margin.right
+      })
+      .append('g')
+      .attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
+
+  var xScale = d3.scale.ordinal() //the ordinal scale uses dotpositions to place them on charts
+      .domain(xDomain)
+      .rangeBands([padding.left, width], .1);
+
+  var yScale = d3.scale.linear() //set to the range of seg values
+      .domain(yDomain)
+      .range([height - padding.bottom, 0]);
+
+  var colorScale = d3.scale.linear() //could change the scale later
+      .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
+      .range(["#C0C0C0", "#ff0000"])
+      .interpolate(d3.interpolateLab);
+
+  var yAxis = d3.svg.axis()
+      .scale(yScale)
+      .orient("left")
+      .tickSize(3)
+      .ticks(6)
+      .tickPadding(8);
+
+  var dotRadius = 3;
+  var xFont = 10;
+  var itemNamestagger = 10;
+
+processLabelData(data)
+
+  //DRAWING THE ELEMENTS
+  volChart.append('g')
+    .selectAll('.volZoneLab')
+    .data(volLabels)
+    .enter()
+    .append('text')
+    .text(function(d){return d.zoneCode})
+    .attr({
+      x: function(d){return xScale(d.xPosition)},
+      y: height,
+      class: 'volZoneLab'
+    })
+    .style('text-anchor', 'middle')
+    .attr('font-size', xFont)
+    .style('cursor', 'default');
+
+  volChart.append('g')
+    .selectAll('.dateLabels')
+    .data(volDateLabels)
+    .enter()
+    .append('text')
+    .text(function(d){return monthYear(d.date)})
+    .attr({
+      x: function(d){return (xScale(Math.floor(d.xPosition)) + xScale(Math.ceil(d.xPosition)))/2 },
+      y: height + itemNamestagger
+    })
+    .style('text-anchor', 'middle')
+    .style('font-size', xFont)
+    .style('cursor', 'default');
+
+  var yAxisLine = volChart.append('g')
+      .attr('class', 'yAxis')
+      .call(yAxis)
+      .style('pointer-events', 'none')
+
+  var dots = volChart.append('g')
+      .selectAll('.volDots')
+      .data(data)
+      .enter()
+      .append('circle')
+      .attr({
+        cx: function(d){return xScale(d.xPosition)},
+        cy: function(d){return yScale(d.volMoving)},
+        r:dotRadius,
+        class: 'volDots',
+        fill: function(d){return colorScale(d.volMoving)}
+      })
+      .style('stroke', 'black')
+      .style('stroke-width', '0.2px')
+
+  /*var meanCross = volChart.append('g')
+      .selectAll('.meanCross')
+      .data(volLabels)
+      .enter()
+      .append('text')
+      .text('x')
+      .attr({
+        x: function(d){return xScale(d.xPosition)},
+        y: function(d){return yScale(d.meanVolZone)}
+      })
+      .attr('font-size', xFont)
+      .style('font-weight', 'bold')
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'middle')
+      .style('cursor', 'default')*/
+
+
+
+
+/*  var volMean = d3.mean(data, function(d){return d.volMoving})
+  console.log(yScale(volMean))
+  var handleRadius = 5;
+  var drag = d3.behavior.drag()
+      //.origin([0, yScale(volMean)])
+      .on('drag', dragmove)
+
+  function dragmove(d) {
+      
+      d3.select(this)
+        .attr("cy", Math.max(handleRadius, Math.min(height - handleRadius, d3.event.y)));
+      d3.select('.dragRect')
+        .attr("y", Math.max(handleRadius, Math.min(height - handleRadius, d3.event.y)))
+      var newY = d3.select('.dragRect').node().getBBox().y
+      d3.select('.dragRect')
+        .attr("height", height - newY);
+      dots.attr('fill',filler)
+  }
+
+  //DRAWING THE ELEMENTS
+  var dragHandle = volChart.append('g')
+      .append('circle')
+      .attr({
+        cx: 0,
+        cy: yScale(2*volMean),
+        r:handleRadius,
+        class: 'dragHandle'
+      })
+      .style('fill', 'black')
+      .call(drag)
+
+  var dragRect = volChart.append('g')
+      .append('rect')
+      .attr({
+        x: 0,
+        y: yScale(2*volMean),
+        height: height - yScale(2*volMean),
+        width: width,
+        class: 'dragRect'
+      })
+      .style('fill', "#2A6447")
+      .style('opacity', '0.5')
+
+  
+  function filler(d){
+    var yThreshold = d3.select('.dragHandle').node().getBBox().y + handleRadius
+      if(yScale(d.volMoving) > yThreshold){
+        return 'none'
+      } else {
+        return 'red'
+      }
+    }
+*/
+  
+
+
+
+}
+</script>
+</html>

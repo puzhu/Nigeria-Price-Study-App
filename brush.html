@@ -82,11 +82,17 @@ $( "#slider" ).slider({
   max: months.length-1,
   values: [0, months.length-1],
   slide: function( event, ui ) {
-    console.log(ui.value)
-    axis.tickFormat(function(d, i) {
-        if (d===months[ui.values[0]] || d===months[ui.values[1]]) return monthFormat(d);
-    });
-    g.call(axis)
+    if ( ( ui.values[ 0 ] ) >= ui.values[ 1 ] ) {
+      return false;
+    }
+    else {
+      console.log(months[ui.value])
+      axis.tickFormat(function(d, i) {
+          if (d===months[ui.values[0]] || d===months[ui.values[1]]) return monthFormat(d);
+      });
+      g.call(axis)
+    }
+
   }
 });
 

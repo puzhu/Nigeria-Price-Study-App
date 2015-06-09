@@ -7,13 +7,52 @@
 <script src="libraries/topojson.v1.min.js"></script>
 <script src="libraries/queue.v1.min.js"></script>
 <script src="libraries/jquery-1.8.3.min.js"></script>
+<script src="libraries/jquery-ui/jquery-ui.js"></script>
 <script src="libraries/bootstrap/js/bootstrap.min.js"></script>
 <script src="libraries/d3.tip.v0.6.3.js"></script>
+<link href="libraries/jquery-ui/jquery-ui.css" rel="stylesheet">
 <link rel="stylesheet" href="libraries/tool-tip-style.css">
 <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="integratedHari.css">
 
 <style>
+#productSelectPrice {
+	margin-right:40px;
+}
+#sliderContainer {
+	display:inline-block;
+}
+#sliderContainer .axis {
+  font: 10px sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+#sliderContainer .axis line {
+  fill: none;
+  stroke: black;
+  stroke-width:1px;
+  shape-rendering:crispEdges;
+}
+#sliderContainer .axis path {
+  fill:none;
+}
+
+#sliderContainer #slider {
+  width:250px;
+  margin-left:20px;
+  margin-right:20px;
+  margin-top:-15px;
+}
+.lineRect {
+	fill:rgb(100,100,100);
+	fill-opacity:.2;
+	stroke:none;
+}
+#textDiv {
+	padding:2% 3% 0% 3%;
+}
 </style>
 </head>
 
@@ -36,14 +75,10 @@
 					<option value="Rice Local">Rice Local</option>
 					<option value="Sorghum">Sorghum</option>
 				</select>
-				<span>Start Date:</span>
-				<select id="startDateSelect">
-					<option selected value="01-2009">January 2009</option>
-				</select>
-				<span>End Date:</span>
-				<select id="endDateSelect">
-					<option selected value="12-2012">December 2012</option>
-				</select>
+				<div id="sliderContainer">
+					<div id="sliderAxis"></div>
+				  	<div id="slider"></div>
+				</div>
 			</div>
 			<div id="chartsDiv">
 				<div id="mapOuter">
@@ -60,7 +95,11 @@
 				</div>
 			</div>
 			<div id='textDiv'>
-				<p id = 'text'>Blah</p>
+				<p id = 'text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in elit lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer lectus lacus, suscipit id blandit sed, dictum tristique nulla.</p>
+				<p>Ut faucibus vestibulum ante at pellentesque. Vivamus eget ullamcorper quam, nec tempor justo. Maecenas varius egestas aliquam. Nunc dictum arcu vitae erat vulputate rutrum.</p>
+
+				<p>Etiam maximus blandit lectus ac ultricies. Etiam congue dui ac arcu congue, ac feugiat metus volutpat. Sed eu sollicitudin odio, quis faucibus elit. Curabitur interdum ligula vel porta luctus. Donec sit amet tortor sit amet quam sodales molestie eget sed lacus. Duis efficitur non eros nec dictum.</p>
+				<p>In ut odio sed sem porttitor maximus. Fusce luctus tellus eget elementum malesuada. Maecenas aliquam semper varius. Mauris tempor dapibus viverra. Suspendisse potenti. Sed sed arcu non felis placerat dignissim eu ut massa.</p>
 			</div>
 		</div>
 		<div class="tab-pane" id="indicators"></div>
@@ -118,7 +157,58 @@ var dateFormat = d3.time.format("%Y-%m-%d");
 var monthFormat = d3.time.format("%b-%y");
 var monthFormatToString = d3.time.format("%Y-%m");
 
+var sliderMonths = [];
+for (var i=2009; i<=2012;i++) {
+	for (var j=0;j<=11;j++) {
+    	sliderMonths.push(new Date(i,j,1))
+  	}
+}
+(function() { // initialize the slider -- the dates are hardcoded
+	var margin = {top: 0, right: 30, bottom: 0, left: 20},
+	    width = 300 - margin.left - margin.right,
+	    height = 30 - margin.top - margin.bottom;
 
+	var x = d3.time.scale()
+	    .domain([sliderMonths[0], sliderMonths[sliderMonths.length-1]])
+	    .range([0, width]);
+
+	var svg = d3.select("#sliderAxis").append("svg")
+	    .attr("width", width + margin.left + margin.right)
+	    .attr("height", height + margin.top + margin.bottom)
+	    .append("g")
+	    .attr("transform", "translate(" + margin.left + "," + (20) + ")");
+
+	var axis = d3.svg.axis()
+		.scale(x)
+	  	.orient("top")
+	  	.tickPadding(10)
+	  	.tickSize(0)
+	  	.tickValues(sliderMonths)
+	  	.tickFormat(function(d, i) {
+	        if (d===sliderMonths[0] || d===sliderMonths[sliderMonths.length-1]) return monthFormat(d);
+	    });
+	var g = svg.append("g")
+	    .attr("class", "x axis")
+	    .call(axis)
+
+	$( "#slider" ).slider({
+		range: true,
+		min: 0,
+		max: sliderMonths.length-1,
+		values: [0, sliderMonths.length-1],
+		slide: function( event, ui ) {
+		    if ( ( ui.values[ 0 ] ) >= ui.values[ 1 ] ) {
+		    	return false;
+		    }
+	    	else {
+				axis.tickFormat(function(d, i) {
+					if (d===sliderMonths[ui.values[0]] || d===sliderMonths[ui.values[1]]) return monthFormat(d);
+				});
+				g.call(axis)
+			}
+		}
+	});
+})();
 
 //THE DATA QUEUE
 queue()
@@ -190,12 +280,13 @@ function drawMap(nigeriaStates,priceData){
 			var feature = stateFeatures.filter(function(d) { return d.properties.state_name===dataState});
 			if (feature.length>0) feature[0].properties.price = dataValue;
 		}
-		return stateFeatures
+		return stateFeatures;
 	}
 
 	//GETTING THE DATA READY
-	var startDate = dateFormat.parse('2009-01-01'); //This will be based on user inputs
-	var endDate = dateFormat.parse('2012-12-01'); //This will be based on user inputs
+	var dates = $('#slider').slider('values');
+	var startDate = sliderMonths[dates[0]];
+   	var endDate = sliderMonths[dates[1]];
 	var sel = document.getElementById('productSelectPrice'); //selecting the default based on current input
 	var product = sel.options[sel.selectedIndex].value;
 	var mapData = getMapData(startDate,endDate,priceData,product);
@@ -338,10 +429,26 @@ function drawMap(nigeriaStates,priceData){
 	//RESELECTING THE PRODUCT AND REDRAWING THE MAP BASED ON CHANGES
 	d3.select('#productSelectPrice').on('change.map', function(d) {
         var product = d3.select(this).property('value');
-        redrawMap(product);
+		var dates = $('#slider').slider('values');
+		var startDate = sliderMonths[dates[0]];
+	   	var endDate = sliderMonths[dates[1]];
+        redrawMap(product, startDate, endDate);
     });
 
-	function redrawMap(product) {
+    $("#slider").on( "slide", function( event, ui ) {
+	    if ((ui.values[0]) >= ui.values[1]) {
+	    	return false;
+	    }
+	    else {
+	    	var sel = document.getElementById('productSelectPrice');
+	    	var product = sel.options[sel.selectedIndex].value;
+	    	var startDate = sliderMonths[ui.values[0]];
+	    	var endDate = sliderMonths[ui.values[1]];
+	    	redrawMap(product, startDate, endDate);
+	    }
+    });
+
+	function redrawMap(product, startDate, endDate) {
 		mapData = getMapData(startDate,endDate,priceData,product);
 		// set the color and axis functions
 		max = d3.max(mapData, function(d) { return d.price; });
@@ -374,23 +481,24 @@ function drawHistogram(allData){
     	var histData = histogram(data); //create the array of arrays with hist data
     	array = [];//empty array to populate
     	histData.forEach(function(d){
-     	var y = d.x // gives the vertical position of the dots
-      	var dy = d.dx //the width of the bin
-      	var x = d.y //this gives the number of dots
-      	d.forEach(function(e, i){
-        	e.y = y;
-        	e.dy = dy;
-        	e.x = x - i; //reversing the order since the hist layout sets the highest value in the lowest position in the array
-        	array.push(e)
-      		})
+	     	var y = d.x // gives the vertical position of the dots
+	      	var dy = d.dx //the width of the bin
+	      	var x = d.y //this gives the number of dots
+	      	d.forEach(function(e, i){
+	        	e.y = y;
+	        	e.dy = dy;
+	        	e.x = x - i; //reversing the order since the hist layout sets the highest value in the lowest position in the array
+	        	array.push(e)
+	      	})
     	})
     	return array
   	}
 	//GETTING THE DATA READY
-  	var startDate = dateFormat.parse('2009-01-01'); //This will be based on user inputs
-  	var endDate = dateFormat.parse('2012-12-01'); //This will be based on user inputs
   	var sel = document.getElementById('productSelectPrice'); //selecting the default based on currentinput
   	var product = sel.options[sel.selectedIndex].value;
+	var dates = $('#slider').slider('values');
+	var startDate = sliderMonths[dates[0]];
+   	var endDate = sliderMonths[dates[1]];
   	var data = allData.filter(function(d){return d.item == product && dateFormat.parse(d.date)>= startDate && dateFormat.parse(d.date) <= endDate});
 
   	//CREATING THE CANVAS AND Y-SCALES
@@ -463,19 +571,29 @@ function drawHistogram(allData){
   	d3.select('#productSelectPrice') //changes the product based on user input from the dropdown menu
 	    .on('change.histogram', function(d) {
 	        var product = d3.select(this).property('value')
-	        redraw(product)
+	        var dates = $('#slider').slider('values');
+			var startDate = sliderMonths[dates[0]];
+	   		var endDate = sliderMonths[dates[1]];
+	        redraw(product,startDate,endDate)
 	    })
-
+    $("#slider").on( "slide", function( event, ui ) {
+	    if ((ui.values[0]) >= ui.values[1]) {
+	    	return false;
+	    }
+	    else {
+	    	var product = d3.select(this).property('value')
+	    	var startDate = sliderMonths[ui.values[0]];
+	    	var endDate = sliderMonths[ui.values[1]];
+	        var product = d3.select('#productSelectPrice').property('value');
+	        redraw(product,startDate,endDate);
+	    }
+    });
   	//REDRAWING ELEMENTS BASED ON PRODUCT SELECTIONS
   	function redraw(product, startDate, endDate){
-	    startDate = dateFormat.parse('2009-01-01'); //This will be based on user inputs
-	    endDate = dateFormat.parse('2012-12-01'); //This will be based on user inputs
 	    data = allData.filter(function(d){return d.item == product && dateFormat.parse(d.date)>= startDate && dateFormat.parse(d.date) <= endDate});
 	    yScale.domain(d3.extent(data, function(d){return d.meanPrice}));
 	    histogram.bins(yScale.ticks(numBins))
 	    histData = getData(data, histogram)
-	    max = d3.max(histData, function(d) { return d.meanPrice; });
-	    min = d3.min(histData, function(d) { return d.meanPrice; });
 
 	    maxX = d3.max(histData, function(d){return d.x})
 	    xDomain =  [];
@@ -495,10 +613,6 @@ function drawHistogram(allData){
 	      })
 	    .attr('fill', 'silver');
 
-	    axis = d3.svg.axis()//setting the axis based on the yScale
-	        .scale(yScale)
-	        .orient("left")
-	        .tickSize(4);
 	    axisLine.call(axis)
   	}
 }
@@ -506,8 +620,8 @@ function drawHistogram(allData){
 //THE LINE CHART FUNCTION
 function drawLine(priceData){
 	//CONSTRUCTED FUNCTIONS FOR USE WITHIN THE DRAW
-	function reshapeMonthlyPrice(monthlyPrice,product) {
-		monthlyPrice = monthlyPrice.filter(function(d) { return d.item===product});
+	function reshapeMonthlyPrice(monthlyPrice,product,startDate,endDate) {
+		monthlyPrice = monthlyPrice.filter(function(d) { return d.item===product && d.date>=startDate && d.date<=endDate});
 		var mainArray = [];
 		for (var i=0;i<monthlyPrice.length;i++) {
 			if (mainArray.filter(function(d) {return d.state===monthlyPrice[i].state}).length===0) { // does the state have its own list item yet?
@@ -544,13 +658,15 @@ function drawLine(priceData){
 	var sel = document.getElementById('productSelectPrice');
 	var product = sel.options[sel.selectedIndex].value;
 	var months = uniq_fast(priceData.filter(function(e) {return e.item===product}).map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
-	console.log(months)
-	var lineData = reshapeMonthlyPrice(priceData,product);
+	var dates = $('#slider').slider('values');
+	var startDate = sliderMonths[dates[0]];
+   	var endDate = sliderMonths[dates[1]];
+	var lineData = reshapeMonthlyPrice(priceData,product,startDate,endDate);
 
 	//CREATING THE CANVAS
 	var containerSize = d3.select('#lineChartContainer').node().getBoundingClientRect()
-  	var margin = {top: 0.08*containerSize.height , right: 0.006*containerSize.width, bottom: 0.15*containerSize.height, left: 0.06*containerSize.width};
-  	var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
+  	var margin = {top: 0.08*containerSize.height , right: 0.03*containerSize.width, bottom: 0.15*containerSize.height, left: 0.06*containerSize.width};
+  	var padding = {top: 0.006*containerSize.height, right: 0.012*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
   	var width = containerSize.width - margin.right - margin.left; //Chart width
   	var height = containerSize.height - margin.top - margin.bottom; //Chart height
 
@@ -569,6 +685,16 @@ function drawLine(priceData){
 		.attr("width", width)
 		.attr("y", 0)
 		.attr("height", height);
+	
+	var lineRectBackground = lineChart.append('rect')
+		.attr({	
+			x: 0,
+			width: width,
+			y: 0,
+			height: height,
+			class: 'lineRect'
+		});
+
 
 	//DEFINING THE CHARTING VARIABLES
 	var xScale = d3.time.scale()
@@ -603,7 +729,7 @@ function drawLine(priceData){
           	"<strong>Month:</strong> <span style='color:silver'>" + monthFormat(d.month) + "</span>" + "<br>" +
           	"<strong>Avg. Price:</strong> <span style='color:silver'>" + d3.round(d.price,2) + "</span>"
     	});
-    lineChart.call(tip)
+    lineChart.call(tip);
 
     //DRAWING THE ELEMENTS
     var xAxisNodes = lineChart.append("g")
@@ -662,6 +788,7 @@ function drawLine(priceData){
 		.style("fill","red")
 		.style("stroke","none");
 
+
 	//DEFINING THE MOUSEOVER FUNCTIONS
 	function mouseoverLine(d) {
 		console.log(d.state)
@@ -680,6 +807,79 @@ function drawLine(priceData){
 		d3.selectAll('.histDots').filter(function(t){return t.state === (d.state)}).style('fill', 'silver').attr({r: 2});
 		tip.hide(d);
 	}
+
+	d3.select('#productSelectPrice').on('change.line', function(d) {
+        var product = d3.select(this).property('value');
+		var dates = $('#slider').slider('values');
+		var startDate = sliderMonths[dates[0]];
+	   	var endDate = sliderMonths[dates[1]];
+	   	var drawVoronoi = true;
+        redrawLine(product,startDate,endDate,drawVoronoi);
+    });
+    $("#slider").on( "slide", function( event, ui ) {
+	    if ((ui.values[0]) >= ui.values[1]) {
+	    	return false;
+	    }
+	    else {
+	    	var startDate = sliderMonths[ui.values[0]];
+	    	var endDate = sliderMonths[ui.values[1]];
+	        var product = d3.select('#productSelectPrice').property('value');
+	        var drawVoronoi = false;
+	        redrawLine(product,startDate,endDate,drawVoronoi);
+	    }
+    });
+
+    $("#slider").on( "slidestop", function( event, ui ) {
+	    if ((ui.values[0]) >= ui.values[1]) {
+	    	return false;
+	    }
+	    else {
+	    	var startDate = sliderMonths[ui.values[0]];
+	    	var endDate = sliderMonths[ui.values[1]];
+	        var product = d3.select('#productSelectPrice').property('value');
+	        var drawVoronoi = true;
+	        redrawLine(product,startDate,endDate,drawVoronoi);
+	    }
+    });
+
+	function redrawLine(item,startDate,endDate,drawVoronoi) {
+		// var months = uniq_fast(priceData.filter(function(e) {return e.item===item && e.date>=startDate && e.date<=endDate}).map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
+		var lineData = reshapeMonthlyPrice(priceData,item,startDate,endDate);
+
+		xScale.domain([startDate,endDate]);
+		yScale.domain([0, d3.max(priceData.filter(function(e) {return e.item===item}).map(function(d) { return d.price; }))*1.05]);
+		xAxisNodes.call(xAxis);
+		g.call(yAxis);
+
+		states = states.data(lineData);
+		states.exit().remove();
+		states.enter().append('path');
+		states.attr("class","stateLines")
+			.attr("d",function(d) { d.line = this; return line(d.values); })
+			.attr("clip-path", 'url(#lineclip)');
+
+	  	if (drawVoronoi===true) {
+	  		console.log('drawing voronoi')
+	  		voronoiGroup = voronoiGroup.data(voronoi(d3.nest()
+				.key(function(d) { return xScale(d.month) + "," + yScale(d.price); })
+				.rollup(function(v) { return v[0]; })
+				.entries(d3.merge(lineData.map(function(d) { return d.values; })))
+				.map(function(d) { return d.values; })));
+
+			voronoiGroup.exit().remove();
+			voronoiGroup.enter().append("path");
+			voronoiGroup
+				.attr('class','voronoi')
+				.attr("d", function(d) { return "M" + d.join("L") + "Z"; })
+				.datum(function(d) { return d.point; })
+				.style("cursor","default")
+				.on("mouseover", mouseoverLine)
+				.on("mouseout", mouseoutLine);
+	  	}
+
+
+	}
+
 }
 
 

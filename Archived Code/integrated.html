@@ -1,59 +1,18 @@
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
+
 <head>
 <title>Nigeria Price Monitor</title>
 <script src="libraries/d3.v3.min.js"></script>
 <script src="libraries/topojson.v1.min.js"></script>
 <script src="libraries/queue.v1.min.js"></script>
 <script src="libraries/jquery-1.8.3.min.js"></script>
-<script src="libraries/jquery-ui/jquery-ui.js"></script>
 <script src="libraries/bootstrap/js/bootstrap.min.js"></script>
 <script src="libraries/d3.tip.v0.6.3.js"></script>
-<link href="libraries/jquery-ui/jquery-ui.css" rel="stylesheet">
 <link rel="stylesheet" href="libraries/tool-tip-style.css">
 <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="integratedHari.css">
-
-<style>
-#productSelectPrice {
-	margin-right:40px;
-}
-#sliderContainer {
-	display:inline-block;
-}
-#sliderContainer .axis {
-  font: 10px sans-serif;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
-
-#sliderContainer .axis line {
-  fill: none;
-  stroke: black;
-  stroke-width:1px;
-  shape-rendering:crispEdges;
-}
-#sliderContainer .axis path {
-  fill:none;
-}
-
-#sliderContainer #slider {
-  width:250px;
-  margin-left:20px;
-  margin-right:20px;
-  margin-top:-15px;
-}
-.lineRect {
-	fill:rgb(100,100,100);
-	fill-opacity:.2;
-	stroke:none;
-}
-#textDiv {
-	padding:2% 3% 0% 3%;
-}
-</style>
+<link rel="stylesheet" href="integrated.css">
 </head>
 
 <body>
@@ -75,10 +34,14 @@
 					<option value="Rice Local">Rice Local</option>
 					<option value="Sorghum">Sorghum</option>
 				</select>
-				<div id="sliderContainer">
-					<div id="sliderAxis"></div>
-				  	<div id="slider"></div>
-				</div>
+				<span>Start Date:</span>
+				<select id="startDateSelect">
+					<option selected value="01-2009">January 2009</option>
+				</select>
+				<span>End Date:</span>
+				<select id="endDateSelect">
+					<option selected value="12-2012">December 2012</option>
+				</select>
 			</div>
 			<div id="chartsDiv">
 				<div id="mapOuter">
@@ -86,24 +49,27 @@
 					<div id="mapContainer"></div>
 				</div>
 				<div id="histOuter">
-					<h3>Centre level prices</h3>
+					<h3>Prices from centers</h3>
 					<div id="histChartContainer"></div>
 				</div>
 				<div id="lineOuter">
-					<h3>Prices over time</h3>
+					<h3>Avg. Monthly Prices</h3>
 					<div id="lineChartContainer"></div>
 				</div>
-			</div>
-			<div id='textDiv'>
-				<p id = 'text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in elit lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer lectus lacus, suscipit id blandit sed, dictum tristique nulla.</p>
-				<p>Ut faucibus vestibulum ante at pellentesque. Vivamus eget ullamcorper quam, nec tempor justo. Maecenas varius egestas aliquam. Nunc dictum arcu vitae erat vulputate rutrum.</p>
-
-				<p>Etiam maximus blandit lectus ac ultricies. Etiam congue dui ac arcu congue, ac feugiat metus volutpat. Sed eu sollicitudin odio, quis faucibus elit. Curabitur interdum ligula vel porta luctus. Donec sit amet tortor sit amet quam sodales molestie eget sed lacus. Duis efficitur non eros nec dictum.</p>
-				<p>In ut odio sed sem porttitor maximus. Fusce luctus tellus eget elementum malesuada. Maecenas aliquam semper varius. Mauris tempor dapibus viverra. Suspendisse potenti. Sed sed arcu non felis placerat dignissim eu ut massa.</p>
 			</div>
 		</div>
 		<div class="tab-pane" id="indicators">
 			<div id="tab2row1">
+				<div id="segmentationOuter">
+					<h3>Segmentation</h3>
+					<div id="segmentationContainer"></div>
+				</div>
+				<div id="passthroughOuter">
+					<h3>Passthrough</h3>
+					<div id="passthroughContainer"></div>
+				</div>
+			</div>
+			<div id="tab2row2">
 				<div id="volatilityOuter">
 					<h3>Volatility</h3>
 					<select id="productSelectVolatility">
@@ -116,29 +82,14 @@
 						<option value="Sorghum">Sorghum</option>
     				</select>
 					<div id="volatilityContainer"></div>
-					<div id='indicatorTextContainer'>
-						<p>blah</p></div>
-				</div>
-			</div>
-			<div id="tab2row2">
-				<div id="segmentationOuter">
-					<h3>Segmentation</h3>
-					<div id="segmentationContainer"></div>
-				</div>
-				<div id="passthroughOuter">
-					<h3>Passthrough</h3>
-					<div id="passthroughContainer"></div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 </div>
 </body>
 
 <script>
-
-//THE FUNCTIONS AND VARIABLES THAT ARE USED WITHIN DRAW FUNCTIONS
 function uniq_fast(a) { // quickly drop duplicate values from an array
 		var seen = {};
 		var out = [];
@@ -154,7 +105,7 @@ function uniq_fast(a) { // quickly drop duplicate values from an array
 		return out;
 	}
 
-function processPrices(d, i) { //formats price data for the map
+function processPrices(d, i) {
 	var dateFormat = d3.time.format("%Y-%m-%d");
 	function deString(d) {
 		if (d==="") {
@@ -172,153 +123,44 @@ function processPrices(d, i) { //formats price data for the map
 	};
 	return state;
 }
-
-function setBins(max,min) {// calculates the bins for the color domain in the map
+function setBins(max,min) {
 		var bounds = [];
 		for (var i=1;i<=5;i++) { // create 5 equally sized bins between min*.95 and max*1.05
 			bounds.push(min*.95+(((max*1.05)-(min*.95))*(i/5)));
 		}
 		return bounds;
 }
-
 var dateFormat = d3.time.format("%Y-%m-%d");
 var monthFormat = d3.time.format("%b-%y");
-var monthFormatToString = d3.time.format("%Y-%m");
-var monthYear = d3.time.format("%b %y");
 
-var sliderMonths = [];
-for (var i=2009; i<=2012;i++) {
-	for (var j=0;j<=11;j++) {
-    	sliderMonths.push(new Date(i,j,1))
-  	}
-}
-(function() { // initialize the slider -- the dates are hardcoded
-	var margin = {top: 0, right: 30, bottom: 0, left: 20},
-	    width = 300 - margin.left - margin.right,
-	    height = 30 - margin.top - margin.bottom;
-
-	var x = d3.time.scale()
-	    .domain([sliderMonths[0], sliderMonths[sliderMonths.length-1]])
-	    .range([0, width]);
-
-	var svg = d3.select("#sliderAxis").append("svg")
-	    .attr("width", width + margin.left + margin.right)
-	    .attr("height", height + margin.top + margin.bottom)
-	    .append("g")
-	    .attr("transform", "translate(" + margin.left + "," + (20) + ")");
-
-	var axis = d3.svg.axis()
-		.scale(x)
-	  	.orient("top")
-	  	.tickPadding(10)
-	  	.tickSize(0)
-	  	.tickValues(sliderMonths)
-	  	.tickFormat(function(d, i) {
-	        if (d===sliderMonths[0] || d===sliderMonths[sliderMonths.length-1]) return monthFormat(d);
-	    });
-	var g = svg.append("g")
-	    .attr("class", "x axis")
-	    .call(axis)
-
-	$( "#slider" ).slider({
-		range: true,
-		min: 0,
-		max: sliderMonths.length-1,
-		values: [0, sliderMonths.length-1],
-		slide: function( event, ui ) {
-		    if ( ( ui.values[ 0 ] ) >= ui.values[ 1 ] ) {
-		    	return false;
-		    }
-	    	else {
-				axis.tickFormat(function(d, i) {
-					if (d===sliderMonths[ui.values[0]] || d===sliderMonths[ui.values[1]]) return monthFormat(d);
-				});
-				g.call(axis)
-			}
-		}
-	});
-})();
-
-function processVolatility(d, i) { //formats price data for the map
-      function deString(d) {
-        if (d==="") {
-          return NaN;
-        } else {
-          return +d;
-        }
-      }
-      var array = {
-        centre: d.centre,
-        state: d.state,
-        zoneCode: deString(d.zoneCode),
-        volMoving: deString(d.volMoving),
-        item: d.item,
-        date: dateFormat.parse(d.date),
-        xPosition: deString(d.xPosition)
-      };
-      return array;
-}
-function processVolLabels(d, i) { //formats price data for the map
-      function deString(d) {
-        if (d==="") {
-          return NaN;
-        } else {
-          return +d;
-        }
-      }
-      var array = {
-        zoneCode: deString(d.zoneCode),
-        meanVolZone: deString(d.meanVolZone),
-        date: dateFormat.parse(d.date),
-        xPosition: deString(d.xPosition)
-      };
-      return array;
-}
-function processVolDateLabels(d, i) { //formats price data for the map
-      function deString(d) {
-        if (d==="") {
-          return NaN;
-        } else {
-          return +d;
-        }
-      }
-      var array = {
-        meanVolDate: deString(d.meanVolDate),
-        date: dateFormat.parse(d.date),
-        xPosition: deString(d.xPosition)
-      };
-      return array;
-}
-
-//THE DATA QUEUE
 queue()
-	.defer(d3.csv, "data/priceStateData.csv", processPrices) //converts into the desired format for the map and the line chart
-	.defer(d3.json, "maps/nga-states-topo-05.json") //the map
-	.defer(d3.json, "data/priceAllData.json") //the  main dataset for the histogram
-	.defer(d3.csv, "data/volatility.csv", processVolatility)
-  	.defer(d3.csv, "data/volLabels.csv", processVolLabels)
-  	.defer(d3.csv, "data/volDateLabels.csv", processVolDateLabels)
+	.defer(d3.csv, "data/priceStateData.csv", processPrices) //converts into the desired format
+	.defer(d3.json, "maps/nga-states-topo-05.json")
 	.defer(d3.json, "data/segmentation.json") //the  main dataset
 	.defer(d3.json, "data/segZoneLabels.json") //the dataset for first layer of x-labels for zones
 	.defer(d3.json, "data/segItemLabels.json") //the dataset for item labels
 	.defer(d3.json, "data/passthrough.json") //the  main dataset
 	.defer(d3.json, "data/passZoneLabels.json") //the dataset for first layer of x-labels for zones
 	.defer(d3.json, "data/passItemLabels.json") //the dataset for item labels
+	.defer(d3.json, "data/volatility.json")
+	.defer(d3.json, "data/volBoxValues.json")
+	.defer(d3.json, "data/volStateLabels.json")
+	.defer(d3.json, "data/volZonePosition.json")
+ 	.defer(d3.json, "data/priceAllData.json") //the  main dataset
 	.await(ready);
 
-//THE FUNCTION THAT CALLS THE OTHER DRAW FUNCTIONS
-function ready(error,priceData,nigeriaStates,allData, volatility, volLabels, volDateLabels, segmentation,segZoneLabels,segItemLabels,passthrough,passZoneLabels,passItemLabels) {
-	drawMap(nigeriaStates,priceData);
-	drawHistogram(allData);
+function ready(error,priceData,nigeriaStates,segmentation,segZoneLabels,segItemLabels,passthrough,passZoneLabels,passItemLabels,volatility,volBoxValues,volStateLabels,volZonePosition,allData) {
 	drawLine(priceData);
-	drawVolatility(volatility, volLabels, volDateLabels);
+	drawMap(nigeriaStates,priceData);
 	drawSegmentation(segmentation,segZoneLabels,segItemLabels);
 	drawPassthrough(passthrough,passZoneLabels,passItemLabels);
+ 	drawVolatility(volatility, volBoxValues, volStateLabels, volZonePosition);
+ 	drawHistogram(allData);
 }
 
-//THE FUNCTION THAT DRAWS THE MAP AND THE LEGEND
-function drawMap(nigeriaStates,priceData){
-	//CREATING FUNCTIONS USED FOR THIS CHART
+
+function drawMap(nigeriaStates,priceData) {
+
 	function getMapData(startDate,endDate,priceData,item) { //getting the data ready
 		var array= []
 		var states = uniq_fast(priceData.map(function(d) {return d.state})) //creates the unique list of states
@@ -348,44 +190,41 @@ function drawMap(nigeriaStates,priceData){
 		});
 		return array;
 	}
-	function mergeGeoPrice(mapData,stateFeatures) { //function that merges map and price data
-		for(var i = 0; i < mapData.length; i++){
-			//pulling the states from csv file
-			var dataState = mapData[i].state;
-			//pulling corresponding price values
-			var dataValue = mapData[i].price;
 
-			//adding the price value to the map properties
-			var feature = stateFeatures.filter(function(d) { return d.properties.state_name===dataState});
-			if (feature.length>0) feature[0].properties.price = dataValue;
-		}
-		return stateFeatures;
-	}
-
-	//GETTING THE DATA READY
-	var dates = $('#slider').slider('values');
-	var startDate = sliderMonths[dates[0]];
-   	var endDate = sliderMonths[dates[1]];
+	var startDate = dateFormat.parse('2009-01-01'); //This will be based on user inputs
+	var endDate = dateFormat.parse('2012-12-01'); //This will be based on user inputs
 	var sel = document.getElementById('productSelectPrice'); //selecting the default based on current input
 	var product = sel.options[sel.selectedIndex].value;
 	var mapData = getMapData(startDate,endDate,priceData,product);
 
-	//CREATING THE CANVAS
-	var mapContainerSize = d3.select('#mapContainer').node().getBoundingClientRect()
-	var mapSize = {'height':mapContainerSize.height * 1,'width':mapContainerSize.width * 1};
+	/*Declaring Constants*/
+	var mapContainerSize = {'height':400,'width':480};
+	var mapSize = {'height':400,'width':480};
+
+	/*Creating the canvas*/
 	var mapContainer = d3.select('#mapContainer').append('svg')
 		.attr({
 			width: mapContainerSize.width,
 			height: mapContainerSize.height,
 			'class': 'mapSVG'
 		});
+
 	var map = mapContainer.append('g')
 		.attr({
 			width: mapSize.width,
 			height: mapSize.height,
 		});
 
-	//DEFINING THE COLOR AND AXIS FUNCTION
+	/*Defining mapping variables*/
+	var projection = d3.geo.mercator()
+		.center([8.9,9])
+		.scale(1350)
+		.translate([mapSize.width*.35, mapSize.height*.34]);
+
+	var path = d3.geo.path()
+		.projection(projection);
+
+	// set the color and axis functions
 	var max = d3.max(mapData, function(d) { return d.price; });
 	var min = d3.min(mapData, function(d) { return d.price; });
 
@@ -401,12 +240,11 @@ function drawMap(nigeriaStates,priceData){
 	var y = d3.scale.linear().domain([min*.95, max*1.05]).range([180, 0]);
     var axis = d3.svg.axis().scale(y).orient("left").tickSize(12).tickValues([min*.95].concat(bounds));
 
-    //DRAWING THE LEGEND
-    var key = mapContainer.append("g")
+    var g = mapContainer.append("g")
         .attr("class", "key")
-        .attr("transform", "translate("+(mapSize.width*.80)+","+(mapSize.height*.08)+")");
+        .attr("transform", "translate("+(mapSize.width*.83)+","+(mapSize.height*.08)+")");
 
-    key.selectAll("rect")
+    g.selectAll("rect")
         .data(color.range().map(function(d, i) {
           return {
             x0: i ? y(color.domain()[i - 1]) : y.range()[0],
@@ -417,39 +255,44 @@ function drawMap(nigeriaStates,priceData){
         .enter().append("rect")
         .attr("height", function(d,i) { return d.x0 - d.x1})
         .attr("y", function(d, i) { return d.x1; })
-        .attr("width", 8)
-        .attr("x",-8)
+        .attr("width", 6)
+        .attr("x",-6)
         .style("fill", function(d) { return d.z; });
 
-    key.call(axis);
-
-    //CREATING THE TOOL-TIP
+    g.call(axis);
+    
+    //TOOL-TIP
   	var tip = d3.tip()
       .attr('class', 'd3-tip')
-      .offset([0, 0])
+      .offset([14, 10])
       .direction('e')
       .html(function(d) {
           return "<strong>State:</strong> <span style='color:silver'>" + d.properties.state_name+ "</span>" + "<br>" +
-          "<strong>Mean Price:</strong> <span style='color:silver'>" + d3.round(d.properties.price,2) + "</span>"
+          "<strong>Mean Price:</strong> <span style=" + "'" + "color:" + color(d.properties.price) +"'" +">" + d3.round(d.properties.price,2) + "</span>"
           ;
     })
     map.call(tip)
 
-    //MERGING THE MAP AND PRICE DATA
-    var stateFeatures = topojson.feature(nigeriaStates, nigeriaStates.objects.NGA_adm1).features;
-    stateFeatures = mergeGeoPrice(mapData,stateFeatures);
+   	// add the price data to the map properties
+	var stateFeatures = topojson.feature(nigeriaStates, nigeriaStates.objects.NGA_adm1).features;
 
-    //DEFINING THE MAPPING VARIABLES
-	var projection = d3.geo.mercator()
-		.center([8.5,10.5])
-		.scale(1250)
-		.translate([mapSize.width*.35, mapSize.height*.34]);
+	function mergeGeoPrice(mapData,stateFeatures) {
+		for(var i = 0; i < mapData.length; i++){
+			//pulling the states from csv file
+			var dataState = mapData[i].state;
+			//pulling corresponding price values
+			var dataValue = mapData[i].price;
 
-	var path = d3.geo.path()
-		.projection(projection);
+			//adding the price value to the map properties
+			var feature = stateFeatures.filter(function(d) { return d.properties.state_name===dataState});
+			if (feature.length>0) feature[0].properties.price = dataValue;
+		}
+		return stateFeatures
+	}
 
-    //DRAWING THE MAP
-    var states = map.selectAll('.states')
+	stateFeatures = mergeGeoPrice(mapData,stateFeatures);
+
+	var states = map.selectAll('.states')
 		.data(stateFeatures)
 		.enter()
 		.append('path')
@@ -465,10 +308,24 @@ function drawMap(nigeriaStates,priceData){
 				return color(value);
 			}
 		})
-		.on("mouseover", mouseoverState)
-		.on("mouseout", mouseoutState);
+		.on("mouseover", mouseover)
+		.on("mouseout", mouseout);
 
-	//DRAWING THE BOUNDARIES
+	function mouseover(d) {
+		var stateName = d.properties.state_name.replace(' ','')
+		d3.selectAll('.boundary-hover#'+stateName).filter(function(e) { return e}).classed('boundary-hover-hide',false).classed('boundary-hover-show',true)
+		d3.selectAll('.stateLines').filter(function(e) {return e.state===d.properties.state_name}).style('stroke','red').style('stroke-width','2px').moveToFront();
+		d3.selectAll('.histDots').filter(function(e) {return e.state===d.properties.state_name}).style('fill', 'red').attr({r: 3})
+		tip.show(d)
+	}
+
+	function mouseout(d) {
+		var stateName = d.properties.state_name.replace(' ','')
+		d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',true).classed('boundary-hover-show',false)
+		d3.selectAll('.stateLines').filter(function(e) {return e.state===d.properties.state_name}).style('stroke','rgb(150,150,150)').style('stroke-width','1px');
+		tip.hide(d)
+	}
+
 	map.append("path")
 		.datum(topojson.mesh(nigeriaStates, nigeriaStates.objects.NGA_adm1, function(a, b) { return a !== b ; }))
 		.attr({
@@ -483,60 +340,27 @@ function drawMap(nigeriaStates,priceData){
 			.datum(topojson.mesh(nigeriaStates, nigeriaStates.objects.NGA_adm1, function(a, b) { return a.properties.state_name===d || b.properties.state_name===d ; }))
 			.attr({
 				d: path,
-				'class': 'boundary-hover', //controls the fill in css
+				'class': 'boundary-hover',
 			})
 			.attr("id",function(e) {return d.replace(' ','')});
 	});
 
-	//DEFINING THE MOUSEOVER FUNCTIONS FOR THE MAP
-	function mouseoverState(d) {
-		var stateName = d.properties.state_name.replace(' ','')
-		d3.selectAll('.boundary-hover#'+stateName).filter(function(e) { return e}).classed('boundary-hover-hide',false).classed('boundary-hover-show',true)
-		d3.selectAll('.stateLines').filter(function(e) {return e.state===d.properties.state_name}).style('stroke','red').style('stroke-width','2px').moveToFront();
-		d3.selectAll('.histDots').filter(function(e) {return e.state===d.properties.state_name}).style('fill', 'red').attr({r: 3})
-		tip.show(d)
-	}
-
-	function mouseoutState(d) {
-		var stateName = d.properties.state_name.replace(' ','')
-		d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',true).classed('boundary-hover-show',false)
-		d3.selectAll('.stateLines').filter(function(e) {return e.state===d.properties.state_name}).style('stroke','rgb(150,150,150)').style('stroke-width','1px');
-		d3.selectAll('.histDots').filter(function(e) {return e.state===d.properties.state_name}).style('fill', 'silver').attr({r: 2})
-		tip.hide(d)
-	}
-
-	//RESELECTING THE PRODUCT AND REDRAWING THE MAP BASED ON CHANGES
 	d3.select('#productSelectPrice').on('change.map', function(d) {
         var product = d3.select(this).property('value');
-		var dates = $('#slider').slider('values');
-		var startDate = sliderMonths[dates[0]];
-	   	var endDate = sliderMonths[dates[1]];
-        redrawMap(product, startDate, endDate);
+        redrawMap(product);
     });
 
-    $("#slider").on( "slide", function( event, ui ) {
-	    if ((ui.values[0]) >= ui.values[1]) {
-	    	return false;
-	    }
-	    else {
-	    	var sel = document.getElementById('productSelectPrice');
-	    	var product = sel.options[sel.selectedIndex].value;
-	    	var startDate = sliderMonths[ui.values[0]];
-	    	var endDate = sliderMonths[ui.values[1]];
-	    	redrawMap(product, startDate, endDate);
-	    }
-    });
-
-	function redrawMap(product, startDate, endDate) {
-		mapData = getMapData(startDate,endDate,priceData,product);
+	function redrawMap(item) {
+		var mapData = getMapData(startDate,endDate,priceData,item);
+		
 		// set the color and axis functions
-		max = d3.max(mapData, function(d) { return d.price; });
-		min = d3.min(mapData, function(d) { return d.price; });
-		bounds = setBins(max,min);
+		var max = d3.max(mapData, function(d) { return d.price; });
+		var min = d3.min(mapData, function(d) { return d.price; });
+		var bounds = setBins(max,min);
 		color.domain(bounds);
 		y.domain([min*.95, max*1.05]);
     	axis.scale(y).tickValues([min*.95].concat(bounds));
-    	key.call(axis)
+    	g.call(axis)
 
     	stateFeatures = mergeGeoPrice(mapData,stateFeatures);
 
@@ -553,154 +377,160 @@ function drawMap(nigeriaStates,priceData){
 	}
 }
 
-//THE FUNCTION THAT DRAWS THE HISTOGRAM
-function drawHistogram(allData){
-	//CREATING THE FUNCTIONS USED FOR THIS CHART
-	function getData(data, histogram){
-    	var histData = histogram(data); //create the array of arrays with hist data
-    	array = [];//empty array to populate
-    	histData.forEach(function(d){
-	     	var y = d.x // gives the vertical position of the dots
-	      	var dy = d.dx //the width of the bin
-	      	var x = d.y //this gives the number of dots
-	      	d.forEach(function(e, i){
-	        	e.y = y;
-	        	e.dy = dy;
-	        	e.x = x - i; //reversing the order since the hist layout sets the highest value in the lowest position in the array
-	        	array.push(e)
-	      	})
-    	})
-    	return array
-  	}
-	//GETTING THE DATA READY
-  	var sel = document.getElementById('productSelectPrice'); //selecting the default based on currentinput
-  	var product = sel.options[sel.selectedIndex].value;
-	var dates = $('#slider').slider('values');
-	var startDate = sliderMonths[dates[0]];
-   	var endDate = sliderMonths[dates[1]];
-  	var data = allData.filter(function(d){return d.item == product && dateFormat.parse(d.date)>= startDate && dateFormat.parse(d.date) <= endDate});
+function drawLine(priceData) {
 
-  	//CREATING THE CANVAS AND Y-SCALES
-  	var containerSize = d3.select('#histChartContainer').node().getBoundingClientRect()
-  	var margin = {top: 0.08*containerSize.height , right: 0.006*containerSize.width, bottom: 0.08*containerSize.height, left: 0.15*containerSize.width};
-  	var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
-  	var width = containerSize.width - margin.right - margin.left; //Chart width
-  	var height = containerSize.height - margin.top - margin.bottom; //Chart height
-
-  	var histChart = d3.select('#histChartContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
-        .attr({
-          height: height + margin.top + margin.bottom,
-          width: width + margin.left + margin.right
-        })
-      	.append('g')
-      	.attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
-
-	var yScale = d3.scale.linear()
-      .domain(d3.extent(data, function(d){return d.meanPrice}))
-      .range([height, 0])
-
-    //CREATING THE HISTOGRAM DATA
-  	var numBins = 30;
-  	var histogram = d3.layout.histogram()
-      .bins(yScale.ticks(numBins))
-      .value(function(d){return d.meanPrice});
-
-  	var histData = getData(data, histogram);
-
-  	//CALCULATING THE x-Axis AND COLOUR SCALES BASED ON THE HISTOGRAM DATA
-	var maxX = d3.max(histData, function(d){return d.x})
-	var xDomain =  [];
-	for(i=1; i<=maxX; i++){
-	    xDomain.push(i)
+	var monthFormatChart = d3.time.format("%m/%y");
+	var dateFormat = d3.time.format("%Y-%m-%d");
+	function uniq_fast(a) { // quickly drop duplicate values from an array
+	    var seen = {};
+	    var out = [];
+	    var len = a.length;
+	    var j = 0;
+	    for(var i = 0; i < len; i++) {
+	         var item = a[i];
+	         if(seen[item] !== 1) {
+	               seen[item] = 1;
+	               out[j++] = item;
+	         }
+	    }
+	    return out;
 	}
-	var xScale = d3.scale.ordinal()
-	    .domain(xDomain)
-	    .rangeBands([0, width], 0.01)
+	d3.selection.prototype.moveToFront = function() {
+	  return this.each(function(){
+	    this.parentNode.appendChild(this);
+	  });
+	};
+	var sel = document.getElementById('productSelectPrice');
+	var product = sel.options[sel.selectedIndex].value;
 
-	var max = d3.max(histData, function(d) { return d.meanPrice; });
-	var min = d3.min(histData, function(d) { return d.meanPrice; });
+	var months = uniq_fast(priceData.filter(function(e) {return e.item===product}).map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
 
-	var axis = d3.svg.axis()//setting the axis based on the yScale
-	    .scale(yScale)
-	    .orient("left")
-	    .tickSize(4)
+	var lineData = reshapeMonthlyPrice(priceData,product);
 
-  	var dotChartSeparation = 5
-  	var dotRadius = 2
+	var lineContainerSize = {'width': 480, 'height': 400};
+	var lineChartSize = {'width': 480, 'height': 400};
+	var margin = {top: 7, right: 5, bottom: 25, left: 45};
+	var w = lineChartSize.width - margin.right - margin.left;
+	var h = lineChartSize.height - margin.top - margin.bottom;
+	
+	//Creating the canvas
+	var lineContainer = d3.select('#lineChartContainer').append('svg')
+		.attr({
+			width: lineContainerSize.width,
+			height: lineContainerSize.height
+		});
+	var lineChart = lineContainer.append('g')
+		.attr({
+			width: w,
+			height: h,
+			transform: "translate(" + margin.left + "," + margin.top + ")"
+		});
 
-  	//DRAWING THE ELEMENTS
-  	var axisLine = histChart.append("g")
-        .attr('class', 'yAxis')
-        .call(axis);
+	lineChart.append("clipPath")
+		.attr('id', 'lineclip')
+		.append('rect')
+		.attr("x", 0)
+		.attr("width", w)
+		.attr("y", 0)
+		.attr("height", h);
 
-    var dots = histChart.append('g')
-      	.selectAll('.histDots')
-      	.data(histData)
-      	.enter()
-      	.append('circle')
-      	.attr({
-        	r: dotRadius,
-        	cx: function(d){return xScale(d.x) + dotChartSeparation},
-        	cy: function(d){return yScale(d.y)},
-        	class: 'histDots'
-      	})
-      	.attr('fill', 'silver')
+	//Defining charting variables
+	var xScale = d3.time.scale()
+		.domain(d3.extent(months))
+		.range([0, w]);
+	var yScale = d3.scale.linear()
+		.domain([0, d3.max(priceData.filter(function(e) {return e.item===product}).map(function(d) { return d.price; }))*1.05])
+		.range([h, 0]);
 
-  	//MARKING THE NEW PRODUCT SELECTION AND CALLING THE REDRAW FUNCTION
-  	d3.select('#productSelectPrice') //changes the product based on user input from the dropdown menu
-	    .on('change.histogram', function(d) {
-	        var product = d3.select(this).property('value')
-	        var dates = $('#slider').slider('values');
-			var startDate = sliderMonths[dates[0]];
-	   		var endDate = sliderMonths[dates[1]];
-	        redraw(product,startDate,endDate)
-	    })
-    $("#slider").on( "slide", function( event, ui ) {
-	    if ((ui.values[0]) >= ui.values[1]) {
-	    	return false;
-	    }
-	    else {
-	    	var product = d3.select(this).property('value')
-	    	var startDate = sliderMonths[ui.values[0]];
-	    	var endDate = sliderMonths[ui.values[1]];
-	        var product = d3.select('#productSelectPrice').property('value');
-	        redraw(product,startDate,endDate);
-	    }
-    });
-  	//REDRAWING ELEMENTS BASED ON PRODUCT SELECTIONS
-  	function redraw(product, startDate, endDate){
-	    data = allData.filter(function(d){return d.item == product && dateFormat.parse(d.date)>= startDate && dateFormat.parse(d.date) <= endDate});
-	    yScale.domain(d3.extent(data, function(d){return d.meanPrice}));
-	    histogram.bins(yScale.ticks(numBins))
-	    histData = getData(data, histogram)
+    var line = d3.svg.line()
+	    .defined(function(d) { return (d !== null && !isNaN(d.price)); })
+	    .x(function(d) { return xScale(d.month); })
+	    .y(function(d) { return yScale(d.price); });
 
-	    maxX = d3.max(histData, function(d){return d.x})
-	    xDomain =  [];
-	    for(i=1; i<=maxX; i++){
-	      xDomain.push(i)
-	    }
-	    xScale.domain(xDomain)
+	var xAxis = d3.svg.axis()
+        .scale(xScale)
+        .tickSize(7)
+        .ticks(6)
+        .tickFormat(function(d, i) {
+            return monthFormatChart(d);
+        })
+        .tickPadding(8)
+        .orient('bottom');
 
-	    dots = dots.data(histData); //updating the dots
-	    dots.exit().remove();
-	    dots.enter().append('circle');
-	    dots.attr({
-	        r: dotRadius,
-	        cx: function(d){return xScale(d.x) + dotChartSeparation},
-	        cy: function(d){return yScale(d.y )}, //the dy centers the dots between the two ticks
-	        class: 'histDots'
-	      })
-	    .attr('fill', 'silver');
+    var xAxisNodes = lineChart.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + h + ")")
+          .call(xAxis);
 
-	    axisLine.call(axis)
-  	}
-}
+	var yAxis = d3.svg.axis()
+        .scale(yScale).ticks(5)
+        .orient("left")
+        .tickSize(-w)
+        .tickPadding(6)
+        .tickFormat(function(d) { return d});
 
-//THE LINE CHART FUNCTION
-function drawLine(priceData){
-	//CONSTRUCTED FUNCTIONS FOR USE WITHIN THE DRAW
-	function reshapeMonthlyPrice(monthlyPrice,product,startDate,endDate) {
-		monthlyPrice = monthlyPrice.filter(function(d) { return d.item===product && d.date>=startDate && d.date<=endDate});
+    var g = lineChart.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
+
+
+	var states = lineChart.append("g")
+		.selectAll("path")
+		.data(lineData)
+		.enter().append("path")
+		.attr("class", "stateLines")
+		.attr("d", function(d) { d.line = this; return line(d.values); })
+		.attr("clip-path", 'url(#lineclip)')
+
+
+	var voronoi = d3.geom.voronoi()
+	    .x(function(d) { return xScale(d.month); })
+	    .y(function(d) { return yScale(d.price); })
+	    .clipExtent([[0, 0], [w, h]]);
+
+
+  	var voronoiGroup = lineChart.append("g")
+		.attr("class", "voronoi")
+		.selectAll("path")
+		.data(voronoi(d3.nest()
+			.key(function(d) { return xScale(d.month) + "," + yScale(d.price); })
+			.rollup(function(v) { return v[0]; })
+			.entries(d3.merge(lineData.map(function(d) { return d.values; })))
+			.map(function(d) { return d.values; })))
+	    .enter().append("path")
+		.attr("d", function(d) { return "M" + d.join("L") + "Z"; })
+		.datum(function(d) { return d.point; })
+		.style("cursor","default")
+		.on("mouseover", mouseover)
+		.on("mouseout", mouseout);
+
+	var focus = lineChart.append("g")
+		.attr("transform", "translate(-100,-100)")
+		.attr("class", "focus");
+
+	focus.append("circle")
+		.attr("r", 3.5)
+		.style("fill","red")
+		.style("stroke","none");
+
+	function mouseover(d) {
+		var stateName = d.state.replace(' ','')
+		focus.attr("transform", "translate(" + xScale(d.month) + "," + yScale(d.price) + ")");
+		states.filter(function(e) {return e.state===d.state}).style('stroke','red').style('stroke-width','2px').moveToFront();
+		d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',false).classed('boundary-hover-show',true)
+		d3.selectAll('.histDots').filter(function(t){return t.state === d.state}).style('fill', 'red')
+	}
+	function mouseout(d) {
+		var stateName = d.state.replace(' ','')
+		states.filter(function(e) {return e.state===d.state}).style('stroke','rgb(150,150,150)').style('stroke-width','1px');
+		// d3.select(d.city.line).classed("state--hover", false);
+		focus.attr("transform", "translate(-100,-100)");
+		d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',true).classed('boundary-hover-show',false)
+
+	}
+
+	function reshapeMonthlyPrice(monthlyPrice,product) {
+		monthlyPrice = monthlyPrice.filter(function(d) { return d.item===product});
 		var mainArray = [];
 		for (var i=0;i<monthlyPrice.length;i++) {
 			if (mainArray.filter(function(d) {return d.state===monthlyPrice[i].state}).length===0) { // does the state have its own list item yet?
@@ -728,204 +558,17 @@ function drawLine(priceData){
 		}
 		return mainArray;
 	}
-	//GETTING THE DATA READY
-	d3.selection.prototype.moveToFront = function() {
-	  	return this.each(function(){
-	    this.parentNode.appendChild(this);
-	  	});
-	};
-	var sel = document.getElementById('productSelectPrice');
-	var product = sel.options[sel.selectedIndex].value;
-	var months = uniq_fast(priceData.filter(function(e) {return e.item===product}).map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
-	var dates = $('#slider').slider('values');
-	var startDate = sliderMonths[dates[0]];
-   	var endDate = sliderMonths[dates[1]];
-	var lineData = reshapeMonthlyPrice(priceData,product,startDate,endDate);
-
-	//CREATING THE CANVAS
-	var containerSize = d3.select('#lineChartContainer').node().getBoundingClientRect()
-  	var margin = {top: 0.08*containerSize.height , right: 0.03*containerSize.width, bottom: 0.15*containerSize.height, left: 0.06*containerSize.width};
-  	var padding = {top: 0.006*containerSize.height, right: 0.012*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
-  	var width = containerSize.width - margin.right - margin.left; //Chart width
-  	var height = containerSize.height - margin.top - margin.bottom; //Chart height
-
-  	var lineChart = d3.select('#lineChartContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
-        .attr({
-          height: height + margin.top + margin.bottom,
-          width: width + margin.left + margin.right
-        })
-      	.append('g')
-      	.attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
-
-    lineChart.append("clipPath")
-		.attr('id', 'lineclip')
-		.append('rect')
-		.attr("x", 0)
-		.attr("width", width)
-		.attr("y", 0)
-		.attr("height", height);
-	
-	var lineRectBackground = lineChart.append('rect')
-		.attr({	
-			x: 0,
-			width: width,
-			y: 0,
-			height: height,
-			class: 'lineRect'
-		});
-
-
-	//DEFINING THE CHARTING VARIABLES
-	var xScale = d3.time.scale()
-		.domain(d3.extent(months))
-		.range([0, width]);
-	var yScale = d3.scale.linear()
-		.domain([0, d3.max(priceData.filter(function(e) {return e.item===product}).map(function(d) { return d.price; }))*1.05])
-		.range([height, 0]);
-
-    var line = d3.svg.line()
-	    .defined(function(d) { return (d !== null && !isNaN(d.price)); })
-	    .x(function(d) { return xScale(d.month); })
-	    .y(function(d) { return yScale(d.price); });
-
-	var xAxis = d3.svg.axis()
-        .scale(xScale)
-        .tickSize(7)
-        .ticks(6)
-        .tickFormat(function(d, i) {
-            return monthFormat(d);
-        })
-        .tickPadding(8)
-        .orient('bottom');
-
-    //CREATING THE TOOL-TIP
-  	var tip = d3.tip()
-      	.attr('class', 'd3-tip')
-      	.offset([0, 0])
-      	.direction('e')
-      	.html(function(d) {
-          	return "<strong>State:</strong> <span style='color:silver'>" + d.state + "</span>" + "<br>" +
-          	"<strong>Month:</strong> <span style='color:silver'>" + monthFormat(d.month) + "</span>" + "<br>" +
-          	"<strong>Avg. Price:</strong> <span style='color:silver'>" + d3.round(d.price,2) + "</span>"
-    	});
-    lineChart.call(tip);
-
-    //DRAWING THE ELEMENTS
-    var xAxisNodes = lineChart.append("g")
-          .attr("class", "x axis")
-          .attr("transform", "translate(0," + height + ")")
-          .call(xAxis);
-
-	var yAxis = d3.svg.axis()
-        .scale(yScale).ticks(5)
-        .orient("left")
-        .tickSize(-width)
-        .tickPadding(6)
-        .tickFormat(function(d) { return d});
-
-    var g = lineChart.append("g")
-        .attr("class", "y axis")
-        .call(yAxis);
-
-
-	var states = lineChart.append("g")
-		.selectAll("path")
-		.data(lineData)
-		.enter().append("path")
-		.attr("class", "stateLines")
-		.attr("d", function(d) { d.line = this; return line(d.values); })
-		.attr("clip-path", 'url(#lineclip)')
-
-
-	var voronoi = d3.geom.voronoi()
-	    .x(function(d) { return xScale(d.month); })
-	    .y(function(d) { return yScale(d.price); })
-	    .clipExtent([[0, 0], [width, height]]);
-
-
-  	var voronoiGroup = lineChart.append("g")
-		.attr("class", "voronoi")
-		.selectAll("path")
-		.data(voronoi(d3.nest()
-			.key(function(d) { return xScale(d.month) + "," + yScale(d.price); })
-			.rollup(function(v) { return v[0]; })
-			.entries(d3.merge(lineData.map(function(d) { return d.values; })))
-			.map(function(d) { return d.values; })))
-	    .enter().append("path")
-		.attr("d", function(d) { return "M" + d.join("L") + "Z"; })
-		.datum(function(d) { return d.point; })
-		.style("cursor","default")
-		.on("mouseover", mouseoverLine)
-		.on("mouseout", mouseoutLine);
-
-	var focus = lineChart.append("g")
-		.attr("transform", "translate(-100,-100)")
-		.attr("class", "focus");
-
-	focus.append("circle")
-		.attr("r", 3.5)
-		.style("fill","red")
-		.style("stroke","none");
-
-
-	//DEFINING THE MOUSEOVER FUNCTIONS
-	function mouseoverLine(d) {
-		console.log(d.state)
-		var stateName = d.state.replace(' ','')
-		focus.attr("transform", "translate(" + xScale(d.month) + "," + yScale(d.price) + ")");
-		states.filter(function(e) {return e.state===d.state}).style('stroke','red').style('stroke-width','2px').moveToFront();
-		d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',false).classed('boundary-hover-show',true)
-		d3.selectAll('.histDots').filter(function(t){return t.state === d.state && t.date === dateFormat(d.month)}).style('fill', 'red').attr({r: 3}).moveToFront()
-		tip.show(d);
-	}
-	function mouseoutLine(d) {
-		var stateName = d.state.replace(' ','')
-		states.filter(function(e) {return e.state===d.state}).style('stroke','rgb(150,150,150)').style('stroke-width','1px');
-		focus.attr("transform", "translate(-100,-100)");
-		d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',true).classed('boundary-hover-show',false);
-		d3.selectAll('.histDots').filter(function(t){return t.state === (d.state)}).style('fill', 'silver').attr({r: 2});
-		tip.hide(d);
-	}
 
 	d3.select('#productSelectPrice').on('change.line', function(d) {
         var product = d3.select(this).property('value');
-		var dates = $('#slider').slider('values');
-		var startDate = sliderMonths[dates[0]];
-	   	var endDate = sliderMonths[dates[1]];
-	   	var drawVoronoi = true;
-        redrawLine(product,startDate,endDate,drawVoronoi);
-    });
-    $("#slider").on( "slide", function( event, ui ) {
-	    if ((ui.values[0]) >= ui.values[1]) {
-	    	return false;
-	    }
-	    else {
-	    	var startDate = sliderMonths[ui.values[0]];
-	    	var endDate = sliderMonths[ui.values[1]];
-	        var product = d3.select('#productSelectPrice').property('value');
-	        var drawVoronoi = false;
-	        redrawLine(product,startDate,endDate,drawVoronoi);
-	    }
+        redrawLine(product);
     });
 
-    $("#slider").on( "slidestop", function( event, ui ) {
-	    if ((ui.values[0]) >= ui.values[1]) {
-	    	return false;
-	    }
-	    else {
-	    	var startDate = sliderMonths[ui.values[0]];
-	    	var endDate = sliderMonths[ui.values[1]];
-	        var product = d3.select('#productSelectPrice').property('value');
-	        var drawVoronoi = true;
-	        redrawLine(product,startDate,endDate,drawVoronoi);
-	    }
-    });
+	function redrawLine(item) {
+		var months = uniq_fast(priceData.filter(function(e) {return e.item===item}).map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
+		var lineData = reshapeMonthlyPrice(priceData,item);
 
-	function redrawLine(item,startDate,endDate,drawVoronoi) {
-		// var months = uniq_fast(priceData.filter(function(e) {return e.item===item && e.date>=startDate && e.date<=endDate}).map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
-		var lineData = reshapeMonthlyPrice(priceData,item,startDate,endDate);
-
-		xScale.domain([startDate,endDate]);
+		xScale.domain(d3.extent(months));
 		yScale.domain([0, d3.max(priceData.filter(function(e) {return e.item===item}).map(function(d) { return d.price; }))*1.05]);
 		xAxisNodes.call(xAxis);
 		g.call(yAxis);
@@ -937,146 +580,28 @@ function drawLine(priceData){
 			.attr("d",function(d) { d.line = this; return line(d.values); })
 			.attr("clip-path", 'url(#lineclip)');
 
-	  	if (drawVoronoi===true) {
-	  		console.log('drawing voronoi')
-	  		voronoiGroup = voronoiGroup.data(voronoi(d3.nest()
-				.key(function(d) { return xScale(d.month) + "," + yScale(d.price); })
-				.rollup(function(v) { return v[0]; })
-				.entries(d3.merge(lineData.map(function(d) { return d.values; })))
-				.map(function(d) { return d.values; })));
+	  	
+	  	voronoiGroup = voronoiGroup.data(voronoi(d3.nest()
+			.key(function(d) { return xScale(d.month) + "," + yScale(d.price); })
+			.rollup(function(v) { return v[0]; })
+			.entries(d3.merge(lineData.map(function(d) { return d.values; })))
+			.map(function(d) { return d.values; })));
 
-			voronoiGroup.exit().remove();
-			voronoiGroup.enter().append("path");
-			voronoiGroup
-				.attr('class','voronoi')
-				.attr("d", function(d) { return "M" + d.join("L") + "Z"; })
-				.datum(function(d) { return d.point; })
-				.style("cursor","default")
-				.on("mouseover", mouseoverLine)
-				.on("mouseout", mouseoutLine);
-	  	}
-
+		voronoiGroup.exit().remove();
+		voronoiGroup.enter().append("path");
+		voronoiGroup
+			.attr('class','voronoi')
+			.attr("d", function(d) { return "M" + d.join("L") + "Z"; })
+			.datum(function(d) { return d.point; })
+			.style("cursor","default")
+			.on("mouseover", mouseover)
+			.on("mouseout", mouseout);
 
 	}
 }
 
-//THE DRAW FUNCTION FOR THE VOLATILITY
-function drawVolatility(volatility, volLabels, volDateLabels){
- // console.log(monthFormat(volDateLabels[0].date))
-  //GETTING THE DATA READY USING INITIAL SELECTIONS
-  var sel = document.getElementById('productSelectVolatility');//selecting the current product
-  var product = sel.options[sel.selectedIndex].value; //recording the product name selected
-  var data = volatility.filter(function(d){return d.item === product});
-  console.log(data)
-
-
-  //EXTRACTING THE X AND Y DOMAINS FROM THE DATA
-  var maxX = d3.max(data, function(d){return d.xPosition});
-  var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
-  for (i = 1; i <= maxX; i++){
-    xDomain.push(i)
-  };
-  var yDomain = d3.extent(data, function(d){return d.volMoving}) //the y-axis is set to the range of volatility values
-  var colorDomain = yDomain
-
-  //CREATING THE CANVAS AND MAKING THE SCALES
-  var containerSize = {'height': 380, 'width': 540};//d3.select('#volChartContainer').node().getBoundingClientRect()
-  var margin = {top: 0.08*containerSize.height , right: 0.006*containerSize.width, bottom: 0.08*containerSize.height, left: 0.15*containerSize.width};
-  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.04*containerSize.height, left: 0.06*containerSize.width};
-  var width = containerSize.width - margin.right - margin.left; //Chart width
-  var height = containerSize.height - margin.top - margin.bottom; //Chart height
-
-  var volChart = d3.select('#volatilityContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
-      .attr({
-        height: height + margin.top + margin.bottom,
-        width: width + margin.left + margin.right
-      })
-      .append('g')
-      .attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
-
-  var xScale = d3.scale.ordinal() //the ordinal scale uses dotpositions to place them on charts
-      .domain(xDomain)
-      .rangeBands([padding.left, width], .1);
-
-  var yScale = d3.scale.linear() //set to the range of seg values
-      .domain(yDomain)
-      .range([height - padding.bottom, 0]);
-
-  var colorScale = d3.scale.linear() //could change the scale later
-      .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
-      .range(["#C0C0C0", "#ff0000"])
-      .interpolate(d3.interpolateLab);
-
-  var yAxis = d3.svg.axis()
-      .scale(yScale)
-      .orient("left")
-      .tickSize(3)
-      .ticks(6)
-      .tickPadding(8);
-
-  var dotRadius = 3;
-  var xFont = 10;
-  var itemNamestagger = 10;
-
-
-
-  //DRAWING THE ELEMENTS
-  volChart.append('g')
-    .selectAll('.volZoneLab')
-    .data(volLabels)
-    .enter()
-    .append('text')
-    .text(function(d){return d.zoneCode})
-    .attr({
-      x: function(d){return xScale(d.xPosition)},
-      y: height,
-      class: 'volZoneLab'
-    })
-    .style('text-anchor', 'middle')
-    .attr('font-size', xFont)
-    .style('cursor', 'default');
-
-  volChart.append('g')
-    .selectAll('.dateLabels')
-    .data(volDateLabels)
-    .enter()
-    .append('text')
-    .text(function(d){return monthYear(d.date)})
-    .attr({
-      x: function(d){return (xScale(Math.floor(d.xPosition)) + xScale(Math.ceil(d.xPosition)))/2 },
-      y: height + itemNamestagger
-    })
-    .style('text-anchor', 'middle')
-    .style('font-size', xFont)
-    .style('cursor', 'default');
-
-  var yAxisLine = volChart.append('g')
-      .attr('class', 'yAxis')
-      .call(yAxis)
-      .style('pointer-events', 'none')
-
-  var dots = volChart.append('g')
-      .selectAll('.volDots')
-      .data(data)
-      .enter()
-      .append('circle')
-      .attr({
-        cx: function(d){return xScale(d.xPosition)},
-        cy: function(d){return yScale(d.volMoving)},
-        r:dotRadius,
-        class: 'volDots',
-        fill: function(d){return colorScale(d.volMoving)}
-      })
-      .style('stroke', 'black')
-      .style('stroke-width', '0.2px')
-}
-
-//THE DRAW FUNCTION FOR THE SEGMENTATION
-function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
-	function filterData(data, input){ //generic funciton to filter data based on an input
-  		return data.filter(function(d) {return d.yPosition == input})
-  		}
-	/*GETTING THE DATA AND DOMAINS READY*/
+function drawSegmentation(segmentation,segZoneLabels,segItemLabels) {
+  /*GETTING THE DATA AND DOMAINS READY*/
   var maxPosition = d3.max(segmentation, function(d){return d.dotPosition});
   var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
   for (i = 1; i <= maxPosition; i++){
@@ -1087,7 +612,7 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
 
   /*CREATING THE CANVAS*/
   var containerSize = {'height': 200, 'width': 480};
-  var margin = {top: 0.06*containerSize.height , right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
+  var margin = {top: 0.06*containerSize.height , right: 0.05*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
   var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.3*containerSize.height, left: 0.02*containerSize.width};
   var width = containerSize.width - margin.right - margin.left; //Chart width
   var height = containerSize.height - margin.top - margin.bottom; //Chart height
@@ -1259,9 +784,11 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
     d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
   }
   function mouseoverDot(d){
+    //console.log(d)
     d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', true)
     d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
     tip.show(d)
+    //tooltips for centre name state name and value
   }
   function mouseoutDot(d){
     d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', false)
@@ -1269,7 +796,7 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
     tip.hide(d)
   }
   function mouseoverCross(d){
-      console.log(d)
+
     d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', true)
     d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
     d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
@@ -1285,11 +812,14 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
     d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
     d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
   }
+  function filterData(data, input){ //generic funciton to filter data based on an input
+    return data.filter(function(d) {return d.yPosition == input})
+  }
 }
 
-//THE DRAW FUNCTION FOR PASSTHROUGH
-function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
-	/*GETTING THE DATA READY AND IDENTIFYING THE DOMAINS FOR THE CHARTING VARIABLES*/
+function drawPassthrough(passthrough,passZoneLabels,passItemLabels) {
+
+  /*GETTING THE DATA READY AND IDENTIFYING THE DOMAINS FOR THE CHARTING VARIABLES*/
   var maxPosition = d3.max(passthrough, function(d){return d.dotPosition});
   var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
   for (i = 1; i <= maxPosition; i++){
@@ -1300,11 +830,11 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
 
   //CREATING THE CANVAS
   var containerSize = {'height': 200, 'width': 480};
-  var margin = {top: 0.06*containerSize.height , right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
-  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.3*containerSize.height, left: 0.02*containerSize.width};
+  var margin = {top: 0.06*containerSize.height , right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.04*containerSize.width};
+  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.3*containerSize.height, left: 0.04*containerSize.width};
   var width = containerSize.width - margin.right - margin.left; //Chart width
   var height = containerSize.height - margin.top - margin.bottom; //Chart height
-  console.log(padding)
+
   var passChart = d3.select('#passthroughContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
         .attr({
           height: height + margin.top + margin.bottom,
@@ -1471,7 +1001,6 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
     d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
   }
   function mouseoverDot(d){
-    console.log(d)
     d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', true)
     d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
     tip.show(d)
@@ -1497,9 +1026,490 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
     d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
     d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
   }
-
+  function filterData(data, input){ //generic funciton to filter data based on an input
+  	return data.filter(function(d) {return d.yPosition == input})
+  }
 }
 
 
+function drawVolatility(volatility, volBoxValues, volStateLabels, volZonePosition){ // Calculates the Chart Scales and the Y-Scale for the panel (independent of the product selections)
+  //console.log(volStateLabels)
+  //CONSTRUCTED VARAIABLES AND FUNCTIONS FOR THE CODE
+
+  function filterData(data, input){ //generic funciton to filter data based on an input
+  	return data.filter(function(d) {return d.item === input})
+  }
+
+  var monthYear = d3.time.format("%b %y"); //converts to Month-Year
+  var monthFormat = d3.time.format("%Y-%m").parse; //Parse dates and converts to a d3 time format
+  var monthFormatToString = d3.time.format("%Y-%m")
+
+  //DEFAULT DATA SELECTIONS FOR INITIAL LOAD
+  var sel = document.getElementById('productSelectVolatility');//selecting the current product
+  var product = sel.options[sel.selectedIndex].value; //recording the product name selected
+  var data = filterData(volatility, product); //loading the volatility data based on input (this would be used for the initial chart)
+  var zoneData = filterData(volBoxValues, product); //loading the zones data based on the input
+
+  //CALCULATING DOMAINS FROM THE DATA
+  var xChartDomain = uniq_fast(volatility.map(function(d){return monthFormat(d.date.slice(0,7))})).sort(function(a,b) { return a - b;});//the width of chart is based on the number of dates.
+  var maxYPosition = d3.max(volStateLabels, function(d){return d.yPosition}) //the yPosition determines the spacing and position of the y labels and dots
+  var yPanelDomain = [] //the states within each panel are positioned using this domain with a stagger for each zone added
+  for(i = 1; i <= maxYPosition; i++){
+    yPanelDomain.push(i)
+  }
+  var xPanelDomain = [0, Math.ceil(d3.max(volatility, function(d){return d.volMoving})/10)*10]; // the width of each panel is set to the range of volatility for the selected input. The formula sets it so that its rounded to the nearest 10
+  var colorDomain = xPanelDomain //the color domain is set to the range of volatility values
+
+  //CREATING THE CANVAS
+  var containerSize = {'height': 600, 'width': 960};
+  var margin = {top: 0.06*containerSize.height , right: 0.06*containerSize.width, bottom: 0.06*containerSize.height, left: 0.06*containerSize.width};
+  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
+  var width = containerSize.width - margin.right - margin.left; //Chart width
+  var height = containerSize.height - margin.top - margin.bottom; //Chart height
+
+  var volChart = d3.select('#volatilityContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
+        .attr({
+          height: height + margin.top + margin.bottom,
+          width: width + margin.left + margin.right
+        })
+      .append('g')
+      .attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
+
+  var xChartScale = d3.scale.ordinal()
+      .domain(xChartDomain)
+      .rangeRoundBands([padding.left, width], .03)
+
+  var panelWidth = xChartScale.rangeBand()
+
+  var yPanelScale = d3.scale.ordinal()
+      .domain(yPanelDomain)
+      .rangeBands([padding.top, height], 0.2)
+
+  var xPanelScale = d3.scale.linear()
+      .domain(xPanelDomain)
+      .range([padding.left, panelWidth - padding.right])
+
+  var xAxis = d3.svg.axis()
+      .scale(xPanelScale)
+      .orient("bottom")
+      .tickSize(7)
+      .ticks(4)
+      .tickPadding(8)
+
+  var colorScales = d3.scale.linear() //could change the scale later
+      .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
+      .range(["#C0C0C0","#FF0000"])
+      //.range(["#C0C0C0","#0000FF"])
+      //.range(["#0000ff","#ff0000"])
+      .interpolate(d3.interpolateLab);
+
+  //TOOL-TIP
+  var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([14, 10])
+      .direction('e')
+      .html(function(d) {
+          return "<strong>State:</strong> <span style='color:silver'>" + d.state + "</span>" + "<br>" + 
+          "<strong>Centre:</strong> <span style='color:silver'>" + d.centre + "</span>" + "<br>" +
+          "<strong>Volatility:</strong> <span style=" + "'" + "color:" + colorScales(d.volMoving) +"'" +">" + d3.round(d.volMoving, 2) + "</span>"
+          ;
+    })
+  volChart.call(tip)
+  var stateFont = 10;
+  var bigFont = 16;
+  var dotRadius = 3;
+
+  //DRAWING THE CHART ELEMENTS
+  volChart.append('g') //vertical panel backgrounds
+      .selectAll(".vboxes")
+      .data(xChartDomain)
+      .enter()
+      .append('rect')
+      .attr({
+        x: function(d){return xChartScale(d)},
+        y: 0,
+        height: height - padding.bottom,
+        width: panelWidth
+      })
+      .style("stroke", "rgb(10,10,10)")
+      .style("stroke-width", "1px")
+      .style("fill", "none");
+
+  volChart.append('g') //zonal labels (the first level of Y labels)
+      .attr('class', 'y-labels')
+      .selectAll('text')
+      .data(volZonePosition)
+      .enter()
+      .append('text')
+      .text(function(d){return ('Z'+d.zoneCode)})
+      .attr({
+        x: -margin.left,
+        y: function(d){return (yPanelScale(Math.floor(d.position)) + yPanelScale(Math.ceil(d.position)))/2}
+      })
+      .style('font-size', bigFont)
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'start')
+      .style('cursor', 'default')
+
+  volChart.append('g') //date labels (along the x-axis)
+      .attr('class', 'x-labels')
+      .selectAll('text')
+      .data(xChartDomain)
+      .enter()
+      .append('text')
+      .text(function(d){return monthYear(d)})
+      .attr({
+        x: function(d){return xChartScale(d) + panelWidth/2},
+        y: 0
+      })
+      .style('font-size', bigFont)
+      .style('alignment-baseline', 'after-edge')
+      .style('text-anchor', 'middle')
+      .style('cursor', 'default')
+      //.style('font-weight', 'bold');
+
+  volChart.append('g') //state labels (second layer of y-labels)
+      .attr('class', "stateLabels")
+      .selectAll('text')
+      .data(volStateLabels)
+      .enter()
+      .append('text')
+      .text(function(d){return d.state})
+      .attr({
+        x: xChartScale(xChartDomain[0]) - 4,
+        y: function(d){return yPanelScale(d.yPosition)},
+        class: '.stateLabels'
+      })
+      .attr('font-size', stateFont)
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'end')
+      .style('cursor', 'default')
+
+  var meanLine = volChart.append('g') //mean for each zone date combo is marked by a line
+      .selectAll(".boxLines")
+      .data(zoneData)
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+        y1: function(d) {return yPanelScale(d.minY)},
+        x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+        y2: function(d){return yPanelScale(d.maxY)}
+      })
+      .style('pointer-events', 'none')
+
+  var rects = volChart // these rects help apply hover functions to an entire line instead of indivisual dots
+      .selectAll('.hover-rects')
+      .data(volStateLabels)
+      .enter()
+      .append('rect')
+      .attr({
+        x: -40,
+        y:function(d){return yPanelScale(d.yPosition) - stateFont/2},
+        height: 1.1*stateFont,
+        width: width + 30,
+        class: 'hover-rects'
+      })
+      .style('fill', 'none')
+      .on('mouseover', mouseoverRect)
+      .on('mouseout', mouseoutRect)
+
+  var dots = volChart.append('g') //the circles representing center values
+      .selectAll('.dots')
+      .data(data)
+      .enter()
+      .append('circle')
+      .attr({
+        r: dotRadius,
+        cx: function(d){return xChartScale(d.date) + xPanelScale(d.volMoving)},
+        cy: function(d){return yPanelScale(d.yPosition)},
+        class: 'dots',
+        id: function(d){return d.state},
+        fill: function(d){return colorScales(d.volMoving)}
+      })
+      .on('mouseover', mouseoverDots)
+      .on('mouseout', mouseoutDots)
+
+  var hoverMean = volChart.selectAll('.hoverMean') //this would place an X for each mean
+      .data(zoneData)
+      .enter()
+      .append('text')
+      .text('X')
+      .attr({
+        x: function(d){return xChartScale(d.date)}, //the left side of each panel
+        y: 100 + containerSize.height, //marking it out of the charting area
+        class: 'hoverMean'
+      })
+      .style('font-size', 14)
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'middle')
+      .style('cursor', 'default')
+      //.on('mouseover', mouseoverCross)
+      //.on('mouseout', mouseoutCross)
+      .style('pointer-events', 'none')
+
+  var axisNodes = volChart.append('g') //Adding the axis to the bottom of the first panel
+      .attr('class', 'x-axis')
+      .attr("transform", "translate(" + xChartScale(xChartDomain[0]) + ","+ (height) + ")")
+      .call(xAxis)
+
+  //MARKING THE NEW PRODUCT SELECTION AND CALLING THE REDRAW FUNCTION
+  d3.select('#productSelectVolatility') //changes the product based on user input from the dropdown menu
+    .on('change', function(d) {
+        var product = d3.select(this).property('value')
+        redraw(product)
+    })
+
+  //DEFINING THE HOVER FUNCTIONS BASED ON SELECTED DATA
+  function mouseoverRect(d){ // isolating the values based on hover
+    var meanData = [] //empty array to store the mean volatility for each panel (date) and hovered state
+    xChartDomain.forEach(function(e){ //loops over each date in the domain to select data of interest and calculate the mean
+      var centers = data.filter(function(f){ return f.state===d.state && monthFormatToString(e) === f.date.slice(0,7)}) //filters data by hovered state and all dates
+      var mean = d3.mean(centers, function(g){return g.volMoving}) //calculates the mean for each date
+      var meantemp = {}; //empty mean array to store values for each date that is being looped through
+      meantemp['yPosition'] = d.yPosition;
+      meantemp['date'] = e
+      if(typeof mean == "undefined"){meantemp['value'] = 10000} else {meantemp['value'] = mean} //undefined is set to above 1000 to be outside the charting area
+      meanData.push(meantemp)
+      })
+    d3.selectAll('.hoverMean').data(meanData).attr({x: function(d){return xChartScale(d.date) + xPanelScale(d.value)}, y: function(d){return yPanelScale(d.yPosition)}})
+    d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", true)
+    d3.selectAll('.dots').filter(function(t){return t.state == d.state}).classed("hover-show", true).attr({r: 1.5*dotRadius})
+    //d3.selectAll('.stateLabels').filter(function(z){return z.state === d.state}).attr('font-size', '16px')
+  }
+
+  function mouseoutRect(d){
+    d3.selectAll('.hoverMean').attr({x: 1000, y: 1000})
+    d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", false)
+    d3.selectAll('.dots').filter(function(t){return t.state == d.state}).classed("hover-show", false).attr({r: dotRadius})
+  }
+
+  function mouseoverDots(d){
+    var meanData = []
+    xChartDomain.forEach(function(e){
+      var centers = data.filter(function(f){return f.state === d.state && monthFormatToString(e) === f.date.slice(0,7)});
+      var mean = d3.mean(centers, function(g){return g.volMoving});
+      var meantemp = {};
+      meantemp['yPosition'] = d.yPosition;
+      meantemp['date'] = e;
+      if(typeof mean == "undefined"){meantemp['value'] = 10000} else {meantemp['value'] = mean};
+      meanData.push(meantemp);
+    })
+    d3.selectAll('.hoverMean').data(meanData).attr({x: function(d){return xChartScale(d.date) + xPanelScale(d.value)}, y: function(d){return yPanelScale(d.yPosition)}})
+    d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", true)
+    d3.selectAll('.dots#'+d.state).classed("hover-show", true).attr({r: 1.5*dotRadius})
+    tip.show(d)
+  }
+  function mouseoutDots(d){
+    d3.selectAll('.hoverMean').attr({x: 1000, y: 1000})
+    d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", false)
+    d3.selectAll('.dots#' + d.state).classed("hover-show", false).attr({r: dotRadius})
+    tip.hide(d)
+  }
+  function mouseoverCross(d){
+    var meanData = []
+    xChartDomain.forEach(function(e){
+      var centers = data.filter(function(f){return f.state === d.state && monthFormatToString(e) === f.date.slice(0,7)});
+      var mean = d3.mean(centers, function(g){return g.volMoving});
+      var meantemp = {};
+      meantemp['yPosition'] = d.yPosition;
+      meantemp['date'] = e;
+      if(typeof mean == "undefined"){meantemp['value'] = 10000} else {meantemp['value'] = mean};
+      meanData.push(meantemp);
+    })
+    d3.selectAll('.hoverMean').data(meanData).attr({x: function(d){return xChartScale(d.date) + xPanelScale(d.value)}, y: function(d){return yPanelScale(d.yPosition)}})
+    d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", true)
+    d3.selectAll('.dots#'+d.state).classed("hover-show", true).attr({r: 1.5*dotRadius})
+    //tooltips
+  }
+  function mouseoutCross(d){
+    d3.selectAll('.hoverMean').attr({x: 1000, y: 1000})
+    d3.selectAll('.dots').filter(function(t){return t.state != d.state}).classed("hover-hide", false)
+    d3.selectAll('.dots#' + d.state).classed("hover-show", false).attr({r: dotRadius})
+  }
+
+  //CREATING THE REDRAW FUNCTION FOR ELEMENTS THAT NEED TO CHANGE WHEN A NEW PRODUCT IS SELECTED
+  function redraw(product){ //recalibrates the x-PanelScale and redraws the means and dots based on the product selection
+    data = filterData(volatility, product); //loading the volatility data based on input
+    zoneData = filterData(volBoxValues, product); //loading the zones data based on the input
+
+    dots = dots.data(data); //updating the dots
+    dots.exit().remove();
+    dots.enter().append('circle');
+    dots.attr({
+        r: dotRadius,
+        cx: function(d){return xChartScale(d.date) + xPanelScale(d.volMoving)},
+        cy: function(d){return yPanelScale(d.yPosition)},
+        class: 'dots',
+        id: function(d){return d.state},
+        fill: function(d){return colorScales(d.volMoving)}
+      })
+
+    meanLine = meanLine.data(zoneData) //updating the mean line
+    meanLine.exit().remove()
+    meanLine.enter().append('line');
+    meanLine.attr({
+      x1: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+      y1: function(d) {return yPanelScale(d.minY)},
+      x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+      y2: function(d){return yPanelScale(d.maxY)}
+    })
+
+    hoverMean.attr({
+      x: function(d){return xChartScale(d.date)}, //the left side of each panel
+      y: 100 + containerSize.height, //marking it out of the charting area
+      class: 'hoverMean'
+    })
+  }
+}
+
+function drawHistogram(allData) {
+
+  function getData(data, histogram){
+	    var histData = histogram(data); //create the array of arrays with hist data
+	    array = [];//empty array to populate
+	    histData.forEach(function(d){
+	      var y = d.x // gives the vertical position of the dots
+	      var dy = d.dx //the width of the bin
+	      var x = d.y //this gives the number of dots
+	      d.forEach(function(e, i){
+	        e.y = y;
+	        e.dy = dy;
+	        e.x = x - i; //reversing the order since the hist layout sets the highest value in the lowest position in the array
+	        array.push(e)
+	      })
+	    })
+	    return array
+  }
+
+  //FILTERING THE DATA BASED ON SELECTED INPUTS
+  var startDate = dateFormat.parse('2009-01-01'); //This will be based on user inputs
+  var endDate = dateFormat.parse('2012-12-01'); //This will be based on user inputs
+  var sel = document.getElementById('productSelectPrice'); //selecting the default based on currentinput
+  var product = sel.options[sel.selectedIndex].value;
+  var data = allData.filter(function(d){return d.item == product && dateFormat.parse(d.date)>= startDate && dateFormat.parse(d.date) <= endDate});
+
+  //CREATING THE CANVAS AND SCALES BASED ON FILTERED DATA
+  var containerSize = {'height': 180, 'width': 440};
+  var margin = {top: 0.06*containerSize.height , right: 0.001*containerSize.width, bottom: 0.3*containerSize.height, left: 0.2*containerSize.width};
+  var padding = {top: 0.06*containerSize.height, right: 0.001*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
+  var width = containerSize.width - margin.right - margin.left; //Chart width
+  var height = containerSize.height - margin.top - margin.bottom; //Chart height
+
+  var histChart = d3.select('.mapSVG').append('svg') //http://bl.ocks.org/mbostock/3019563
+      .append('g')
+        .attr({
+          height: height + margin.top + margin.bottom,
+          width: width + margin.left + margin.right,
+          //'class':'histogramChart'
+       	})
+      .attr("transform", "translate(" + (40) + "," + 260+ ")");
+
+  var yScale = d3.scale.linear()
+      .domain(d3.extent(data, function(d){return d.meanPrice}))
+      .range([height, padding.top]);
+
+  //CREATING THE HISTOGRAM DATA
+  var numBins = 20;
+  var histogram = d3.layout.histogram()
+      .bins(yScale.ticks(numBins))
+      .value(function(d){return d.meanPrice});
+
+  var histData = getData(data, histogram);
+
+  //CALCULATING THE x-Axis AND COLOUR SCALES BASED ON THE HISTOGRAM DATA
+  var maxX = d3.max(histData, function(d){return d.x})
+  var xDomain =  [];
+  for(i=1; i<=maxX; i++){
+    xDomain.push(i)
+  }
+  var xScale = d3.scale.ordinal()
+      .domain(xDomain)
+      .rangeBands([0, width], 0.01)
+
+  var max = d3.max(histData, function(d) { return d.meanPrice; });
+  var min = d3.min(histData, function(d) { return d.meanPrice; });
+
+  var bounds = setBins(max,min);
+
+  var axis = d3.svg.axis()//setting the axis based on the yScale
+    .scale(yScale)
+    .orient("left")
+    .tickSize(4)
+    .tickValues([min*.95]
+    .concat(bounds));
+
+  //var rectWidth = 10;
+  var dotChartSeparation = 5
+  var dotRadius = 1
+
+  //DRAWING THE ELEMENTS
+  var axisLine = histChart.append("g")
+        .attr('class', 'histAxis')
+        .call(axis)
+
+  var dots = histChart.append('g')
+      .selectAll('histDots')
+      .data(histData)
+      .enter()
+      .append('circle')
+      .attr({
+        r: dotRadius,
+        cx: function(d){return xScale(d.x) + dotChartSeparation},
+        cy: function(d){return yScale(d.y)}, //the dy centers the dots between the two ticks
+        class: '.histDots'
+      })
+      .attr('fill', 'silver');
+
+  //MARKING THE NEW PRODUCT SELECTION AND CALLING THE REDRAW FUNCTION
+  d3.select('#productSelectPrice') //changes the product based on user input from the dropdown menu
+    .on('change.histogram', function(d) {
+        var product = d3.select(this).property('value')
+        redraw(product)
+    })
+
+  //REDRAWING ELEMENTS BASED ON PRODUCT SELECTIONS
+  function redraw(product, startDate, endDate){
+    startDate = dateFormat.parse('2009-01-01'); //This will be based on user inputs
+    endDate = dateFormat.parse('2012-12-01'); //This will be based on user inputs
+    data = allData.filter(function(d){return d.item == product && dateFormat.parse(d.date)>= startDate && dateFormat.parse(d.date) <= endDate});
+    yScale.domain(d3.extent(data, function(d){return d.meanPrice}));
+    histogram.bins(yScale.ticks(numBins))
+    histData = getData(data, histogram)
+    max = d3.max(histData, function(d) { return d.meanPrice; });
+    min = d3.min(histData, function(d) { return d.meanPrice; });
+    bounds = setBins(max,min)
+
+    maxX = d3.max(histData, function(d){return d.x})
+    xDomain =  [];
+    for(i=1; i<=maxX; i++){
+      xDomain.push(i)
+    }
+    xScale.domain(xDomain)
+
+    dots = dots.data(histData); //updating the dots
+    dots.exit().remove();
+    dots.enter().append('circle');
+    dots.attr({
+        r: dotRadius,
+        cx: function(d){return xScale(d.x) + dotChartSeparation},
+        cy: function(d){return yScale(d.y )}, //the dy centers the dots between the two ticks
+        class: '.histDots'
+      })
+    .attr('fill', 'silver');
+
+    
+    //color.domain(bounds)
+    axis = d3.svg.axis()//setting the axis based on the yScale
+        .scale(yScale)
+        .orient("left")
+        .tickSize(4)
+        .tickValues([min*.95]
+        .concat(bounds));
+    axisLine.call(axis)
+  }
+
+
+}
 </script>
 </html>

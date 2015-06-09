@@ -91,7 +91,7 @@ function ready(error, segmentation, segZoneLabels, segItemLabels){
   var colorDomain = yDomain; //same with the color scale
 
   /*CREATING THE CANVAS*/
-  var containerSize = {'height': 500, 'width': 480};
+  var containerSize = {'height': 0, 'width': 480};
   var margin = {top: 0.06*containerSize.height , right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
   var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.3*containerSize.height, left: 0.02*containerSize.width};
   var width = containerSize.width - margin.right - margin.left; //Chart width

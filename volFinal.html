@@ -35,7 +35,7 @@
       <option value="Rice Local">Rice Local</option>
       <option value="Sorghum">Sorghum</option>
     </select>
-    <div id="volChartContainer"></div>
+    <div id="volatilityContainer"></div>
 </div>
 
 </body>
@@ -131,48 +131,12 @@ function drawVolatility(volatility, volLabels, volDateLabels){
   var data = volatility.filter(function(d){return d.item === product});
   console.log(data)
 
-
-  function processLabelData(data){
-    console.log(data)
+  function getMean(data){
     var uniqDates = uniq_fast(data.map(function(d){return d.date}));
     var uniqZones = uniq_fast(data.map(function(d){return d.zoneCode}));
-    var labelDataDate = [];
-    var labelDataZone = [];
-    console.log(uniqDates)
-    console.log(data.filter(function(e) { return e.date === uniqDates[0]}));
-    uniqDates.forEach(function(d,i) {
-      var minX = i*8 + 1;
-      var maxX = i*8 + 6;
-      // console.log(d)
-      var tempData = data.filter(function(e) { return e.date === d});
-      // console.log(tempData)
-      // var meanLine = d3.mean(tempData, function(t){return t.volMoving})
-      var meanLine = 0;
-      labelDataDate.push({
-        'minX':xScale(minX),
-        'maxX':xScale(maxX),
-        'mean':yScale(meanLine)
-      });
-//       uniqZones.forEach(function(r, j){
-//         //console.log(r)
-//         var xPosition = i*8 + (j+1);
-//         //console.log(data.filter(function(z){return z.date === d && z.zoneCode === r}))
-//         var meanX = d3.mean(data.filter(function(z){return z.date === d && z.zoneCode === r}), function(t){return t.volMoving})
-// /*
-//         if(isNaN(meanX)){
-//           mean = 1000
-//         } else {
-//           lableData = {
-//             zoneCode: e,
-//             date: d,
-//             meanVolDate: mean*/
-//       });
-    });
+    console.log(uniqDates, uniqZones)
   }
-
-
-
-
+  getMean(data)
   //EXTRACTING THE X AND Y DOMAINS FROM THE DATA
   var maxX = d3.max(data, function(d){return d.xPosition});
   var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
@@ -189,7 +153,7 @@ function drawVolatility(volatility, volLabels, volDateLabels){
   var width = containerSize.width - margin.right - margin.left; //Chart width
   var height = containerSize.height - margin.top - margin.bottom; //Chart height
 
-  var volChart = d3.select('#volChartContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
+  var volChart = d3.select('#volatilityContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
       .attr({
         height: height + margin.top + margin.bottom,
         width: width + margin.left + margin.right
@@ -221,7 +185,7 @@ function drawVolatility(volatility, volLabels, volDateLabels){
   var xFont = 10;
   var itemNamestagger = 10;
 
-processLabelData(data)
+
 
   //DRAWING THE ELEMENTS
   volChart.append('g')
@@ -272,6 +236,7 @@ processLabelData(data)
       })
       .style('stroke', 'black')
       .style('stroke-width', '0.2px')
+}
 
   /*var meanCross = volChart.append('g')
       .selectAll('.meanCross')
@@ -349,6 +314,5 @@ processLabelData(data)
 
 
 
-}
 </script>
 </html>

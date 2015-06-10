@@ -20,11 +20,11 @@
 }
 
 /*Common CSS for axis classes*/
-.yAxis path{
+.yAxis path, .y-axis path {
 	fill: none;
 	stroke: black;
 }
-.yAxis line{
+.yAxis line, .y-axis line{
 	stroke:grey;
 	stroke-width:1px;
 }
@@ -36,6 +36,21 @@
 	float: left;
 	width:59%;
 	height: 300px;
+}
+#volatilityOuter{
+	float: left;
+}
+#volatilityContainer{
+	margin: auto;
+}
+#indicatorTextContainer {
+	float: left;
+	width:23%;
+	padding:2% 3% 0% 3%;
+}
+#segmentationOuter, #passthroughOuter {
+	float:left;
+	width:50%;
 }
 #mapContainer{
 	width:95%;
@@ -130,4 +145,17 @@
 .focus {
 	pointer-events:none;
 }
-
+select:focus {
+	border: 1px solid #ccc;
+  	box-shadow: none;
+  	outline: 0 none;
+}
+.ui-state-focus {
+	border: 1px solid #000;
+  	box-shadow: none;
+  	outline: 0 none;
+ }
+.ui-slider .ui-slider-handle {
+ 	cursor:grab;
+ 	cursor:-webkit-grab;
+ }

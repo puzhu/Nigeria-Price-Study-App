@@ -106,18 +106,23 @@
 			<div id="tab2row1">
 				<div id="volatilityOuter">
 					<h3>Volatility</h3>
-					<select id="productSelectVolatility">
-						<option selected value="Cement Dangote">Cement Dangote</option>
-						<option value="Drink Swan Water Bottle">Drink Swan Water Bottle</option>
-						<option value="Maize White">Maize White</option>
-						<option value="Maize Yellow">Maize Yellow</option>
-						<option value="Rice Imported">Rice Imported</option>
-						<option value="Rice Local">Rice Local</option>
-						<option value="Sorghum">Sorghum</option>
-    				</select>
+					<div>
+						<select id="productSelectVolatility">
+							<option selected value="Cement Dangote">Cement Dangote</option>
+							<option value="Drink Swan Water Bottle">Drink Swan Water Bottle</option>
+							<option value="Maize White">Maize White</option>
+							<option value="Maize Yellow">Maize Yellow</option>
+							<option value="Rice Imported">Rice Imported</option>
+							<option value="Rice Local">Rice Local</option>
+							<option value="Sorghum">Sorghum</option>
+    					</select>
+    				</div>
 					<div id="volatilityContainer"></div>
-					<div id='indicatorTextContainer'>
-						<p>blah</p></div>
+				</div>
+				<div id='indicatorTextContainer'>
+					<p id = 'text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in elit lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer lectus lacus, suscipit id blandit sed, dictum tristique nulla.</p>
+					<p>Ut faucibus vestibulum ante at pellentesque. Vivamus eget ullamcorper quam, nec tempor justo. Maecenas varius egestas aliquam. Nunc dictum arcu vitae erat vulputate rutrum.</p>
+					<p>Etiam maximus blandit lectus ac ultricies. Etiam congue dui ac arcu congue, ac feugiat metus volutpat. Sed eu sollicitudin odio, quis faucibus elit. Curabitur interdum ligula vel porta luctus. Donec sit amet tortor sit amet quam sodales molestie eget sed lacus. Duis efficitur non eros nec dictum.</p>
 				</div>
 			</div>
 			<div id="tab2row2">
@@ -180,7 +185,9 @@ function setBins(max,min) {// calculates the bins for the color domain in the ma
 		}
 		return bounds;
 }
-
+function filterData(data, input){ //generic funciton to filter data based on an input
+	return data.filter(function(d) {return d.yPosition == input})
+}
 var dateFormat = d3.time.format("%Y-%m-%d");
 var monthFormat = d3.time.format("%b-%y");
 var monthFormatToString = d3.time.format("%Y-%m");
@@ -870,7 +877,6 @@ function drawLine(priceData){
 
 	//DEFINING THE MOUSEOVER FUNCTIONS
 	function mouseoverLine(d) {
-		console.log(d.state)
 		var stateName = d.state.replace(' ','')
 		focus.attr("transform", "translate(" + xScale(d.month) + "," + yScale(d.price) + ")");
 		states.filter(function(e) {return e.state===d.state}).style('stroke','red').style('stroke-width','2px').moveToFront();
@@ -938,7 +944,6 @@ function drawLine(priceData){
 			.attr("clip-path", 'url(#lineclip)');
 
 	  	if (drawVoronoi===true) {
-	  		console.log('drawing voronoi')
 	  		voronoiGroup = voronoiGroup.data(voronoi(d3.nest()
 				.key(function(d) { return xScale(d.month) + "," + yScale(d.price); })
 				.rollup(function(v) { return v[0]; })
@@ -962,12 +967,10 @@ function drawLine(priceData){
 
 //THE DRAW FUNCTION FOR THE VOLATILITY
 function drawVolatility(volatility, volLabels, volDateLabels){
- // console.log(monthFormat(volDateLabels[0].date))
   //GETTING THE DATA READY USING INITIAL SELECTIONS
   var sel = document.getElementById('productSelectVolatility');//selecting the current product
   var product = sel.options[sel.selectedIndex].value; //recording the product name selected
   var data = volatility.filter(function(d){return d.item === product});
-  console.log(data)
 
 
   //EXTRACTING THE X AND Y DOMAINS FROM THE DATA
@@ -980,8 +983,11 @@ function drawVolatility(volatility, volLabels, volDateLabels){
   var colorDomain = yDomain
 
   //CREATING THE CANVAS AND MAKING THE SCALES
-  var containerSize = {'height': 380, 'width': 540};//d3.select('#volChartContainer').node().getBoundingClientRect()
-  var margin = {top: 0.08*containerSize.height , right: 0.006*containerSize.width, bottom: 0.08*containerSize.height, left: 0.15*containerSize.width};
+  // var containerSize = {'height': 380, 'width': 540};
+
+  var mainSize = d3.select('#main').node().getBoundingClientRect()
+  var containerSize = {'width':mainSize.width*.6, 'height':380};
+  var margin = {top: 0.08*containerSize.height , right: 0.006*containerSize.width, bottom: 0.08*containerSize.height, left: 0.04*containerSize.width};
   var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.04*containerSize.height, left: 0.06*containerSize.width};
   var width = containerSize.width - margin.right - margin.left; //Chart width
   var height = containerSize.height - margin.top - margin.bottom; //Chart height
@@ -1073,9 +1079,6 @@ function drawVolatility(volatility, volLabels, volDateLabels){
 
 //THE DRAW FUNCTION FOR THE SEGMENTATION
 function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
-	function filterData(data, input){ //generic funciton to filter data based on an input
-  		return data.filter(function(d) {return d.yPosition == input})
-  		}
 	/*GETTING THE DATA AND DOMAINS READY*/
   var maxPosition = d3.max(segmentation, function(d){return d.dotPosition});
   var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
@@ -1086,9 +1089,11 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
   var colorDomain = yDomain; //same with the color scale
 
   /*CREATING THE CANVAS*/
-  var containerSize = {'height': 200, 'width': 480};
+  var mainSize = d3.select('#main').node().getBoundingClientRect()
+  var containerSize = {'width':(mainSize.width*.9)*.5, 'height':200};
+  // var containerSize = {'height': 200, 'width': 480};
   var margin = {top: 0.06*containerSize.height , right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
-  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.3*containerSize.height, left: 0.02*containerSize.width};
+  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.3*containerSize.height, left: 0.06*containerSize.width};
   var width = containerSize.width - margin.right - margin.left; //Chart width
   var height = containerSize.height - margin.top - margin.bottom; //Chart height
 
@@ -1269,7 +1274,6 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
     tip.hide(d)
   }
   function mouseoverCross(d){
-      console.log(d)
     d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', true)
     d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
     d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
@@ -1299,12 +1303,13 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
   var colorDomain = yDomain; //same with the color scale
 
   //CREATING THE CANVAS
-  var containerSize = {'height': 200, 'width': 480};
+  var mainSize = d3.select('#main').node().getBoundingClientRect()
+  var containerSize = {'width':(mainSize.width*.9)*.5, 'height':200};
+  // var containerSize = {'height': 200, 'width': 480};
   var margin = {top: 0.06*containerSize.height , right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
-  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.3*containerSize.height, left: 0.02*containerSize.width};
+  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.3*containerSize.height, left: 0.06*containerSize.width};
   var width = containerSize.width - margin.right - margin.left; //Chart width
   var height = containerSize.height - margin.top - margin.bottom; //Chart height
-  console.log(padding)
   var passChart = d3.select('#passthroughContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
         .attr({
           height: height + margin.top + margin.bottom,
@@ -1471,7 +1476,6 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
     d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
   }
   function mouseoverDot(d){
-    console.log(d)
     d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', true)
     d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
     tip.show(d)

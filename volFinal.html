@@ -284,19 +284,28 @@ function drawVolatility(volatility, volLabels, volDateLabels){
       .text('x')
       .attr({
         x: function(d){return d.xPosition},
-        y: function(d){return d.meanZone}
+        y: function(d){return d.meanZone},
+        class: 'meanCross'
       })
       .attr('font-size', xFont)
       .style('font-weight', 'bold')
       .style('alignment-baseline', 'central')
       .style('text-anchor', 'middle')
       .style('cursor', 'default')
-
+console.log(means[0])
   var meanLines = volChart.append('g')
       .selectAll('.meanLines')
       .data(means[0])
       .enter()
       .append('line')
+      .attr({
+        x1: function(d){return d.minX - dotRadius},
+        y1: function(d){return d.meanDate},
+        x2: function(d){return d.maxX + dotRadius},
+        y2: function(d){return d.meanDate},
+        class: 'meanLines'
+      })
+      .style('stroke', 'black')
 
 }
 

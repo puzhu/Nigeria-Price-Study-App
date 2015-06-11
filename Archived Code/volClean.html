@@ -168,7 +168,7 @@ function drawVolatility(volatility, volBoxValues, volStateLabels, volZonePositio
       .enter()
       .append('rect')
       .attr({
-        x: function(d){return xChartScale(d)},
+        x: function(d){return xChartScale(d) - 0.1 * dotRadius},
         y: 0,
         height: height - padding.bottom,
         width: panelWidth

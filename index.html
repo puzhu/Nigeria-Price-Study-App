@@ -16,43 +16,9 @@
 <link rel="stylesheet" href="libraries/main.css">
 
 <style>
-#productSelectPrice {
-	margin-right:40px;
-}
-#sliderContainer {
-	display:inline-block;
-}
-#sliderContainer .axis {
-  font: 10px sans-serif;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
 
-#sliderContainer .axis line {
-  fill: none;
-  stroke: black;
-  stroke-width:1px;
-  shape-rendering:crispEdges;
-}
-#sliderContainer .axis path {
-  fill:none;
-}
 
-#sliderContainer #slider {
-  width:250px;
-  margin-left:20px;
-  margin-right:20px;
-  margin-top:-15px;
-}
-.lineRect {
-	fill:rgb(100,100,100);
-	fill-opacity:.2;
-	stroke:none;
-}
-#textDiv {
-	padding:2% 3% 0% 3%;
-}
+
 </style>
 </head>
 
@@ -95,11 +61,11 @@
 				</div>
 			</div>
 			<div id='textDiv'>
-				<p id = 'text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in elit lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer lectus lacus, suscipit id blandit sed, dictum tristique nulla.</p>
-				<p>Ut faucibus vestibulum ante at pellentesque. Vivamus eget ullamcorper quam, nec tempor justo. Maecenas varius egestas aliquam. Nunc dictum arcu vitae erat vulputate rutrum.</p>
-
-				<p>Etiam maximus blandit lectus ac ultricies. Etiam congue dui ac arcu congue, ac feugiat metus volutpat. Sed eu sollicitudin odio, quis faucibus elit. Curabitur interdum ligula vel porta luctus. Donec sit amet tortor sit amet quam sodales molestie eget sed lacus. Duis efficitur non eros nec dictum.</p>
-				<p>In ut odio sed sem porttitor maximus. Fusce luctus tellus eget elementum malesuada. Maecenas aliquam semper varius. Mauris tempor dapibus viverra. Suspendisse potenti. Sed sed arcu non felis placerat dignissim eu ut massa.</p>
+				<p id = 'text'>Introductory Paragraph explaining the purpose of this interface and its intended audience (4 lines). Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+				<p id = 'text'>The three charts on this tab present price data for a commodity at different levels of aggregation.</p>
+				<p>The <strong>map</strong> shows the average of all the price observations across the selected time-period. The <strong>line chart</strong> represents the monthly average price for each state during the selected time period. The <strong>histogram</strong> show the observed prices from each location for the entire selected time period for a particular commodity</p>
+				<p>Hovering over a state would show data on the state and corresponding observations in the histogram and the line chart. The same is true for the line chart.</p>
+				<p>The three charts together offer a view of the spread, the trend and the overall levels of prices in different states in Nigeria</p>
 			</div>
 		</div>
 		<div class="tab-pane" id="indicators">
@@ -120,9 +86,10 @@
 					<div id="volatilityContainer"></div>
 				</div>
 				<div id='indicatorTextContainer'>
-					<p id = 'text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in elit lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer lectus lacus, suscipit id blandit sed, dictum tristique nulla.</p>
-					<p>Ut faucibus vestibulum ante at pellentesque. Vivamus eget ullamcorper quam, nec tempor justo. Maecenas varius egestas aliquam. Nunc dictum arcu vitae erat vulputate rutrum.</p>
-					<p>Etiam maximus blandit lectus ac ultricies. Etiam congue dui ac arcu congue, ac feugiat metus volutpat. Sed eu sollicitudin odio, quis faucibus elit. Curabitur interdum ligula vel porta luctus. Donec sit amet tortor sit amet quam sodales molestie eget sed lacus. Duis efficitur non eros nec dictum.</p>
+					<p id = 'text'><strong>Volatility</strong> measures the magnitude of price fluctuations of a commodity using a 12-month rolling window. Each dot represents an observation from a centre</p>
+					<p><strong>Market segmentation</strong> reflects the extent to which, prices in a country for the same commodity move independently of each other across time. Each dot represents a measurement from a centre</p>
+					<p><strong>Pass-through</strong> refers to the long-term relationship between domestic prices and international prices, i.e., how fully and quickly shocks in prices in international markets are transferred to the Nigerian markets. Each dot represents a state</p>
+					<p>Zones indicate regions: <strong>1</strong> - South-West, <strong>2</strong> - South-South, <strong>3</strong> - South-East, <strong>4</strong> - North-West, <strong>5</strong> - North-Central, <strong>6</strong> - North-East </p>
 				</div>
 			</div>
 			<div id="tab2row2">
@@ -131,7 +98,7 @@
 					<div id="segmentationContainer"></div>
 				</div>
 				<div id="passthroughOuter">
-					<h3>Passthrough</h3>
+					<h3>Pass-through</h3>
 					<div id="passthroughContainer"></div>
 				</div>
 			</div>
@@ -406,7 +373,12 @@ function drawMap(nigeriaStates,priceData){
 		.range(colorArray);
 
 	var y = d3.scale.linear().domain([min*.95, max*1.05]).range([180, 0]);
-    var axis = d3.svg.axis().scale(y).orient("left").tickSize(12).tickValues([min*.95].concat(bounds));
+    var axis = d3.svg.axis()
+    	.scale(y)
+    	.orient("left")
+    	.tickSize(10)
+    	.tickValues([min*.95]
+    	.concat(bounds));
 
     //DRAWING THE LEGEND
     var key = mapContainer.append("g")
@@ -424,8 +396,8 @@ function drawMap(nigeriaStates,priceData){
         .enter().append("rect")
         .attr("height", function(d,i) { return d.x0 - d.x1})
         .attr("y", function(d, i) { return d.x1; })
-        .attr("width", 8)
-        .attr("x",-8)
+        .attr("width", 10)
+        .attr("x",-10)
         .style("fill", function(d) { return d.z; });
 
     key.call(axis);
@@ -440,7 +412,6 @@ function drawMap(nigeriaStates,priceData){
           "<strong>Mean Price:</strong> <span style='color:silver'>" + d3.round(d.properties.price,2) + "</span>"
           ;
     })
-    map.call(tip)
 
     //MERGING THE MAP AND PRICE DATA
     var stateFeatures = topojson.feature(nigeriaStates, nigeriaStates.objects.NGA_adm1).features;
@@ -472,6 +443,7 @@ function drawMap(nigeriaStates,priceData){
 				return color(value);
 			}
 		})
+		.call(tip)
 		.on("mouseover", mouseoverState)
 		.on("mouseout", mouseoutState);
 
@@ -497,14 +469,18 @@ function drawMap(nigeriaStates,priceData){
 
 	//DEFINING THE MOUSEOVER FUNCTIONS FOR THE MAP
 	function mouseoverState(d) {
+		var obs = d3.selectAll('.histDots').filter(function(e){return e.state === d.properties.state_name}).size()
+		d3.selectAll('.histText').text(d.properties.state_name +' observations: ' + obs)
 		var stateName = d.properties.state_name.replace(' ','')
 		d3.selectAll('.boundary-hover#'+stateName).filter(function(e) { return e}).classed('boundary-hover-hide',false).classed('boundary-hover-show',true)
 		d3.selectAll('.stateLines').filter(function(e) {return e.state===d.properties.state_name}).style('stroke','red').style('stroke-width','2px').moveToFront();
-		d3.selectAll('.histDots').filter(function(e) {return e.state===d.properties.state_name}).style('fill', 'red').attr({r: 3})
+		d3.selectAll('.histDots').filter(function(e) {return e.state===d.properties.state_name}).style('fill', 'red').attr({r: 3}).moveToFront()
 		tip.show(d)
 	}
 
 	function mouseoutState(d) {
+		var obs = d3.selectAll('.histDots').size()
+		d3.selectAll('.histText').text('Total observations: ' + obs)
 		var stateName = d.properties.state_name.replace(' ','')
 		d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',true).classed('boundary-hover-show',false)
 		d3.selectAll('.stateLines').filter(function(e) {return e.state===d.properties.state_name}).style('stroke','rgb(150,150,150)').style('stroke-width','1px');
@@ -589,8 +565,8 @@ function drawHistogram(allData){
 
   	//CREATING THE CANVAS AND Y-SCALES
   	var containerSize = d3.select('#histChartContainer').node().getBoundingClientRect()
-  	var margin = {top: 0.08*containerSize.height , right: 0.006*containerSize.width, bottom: 0.08*containerSize.height, left: 0.15*containerSize.width};
-  	var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
+  	var margin = {top: 0.04*containerSize.height , right: 0.006*containerSize.width, bottom: 0.08*containerSize.height, left: 0.15*containerSize.width};
+  	var padding = {top: 0.006*containerSize.height, right: 0.06*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
   	var width = containerSize.width - margin.right - margin.left; //Chart width
   	var height = containerSize.height - margin.top - margin.bottom; //Chart height
 
@@ -622,7 +598,7 @@ function drawHistogram(allData){
 	}
 	var xScale = d3.scale.ordinal()
 	    .domain(xDomain)
-	    .rangeBands([0, width], 0.01)
+	    .rangeBands([0, width-padding.right], 0.01)
 
 	var max = d3.max(histData, function(d) { return d.meanPrice; });
 	var min = d3.min(histData, function(d) { return d.meanPrice; });
@@ -632,12 +608,13 @@ function drawHistogram(allData){
 	    .orient("left")
 	    .tickSize(4)
 
-  	var dotChartSeparation = 5
+  	var dotChartSeparation = 3
   	var dotRadius = 2
 
   	//DRAWING THE ELEMENTS
   	var axisLine = histChart.append("g")
         .attr('class', 'yAxis')
+        .style('cursor', 'default')
         .call(axis);
 
     var dots = histChart.append('g')
@@ -652,6 +629,18 @@ function drawHistogram(allData){
         	class: 'histDots'
       	})
       	.attr('fill', 'silver')
+
+
+    //CREATING LABELS AND TEXT
+    var totObs = data.length
+  	var histText = histChart.append('text')
+    .text('Total observations: ' + totObs)
+    .attr({
+      x:0,
+      y:0,
+      class: 'histText'
+    })
+    .attr('font-size', 11)
 
   	//MARKING THE NEW PRODUCT SELECTION AND CALLING THE REDRAW FUNCTION
   	d3.select('#productSelectPrice') //changes the product based on user input from the dropdown menu
@@ -680,6 +669,8 @@ function drawHistogram(allData){
 	    yScale.domain(d3.extent(data, function(d){return d.meanPrice}));
 	    histogram.bins(yScale.ticks(numBins))
 	    histData = getData(data, histogram)
+	    totObs = data.length
+	    histText.text('Total Price Observations: ' + totObs)
 
 	    maxX = d3.max(histData, function(d){return d.x})
 	    xDomain =  [];
@@ -771,9 +762,9 @@ function drawLine(priceData){
 		.attr("width", width)
 		.attr("y", 0)
 		.attr("height", height);
-	
+
 	var lineRectBackground = lineChart.append('rect')
-		.attr({	
+		.attr({
 			x: 0,
 			width: width,
 			y: 0,
@@ -808,14 +799,13 @@ function drawLine(priceData){
     //CREATING THE TOOL-TIP
   	var tip = d3.tip()
       	.attr('class', 'd3-tip')
-      	.offset([0, 0])
+      	.offset([10, 0])
       	.direction('e')
       	.html(function(d) {
           	return "<strong>State:</strong> <span style='color:silver'>" + d.state + "</span>" + "<br>" +
           	"<strong>Month:</strong> <span style='color:silver'>" + monthFormat(d.month) + "</span>" + "<br>" +
           	"<strong>Avg. Price:</strong> <span style='color:silver'>" + d3.round(d.price,2) + "</span>"
     	});
-    lineChart.call(tip);
 
     //DRAWING THE ELEMENTS
     var xAxisNodes = lineChart.append("g")
@@ -872,11 +862,14 @@ function drawLine(priceData){
 	focus.append("circle")
 		.attr("r", 3.5)
 		.style("fill","red")
-		.style("stroke","none");
+		.style("stroke","none")
+		.call(tip);
 
 
 	//DEFINING THE MOUSEOVER FUNCTIONS
 	function mouseoverLine(d) {
+		var obs = d3.selectAll('.histDots').filter(function(e){return e.state === d.state && e.date === dateFormat(d.month)}).size()
+		d3.selectAll('.histText').text(d.state +' ('+ monthYear(d.month) + ') ' +' observations: ' + obs)
 		var stateName = d.state.replace(' ','')
 		focus.attr("transform", "translate(" + xScale(d.month) + "," + yScale(d.price) + ")");
 		states.filter(function(e) {return e.state===d.state}).style('stroke','red').style('stroke-width','2px').moveToFront();
@@ -885,6 +878,8 @@ function drawLine(priceData){
 		tip.show(d);
 	}
 	function mouseoutLine(d) {
+		var obs = d3.selectAll('.histDots').size()
+		d3.selectAll('.histText').text('Total observations: ' + obs)
 		var stateName = d.state.replace(' ','')
 		states.filter(function(e) {return e.state===d.state}).style('stroke','rgb(150,150,150)').style('stroke-width','1px');
 		focus.attr("transform", "translate(-100,-100)");
@@ -961,18 +956,61 @@ function drawLine(priceData){
 				.on("mouseout", mouseoutLine);
 	  	}
 
-
 	}
 }
 
 //THE DRAW FUNCTION FOR THE VOLATILITY
 function drawVolatility(volatility, volLabels, volDateLabels){
+ // console.log(monthFormat(volDateLabels[0].date))
   //GETTING THE DATA READY USING INITIAL SELECTIONS
   var sel = document.getElementById('productSelectVolatility');//selecting the current product
   var product = sel.options[sel.selectedIndex].value; //recording the product name selected
   var data = volatility.filter(function(d){return d.item === product});
+  /*var uniqDates = uniq_fast(data.map(function(d){return d.date})).sort(function(a,b) { return a - b;})
+  var test = data.filter(function(d){return monthFormatToString(d.date) === monthFormatToString(uniqDates[0])})
+  console.log(test)*/
 
-
+  function getMean(data, xScale, yScale){
+    var uniqDates = uniq_fast(data.map(function(d){return d.date})).sort(function(a,b) { return a - b;});
+    var uniqZones = uniq_fast(data.map(function(d){return d.zoneCode})).sort(function(a,b) { return a - b;});
+    var outerArray = []
+    var dateData = []
+    var zoneData = []
+    uniqDates.forEach(function(d,i){
+	      var minX = i*8 + 1
+	      var maxX = i*8 + 6
+	      var tempData = data.filter(function(e){return monthFormatToString(e.date) === monthFormatToString(d)})
+	      var meanDate = d3.mean(tempData, function(p){return p.volMoving})
+	      dateData.push({
+	        'minX': xScale(minX),
+	        'maxX': xScale(maxX),
+	        'meanDate': yScale(meanDate),
+	        'date': d
+	            })
+	      uniqZones.forEach(function(t,j){
+	        var xPosition = i*8 + (j+1)
+	        var tempData2 = tempData.filter(function(e){return e.zoneCode === t})
+	        var meanZone = d3.mean(tempData2, function(p){return p.volMoving})
+	        if(meanZone === undefined){
+	          zoneData.push({
+	            'xPosition': 10000,
+	            'meanZone': 10000,
+	            'date': d,
+	            'zoneCode': t
+	          })
+	        } else {
+	          zoneData.push({
+	            'xPosition': xScale(xPosition),
+	            'meanZone': yScale(meanZone),
+	            'date': d,
+	            'zoneCode': t
+	          })
+	        }
+	      })
+	})
+    outerArray.push(dateData, zoneData)
+    return outerArray
+  }
   //EXTRACTING THE X AND Y DOMAINS FROM THE DATA
   var maxX = d3.max(data, function(d){return d.xPosition});
   var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
@@ -983,12 +1021,10 @@ function drawVolatility(volatility, volLabels, volDateLabels){
   var colorDomain = yDomain
 
   //CREATING THE CANVAS AND MAKING THE SCALES
-  // var containerSize = {'height': 380, 'width': 540};
-
   var mainSize = d3.select('#main').node().getBoundingClientRect()
-  var containerSize = {'width':mainSize.width*.6, 'height':380};
-  var margin = {top: 0.08*containerSize.height , right: 0.006*containerSize.width, bottom: 0.08*containerSize.height, left: 0.04*containerSize.width};
-  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.04*containerSize.height, left: 0.06*containerSize.width};
+  var containerSize = {'width':(mainSize.width*.9)*.6, 'height':240};
+  var margin = {top: 0.08*containerSize.height , right: 0.006*containerSize.width, bottom: 0.08*containerSize.height, left: 0.06*containerSize.width};
+  var padding = {top: 0.06*containerSize.height, right: 0.006*containerSize.width, bottom: 0.05*containerSize.height, left: 0.04*containerSize.width};
   var width = containerSize.width - margin.right - margin.left; //Chart width
   var height = containerSize.height - margin.top - margin.bottom; //Chart height
 
@@ -1024,7 +1060,19 @@ function drawVolatility(volatility, volLabels, volDateLabels){
   var xFont = 10;
   var itemNamestagger = 10;
 
+  //GETTING THE MEAN DATA READY
+  var means = getMean(data, xScale, yScale)
 
+  //SETTING THE TOOL-TIPs AND TEXT DATA
+  var dotTip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([14, 10])
+      .direction('e')
+      .html(function(d, mean) {
+          return "<strong>State:</strong> <span style='color:silver'>" + d.state + "</span>" + "<br>" + 
+          "<strong>Centre:</strong> <span style='color:silver'>" + d.centre + "</span>" + "<br>" +
+          "<strong>Volatility:</strong> <span style=" + "'" + "color:" + colorScale(d.volMoving) +"'" +">" + d3.round(d.volMoving, 2) + "</span>" + "<br>" + "<strong>State Mean:</strong> <span style=" + "'" + "color:" + colorScale(mean) +"'" +">" + mean + "</span>";
+    });
 
   //DRAWING THE ELEMENTS
   volChart.append('g')
@@ -1061,6 +1109,21 @@ function drawVolatility(volatility, volLabels, volDateLabels){
       .call(yAxis)
       .style('pointer-events', 'none')
 
+  var hoverRects = volChart.append('g')
+      .selectAll('.hoverRects')
+      .data(volLabels)
+      .enter()
+      .append('rect')
+      .attr({
+        x: function(d){return xScale(d.xPosition) - 1.5*dotRadius},
+        y: -dotRadius,
+        height: height + dotRadius,
+        width: 3*dotRadius
+      })
+      .attr("fill-opacity", "0")
+      .on('mouseover', mouseoverRect)
+      .on('mouseout', mouseoutRect)
+
   var dots = volChart.append('g')
       .selectAll('.volDots')
       .data(data)
@@ -1075,7 +1138,163 @@ function drawVolatility(volatility, volLabels, volDateLabels){
       })
       .style('stroke', 'black')
       .style('stroke-width', '0.2px')
+      .call(dotTip)
+      .on('mouseover', mouseoverDot)
+      .on('mouseout', mouseoutDot)
+
+  var meanCross = volChart.append('g')
+      .selectAll('.meanCross')
+      .data(means[1])
+      .enter()
+      .append('text')
+      .text('x')
+      .attr({
+        x: function(d){return d.xPosition},
+        y: function(d){return d.meanZone},
+        class: 'meanCross'
+      })
+      .attr('font-size', xFont)
+      .style('font-weight', 'bold')
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'middle')
+      .style('cursor', 'default')
+      .style('pointer-events', 'none')
+
+  var meanLines = volChart.append('g')
+      .selectAll('.meanLines')
+      .data(means[0])
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return d.minX - dotRadius},
+        y1: function(d){return d.meanDate},
+        x2: function(d){return d.maxX + dotRadius},
+        y2: function(d){return d.meanDate},
+        class: 'meanLines'
+      })
+      .style('stroke', 'black')
+      .style('pointer-events', 'none')
+
+  //ADDING AXIS LABELS AND SUMMARY TEXT
+  var totMean = d3.round(d3.mean(data, function(d){return d.volMoving}), 2);
+  var totObs = data.length;
+  var zoneText = volChart.append('text')
+    .text('National Mean: ' + totMean + ', Observations: ' + totObs + ' (across all dates)')
+    .attr({
+      x:0,
+      y:-itemNamestagger,
+    })
+    .attr('font-size', xFont+2)
+    .style('cursor', 'default')
+
+  yAxisLine.append('text')
+      .text("Price Volatility (12 month window)")
+      .attr("text-anchor", "middle")
+      .style("font-size", '10px')
+      .attr("y", 6)
+      .attr('x', -(height-padding.bottom)/2)
+      .attr("dy", "0.75em")
+      .attr("transform", "rotate(-90)")
+  
+  volChart.append('text')
+      .text("Zones--")
+      .attr({
+        x: 0,
+        y: height
+      })
+      .style("font-size", xFont+2)
+      .style('text-anchor', 'middle')
+
+
+  //MARKING THE NEW PRODUCT SELECTION AND CALLING THE REDRAW FUNCTION
+  d3.select('#productSelectVolatility') //changes the product based on user input from the dropdown menu
+    .on('change', function(d) {
+        var product = d3.select(this).property('value')
+        redraw(product)
+    })
+
+  //CREATING THE REDRAW FUNCTION
+  function redraw(product){
+    data = volatility.filter(function(d){return d.item === product});
+    yDomain = d3.extent(data, function(d){return d.volMoving}) //the y-axis is set to the range of volatility values
+    colorDomain = yDomain
+    yScale.domain(yDomain)
+    colorScale.domain(yDomain)
+    means = getMean(data, xScale, yScale)
+    totMean = d3.round(d3.mean(data, function(d){return d.volMoving}), 2)
+    totObs = data.length
+    zoneText.text('National Mean: ' + totMean + ', Observations: ' + totObs + ' (across all dates)')
+
+    yAxisLine.call(yAxis)
+    dots = dots.data(data)
+    dots.exit().remove()
+    dots.enter().append('circle')
+    dots.attr({
+      cx: function(d){return xScale(d.xPosition)},
+      cy: function(d){return yScale(d.volMoving)},
+      r:dotRadius,
+      class: 'volDots',
+      fill: function(d){return colorScale(d.volMoving)}
+    })
+
+    meanCross = meanCross.data(means[1])
+    meanCross.exit().remove()
+    meanCross.enter().append('text').text('x')
+    meanCross.attr({
+      x: function(d){return d.xPosition},
+      y: function(d){return d.meanZone},
+      class: 'meanCross'
+    })
+
+    meanLines = meanLines.data(means[0])
+    meanLines.exit().remove()
+    meanLines.enter().append('line')
+    meanLines.attr({
+      x1: function(d){return d.minX - dotRadius},
+      y1: function(d){return d.meanDate},
+      x2: function(d){return d.maxX + dotRadius},
+      y2: function(d){return d.meanDate},
+      class: 'meanLines'
+    })
+
+  }
+
+  function mouseoverRect(d){
+    var obs = d3.selectAll('.volDots').filter(function(e){return e.zoneCode === d.zoneCode}).size()
+    var mean = d3.round(d3.mean(data.filter(function(g) {return g.zoneCode === d.zoneCode}), function(z){return z.volMoving}),2)
+    zoneText.text('Zone-'+ d.zoneCode +' Mean: ' + mean + ', National Mean: ' + totMean +', Observations: '+ obs + ' (across all dates)')
+    d3.selectAll('.volDots').filter(function(e){return e.zoneCode === d.zoneCode}).attr({r: 1.5*dotRadius}).classed('zoneHoverShow', true)
+    d3.selectAll('.volDots').filter(function(e){return e.zoneCode !== d.zoneCode}).classed('zoneHoverHide', true)
+    d3.selectAll('.volZoneLab').filter(function(t){return t.zoneCode === d.zoneCode}).classed('textHoverShow', true)
+    d3.selectAll('.meanCross').filter(function(t){return t.zoneCode === d.zoneCode}).classed('textHoverShow', true)
+  }
+  function mouseoutRect(d){
+    zoneText.text('National Mean: ' + totMean + ', Observations: ' + totObs + ' (across all dates)')
+    d3.selectAll('.volDots').filter(function(e){return e.zoneCode == d.zoneCode}).attr({r: dotRadius}).classed('zoneHoverShow', false)
+    d3.selectAll('.volDots').filter(function(e){return e.zoneCode !== d.zoneCode}).classed('zoneHoverHide', false)
+    d3.selectAll('.volZoneLab').filter(function(t){return t.zoneCode === d.zoneCode}).classed('textHoverShow', false)
+    d3.selectAll('.meanCross').filter(function(t){return t.zoneCode === d.zoneCode}).classed('textHoverShow', false)
+  }
+
+  function mouseoverDot(d){
+    var obs = d3.selectAll('.volDots').filter(function(e){return e.zoneCode === d.zoneCode}).size()
+    var mean = d3.round(d3.mean(data.filter(function(g) {return g.zoneCode === d.zoneCode}), function(z){return z.volMoving}),2)
+    var mean2 = d3.round(d3.mean(data.filter(function(g) {return g.state === d.state}), function(z){return z.volMoving}),2)
+    zoneText.text('Zone-'+ d.zoneCode +' Mean: ' + mean + ', National Mean: ' + totMean +', Observations: '+ obs + ' (across all dates)')
+    d3.selectAll('.volDots').filter(function(e){return e.state === d.state}).attr({r: 1.5*dotRadius}).classed('zoneHoverShow', true)
+    d3.selectAll('.volDots').filter(function(e){return e.state !== d.state}).classed('zoneHoverHide', true)
+    d3.selectAll('.volZoneLab').filter(function(t){return t.zoneCode === d.zoneCode}).classed('textHoverShow', true)
+    dotTip.show(d, mean2)
+  }
+  function mouseoutDot(d){
+  	zoneText.text('National Mean: ' + totMean + ', Observations: ' + totObs + ' (across all dates)')
+    d3.selectAll('.volDots').filter(function(e){return e.state === d.state}).attr({r: dotRadius}).classed('zoneHoverShow', false)
+    d3.selectAll('.volDots').filter(function(e){return e.state !== d.state}).classed('zoneHoverHide', false)
+    d3.selectAll('.volZoneLab').filter(function(t){return t.zoneCode === d.zoneCode}).classed('textHoverShow', false)
+    dotTip.hide(d)
+  }
 }
+
 
 //THE DRAW FUNCTION FOR THE SEGMENTATION
 function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
@@ -1090,10 +1309,10 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
 
   /*CREATING THE CANVAS*/
   var mainSize = d3.select('#main').node().getBoundingClientRect()
-  var containerSize = {'width':(mainSize.width*.9)*.5, 'height':200};
+  var containerSize = {'width':(mainSize.width*.9)*.6, 'height':240};
   // var containerSize = {'height': 200, 'width': 480};
-  var margin = {top: 0.06*containerSize.height , right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
-  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.3*containerSize.height, left: 0.06*containerSize.width};
+  var margin = {top: 0.1*containerSize.height , right: 0.0006*containerSize.width, bottom: 0.15*containerSize.height, left: 0.06*containerSize.width};
+  var padding = {top: 0.006*containerSize.height, right: 0.0006*containerSize.width, bottom: 0.1*containerSize.height, left: 0.05*containerSize.width};
   var width = containerSize.width - margin.right - margin.left; //Chart width
   var height = containerSize.height - margin.top - margin.bottom; //Chart height
 
@@ -1134,25 +1353,23 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
       .attr('class', 'd3-tip')
       .offset([14, 10])
       .direction('e')
-      .html(function(d) {
+      .html(function(d, mean) {
           return "<strong>State:</strong> <span style='color:silver'>" + d.state + "</span>" + "<br>" + 
           "<strong>Centre:</strong> <span style='color:silver'>" + d.centre + "</span>" + "<br>" +
-          "<strong>Segmentation:</strong> <span style=" + "'" + "color:" + colorScale(d.seg) +"'" +">" + d.seg + "</span>"
-          ;
+          "<strong>Segmentation:</strong> <span style=" + "'" + "color:" + colorScale(d.seg) +"'" +">" + d.seg + "</span>" + "<br>" + "<strong>State Mean:</strong> <span style=" + "'" + "color:" + colorScale(mean) +"'" +">" + mean + "</span>";
     })
-    segChart.call(tip)
-
+    
   //DRAWING THE DIFFERENT ELEMENTS
   segChart.append('g')
-      .selectAll('.zoneLab') //corresponding to each column of dots
+      .selectAll('.segZoneLab') //corresponding to each column of dots
       .data(segZoneLabels)
       .enter()
       .append('text')
       .text(function(d){return d.zoneCode})
       .attr({
         x: function(d) {return xScale(d.dotPosition)},
-        y: height - padding.bottom/1.5,
-        class: 'zoneLab'
+        y: height,
+        class: 'segZoneLab'
       })
       .style('text-anchor', 'middle')
       .attr('font-size', xFont)
@@ -1167,14 +1384,15 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
       .text(function(d){return d.item})
       .attr({
         x: function(d){return (xScale(Math.floor(d.xPosition)) + xScale(Math.ceil(d.xPosition)))/2 },
-        y: function(d){return height - padding.bottom/2.5 + itemNamestagger*d.yPosition} //yPosition is a 0-1 variable
+        y: function(d){return height + itemNamestagger + itemNamestagger*d.yPosition} //yPosition is a 0-1 variable
       })
       .style('text-anchor', 'middle')
       .style('font-size', xFont)
       .style('cursor', 'default');
 
+
   segChart.append('g')
-      .selectAll('.hover-rects')
+      .selectAll('.segHoverRects')
       .data(segZoneLabels)
       .enter()
       .append('rect')
@@ -1183,8 +1401,7 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
         y: 0,
         height: height - padding.bottom/1.5,
         width: 2*dotRadius,
-        class: 'zoneMean',
-        id: function(d){return d.zoneCode}
+        class: 'segHoverRects',
       })
       .attr("fill-opacity", "0")
       .style('cursor', 'default')
@@ -1192,13 +1409,13 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
       .on('mouseover', mouseoverRect)
       .on('mouseout', mouseoutRect);
 
-  segChart.append('g') //Adding the axis to the bottom of the first panel
-      .attr('class', 'y-axis')
+  var yAxisLine = segChart.append('g') //Adding the axis to the bottom of the first panel
+      .attr('class', 'yAxis')
       .style('cursor', 'default')
       .call(yAxis)
 
   segChart.append('g')
-      .selectAll('.dots')
+      .selectAll('.segDots')
       .data(segmentation)
       .enter()
       .append('circle')
@@ -1207,15 +1424,15 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
         cx: function(d){return xScale(d.dotPosition)},
         cy: function(d){return yScale(d.seg)},
         fill: function(d){return colorScale(d.seg)},
-        class: 'dots'
+        class: 'segDots'
       })
       .attr("fill-opacity", "0.8")
+      .call(tip)
       .on('mouseover', mouseoverDot)
       .on('mouseout', mouseoutDot);
 
-
   segChart.append('g')
-      .selectAll('.meanCross')
+      .selectAll('.segMeanCross')
       .data(segZoneLabels)
       .enter()
       .append('text')
@@ -1223,77 +1440,100 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
       .attr({
         x: function(d){return xScale(d.dotPosition)},
         y: function(d){return yScale(d.mean)},
-        class: 'meanCross'
+        class: 'segMeanCross'
       })
       .attr('font-size', xFont)
       .style('font-weight', 'bold')
       .style('alignment-baseline', 'central')
       .style('text-anchor', 'middle')
       .style('cursor', 'default')
-      .on('mouseover', mouseoverCross)
-      .on('mouseout', mouseoutCross)
       .style('pointer-events', 'none');
 
   segChart.append('g')
-      .selectAll('.meanLines')
+      .selectAll('.segMeanLines')
       .data(filterData(segItemLabels, 0))
       .enter()
       .append('line')
       .attr({
-        x1: function(d){return xScale(d.minX)},
+        x1: function(d){return xScale(d.minX) - dotRadius},
         y1: function(d){return yScale(d.mean)},
-        x2: function(d){return xScale(d.maxX)},
-        y2: function(d){return yScale(d.mean)}
+        x2: function(d){return xScale(d.maxX) + dotRadius},
+        y2: function(d){return yScale(d.mean)},
+        class: 'segMeanLines'
       })
+      .style('stroke', 'black')
+      .style('pointer-events', 'none')
+
+  //ADDING AXIS LABELS AND SUMMARY TEXT
+  var totMean = d3.round(d3.mean(segmentation, function(d){return d.seg}),2);
+  var totObs = segmentation.length
+  var zoneText = segChart.append('text')
+    .text('National Mean: ' + totMean + ', Observations: ' + totObs + ' (across all products)')
+    .attr({
+      x:0,
+      y:-itemNamestagger,
+    })
+    .attr('font-size', xFont+2)
+
+  yAxisLine.append('text')
+      .text("Market Segmentation (%)")
+      .attr("text-anchor", "middle")
+      .style("font-size", '10px')
+      .attr("y", 6)
+      .attr('x', -(height-padding.bottom)/2)
+      .attr("dy", "0.75em")
+      .attr("transform", "rotate(-90)")
+
+  segChart.append('text')
+      .text("Zones--")
+      .attr({
+        x: 0,
+        y: height 
+      })
+      .style("font-size", xFont+2)
+      .style('text-anchor', 'middle')
 
   //DEFINING THE MOUSEOVER FUNCTION
   function mouseoverRect(d){
-    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', true)
-    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
-    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
-    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
-    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
-    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
+  	var obs = d3.selectAll('.segDots').filter(function(e){return e.zoneCode === d.zoneCode}).size()
+    var mean = d3.round(d3.mean(segmentation.filter(function(g) {return g.zoneCode === d.zoneCode}), function(z){return z.seg}),2)
+    zoneText.text('Zone-'+ d.zoneCode +' Mean: ' + mean + ', National Mean: ' + totMean +', Observations: '+ obs + ' (across all products)')
+    d3.selectAll('.segDots').filter(function(e){return e.zoneCode !== d.zoneCode}).classed('zoneHoverHide', true)
+    d3.selectAll('.segDots').filter(function(e){return e.zoneCode === d.zoneCode}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
+    d3.selectAll('.segMeanCross').filter(function(e){return e.zoneCode === d.zoneCode}).classed('textHoverShow', true)
+    d3.selectAll('.segZoneLab').filter(function(e){return e.zoneCode === d.zoneCode}).classed('textHoverShow', true)
   }
   function mouseoutRect(d){
-    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', false)
-    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', false).attr({r: dotRadius})
-    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
-    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
-    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
-    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
+  	zoneText.text('National Mean: ' + totMean + ', Observations: ' + totObs + ' (across all products)')
+    d3.selectAll('.segDots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', false)
+    d3.selectAll('.segDots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', false).attr({r: dotRadius})
+    d3.selectAll('.segMeanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('textHoverShow', false)
+    d3.selectAll('.segZoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('textHoverShow', false)
   }
   function mouseoverDot(d){
-    d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', true)
-    d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
-    tip.show(d)
+  	var obs = d3.selectAll('.segDots').filter(function(e){return e.zoneCode === d.zoneCode}).size()
+    var mean = d3.round(d3.mean(segmentation.filter(function(g) {return g.zoneCode === d.zoneCode}), function(z){return z.seg}),2)
+    var mean2 = d3.round(d3.mean(segmentation.filter(function(g) {return g.state === d.state}), function(z){return z.seg}),2)
+    zoneText.text('Zone-'+ d.zoneCode +' Mean: ' + mean + ', National Mean: ' + totMean +', Observations: '+ obs + ' (across all products)')
+    d3.selectAll('.segDots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', true)
+    d3.selectAll('.segDots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
+    d3.selectAll('.segMeanCross').filter(function(e){return e.zoneCode === d.zoneCode}).classed('textHoverShow', true)
+    d3.selectAll('.segZoneLab').filter(function(e){return e.zoneCode === d.zoneCode}).classed('textHoverShow', true)
+    tip.show(d, mean2)
   }
   function mouseoutDot(d){
-    d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', false)
-    d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', false).attr({r: dotRadius})
+  	zoneText.text('National Mean: ' + totMean + ', Observations: ' + totObs + ' (across all products)')
+    d3.selectAll('.segDots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', false)
+    d3.selectAll('.segDots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', false).attr({r: dotRadius})
+    d3.selectAll('.segMeanCross').filter(function(e){return e.zoneCode === d.zoneCode}).classed('textHoverShow', false)
+    d3.selectAll('.segZoneLab').filter(function(e){return e.zoneCode === d.zoneCode}).classed('textHoverShow', false)
     tip.hide(d)
-  }
-  function mouseoverCross(d){
-    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', true)
-    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
-    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
-    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
-    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
-    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
-  }
-  function mouseoutCross(d){
-    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', false)
-    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', false).attr({r: dotRadius})
-    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
-    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
-    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
-    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
   }
 }
 
 //THE DRAW FUNCTION FOR PASSTHROUGH
 function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
-	/*GETTING THE DATA READY AND IDENTIFYING THE DOMAINS FOR THE CHARTING VARIABLES*/
+  /*GETTING THE DATA READY AND IDENTIFYING THE DOMAINS FOR THE CHARTING VARIABLES*/
   var maxPosition = d3.max(passthrough, function(d){return d.dotPosition});
   var xDomain = [] // creating the x-axis domain for the chart (a series of dots)
   for (i = 1; i <= maxPosition; i++){
@@ -1304,10 +1544,10 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
 
   //CREATING THE CANVAS
   var mainSize = d3.select('#main').node().getBoundingClientRect()
-  var containerSize = {'width':(mainSize.width*.9)*.5, 'height':200};
+  var containerSize = {'width':(mainSize.width*.9)*.4, 'height':240};
   // var containerSize = {'height': 200, 'width': 480};
-  var margin = {top: 0.06*containerSize.height , right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
-  var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.3*containerSize.height, left: 0.06*containerSize.width};
+  var margin = {top: 0.1*containerSize.height , right: 0.0006*containerSize.width, bottom: 0.15*containerSize.height, left: 0.06*containerSize.width};
+  var padding = {top: 0.006*containerSize.height, right: 0.0006*containerSize.width, bottom: 0.1*containerSize.height, left: 0.07*containerSize.width};
   var width = containerSize.width - margin.right - margin.left; //Chart width
   var height = containerSize.height - margin.top - margin.bottom; //Chart height
   var passChart = d3.select('#passthroughContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
@@ -1337,35 +1577,31 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
       .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
       .range(["#C0C0C0", "#ff0000"])
       .interpolate(d3.interpolateLab);
-
-  //TOOL-TIP
+  
+  var dotRadius = 3;
+  var xFont = 10;
+  var itemNamestagger = 10;
+	//TOOL-TIP
   var tip = d3.tip()
       .attr('class', 'd3-tip')
       .offset([14, 10])
       .direction('e')
-      .html(function(d) {
-          return "<strong>State:</strong> <span style='color:silver'>" + d.state + "</span>" + "<br>" + 
-          "<strong>Passthrough:</strong> <span style=" + "'" + "color:" + colorScale(d.pT) +"'" +">" + d3.round(d.pT, 1) + "</span>"
-          ;
+      .html(function(d, mean) {
+          return "<strong>State:</strong> <span style='color:silver'>" + d.state + "</span>" + "<br>" +
+          "<strong>Passthrough:</strong> <span style=" + "'" + "color:" + colorScale(d.pT) +"'" +">" + d3.round(d.pT, 2) + "</span>" + "<br>" + "<strong>State Mean:</strong> <span style=" + "'" + "color:" + colorScale(mean) +"'" +">" + mean + "</span>";
     })
-    passChart.call(tip)
 
-  var dotRadius = 3;
-  var xFont = 10;
-  var itemNamestagger = 10;
-
-  //DRAWING THE DIFFERENT ELEMENTS ON THE CANVAS
+  //DRAWING THE DIFFERENT ELEMENTS
   passChart.append('g')
-      .attr('class', 'zone-labels') //corresponding to each column of dots
-      .selectAll('text')
+      .selectAll('.passZoneLab') //corresponding to each column of dots
       .data(passZoneLabels)
       .enter()
       .append('text')
       .text(function(d){return d.zoneCode})
       .attr({
         x: function(d) {return xScale(d.dotPosition)},
-        y: height - padding.bottom/1.5,
-        class: 'zoneLab'
+        y: height,
+        class: 'passZoneLab'
       })
       .style('text-anchor', 'middle')
       .attr('font-size', xFont)
@@ -1380,14 +1616,15 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
       .text(function(d){return d.item})
       .attr({
         x: function(d){return (xScale(Math.floor(d.xPosition)) + xScale(Math.ceil(d.xPosition)))/2 },
-        y: function(d){return height - padding.bottom/2.5 + itemNamestagger*d.yPosition} //yPosition is a 0-1 variable
+        y: function(d){return height + itemNamestagger + itemNamestagger*d.yPosition} //yPosition is a 0-1 variable
       })
       .style('text-anchor', 'middle')
       .style('font-size', xFont)
       .style('cursor', 'default');
 
+
   passChart.append('g')
-      .selectAll('.hover-rects')
+      .selectAll('.passHoverRects')
       .data(passZoneLabels)
       .enter()
       .append('rect')
@@ -1396,37 +1633,38 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
         y: 0,
         height: height - padding.bottom/1.5,
         width: 2*dotRadius,
-        class: 'zoneMean',
-        id: function(d){return d.zoneCode}
+        class: 'passHoverRects',
       })
-      .style("fill-opacity", "0")
+      .attr("fill-opacity", "0")
       .style('cursor', 'default')
+      .style('pointer-events', 'all')
       .on('mouseover', mouseoverRect)
       .on('mouseout', mouseoutRect);
 
-  passChart.append('g') //Adding the axis to the bottom of the first panel
-      .attr('class', 'y-axis')
-      //.attr("transform", "translate(" + (3*padding.left) + ", 0)")
+  var yAxisLine = passChart.append('g') //Adding the axis to the bottom of the first panel
+      .attr('class', 'yAxis')
       .style('cursor', 'default')
       .call(yAxis)
 
   passChart.append('g')
-      .selectAll('.dots')
+      .selectAll('.passDots')
       .data(passthrough)
       .enter()
-      .append('svg:circle')
+      .append('circle')
       .attr({
         r: dotRadius,
         cx: function(d){return xScale(d.dotPosition)},
         cy: function(d){return yScale(d.pT)},
         fill: function(d){return colorScale(d.pT)},
-        class: 'dots'
+        class: 'passDots'
       })
+      .attr("fill-opacity", "0.8")
+      .call(tip)
       .on('mouseover', mouseoverDot)
-      .on('mouseout', mouseoutDot)
+      .on('mouseout', mouseoutDot);
 
   passChart.append('g')
-      .selectAll('.meanCross')
+      .selectAll('.passMeanCross')
       .data(passZoneLabels)
       .enter()
       .append('text')
@@ -1434,74 +1672,95 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
       .attr({
         x: function(d){return xScale(d.dotPosition)},
         y: function(d){return yScale(d.mean)},
-        class: 'meanCross'
+        class: 'passMeanCross'
       })
       .attr('font-size', xFont)
       .style('font-weight', 'bold')
       .style('alignment-baseline', 'central')
       .style('text-anchor', 'middle')
       .style('cursor', 'default')
-      .on('mouseover', mouseoverCross)
-      .on('mouseout', mouseoutCross)
       .style('pointer-events', 'none');
 
-
   passChart.append('g')
-      .selectAll('.meanLines')
+      .selectAll('.passMeanLines')
       .data(filterData(passItemLabels, 0))
       .enter()
       .append('line')
       .attr({
-        x1: function(d){return xScale(d.minX)},
+        x1: function(d){return xScale(d.minX) - dotRadius},
         y1: function(d){return yScale(d.mean)},
-        x2: function(d){return xScale(d.maxX)},
-        y2: function(d){return yScale(d.mean)}
+        x2: function(d){return xScale(d.maxX) + dotRadius},
+        y2: function(d){return yScale(d.mean)},
+        class: 'passMeanLines'
       })
+      .style('stroke', 'black')
+      .style('pointer-events', 'none')
+
+  //ADDING AXIS LABELS AND SUMMARY TEXT
+  var totMean = d3.round(d3.mean(passthrough, function(d){return d.pT}),2);
+  var totObs = passthrough.length
+  var zoneText = passChart.append('text')
+    .text('National Mean: ' + totMean + ', Observations: ' + totObs + ' (all products)')
+    .attr({
+      x:0,
+      y:-itemNamestagger,
+    })
+    .attr('font-size', xFont+2)
+
+  yAxisLine.append('text')
+      .text("Pass-Through")
+      .attr("text-anchor", "middle")
+      .style("font-size", '10px')
+      .attr("y", 6)
+      .attr('x', -(height-padding.bottom)/2)
+      .attr("dy", "0.75em")
+      .attr("transform", "rotate(-90)")
+
+  passChart.append('text')
+      .text("Zones--")
+      .attr({
+        x: 0,
+        y: height
+      })
+      .style("font-size", xFont+2)
+      .style('text-anchor', 'middle')
 
   //DEFINING THE MOUSEOVER FUNCTION
   function mouseoverRect(d){
-    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', true)
-    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
-    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
-    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
-    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
-    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
+  	var obs = d3.selectAll('.passDots').filter(function(e){return e.zoneCode === d.zoneCode}).size()
+    var mean = d3.round(d3.mean(passthrough.filter(function(g) {return g.zoneCode === d.zoneCode}), function(z){return z.pT}),2)
+    zoneText.text('Zone-'+ d.zoneCode +' Mean: ' + mean + ', National Mean: ' + totMean +', Observations: '+ obs + ' (all products)')
+    d3.selectAll('.passDots').filter(function(e){return e.zoneCode !== d.zoneCode}).classed('zoneHoverHide', true)
+    d3.selectAll('.passDots').filter(function(e){return e.zoneCode === d.zoneCode}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
+    d3.selectAll('.passMeanCross').filter(function(e){return e.zoneCode === d.zoneCode}).classed('textHoverShow', true)
+    d3.selectAll('.passZoneLab').filter(function(e){return e.zoneCode === d.zoneCode}).classed('textHoverShow', true)
   }
   function mouseoutRect(d){
-    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', false)
-    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', false).attr({r: dotRadius})
-    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
-    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
-    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
-    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
+  	zoneText.text('National Mean: ' + totMean + ', Observations: ' + totObs + ' (all products)')
+    d3.selectAll('.passDots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', false)
+    d3.selectAll('.passDots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', false).attr({r: dotRadius})
+    d3.selectAll('.passMeanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('textHoverShow', false)
+    d3.selectAll('.passZoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('textHoverShow', false)
   }
   function mouseoverDot(d){
-    d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', true)
-    d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
-    tip.show(d)
+  	var obs = d3.selectAll('.passDots').filter(function(e){return e.zoneCode === d.zoneCode}).size()
+    var mean = d3.round(d3.mean(passthrough.filter(function(g) {return g.zoneCode === d.zoneCode}), function(z){return z.pT}),2)
+    var mean2 = d3.round(d3.mean(passthrough.filter(function(g) {return g.state === d.state}), function(z){return z.pT}),2)
+    zoneText.text('Zone-'+ d.zoneCode +' Mean: ' + mean + ', National Mean: ' + totMean +', Observations: '+ obs + ' (all products)')
+    d3.selectAll('.passDots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', true)
+    d3.selectAll('.passDots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', true).attr({r: 1.5*dotRadius})
+    d3.selectAll('.passMeanCross').filter(function(e){return e.zoneCode === d.zoneCode}).classed('textHoverShow', true)
+    d3.selectAll('.passZoneLab').filter(function(e){return e.zoneCode === d.zoneCode}).classed('textHoverShow', true)
+    tip.show(d, mean2)
   }
   function mouseoutDot(d){
-    d3.selectAll('.dots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', false)
-    d3.selectAll('.dots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', false).attr({r: dotRadius})
+  	zoneText.text('National Mean: ' + totMean + ', Observations: ' + totObs + ' (all products)')
+    d3.selectAll('.passDots').filter(function(e){return e.state != d.state}).classed('zoneHoverHide', false)
+    d3.selectAll('.passDots').filter(function(e){return e.state == d.state}).classed('zoneHoverShow', false).attr({r: dotRadius})
+    d3.selectAll('.passMeanCross').filter(function(e){return e.zoneCode === d.zoneCode}).classed('textHoverShow', false)
+    d3.selectAll('.passZoneLab').filter(function(e){return e.zoneCode === d.zoneCode}).classed('textHoverShow', false)
     tip.hide(d)
   }
-  function mouseoverCross(d){
-    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', true)
-    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', true)
-    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
-    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
-    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', true)
-    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', true)
-  }
-  function mouseoutCross(d){
-    d3.selectAll('.dots').filter(function(e){return e.zoneCode != d.zoneCode}).classed('zoneHoverHide', false)
-    d3.selectAll('.dots').filter(function(e){return e.zoneCode == d.zoneCode}).classed('zoneHoverShow', false)
-    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
-    d3.selectAll('.meanCross').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
-    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode != d.zoneCode}).classed('meanHoverHide', false)
-    d3.selectAll('.zoneLab').filter(function(e){return e.zoneCode == d.zoneCode}).classed('meanHoverShow', false)
-  }
-
 }
 
 

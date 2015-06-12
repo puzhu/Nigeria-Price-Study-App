@@ -17,7 +17,11 @@
 
 <style>
 
-
+.sliderPoly path{
+	fill:white;
+	stroke:black;
+	shape-rendering:crispEdges;
+}
 
 </style>
 </head>
@@ -31,33 +35,35 @@
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane active" id="prices">
-			<div id="selectorDiv">
-				<select id="productSelectPrice">
-					<option selected value="Cement Dangote">Cement Dangote</option>
-					<option value="Drink Swan Water Bottle">Drink Swan Water Bottle</option>
-					<option value="Maize White">Maize White</option>
-					<option value="Maize Yellow">Maize Yellow</option>
-					<option value="Rice Imported">Rice Imported</option>
-					<option value="Rice Local">Rice Local</option>
-					<option value="Sorghum">Sorghum</option>
-				</select>
-				<div id="sliderContainer">
-					<div id="sliderAxis"></div>
-				  	<div id="slider"></div>
+			<div id="leftDiv">
+				<div id="selectorDiv">
+					<select id="productSelectPrice">
+						<option selected value="Cement Dangote">Cement Dangote</option>
+						<option value="Drink Swan Water Bottle">Drink Swan Water Bottle</option>
+						<option value="Maize White">Maize White</option>
+						<option value="Maize Yellow">Maize Yellow</option>
+						<option value="Rice Imported">Rice Imported</option>
+						<option value="Rice Local">Rice Local</option>
+						<option value="Sorghum">Sorghum</option>
+					</select>
+					<div id="sliderContainer">
+						<div id="sliderAxis"></div>
+					  	<div id="slider"></div>
+					</div>
 				</div>
-			</div>
-			<div id="chartsDiv">
-				<div id="mapOuter">
-					<h3>Average prices</h3>
-					<div id="mapContainer"></div>
-				</div>
-				<div id="histOuter">
-					<h3>Centre level prices</h3>
-					<div id="histChartContainer"></div>
-				</div>
-				<div id="lineOuter">
-					<h3>Prices over time</h3>
-					<div id="lineChartContainer"></div>
+				<div id="chartsDiv">
+					<div id="mapOuter">
+						<h3>Average prices</h3>
+						<div id="mapContainer"></div>
+					</div>
+					<div id="histOuter">
+						<h3>Centre level prices</h3>
+						<div id="histChartContainer"></div>
+					</div>
+					<div id="lineOuter">
+						<h3>Prices over time</h3>
+						<div id="lineChartContainer"></div>
+					</div>
 				</div>
 			</div>
 			<div id='textDiv'>
@@ -184,7 +190,7 @@ for (var i=2009; i<=2012;i++) {
 	var axis = d3.svg.axis()
 		.scale(x)
 	  	.orient("top")
-	  	.tickPadding(10)
+	  	.tickPadding(8)
 	  	.tickSize(0)
 	  	.tickValues(sliderMonths)
 	  	.tickFormat(function(d, i) {
@@ -212,6 +218,19 @@ for (var i=2009; i<=2012;i++) {
 		}
 	});
 })();
+
+d3.selectAll('.ui-slider-handle')
+	.append('svg')
+	.attr({
+		height: '19px',
+		width: '17px',
+		class: 'sliderPoly'
+	})
+	// .append('polygon')
+	// .attr('points', "0,2 13,2 13,13 7,19 0,12 0,2")
+	.append('path')
+	.attr('d', "M0 2L13 2L13 13L7 19L0 12 Z")
+;
 
 function processVolatility(d, i) { //formats price data for the map
       function deString(d) {
@@ -376,7 +395,7 @@ function drawMap(nigeriaStates,priceData){
     var axis = d3.svg.axis()
     	.scale(y)
     	.orient("left")
-    	.tickSize(10)
+    	.tickSize(9)
     	.tickValues([min*.95]
     	.concat(bounds));
 
@@ -396,8 +415,8 @@ function drawMap(nigeriaStates,priceData){
         .enter().append("rect")
         .attr("height", function(d,i) { return d.x0 - d.x1})
         .attr("y", function(d, i) { return d.x1; })
-        .attr("width", 10)
-        .attr("x",-10)
+        .attr("width", 8)
+        .attr("x",-9)
         .style("fill", function(d) { return d.z; });
 
     key.call(axis);

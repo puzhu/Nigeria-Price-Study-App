@@ -12,13 +12,17 @@ h3 {
 	margin-right:auto;
 }
 
+#leftDiv {
+	float:left;
+	width:69%;
+}
 /*Outer set of divs*/
 #selectorDiv{
 	
 }
 #chartsDiv{
-	float: left;
-	width: 69%;
+/*	float: left;
+	width: 69%;*/
 	/*border:1px solid black;*/
 }
 #textDiv{
@@ -98,7 +102,7 @@ h3 {
 }
 #segmentationOuter {
 	float:left;
-	width:60%;
+	width:58%;
 	/*border:1px solid black;*/
 }
 
@@ -117,7 +121,7 @@ h3 {
 	display:none;
 }
 .key line {
-	stroke:#000;
+	stroke:white;
 	shape-rendering:crispEdges;
 }
 .key text {

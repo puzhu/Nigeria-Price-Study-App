@@ -61,7 +61,7 @@
 				</div>
 			</div>
 			<div id='textDiv'>
-				<p id = 'text'>Introductory Paragraph explaining the purpose of this interface and its intended audience (4 lines). Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+				<p id = 'text'>Intro Para explaining the purpose of this interface (4 lines). Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
 				<p id = 'text'>The three charts on this tab present price data for a commodity at different levels of aggregation.</p>
 				<p>The <strong>map</strong> shows the average of all the price observations across the selected time-period. The <strong>line chart</strong> represents the monthly average price for each state during the selected time period. The <strong>histogram</strong> show the observed prices from each location for the entire selected time period for a particular commodity</p>
 				<p>Hovering over a state would show data on the state and corresponding observations in the histogram and the line chart. The same is true for the line chart.</p>
@@ -1024,7 +1024,7 @@ function drawVolatility(volatility, volLabels, volDateLabels){
   var mainSize = d3.select('#main').node().getBoundingClientRect()
   var containerSize = {'width':(mainSize.width*.9)*.6, 'height':240};
   var margin = {top: 0.08*containerSize.height , right: 0.006*containerSize.width, bottom: 0.08*containerSize.height, left: 0.06*containerSize.width};
-  var padding = {top: 0.06*containerSize.height, right: 0.006*containerSize.width, bottom: 0.05*containerSize.height, left: 0.04*containerSize.width};
+  var padding = {top: 0.06*containerSize.height, right: 0.006*containerSize.width, bottom: 0.07*containerSize.height, left: 0.04*containerSize.width};
   var width = containerSize.width - margin.right - margin.left; //Chart width
   var height = containerSize.height - margin.top - margin.bottom; //Chart height
 
@@ -1115,10 +1115,10 @@ function drawVolatility(volatility, volLabels, volDateLabels){
       .enter()
       .append('rect')
       .attr({
-        x: function(d){return xScale(d.xPosition) - 1.5*dotRadius},
+        x: function(d){return xScale(d.xPosition) - 1.8*dotRadius},
         y: -dotRadius,
         height: height + dotRadius,
-        width: 3*dotRadius
+        width: 3.6*dotRadius
       })
       .attr("fill-opacity", "0")
       .on('mouseover', mouseoverRect)
@@ -1136,8 +1136,6 @@ function drawVolatility(volatility, volLabels, volDateLabels){
         class: 'volDots',
         fill: function(d){return colorScale(d.volMoving)}
       })
-      .style('stroke', 'black')
-      .style('stroke-width', '0.2px')
       .call(dotTip)
       .on('mouseover', mouseoverDot)
       .on('mouseout', mouseoutDot)
@@ -1147,14 +1145,15 @@ function drawVolatility(volatility, volLabels, volDateLabels){
       .data(means[1])
       .enter()
       .append('text')
-      .text('x')
+      .text('+')
       .attr({
         x: function(d){return d.xPosition},
         y: function(d){return d.meanZone},
         class: 'meanCross'
       })
       .attr('font-size', xFont)
-      .style('font-weight', 'bold')
+      .style('font-weight', 'normal')
+      .attr('font-family', 'Helvetica')
       .style('alignment-baseline', 'central')
       .style('text-anchor', 'middle')
       .style('cursor', 'default')
@@ -1397,10 +1396,10 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
       .enter()
       .append('rect')
       .attr({
-        x: function(d) {return xScale(d.dotPosition) - dotRadius},
-        y: 0,
-        height: height - padding.bottom/1.5,
-        width: 2*dotRadius,
+        x: function(d) {return xScale(d.dotPosition) - 1.8*dotRadius},
+        y: -dotRadius,
+        height: height + dotRadius,
+        width: 3.6*dotRadius,
         class: 'segHoverRects',
       })
       .attr("fill-opacity", "0")
@@ -1436,14 +1435,15 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
       .data(segZoneLabels)
       .enter()
       .append('text')
-      .text('x')
+      .text('+')
       .attr({
         x: function(d){return xScale(d.dotPosition)},
         y: function(d){return yScale(d.mean)},
         class: 'segMeanCross'
       })
       .attr('font-size', xFont)
-      .style('font-weight', 'bold')
+      .style('font-weight', 'normal')
+      .attr('font-family', 'Helvetica')
       .style('alignment-baseline', 'central')
       .style('text-anchor', 'middle')
       .style('cursor', 'default')
@@ -1629,10 +1629,10 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
       .enter()
       .append('rect')
       .attr({
-        x: function(d) {return xScale(d.dotPosition) - dotRadius},
-        y: 0,
-        height: height - padding.bottom/1.5,
-        width: 2*dotRadius,
+        x: function(d) {return xScale(d.dotPosition) - 1.8*dotRadius},
+        y: -dotRadius,
+        height: height + dotRadius,
+        width: 3.6*dotRadius,
         class: 'passHoverRects',
       })
       .attr("fill-opacity", "0")
@@ -1668,14 +1668,15 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
       .data(passZoneLabels)
       .enter()
       .append('text')
-      .text('x')
+      .text('+')
       .attr({
         x: function(d){return xScale(d.dotPosition)},
         y: function(d){return yScale(d.mean)},
         class: 'passMeanCross'
       })
       .attr('font-size', xFont)
-      .style('font-weight', 'bold')
+      .style('font-weight', 'normal')
+      .attr('font-family', 'Helvetica')
       .style('alignment-baseline', 'central')
       .style('text-anchor', 'middle')
       .style('cursor', 'default')

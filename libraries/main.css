@@ -224,12 +224,12 @@ select:focus {
 /*Common CSS for the indicators*/
 .zoneHoverShow{
   stroke:black;
-  stroke-width:0.2px;
+  stroke-width:0.08px;
 }
 .zoneHoverHide {
   fill: none;
   stroke:black;
-  stroke-width:0.2px;
+  stroke-width:0.06px;
 }
 
 .textHoverShow{

@@ -33,9 +33,9 @@
 /* Eastward tooltips */
 .d3-tip.e:after {
   content: "\25C0";
-  margin: -1px 0 0 0;
+  margin: -4px 0 0 0;
   top: 20%;
-  left: 0;
+  left: -8px;
 }
 
 /* Southward tooltips */

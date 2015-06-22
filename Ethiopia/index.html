@@ -184,7 +184,7 @@ function drawHistogram(townPriceData){
   	var sel = document.getElementById('productSelectPrice'); //selecting the default based on currentinput
   	var product = sel.options[sel.selectedIndex].value; //pulling the value of the selected product
 	//var dates = $('#slider').slider('values'); //pulls the date values from the slider
-	var startDate = dateFormat.parse('2001-07-01')//sliderMonths[dates[0]];
+	var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
    	var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
   	var data = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
 
@@ -272,7 +272,7 @@ function drawHistogram(townPriceData){
 	    .on('change.histogram', function(d) {
 	        var product = d3.select(this).property('value')
 	        //var dates = $('#slider').slider('values');
-			var startDate = dateFormat.parse('2001-07-01')//sliderMonths[dates[0]];
+			var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
    			var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
 	        redraw(product,startDate,endDate)
 	    })
@@ -357,7 +357,7 @@ function drawLine(zonePriceData){
   	var sel = document.getElementById('productSelectPrice'); //selecting the default based on currentinput
   	var product = sel.options[sel.selectedIndex].value; //pulling the value of the selected product
 	//var dates = $('#slider').slider('values'); //pulls the date values from the slider
-	var startDate = dateFormat.parse('2001-07-01')//sliderMonths[dates[0]];
+	var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
    	var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
   	var data = zonePriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
   	var months = uniq_fast(data.map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
@@ -515,7 +515,7 @@ function drawLine(zonePriceData){
 	d3.select('#productSelectPrice').on('change.line', function(d) {
         var product = d3.select(this).property('value');
 		//var dates = $('#slider').slider('values');
-		var startDate = dateFormat.parse('2001-07-01')//sliderMonths[dates[0]];
+		var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
    		var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
 	   	var drawVoronoi = true;
         redrawLine(product,startDate,endDate,drawVoronoi);

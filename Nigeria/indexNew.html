@@ -561,7 +561,6 @@ function drawHistogram(allData){
         .attr('class', 'yAxis')
         .style('cursor', 'default')
         .call(axis);
-console.log(histData)
     var dots = histChart.append('g')
       	.selectAll('.histDots')
       	.data(histData)
@@ -814,13 +813,13 @@ function drawLine(priceData){
 	//DEFINING THE MOUSEOVER FUNCTIONS
 	function mouseoverLine(d) {
 		console.log(d.month)
-		var obs = d3.selectAll('.histDots').filter(function(e){return e.state === d.state && e.date === d.month}).size()
+		var obs = d3.selectAll('.histDots').filter(function(e){return e.state === d.state && dateFormat(e.date) === dateFormat(d.month)}).size()
 		d3.selectAll('.histText').text(d.state +' ('+ monthYear(d.month) + ') ' +' observations: ' + obs)
 		var stateName = d.state.replace(' ','')
 		focus.attr("transform", "translate(" + xScale(d.month) + "," + yScale(d.price) + ")");
 		states.filter(function(e) {return e.state===d.state}).style('stroke','red').style('stroke-width','2px').moveToFront();
 		d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',false).classed('boundary-hover-show',true)
-		d3.selectAll('.histDots').filter(function(t){return t.state === d.state && t.date === dateFormat(d.month)}).style('fill', 'red').attr({r: 3}).moveToFront()
+		d3.selectAll('.histDots').filter(function(t){return t.state === d.state && dateFormat(t.date) === dateFormat(d.month)}).style('fill', 'red').attr({r: 3}).moveToFront()
 		tip.show(d);
 	}
 	function mouseoutLine(d) {

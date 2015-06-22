@@ -1,22 +1,22 @@
 "item","state","centre","date","meanPrice"
-"Cement Dangote","Edo","127,New Lagos Road",2010-01-01,1675
-"Cement Dangote","Edo","127,New Lagos Road",2010-02-01,1700
-"Cement Dangote","Edo","127,New Lagos Road",2010-03-01,1725
-"Cement Dangote","Edo","127,New Lagos Road",2010-04-01,1733.32995605469
-"Cement Dangote","Edo","127,New Lagos Road",2010-06-01,1720
-"Cement Dangote","Edo","127,New Lagos Road",2010-08-01,1650
-"Cement Dangote","Edo","127,New Lagos Road",2010-09-01,1600
-"Cement Dangote","Edo","127,New Lagos Road",2010-10-01,1716.67004394531
-"Cement Dangote","Edo","127,New Lagos Road",2010-12-01,1625
-"Cement Dangote","Edo","127,New Lagos Road",2011-01-01,1550
-"Cement Dangote","Edo","127,New Lagos Road",2011-04-01,2450
-"Cement Dangote","Edo","127,New Lagos Road",2011-06-01,1800
-"Cement Dangote","Edo","127,New Lagos Road",2012-02-01,1925
-"Cement Dangote","Edo","127,New Lagos Road",2012-03-01,1850
-"Cement Dangote","Edo","127,New Lagos Road",2012-10-01,1726.67004394531
-"Cement Dangote","Edo","127,New Lagos Road",2012-11-01,1775
-"Drink Swan Water Bottle","Edo","127,New Lagos Road",2010-08-01,27.5
-"Drink Swan Water Bottle","Edo","127,New Lagos Road",2011-04-01,73.3300018310547
+"Cement (Dangote)","Edo","127,New Lagos Road",2010-01-01,1675
+"Cement (Dangote)","Edo","127,New Lagos Road",2010-02-01,1700
+"Cement (Dangote)","Edo","127,New Lagos Road",2010-03-01,1725
+"Cement (Dangote)","Edo","127,New Lagos Road",2010-04-01,1733.32995605469
+"Cement (Dangote)","Edo","127,New Lagos Road",2010-06-01,1720
+"Cement (Dangote)","Edo","127,New Lagos Road",2010-08-01,1650
+"Cement (Dangote)","Edo","127,New Lagos Road",2010-09-01,1600
+"Cement (Dangote)","Edo","127,New Lagos Road",2010-10-01,1716.67004394531
+"Cement (Dangote)","Edo","127,New Lagos Road",2010-12-01,1625
+"Cement (Dangote)","Edo","127,New Lagos Road",2011-01-01,1550
+"Cement (Dangote)","Edo","127,New Lagos Road",2011-04-01,2450
+"Cement (Dangote)","Edo","127,New Lagos Road",2011-06-01,1800
+"Cement (Dangote)","Edo","127,New Lagos Road",2012-02-01,1925
+"Cement (Dangote)","Edo","127,New Lagos Road",2012-03-01,1850
+"Cement (Dangote)","Edo","127,New Lagos Road",2012-10-01,1726.67004394531
+"Cement (Dangote)","Edo","127,New Lagos Road",2012-11-01,1775
+"Water Bottle (Drink Swan)","Edo","127,New Lagos Road",2010-08-01,27.5
+"Water Bottle (Drink Swan)","Edo","127,New Lagos Road",2011-04-01,73.3300018310547
 "Maize White","Edo","127,New Lagos Road",2010-01-01,126.057304382324
 "Maize White","Edo","127,New Lagos Road",2010-06-01,121.588760375977
 "Maize White","Edo","127,New Lagos Road",2010-08-01,119.375
@@ -145,42 +145,42 @@
 "Sorghum","Edo","127,New Lagos Road",2012-09-01,113.17894744873
 "Sorghum","Edo","127,New Lagos Road",2012-10-01,118.366477966309
 "Sorghum","Edo","127,New Lagos Road",2012-11-01,102.99626159668
-"Cement Dangote","Delta","48, Arakpa Rd",2010-01-01,1900
-"Cement Dangote","Delta","48, Arakpa Rd",2010-03-01,1750
-"Cement Dangote","Delta","48, Arakpa Rd",2010-05-01,1683.33337402344
-"Cement Dangote","Delta","48, Arakpa Rd",2010-07-01,1562.5
-"Cement Dangote","Delta","48, Arakpa Rd",2011-02-01,1658.32995605469
-"Cement Dangote","Delta","48, Arakpa Rd",2011-05-01,2225
-"Cement Dangote","Delta","48, Arakpa Rd",2011-07-01,1812.92004394531
-"Cement Dangote","Delta","48, Arakpa Rd",2011-08-01,3743.75
-"Cement Dangote","Delta","48, Arakpa Rd",2011-09-01,1885
-"Cement Dangote","Delta","48, Arakpa Rd",2011-10-01,1831.67004394531
-"Cement Dangote","Delta","48, Arakpa Rd",2011-11-01,1838.93005371094
-"Cement Dangote","Delta","48, Arakpa Rd",2011-12-01,1847.5
-"Cement Dangote","Delta","48, Arakpa Rd",2012-01-01,1938
-"Cement Dangote","Delta","48, Arakpa Rd",2012-02-01,1934.5
-"Cement Dangote","Delta","48, Arakpa Rd",2012-03-01,1870.82995605469
-"Cement Dangote","Delta","48, Arakpa Rd",2012-04-01,2028.13000488281
-"Cement Dangote","Delta","48, Arakpa Rd",2012-06-01,2058.57006835938
-"Cement Dangote","Delta","48, Arakpa Rd",2012-07-01,1941.10998535156
-"Cement Dangote","Delta","48, Arakpa Rd",2012-08-01,3560
-"Cement Dangote","Delta","48, Arakpa Rd",2012-10-01,1932.5
-"Cement Dangote","Delta","48, Arakpa Rd",2012-11-01,1864.2900390625
-"Drink Swan Water Bottle","Delta","48, Arakpa Rd",2010-04-01,133.330001831055
-"Drink Swan Water Bottle","Delta","48, Arakpa Rd",2011-02-01,86.6699981689453
-"Drink Swan Water Bottle","Delta","48, Arakpa Rd",2011-04-01,94.4400024414062
-"Drink Swan Water Bottle","Delta","48, Arakpa Rd",2011-05-01,104.440002441406
-"Drink Swan Water Bottle","Delta","48, Arakpa Rd",2011-06-01,103.330001831055
-"Drink Swan Water Bottle","Delta","48, Arakpa Rd",2011-07-01,99.6699981689453
-"Drink Swan Water Bottle","Delta","48, Arakpa Rd",2011-08-01,114.169998168945
-"Drink Swan Water Bottle","Delta","48, Arakpa Rd",2011-09-01,115.360000610352
-"Drink Swan Water Bottle","Delta","48, Arakpa Rd",2011-12-01,95.5971984863281
-"Drink Swan Water Bottle","Delta","48, Arakpa Rd",2012-01-01,102.98999786377
-"Drink Swan Water Bottle","Delta","48, Arakpa Rd",2012-02-01,104.169998168945
-"Drink Swan Water Bottle","Delta","48, Arakpa Rd",2012-04-01,101.669998168945
-"Drink Swan Water Bottle","Delta","48, Arakpa Rd",2012-06-01,117.139999389648
-"Drink Swan Water Bottle","Delta","48, Arakpa Rd",2012-07-01,91.6699981689453
-"Drink Swan Water Bottle","Delta","48, Arakpa Rd",2012-10-01,105.860000610352
+"Cement (Dangote)","Delta","48, Arakpa Rd",2010-01-01,1900
+"Cement (Dangote)","Delta","48, Arakpa Rd",2010-03-01,1750
+"Cement (Dangote)","Delta","48, Arakpa Rd",2010-05-01,1683.33337402344
+"Cement (Dangote)","Delta","48, Arakpa Rd",2010-07-01,1562.5
+"Cement (Dangote)","Delta","48, Arakpa Rd",2011-02-01,1658.32995605469
+"Cement (Dangote)","Delta","48, Arakpa Rd",2011-05-01,2225
+"Cement (Dangote)","Delta","48, Arakpa Rd",2011-07-01,1812.92004394531
+"Cement (Dangote)","Delta","48, Arakpa Rd",2011-08-01,3743.75
+"Cement (Dangote)","Delta","48, Arakpa Rd",2011-09-01,1885
+"Cement (Dangote)","Delta","48, Arakpa Rd",2011-10-01,1831.67004394531
+"Cement (Dangote)","Delta","48, Arakpa Rd",2011-11-01,1838.93005371094
+"Cement (Dangote)","Delta","48, Arakpa Rd",2011-12-01,1847.5
+"Cement (Dangote)","Delta","48, Arakpa Rd",2012-01-01,1938
+"Cement (Dangote)","Delta","48, Arakpa Rd",2012-02-01,1934.5
+"Cement (Dangote)","Delta","48, Arakpa Rd",2012-03-01,1870.82995605469
+"Cement (Dangote)","Delta","48, Arakpa Rd",2012-04-01,2028.13000488281
+"Cement (Dangote)","Delta","48, Arakpa Rd",2012-06-01,2058.57006835938
+"Cement (Dangote)","Delta","48, Arakpa Rd",2012-07-01,1941.10998535156
+"Cement (Dangote)","Delta","48, Arakpa Rd",2012-08-01,3560
+"Cement (Dangote)","Delta","48, Arakpa Rd",2012-10-01,1932.5
+"Cement (Dangote)","Delta","48, Arakpa Rd",2012-11-01,1864.2900390625
+"Water Bottle (Drink Swan)","Delta","48, Arakpa Rd",2010-04-01,133.330001831055
+"Water Bottle (Drink Swan)","Delta","48, Arakpa Rd",2011-02-01,86.6699981689453
+"Water Bottle (Drink Swan)","Delta","48, Arakpa Rd",2011-04-01,94.4400024414062
+"Water Bottle (Drink Swan)","Delta","48, Arakpa Rd",2011-05-01,104.440002441406
+"Water Bottle (Drink Swan)","Delta","48, Arakpa Rd",2011-06-01,103.330001831055
+"Water Bottle (Drink Swan)","Delta","48, Arakpa Rd",2011-07-01,99.6699981689453
+"Water Bottle (Drink Swan)","Delta","48, Arakpa Rd",2011-08-01,114.169998168945
+"Water Bottle (Drink Swan)","Delta","48, Arakpa Rd",2011-09-01,115.360000610352
+"Water Bottle (Drink Swan)","Delta","48, Arakpa Rd",2011-12-01,95.5971984863281
+"Water Bottle (Drink Swan)","Delta","48, Arakpa Rd",2012-01-01,102.98999786377
+"Water Bottle (Drink Swan)","Delta","48, Arakpa Rd",2012-02-01,104.169998168945
+"Water Bottle (Drink Swan)","Delta","48, Arakpa Rd",2012-04-01,101.669998168945
+"Water Bottle (Drink Swan)","Delta","48, Arakpa Rd",2012-06-01,117.139999389648
+"Water Bottle (Drink Swan)","Delta","48, Arakpa Rd",2012-07-01,91.6699981689453
+"Water Bottle (Drink Swan)","Delta","48, Arakpa Rd",2012-10-01,105.860000610352
 "Maize White","Delta","48, Arakpa Rd",2010-03-01,62.7698059082031
 "Maize White","Delta","48, Arakpa Rd",2010-12-01,103.686637878418
 "Maize White","Delta","48, Arakpa Rd",2011-01-01,112.163459777832
@@ -280,44 +280,44 @@
 "Sorghum","Delta","48, Arakpa Rd",2012-07-01,136.592849731445
 "Sorghum","Delta","48, Arakpa Rd",2012-08-01,135.206405639648
 "Sorghum","Delta","48, Arakpa Rd",2012-09-01,141.172637939453
-"Cement Dangote","Abia","51 Umuechem Road",2010-01-01,1475
-"Cement Dangote","Abia","51 Umuechem Road",2010-02-01,1500
-"Cement Dangote","Abia","51 Umuechem Road",2010-03-01,1400
-"Cement Dangote","Abia","51 Umuechem Road",2010-05-01,1450
-"Cement Dangote","Abia","51 Umuechem Road",2010-07-01,1416.67004394531
-"Cement Dangote","Abia","51 Umuechem Road",2010-08-01,1350
-"Cement Dangote","Abia","51 Umuechem Road",2010-12-01,1537.5
-"Cement Dangote","Abia","51 Umuechem Road",2011-01-01,1571.88000488281
-"Cement Dangote","Abia","51 Umuechem Road",2011-02-01,1518.75
-"Cement Dangote","Abia","51 Umuechem Road",2011-03-01,1631.25
-"Cement Dangote","Abia","51 Umuechem Road",2011-04-01,1805.56005859375
-"Cement Dangote","Abia","51 Umuechem Road",2011-05-01,1983.3349609375
-"Cement Dangote","Abia","51 Umuechem Road",2011-06-01,1707.77661132812
-"Cement Dangote","Abia","51 Umuechem Road",2011-07-01,1633.32995605469
-"Cement Dangote","Abia","51 Umuechem Road",2011-09-01,1770.66662597656
-"Cement Dangote","Abia","51 Umuechem Road",2011-10-01,1756
-"Cement Dangote","Abia","51 Umuechem Road",2011-11-01,1754.40502929688
-"Cement Dangote","Abia","51 Umuechem Road",2011-12-01,1816.66662597656
-"Cement Dangote","Abia","51 Umuechem Road",2012-01-01,1985.93994140625
-"Cement Dangote","Abia","51 Umuechem Road",2012-02-01,1877.08337402344
-"Cement Dangote","Abia","51 Umuechem Road",2012-03-01,1952.18994140625
-"Cement Dangote","Abia","51 Umuechem Road",2012-04-01,1896.67004394531
-"Cement Dangote","Abia","51 Umuechem Road",2012-07-01,1848.81005859375
-"Cement Dangote","Abia","51 Umuechem Road",2012-08-01,1772.5
-"Cement Dangote","Abia","51 Umuechem Road",2012-10-01,1791.8349609375
-"Cement Dangote","Abia","51 Umuechem Road",2012-11-01,1671.43005371094
-"Drink Swan Water Bottle","Abia","51 Umuechem Road",2010-01-01,123.330001831055
-"Drink Swan Water Bottle","Abia","51 Umuechem Road",2010-06-01,116.669998168945
-"Drink Swan Water Bottle","Abia","51 Umuechem Road",2011-02-01,97
-"Drink Swan Water Bottle","Abia","51 Umuechem Road",2011-03-01,106
-"Drink Swan Water Bottle","Abia","51 Umuechem Road",2011-04-01,122
-"Drink Swan Water Bottle","Abia","51 Umuechem Road",2011-09-01,117.779998779297
-"Drink Swan Water Bottle","Abia","51 Umuechem Road",2011-11-01,108.330001831055
-"Drink Swan Water Bottle","Abia","51 Umuechem Road",2011-12-01,113.389999389648
-"Drink Swan Water Bottle","Abia","51 Umuechem Road",2012-01-01,135.832504272461
-"Drink Swan Water Bottle","Abia","51 Umuechem Road",2012-03-01,103.129997253418
-"Drink Swan Water Bottle","Abia","51 Umuechem Road",2012-07-01,114.440002441406
-"Drink Swan Water Bottle","Abia","51 Umuechem Road",2012-08-01,110.279998779297
+"Cement (Dangote)","Abia","51 Umuechem Road",2010-01-01,1475
+"Cement (Dangote)","Abia","51 Umuechem Road",2010-02-01,1500
+"Cement (Dangote)","Abia","51 Umuechem Road",2010-03-01,1400
+"Cement (Dangote)","Abia","51 Umuechem Road",2010-05-01,1450
+"Cement (Dangote)","Abia","51 Umuechem Road",2010-07-01,1416.67004394531
+"Cement (Dangote)","Abia","51 Umuechem Road",2010-08-01,1350
+"Cement (Dangote)","Abia","51 Umuechem Road",2010-12-01,1537.5
+"Cement (Dangote)","Abia","51 Umuechem Road",2011-01-01,1571.88000488281
+"Cement (Dangote)","Abia","51 Umuechem Road",2011-02-01,1518.75
+"Cement (Dangote)","Abia","51 Umuechem Road",2011-03-01,1631.25
+"Cement (Dangote)","Abia","51 Umuechem Road",2011-04-01,1805.56005859375
+"Cement (Dangote)","Abia","51 Umuechem Road",2011-05-01,1983.3349609375
+"Cement (Dangote)","Abia","51 Umuechem Road",2011-06-01,1707.77661132812
+"Cement (Dangote)","Abia","51 Umuechem Road",2011-07-01,1633.32995605469
+"Cement (Dangote)","Abia","51 Umuechem Road",2011-09-01,1770.66662597656
+"Cement (Dangote)","Abia","51 Umuechem Road",2011-10-01,1756
+"Cement (Dangote)","Abia","51 Umuechem Road",2011-11-01,1754.40502929688
+"Cement (Dangote)","Abia","51 Umuechem Road",2011-12-01,1816.66662597656
+"Cement (Dangote)","Abia","51 Umuechem Road",2012-01-01,1985.93994140625
+"Cement (Dangote)","Abia","51 Umuechem Road",2012-02-01,1877.08337402344
+"Cement (Dangote)","Abia","51 Umuechem Road",2012-03-01,1952.18994140625
+"Cement (Dangote)","Abia","51 Umuechem Road",2012-04-01,1896.67004394531
+"Cement (Dangote)","Abia","51 Umuechem Road",2012-07-01,1848.81005859375
+"Cement (Dangote)","Abia","51 Umuechem Road",2012-08-01,1772.5
+"Cement (Dangote)","Abia","51 Umuechem Road",2012-10-01,1791.8349609375
+"Cement (Dangote)","Abia","51 Umuechem Road",2012-11-01,1671.43005371094
+"Water Bottle (Drink Swan)","Abia","51 Umuechem Road",2010-01-01,123.330001831055
+"Water Bottle (Drink Swan)","Abia","51 Umuechem Road",2010-06-01,116.669998168945
+"Water Bottle (Drink Swan)","Abia","51 Umuechem Road",2011-02-01,97
+"Water Bottle (Drink Swan)","Abia","51 Umuechem Road",2011-03-01,106
+"Water Bottle (Drink Swan)","Abia","51 Umuechem Road",2011-04-01,122
+"Water Bottle (Drink Swan)","Abia","51 Umuechem Road",2011-09-01,117.779998779297
+"Water Bottle (Drink Swan)","Abia","51 Umuechem Road",2011-11-01,108.330001831055
+"Water Bottle (Drink Swan)","Abia","51 Umuechem Road",2011-12-01,113.389999389648
+"Water Bottle (Drink Swan)","Abia","51 Umuechem Road",2012-01-01,135.832504272461
+"Water Bottle (Drink Swan)","Abia","51 Umuechem Road",2012-03-01,103.129997253418
+"Water Bottle (Drink Swan)","Abia","51 Umuechem Road",2012-07-01,114.440002441406
+"Water Bottle (Drink Swan)","Abia","51 Umuechem Road",2012-08-01,110.279998779297
 "Maize White","Abia","51 Umuechem Road",2010-08-01,131.45539855957
 "Maize White","Abia","51 Umuechem Road",2010-11-01,126.582275390625
 "Maize White","Abia","51 Umuechem Road",2011-03-01,124.0029296875
@@ -400,36 +400,36 @@
 "Rice Local","Abia","51 Umuechem Road",2012-12-01,154.440155029297
 "Sorghum","Abia","51 Umuechem Road",2011-11-01,77.2204513549805
 "Sorghum","Abia","51 Umuechem Road",2012-07-01,129.852630615234
-"Cement Dangote","Plateau","A.Benson",2010-04-01,1587.5
-"Cement Dangote","Plateau","A.Benson",2010-07-01,1687.5
-"Cement Dangote","Plateau","A.Benson",2010-11-01,1666.66662597656
-"Cement Dangote","Plateau","A.Benson",2010-12-01,1666.67004394531
-"Cement Dangote","Plateau","A.Benson",2011-01-01,3255.41674804688
-"Cement Dangote","Plateau","A.Benson",2011-03-01,1937.5
-"Cement Dangote","Plateau","A.Benson",2011-05-01,3666.669921875
-"Cement Dangote","Plateau","A.Benson",2011-06-01,1783.33337402344
-"Cement Dangote","Plateau","A.Benson",2011-07-01,1762.5
-"Cement Dangote","Plateau","A.Benson",2011-09-01,1990.63000488281
-"Cement Dangote","Plateau","A.Benson",2011-11-01,1737.5
-"Cement Dangote","Plateau","A.Benson",2012-01-01,1854.17004394531
-"Cement Dangote","Plateau","A.Benson",2012-02-01,1831.25
-"Cement Dangote","Plateau","A.Benson",2012-03-01,1739.28576660156
-"Cement Dangote","Plateau","A.Benson",2012-04-01,2050
-"Cement Dangote","Plateau","A.Benson",2012-06-01,1921.06994628906
-"Cement Dangote","Plateau","A.Benson",2012-07-01,2035
-"Cement Dangote","Plateau","A.Benson",2012-08-01,2047.5
-"Cement Dangote","Plateau","A.Benson",2012-10-01,1972.21997070312
-"Cement Dangote","Plateau","A.Benson",2012-12-01,1983.32995605469
-"Drink Swan Water Bottle","Plateau","A.Benson",2011-01-01,97.5
-"Drink Swan Water Bottle","Plateau","A.Benson",2011-03-01,98.75
-"Drink Swan Water Bottle","Plateau","A.Benson",2011-07-01,106.669998168945
-"Drink Swan Water Bottle","Plateau","A.Benson",2011-08-01,92.0800018310547
-"Drink Swan Water Bottle","Plateau","A.Benson",2011-10-01,100.949996948242
-"Drink Swan Water Bottle","Plateau","A.Benson",2012-02-01,93.3300018310547
-"Drink Swan Water Bottle","Plateau","A.Benson",2012-03-01,121.666664123535
-"Drink Swan Water Bottle","Plateau","A.Benson",2012-04-01,105.330001831055
-"Drink Swan Water Bottle","Plateau","A.Benson",2012-06-01,96.4300003051758
-"Drink Swan Water Bottle","Plateau","A.Benson",2012-10-01,113.75
+"Cement (Dangote)","Plateau","A.Benson",2010-04-01,1587.5
+"Cement (Dangote)","Plateau","A.Benson",2010-07-01,1687.5
+"Cement (Dangote)","Plateau","A.Benson",2010-11-01,1666.66662597656
+"Cement (Dangote)","Plateau","A.Benson",2010-12-01,1666.67004394531
+"Cement (Dangote)","Plateau","A.Benson",2011-01-01,3255.41674804688
+"Cement (Dangote)","Plateau","A.Benson",2011-03-01,1937.5
+"Cement (Dangote)","Plateau","A.Benson",2011-05-01,3666.669921875
+"Cement (Dangote)","Plateau","A.Benson",2011-06-01,1783.33337402344
+"Cement (Dangote)","Plateau","A.Benson",2011-07-01,1762.5
+"Cement (Dangote)","Plateau","A.Benson",2011-09-01,1990.63000488281
+"Cement (Dangote)","Plateau","A.Benson",2011-11-01,1737.5
+"Cement (Dangote)","Plateau","A.Benson",2012-01-01,1854.17004394531
+"Cement (Dangote)","Plateau","A.Benson",2012-02-01,1831.25
+"Cement (Dangote)","Plateau","A.Benson",2012-03-01,1739.28576660156
+"Cement (Dangote)","Plateau","A.Benson",2012-04-01,2050
+"Cement (Dangote)","Plateau","A.Benson",2012-06-01,1921.06994628906
+"Cement (Dangote)","Plateau","A.Benson",2012-07-01,2035
+"Cement (Dangote)","Plateau","A.Benson",2012-08-01,2047.5
+"Cement (Dangote)","Plateau","A.Benson",2012-10-01,1972.21997070312
+"Cement (Dangote)","Plateau","A.Benson",2012-12-01,1983.32995605469
+"Water Bottle (Drink Swan)","Plateau","A.Benson",2011-01-01,97.5
+"Water Bottle (Drink Swan)","Plateau","A.Benson",2011-03-01,98.75
+"Water Bottle (Drink Swan)","Plateau","A.Benson",2011-07-01,106.669998168945
+"Water Bottle (Drink Swan)","Plateau","A.Benson",2011-08-01,92.0800018310547
+"Water Bottle (Drink Swan)","Plateau","A.Benson",2011-10-01,100.949996948242
+"Water Bottle (Drink Swan)","Plateau","A.Benson",2012-02-01,93.3300018310547
+"Water Bottle (Drink Swan)","Plateau","A.Benson",2012-03-01,121.666664123535
+"Water Bottle (Drink Swan)","Plateau","A.Benson",2012-04-01,105.330001831055
+"Water Bottle (Drink Swan)","Plateau","A.Benson",2012-06-01,96.4300003051758
+"Water Bottle (Drink Swan)","Plateau","A.Benson",2012-10-01,113.75
 "Maize White","Plateau","A.Benson",2009-01-01,42.481201171875
 "Maize White","Plateau","A.Benson",2009-09-01,38.0076713562012
 "Maize White","Plateau","A.Benson",2009-11-01,50.1439056396484
@@ -602,36 +602,36 @@
 "Sorghum","Plateau","A.Benson",2012-11-01,84.2105255126953
 "Sorghum","Plateau","A.Benson",2012-12-01,74.8396301269531
 "Maize White","Abia","ACC Mission",2009-12-01,144.444458007812
-"Cement Dangote","Nasarawa","ANG Ayaba",2010-01-01,1658.33337402344
-"Cement Dangote","Nasarawa","ANG Ayaba",2010-11-01,1616.66662597656
-"Cement Dangote","Nasarawa","ANG Ayaba",2010-12-01,1616.67004394531
-"Cement Dangote","Nasarawa","ANG Ayaba",2011-01-01,1525
-"Cement Dangote","Nasarawa","ANG Ayaba",2011-03-01,1906.25
-"Cement Dangote","Nasarawa","ANG Ayaba",2011-04-01,2118.06005859375
-"Cement Dangote","Nasarawa","ANG Ayaba",2011-05-01,1970.8349609375
-"Cement Dangote","Nasarawa","ANG Ayaba",2011-06-01,1872.22216796875
-"Cement Dangote","Nasarawa","ANG Ayaba",2011-07-01,1862.5
-"Cement Dangote","Nasarawa","ANG Ayaba",2011-08-01,1640.83337402344
-"Cement Dangote","Nasarawa","ANG Ayaba",2011-10-01,1690.97338867188
-"Cement Dangote","Nasarawa","ANG Ayaba",2011-11-01,1691.67004394531
-"Cement Dangote","Nasarawa","ANG Ayaba",2011-12-01,1717.85998535156
-"Cement Dangote","Nasarawa","ANG Ayaba",2012-01-01,2913.330078125
-"Cement Dangote","Nasarawa","ANG Ayaba",2012-02-01,1805.35998535156
-"Cement Dangote","Nasarawa","ANG Ayaba",2012-03-01,1833.33337402344
-"Cement Dangote","Nasarawa","ANG Ayaba",2012-04-01,2001.73999023438
-"Cement Dangote","Nasarawa","ANG Ayaba",2012-06-01,2045
-"Cement Dangote","Nasarawa","ANG Ayaba",2012-07-01,1985.42004394531
-"Cement Dangote","Nasarawa","ANG Ayaba",2012-08-01,1847.9150390625
-"Cement Dangote","Nasarawa","ANG Ayaba",2012-09-01,1708.33337402344
-"Cement Dangote","Nasarawa","ANG Ayaba",2012-10-01,1833.89001464844
-"Drink Swan Water Bottle","Nasarawa","ANG Ayaba",2011-04-01,102
-"Drink Swan Water Bottle","Nasarawa","ANG Ayaba",2011-06-01,94.7222213745117
-"Drink Swan Water Bottle","Nasarawa","ANG Ayaba",2011-08-01,107.5
-"Drink Swan Water Bottle","Nasarawa","ANG Ayaba",2011-11-01,102.290000915527
-"Drink Swan Water Bottle","Nasarawa","ANG Ayaba",2011-12-01,122.190002441406
-"Drink Swan Water Bottle","Nasarawa","ANG Ayaba",2012-01-01,113.569999694824
-"Drink Swan Water Bottle","Nasarawa","ANG Ayaba",2012-03-01,119.444442749023
-"Drink Swan Water Bottle","Nasarawa","ANG Ayaba",2012-07-01,106.125
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2010-01-01,1658.33337402344
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2010-11-01,1616.66662597656
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2010-12-01,1616.67004394531
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2011-01-01,1525
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2011-03-01,1906.25
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2011-04-01,2118.06005859375
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2011-05-01,1970.8349609375
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2011-06-01,1872.22216796875
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2011-07-01,1862.5
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2011-08-01,1640.83337402344
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2011-10-01,1690.97338867188
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2011-11-01,1691.67004394531
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2011-12-01,1717.85998535156
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2012-01-01,2913.330078125
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2012-02-01,1805.35998535156
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2012-03-01,1833.33337402344
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2012-04-01,2001.73999023438
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2012-06-01,2045
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2012-07-01,1985.42004394531
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2012-08-01,1847.9150390625
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2012-09-01,1708.33337402344
+"Cement (Dangote)","Nasarawa","ANG Ayaba",2012-10-01,1833.89001464844
+"Water Bottle (Drink Swan)","Nasarawa","ANG Ayaba",2011-04-01,102
+"Water Bottle (Drink Swan)","Nasarawa","ANG Ayaba",2011-06-01,94.7222213745117
+"Water Bottle (Drink Swan)","Nasarawa","ANG Ayaba",2011-08-01,107.5
+"Water Bottle (Drink Swan)","Nasarawa","ANG Ayaba",2011-11-01,102.290000915527
+"Water Bottle (Drink Swan)","Nasarawa","ANG Ayaba",2011-12-01,122.190002441406
+"Water Bottle (Drink Swan)","Nasarawa","ANG Ayaba",2012-01-01,113.569999694824
+"Water Bottle (Drink Swan)","Nasarawa","ANG Ayaba",2012-03-01,119.444442749023
+"Water Bottle (Drink Swan)","Nasarawa","ANG Ayaba",2012-07-01,106.125
 "Maize White","Nasarawa","ANG Ayaba",2010-01-01,59.9224548339844
 "Maize White","Nasarawa","ANG Ayaba",2010-04-01,60.5601844787598
 "Maize White","Nasarawa","ANG Ayaba",2010-05-01,62.5592422485352
@@ -790,31 +790,31 @@
 "Sorghum","Plateau","ATMN Kantom",2009-02-01,67.9487228393555
 "Sorghum","Plateau","ATMN Kantom",2009-03-01,66.7582397460938
 "Sorghum","Plateau","ATMN Kantom",2009-09-01,80.7692337036133
-"Cement Dangote","Ondo","AUD Pry School",2010-10-01,1575
-"Cement Dangote","Ondo","AUD Pry School",2011-03-01,2175
-"Cement Dangote","Ondo","AUD Pry School",2011-04-01,2295.830078125
-"Cement Dangote","Ondo","AUD Pry School",2011-05-01,2291.66674804688
-"Cement Dangote","Ondo","AUD Pry School",2011-07-01,1710
-"Cement Dangote","Ondo","AUD Pry School",2011-08-01,1950
-"Cement Dangote","Ondo","AUD Pry School",2011-09-01,1738.056640625
-"Cement Dangote","Ondo","AUD Pry School",2011-10-01,1716.66662597656
-"Cement Dangote","Ondo","AUD Pry School",2011-11-01,1781.25
-"Cement Dangote","Ondo","AUD Pry School",2011-12-01,1774.666015625
-"Cement Dangote","Ondo","AUD Pry School",2012-01-01,2799.16674804688
-"Cement Dangote","Ondo","AUD Pry School",2012-02-01,1854.16662597656
-"Cement Dangote","Ondo","AUD Pry School",2012-03-01,4512.5
-"Cement Dangote","Ondo","AUD Pry School",2012-06-01,1794.44506835938
-"Cement Dangote","Ondo","AUD Pry School",2012-07-01,1773.21508789062
-"Cement Dangote","Ondo","AUD Pry School",2012-08-01,1716.57495117188
-"Cement Dangote","Ondo","AUD Pry School",2012-10-01,1709.71997070312
-"Cement Dangote","Ondo","AUD Pry School",2012-11-01,1728.57006835938
-"Drink Swan Water Bottle","Ondo","AUD Pry School",2011-05-01,103.333335876465
-"Drink Swan Water Bottle","Ondo","AUD Pry School",2011-09-01,107.220001220703
-"Drink Swan Water Bottle","Ondo","AUD Pry School",2012-01-01,113.334999084473
-"Drink Swan Water Bottle","Ondo","AUD Pry School",2012-02-01,110.833335876465
-"Drink Swan Water Bottle","Ondo","AUD Pry School",2012-07-01,106.565002441406
-"Drink Swan Water Bottle","Ondo","AUD Pry School",2012-08-01,111.669998168945
-"Drink Swan Water Bottle","Ondo","AUD Pry School",2012-10-01,109.169998168945
+"Cement (Dangote)","Ondo","AUD Pry School",2010-10-01,1575
+"Cement (Dangote)","Ondo","AUD Pry School",2011-03-01,2175
+"Cement (Dangote)","Ondo","AUD Pry School",2011-04-01,2295.830078125
+"Cement (Dangote)","Ondo","AUD Pry School",2011-05-01,2291.66674804688
+"Cement (Dangote)","Ondo","AUD Pry School",2011-07-01,1710
+"Cement (Dangote)","Ondo","AUD Pry School",2011-08-01,1950
+"Cement (Dangote)","Ondo","AUD Pry School",2011-09-01,1738.056640625
+"Cement (Dangote)","Ondo","AUD Pry School",2011-10-01,1716.66662597656
+"Cement (Dangote)","Ondo","AUD Pry School",2011-11-01,1781.25
+"Cement (Dangote)","Ondo","AUD Pry School",2011-12-01,1774.666015625
+"Cement (Dangote)","Ondo","AUD Pry School",2012-01-01,2799.16674804688
+"Cement (Dangote)","Ondo","AUD Pry School",2012-02-01,1854.16662597656
+"Cement (Dangote)","Ondo","AUD Pry School",2012-03-01,4512.5
+"Cement (Dangote)","Ondo","AUD Pry School",2012-06-01,1794.44506835938
+"Cement (Dangote)","Ondo","AUD Pry School",2012-07-01,1773.21508789062
+"Cement (Dangote)","Ondo","AUD Pry School",2012-08-01,1716.57495117188
+"Cement (Dangote)","Ondo","AUD Pry School",2012-10-01,1709.71997070312
+"Cement (Dangote)","Ondo","AUD Pry School",2012-11-01,1728.57006835938
+"Water Bottle (Drink Swan)","Ondo","AUD Pry School",2011-05-01,103.333335876465
+"Water Bottle (Drink Swan)","Ondo","AUD Pry School",2011-09-01,107.220001220703
+"Water Bottle (Drink Swan)","Ondo","AUD Pry School",2012-01-01,113.334999084473
+"Water Bottle (Drink Swan)","Ondo","AUD Pry School",2012-02-01,110.833335876465
+"Water Bottle (Drink Swan)","Ondo","AUD Pry School",2012-07-01,106.565002441406
+"Water Bottle (Drink Swan)","Ondo","AUD Pry School",2012-08-01,111.669998168945
+"Water Bottle (Drink Swan)","Ondo","AUD Pry School",2012-10-01,109.169998168945
 "Maize White","Ondo","AUD Pry School",2010-01-01,77.695915222168
 "Maize White","Ondo","AUD Pry School",2010-02-01,78.116340637207
 "Maize White","Ondo","AUD Pry School",2010-03-01,78.8954620361328
@@ -964,22 +964,22 @@
 "Sorghum","Ondo","AUD Pry School",2012-10-01,96.9497299194336
 "Sorghum","Ondo","AUD Pry School",2012-11-01,147.75
 "Sorghum","Ondo","AUD Pry School",2012-12-01,101.5625
-"Cement Dangote","Abia","Aba",2009-01-01,1420.83349609375
-"Cement Dangote","Abia","Aba",2009-02-01,1744.4443359375
-"Cement Dangote","Abia","Aba",2009-03-01,1672.5
-"Cement Dangote","Abia","Aba",2009-04-01,1645
-"Cement Dangote","Abia","Aba",2009-09-01,1482.14270019531
-"Cement Dangote","Abia","Aba",2010-01-01,1476.67004394531
-"Cement Dangote","Abia","Aba",2010-02-01,1510
-"Cement Dangote","Abia","Aba",2010-04-01,1443.32995605469
-"Cement Dangote","Abia","Aba",2010-05-01,1440
-"Cement Dangote","Abia","Aba",2010-06-01,1340
-"Cement Dangote","Abia","Aba",2010-07-01,1383.32995605469
-"Cement Dangote","Abia","Aba",2010-09-01,1387.5
-"Cement Dangote","Abia","Aba",2010-10-01,1426.67004394531
-"Cement Dangote","Abia","Aba",2012-12-01,1680
-"Drink Swan Water Bottle","Abia","Aba",2009-03-01,68.3333358764648
-"Drink Swan Water Bottle","Abia","Aba",2012-11-01,113.330001831055
+"Cement (Dangote)","Abia","Aba",2009-01-01,1420.83349609375
+"Cement (Dangote)","Abia","Aba",2009-02-01,1744.4443359375
+"Cement (Dangote)","Abia","Aba",2009-03-01,1672.5
+"Cement (Dangote)","Abia","Aba",2009-04-01,1645
+"Cement (Dangote)","Abia","Aba",2009-09-01,1482.14270019531
+"Cement (Dangote)","Abia","Aba",2010-01-01,1476.67004394531
+"Cement (Dangote)","Abia","Aba",2010-02-01,1510
+"Cement (Dangote)","Abia","Aba",2010-04-01,1443.32995605469
+"Cement (Dangote)","Abia","Aba",2010-05-01,1440
+"Cement (Dangote)","Abia","Aba",2010-06-01,1340
+"Cement (Dangote)","Abia","Aba",2010-07-01,1383.32995605469
+"Cement (Dangote)","Abia","Aba",2010-09-01,1387.5
+"Cement (Dangote)","Abia","Aba",2010-10-01,1426.67004394531
+"Cement (Dangote)","Abia","Aba",2012-12-01,1680
+"Water Bottle (Drink Swan)","Abia","Aba",2009-03-01,68.3333358764648
+"Water Bottle (Drink Swan)","Abia","Aba",2012-11-01,113.330001831055
 "Maize White","Abia","Aba",2009-01-01,104.004325866699
 "Maize White","Abia","Aba",2009-05-01,131.356048583984
 "Maize White","Abia","Aba",2010-12-01,97.0873794555664
@@ -1013,16 +1013,16 @@
 "Rice Local","Abia","Aba",2010-12-01,152.091247558594
 "Rice Local","Abia","Aba",2012-11-01,138.18180847168
 "Rice Local","Abia","Aba",2012-12-01,138.376388549805
-"Cement Dangote","Oyo","Aba Adebomi",2010-09-01,1622.5
-"Cement Dangote","Oyo","Aba Adebomi",2011-04-01,2200
-"Cement Dangote","Oyo","Aba Adebomi",2011-05-01,2400
-"Cement Dangote","Oyo","Aba Adebomi",2011-08-01,2125
-"Cement Dangote","Oyo","Aba Adebomi",2012-02-01,1787.5
-"Cement Dangote","Oyo","Aba Adebomi",2012-04-01,1933.32995605469
-"Cement Dangote","Oyo","Aba Adebomi",2012-07-01,1745
-"Cement Dangote","Oyo","Aba Adebomi",2012-08-01,1740
-"Drink Swan Water Bottle","Oyo","Aba Adebomi",2011-11-01,105.834999084473
-"Drink Swan Water Bottle","Oyo","Aba Adebomi",2012-11-01,96.6650009155273
+"Cement (Dangote)","Oyo","Aba Adebomi",2010-09-01,1622.5
+"Cement (Dangote)","Oyo","Aba Adebomi",2011-04-01,2200
+"Cement (Dangote)","Oyo","Aba Adebomi",2011-05-01,2400
+"Cement (Dangote)","Oyo","Aba Adebomi",2011-08-01,2125
+"Cement (Dangote)","Oyo","Aba Adebomi",2012-02-01,1787.5
+"Cement (Dangote)","Oyo","Aba Adebomi",2012-04-01,1933.32995605469
+"Cement (Dangote)","Oyo","Aba Adebomi",2012-07-01,1745
+"Cement (Dangote)","Oyo","Aba Adebomi",2012-08-01,1740
+"Water Bottle (Drink Swan)","Oyo","Aba Adebomi",2011-11-01,105.834999084473
+"Water Bottle (Drink Swan)","Oyo","Aba Adebomi",2012-11-01,96.6650009155273
 "Maize White","Oyo","Aba Adebomi",2010-01-01,68.1606369018555
 "Maize White","Oyo","Aba Adebomi",2010-02-01,67.8515396118164
 "Maize White","Oyo","Aba Adebomi",2010-03-01,76.1674499511719
@@ -1191,16 +1191,16 @@
 "Sorghum","Oyo","Aba Adebomi",2012-09-01,91.8657379150391
 "Sorghum","Oyo","Aba Adebomi",2012-10-01,93.1488265991211
 "Sorghum","Oyo","Aba Adebomi",2012-12-01,75.8955688476562
-"Cement Dangote","Osun","Aba Alfa",2010-04-01,1637.5
-"Cement Dangote","Osun","Aba Alfa",2011-04-01,2333.330078125
-"Cement Dangote","Osun","Aba Alfa",2011-05-01,2287.5
-"Cement Dangote","Osun","Aba Alfa",2011-09-01,1824.1650390625
-"Cement Dangote","Osun","Aba Alfa",2011-12-01,1756.25
-"Cement Dangote","Osun","Aba Alfa",2012-02-01,1825
-"Cement Dangote","Osun","Aba Alfa",2012-03-01,4633.33349609375
-"Cement Dangote","Osun","Aba Alfa",2012-04-01,1797.5
-"Cement Dangote","Osun","Aba Alfa",2012-07-01,1809.38000488281
-"Drink Swan Water Bottle","Osun","Aba Alfa",2011-04-01,118.330001831055
+"Cement (Dangote)","Osun","Aba Alfa",2010-04-01,1637.5
+"Cement (Dangote)","Osun","Aba Alfa",2011-04-01,2333.330078125
+"Cement (Dangote)","Osun","Aba Alfa",2011-05-01,2287.5
+"Cement (Dangote)","Osun","Aba Alfa",2011-09-01,1824.1650390625
+"Cement (Dangote)","Osun","Aba Alfa",2011-12-01,1756.25
+"Cement (Dangote)","Osun","Aba Alfa",2012-02-01,1825
+"Cement (Dangote)","Osun","Aba Alfa",2012-03-01,4633.33349609375
+"Cement (Dangote)","Osun","Aba Alfa",2012-04-01,1797.5
+"Cement (Dangote)","Osun","Aba Alfa",2012-07-01,1809.38000488281
+"Water Bottle (Drink Swan)","Osun","Aba Alfa",2011-04-01,118.330001831055
 "Maize White","Osun","Aba Alfa",2010-01-01,57.6923065185547
 "Maize White","Osun","Aba Alfa",2010-02-01,58.1850547790527
 "Maize White","Osun","Aba Alfa",2010-03-01,62.1082611083984
@@ -1354,44 +1354,44 @@
 "Sorghum","Osun","Aba Alfa",2012-10-01,81.8968963623047
 "Sorghum","Osun","Aba Alfa",2012-11-01,122.669998168945
 "Sorghum","Osun","Aba Alfa",2012-12-01,95.1063842773438
-"Cement Dangote","Imo","Abajah",2010-01-01,1545
-"Cement Dangote","Imo","Abajah",2010-06-01,1428.32995605469
-"Cement Dangote","Imo","Abajah",2010-07-01,1420
-"Cement Dangote","Imo","Abajah",2010-12-01,1576.67004394531
-"Cement Dangote","Imo","Abajah",2011-01-01,1615.33337402344
-"Cement Dangote","Imo","Abajah",2011-02-01,1502.625
-"Cement Dangote","Imo","Abajah",2011-03-01,1608.75
-"Cement Dangote","Imo","Abajah",2011-04-01,1917.5
-"Cement Dangote","Imo","Abajah",2011-07-01,1597.5
-"Cement Dangote","Imo","Abajah",2011-09-01,1708.9599609375
-"Cement Dangote","Imo","Abajah",2011-10-01,1837.5
-"Cement Dangote","Imo","Abajah",2011-11-01,1778.56994628906
-"Cement Dangote","Imo","Abajah",2011-12-01,1842.21398925781
-"Cement Dangote","Imo","Abajah",2012-01-01,2003.4375
-"Cement Dangote","Imo","Abajah",2012-02-01,1922.07495117188
-"Cement Dangote","Imo","Abajah",2012-03-01,1930.95239257812
-"Cement Dangote","Imo","Abajah",2012-04-01,1866.32006835938
-"Cement Dangote","Imo","Abajah",2012-07-01,1843.26330566406
-"Cement Dangote","Imo","Abajah",2012-08-01,1739.58251953125
-"Cement Dangote","Imo","Abajah",2012-10-01,3703.95751953125
-"Cement Dangote","Imo","Abajah",2012-11-01,1709
-"Cement Dangote","Imo","Abajah",2012-12-01,1666.11169433594
-"Drink Swan Water Bottle","Imo","Abajah",2010-06-01,60.5289459228516
-"Drink Swan Water Bottle","Imo","Abajah",2011-01-01,109.166664123535
-"Drink Swan Water Bottle","Imo","Abajah",2011-04-01,110.830001831055
-"Drink Swan Water Bottle","Imo","Abajah",2011-05-01,97.75
-"Drink Swan Water Bottle","Imo","Abajah",2011-08-01,109.379997253418
-"Drink Swan Water Bottle","Imo","Abajah",2011-09-01,112.765998840332
-"Drink Swan Water Bottle","Imo","Abajah",2011-11-01,109.089996337891
-"Drink Swan Water Bottle","Imo","Abajah",2011-12-01,111.900001525879
-"Drink Swan Water Bottle","Imo","Abajah",2012-01-01,118.300003051758
-"Drink Swan Water Bottle","Imo","Abajah",2012-02-01,116.082504272461
-"Drink Swan Water Bottle","Imo","Abajah",2012-03-01,119.722221374512
-"Drink Swan Water Bottle","Imo","Abajah",2012-07-01,105.059997558594
-"Drink Swan Water Bottle","Imo","Abajah",2012-08-01,123.444999694824
-"Drink Swan Water Bottle","Imo","Abajah",2012-10-01,111.569999694824
-"Drink Swan Water Bottle","Imo","Abajah",2012-11-01,118.180000305176
-"Drink Swan Water Bottle","Imo","Abajah",2012-12-01,116.25
+"Cement (Dangote)","Imo","Abajah",2010-01-01,1545
+"Cement (Dangote)","Imo","Abajah",2010-06-01,1428.32995605469
+"Cement (Dangote)","Imo","Abajah",2010-07-01,1420
+"Cement (Dangote)","Imo","Abajah",2010-12-01,1576.67004394531
+"Cement (Dangote)","Imo","Abajah",2011-01-01,1615.33337402344
+"Cement (Dangote)","Imo","Abajah",2011-02-01,1502.625
+"Cement (Dangote)","Imo","Abajah",2011-03-01,1608.75
+"Cement (Dangote)","Imo","Abajah",2011-04-01,1917.5
+"Cement (Dangote)","Imo","Abajah",2011-07-01,1597.5
+"Cement (Dangote)","Imo","Abajah",2011-09-01,1708.9599609375
+"Cement (Dangote)","Imo","Abajah",2011-10-01,1837.5
+"Cement (Dangote)","Imo","Abajah",2011-11-01,1778.56994628906
+"Cement (Dangote)","Imo","Abajah",2011-12-01,1842.21398925781
+"Cement (Dangote)","Imo","Abajah",2012-01-01,2003.4375
+"Cement (Dangote)","Imo","Abajah",2012-02-01,1922.07495117188
+"Cement (Dangote)","Imo","Abajah",2012-03-01,1930.95239257812
+"Cement (Dangote)","Imo","Abajah",2012-04-01,1866.32006835938
+"Cement (Dangote)","Imo","Abajah",2012-07-01,1843.26330566406
+"Cement (Dangote)","Imo","Abajah",2012-08-01,1739.58251953125
+"Cement (Dangote)","Imo","Abajah",2012-10-01,3703.95751953125
+"Cement (Dangote)","Imo","Abajah",2012-11-01,1709
+"Cement (Dangote)","Imo","Abajah",2012-12-01,1666.11169433594
+"Water Bottle (Drink Swan)","Imo","Abajah",2010-06-01,60.5289459228516
+"Water Bottle (Drink Swan)","Imo","Abajah",2011-01-01,109.166664123535
+"Water Bottle (Drink Swan)","Imo","Abajah",2011-04-01,110.830001831055
+"Water Bottle (Drink Swan)","Imo","Abajah",2011-05-01,97.75
+"Water Bottle (Drink Swan)","Imo","Abajah",2011-08-01,109.379997253418
+"Water Bottle (Drink Swan)","Imo","Abajah",2011-09-01,112.765998840332
+"Water Bottle (Drink Swan)","Imo","Abajah",2011-11-01,109.089996337891
+"Water Bottle (Drink Swan)","Imo","Abajah",2011-12-01,111.900001525879
+"Water Bottle (Drink Swan)","Imo","Abajah",2012-01-01,118.300003051758
+"Water Bottle (Drink Swan)","Imo","Abajah",2012-02-01,116.082504272461
+"Water Bottle (Drink Swan)","Imo","Abajah",2012-03-01,119.722221374512
+"Water Bottle (Drink Swan)","Imo","Abajah",2012-07-01,105.059997558594
+"Water Bottle (Drink Swan)","Imo","Abajah",2012-08-01,123.444999694824
+"Water Bottle (Drink Swan)","Imo","Abajah",2012-10-01,111.569999694824
+"Water Bottle (Drink Swan)","Imo","Abajah",2012-11-01,118.180000305176
+"Water Bottle (Drink Swan)","Imo","Abajah",2012-12-01,116.25
 "Maize White","Imo","Abajah",2010-11-01,123.152709960938
 "Maize White","Imo","Abajah",2011-01-01,108.349998474121
 "Maize White","Imo","Abajah",2011-04-01,115.495048522949
@@ -1469,15 +1469,15 @@
 "Sorghum","Imo","Abajah",2012-02-01,110.425003051758
 "Sorghum","Imo","Abajah",2012-08-01,115.151519775391
 "Sorghum","Imo","Abajah",2012-11-01,130.20832824707
-"Cement Dangote","FCT","Abaji market",2010-07-01,1583.32995605469
-"Cement Dangote","FCT","Abaji market",2011-03-01,2000
-"Cement Dangote","FCT","Abaji market",2011-04-01,2387.5
-"Cement Dangote","FCT","Abaji market",2011-05-01,2500
-"Cement Dangote","FCT","Abaji market",2011-06-01,2150
-"Cement Dangote","FCT","Abaji market",2011-10-01,1766.67004394531
-"Cement Dangote","FCT","Abaji market",2012-03-01,4850
-"Cement Dangote","FCT","Abaji market",2012-07-01,1783.32995605469
-"Drink Swan Water Bottle","FCT","Abaji market",2011-12-01,107
+"Cement (Dangote)","FCT","Abaji market",2010-07-01,1583.32995605469
+"Cement (Dangote)","FCT","Abaji market",2011-03-01,2000
+"Cement (Dangote)","FCT","Abaji market",2011-04-01,2387.5
+"Cement (Dangote)","FCT","Abaji market",2011-05-01,2500
+"Cement (Dangote)","FCT","Abaji market",2011-06-01,2150
+"Cement (Dangote)","FCT","Abaji market",2011-10-01,1766.67004394531
+"Cement (Dangote)","FCT","Abaji market",2012-03-01,4850
+"Cement (Dangote)","FCT","Abaji market",2012-07-01,1783.32995605469
+"Water Bottle (Drink Swan)","FCT","Abaji market",2011-12-01,107
 "Maize White","FCT","Abaji market",2010-03-01,65.9113616943359
 "Maize White","FCT","Abaji market",2010-05-01,67.9310302734375
 "Maize White","FCT","Abaji market",2010-12-01,61.5174293518066
@@ -1609,18 +1609,18 @@
 "Sorghum","FCT","Abaji-Abuja",2009-04-01,54.3859672546387
 "Sorghum","FCT","Abaji-Abuja",2009-06-01,52.6286277770996
 "Sorghum","FCT","Abaji-Abuja",2009-09-01,65.4970779418945
-"Cement Dangote","Akwa Ibom","Abak",2010-06-01,1375
-"Cement Dangote","Akwa Ibom","Abak",2011-05-01,1908.32995605469
-"Cement Dangote","Akwa Ibom","Abak",2011-08-01,1568.75
-"Cement Dangote","Akwa Ibom","Abak",2012-04-01,2350
-"Drink Swan Water Bottle","Akwa Ibom","Abak",2010-06-01,83.3300018310547
-"Drink Swan Water Bottle","Akwa Ibom","Abak",2011-04-01,105.709999084473
-"Drink Swan Water Bottle","Akwa Ibom","Abak",2011-06-01,111.944999694824
-"Drink Swan Water Bottle","Akwa Ibom","Abak",2011-07-01,95.625
-"Drink Swan Water Bottle","Akwa Ibom","Abak",2011-08-01,104.444999694824
-"Drink Swan Water Bottle","Akwa Ibom","Abak",2011-09-01,113.25
-"Drink Swan Water Bottle","Akwa Ibom","Abak",2011-12-01,105.830001831055
-"Drink Swan Water Bottle","Akwa Ibom","Abak",2012-07-01,112.919998168945
+"Cement (Dangote)","Akwa Ibom","Abak",2010-06-01,1375
+"Cement (Dangote)","Akwa Ibom","Abak",2011-05-01,1908.32995605469
+"Cement (Dangote)","Akwa Ibom","Abak",2011-08-01,1568.75
+"Cement (Dangote)","Akwa Ibom","Abak",2012-04-01,2350
+"Water Bottle (Drink Swan)","Akwa Ibom","Abak",2010-06-01,83.3300018310547
+"Water Bottle (Drink Swan)","Akwa Ibom","Abak",2011-04-01,105.709999084473
+"Water Bottle (Drink Swan)","Akwa Ibom","Abak",2011-06-01,111.944999694824
+"Water Bottle (Drink Swan)","Akwa Ibom","Abak",2011-07-01,95.625
+"Water Bottle (Drink Swan)","Akwa Ibom","Abak",2011-08-01,104.444999694824
+"Water Bottle (Drink Swan)","Akwa Ibom","Abak",2011-09-01,113.25
+"Water Bottle (Drink Swan)","Akwa Ibom","Abak",2011-12-01,105.830001831055
+"Water Bottle (Drink Swan)","Akwa Ibom","Abak",2012-07-01,112.919998168945
 "Maize White","Akwa Ibom","Abak",2010-01-01,109.56175994873
 "Maize White","Akwa Ibom","Abak",2010-02-01,109.170303344727
 "Maize White","Akwa Ibom","Abak",2010-03-01,109.311737060547
@@ -1715,34 +1715,34 @@
 "Sorghum","Akwa Ibom","Abak",2011-06-01,125.02222442627
 "Sorghum","Akwa Ibom","Abak",2011-08-01,120.355560302734
 "Sorghum","Akwa Ibom","Abak",2012-03-01,97.6562423706055
-"Cement Dangote","Ebonyi","Abakaliki",2009-01-01,1684
-"Cement Dangote","Ebonyi","Abakaliki",2009-03-01,1810
-"Cement Dangote","Ebonyi","Abakaliki",2009-05-01,1642.5
-"Cement Dangote","Ebonyi","Abakaliki",2009-06-01,1743.33337402344
-"Cement Dangote","Ebonyi","Abakaliki",2009-09-01,1613.33337402344
-"Cement Dangote","Ebonyi","Abakaliki",2009-10-01,1646.92309570312
-"Cement Dangote","Ebonyi","Abakaliki",2009-11-01,1633.33337402344
-"Cement Dangote","Ebonyi","Abakaliki",2009-12-01,1661.11108398438
-"Cement Dangote","Ebonyi","Abakaliki",2010-04-01,1686.25
-"Cement Dangote","Ebonyi","Abakaliki",2010-09-01,1566.67004394531
-"Cement Dangote","Ebonyi","Abakaliki",2011-02-01,1541.67004394531
-"Cement Dangote","Ebonyi","Abakaliki",2011-04-01,1660
-"Cement Dangote","Ebonyi","Abakaliki",2011-05-01,1891.67004394531
-"Cement Dangote","Ebonyi","Abakaliki",2011-06-01,1612.5
-"Cement Dangote","Ebonyi","Abakaliki",2011-07-01,1693.75
-"Cement Dangote","Ebonyi","Abakaliki",2011-09-01,1728
-"Cement Dangote","Ebonyi","Abakaliki",2011-11-01,1764.88000488281
-"Cement Dangote","Ebonyi","Abakaliki",2011-12-01,1822.92004394531
-"Cement Dangote","Ebonyi","Abakaliki",2012-01-01,1936.67004394531
-"Cement Dangote","Ebonyi","Abakaliki",2012-02-01,1816.67004394531
-"Cement Dangote","Ebonyi","Abakaliki",2012-03-01,2010.41662597656
-"Cement Dangote","Ebonyi","Abakaliki",2012-04-01,1839.57995605469
-"Cement Dangote","Ebonyi","Abakaliki",2012-08-01,1739.17004394531
-"Cement Dangote","Ebonyi","Abakaliki",2012-11-01,1615
-"Cement Dangote","Ebonyi","Abakaliki",2012-12-01,1186.67004394531
-"Drink Swan Water Bottle","Ebonyi","Abakaliki",2012-02-01,123
-"Drink Swan Water Bottle","Ebonyi","Abakaliki",2012-03-01,118.333335876465
-"Drink Swan Water Bottle","Ebonyi","Abakaliki",2012-10-01,125.830001831055
+"Cement (Dangote)","Ebonyi","Abakaliki",2009-01-01,1684
+"Cement (Dangote)","Ebonyi","Abakaliki",2009-03-01,1810
+"Cement (Dangote)","Ebonyi","Abakaliki",2009-05-01,1642.5
+"Cement (Dangote)","Ebonyi","Abakaliki",2009-06-01,1743.33337402344
+"Cement (Dangote)","Ebonyi","Abakaliki",2009-09-01,1613.33337402344
+"Cement (Dangote)","Ebonyi","Abakaliki",2009-10-01,1646.92309570312
+"Cement (Dangote)","Ebonyi","Abakaliki",2009-11-01,1633.33337402344
+"Cement (Dangote)","Ebonyi","Abakaliki",2009-12-01,1661.11108398438
+"Cement (Dangote)","Ebonyi","Abakaliki",2010-04-01,1686.25
+"Cement (Dangote)","Ebonyi","Abakaliki",2010-09-01,1566.67004394531
+"Cement (Dangote)","Ebonyi","Abakaliki",2011-02-01,1541.67004394531
+"Cement (Dangote)","Ebonyi","Abakaliki",2011-04-01,1660
+"Cement (Dangote)","Ebonyi","Abakaliki",2011-05-01,1891.67004394531
+"Cement (Dangote)","Ebonyi","Abakaliki",2011-06-01,1612.5
+"Cement (Dangote)","Ebonyi","Abakaliki",2011-07-01,1693.75
+"Cement (Dangote)","Ebonyi","Abakaliki",2011-09-01,1728
+"Cement (Dangote)","Ebonyi","Abakaliki",2011-11-01,1764.88000488281
+"Cement (Dangote)","Ebonyi","Abakaliki",2011-12-01,1822.92004394531
+"Cement (Dangote)","Ebonyi","Abakaliki",2012-01-01,1936.67004394531
+"Cement (Dangote)","Ebonyi","Abakaliki",2012-02-01,1816.67004394531
+"Cement (Dangote)","Ebonyi","Abakaliki",2012-03-01,2010.41662597656
+"Cement (Dangote)","Ebonyi","Abakaliki",2012-04-01,1839.57995605469
+"Cement (Dangote)","Ebonyi","Abakaliki",2012-08-01,1739.17004394531
+"Cement (Dangote)","Ebonyi","Abakaliki",2012-11-01,1615
+"Cement (Dangote)","Ebonyi","Abakaliki",2012-12-01,1186.67004394531
+"Water Bottle (Drink Swan)","Ebonyi","Abakaliki",2012-02-01,123
+"Water Bottle (Drink Swan)","Ebonyi","Abakaliki",2012-03-01,118.333335876465
+"Water Bottle (Drink Swan)","Ebonyi","Abakaliki",2012-10-01,125.830001831055
 "Maize White","Ebonyi","Abakaliki",2011-06-01,103.719596862793
 "Maize White","Ebonyi","Abakaliki",2011-07-01,111.38249206543
 "Maize White","Ebonyi","Abakaliki",2011-09-01,125.219512939453
@@ -1795,23 +1795,23 @@
 "Sorghum","Ebonyi","Abakaliki",2011-07-01,110.638298034668
 "Sorghum","Ebonyi","Abakaliki",2011-09-01,129.069763183594
 "Sorghum","Ebonyi","Abakaliki",2012-01-01,121.267608642578
-"Cement Dangote","Benue","Abakwa",2011-01-01,1463.32995605469
-"Cement Dangote","Benue","Abakwa",2011-05-01,2056.25
-"Cement Dangote","Benue","Abakwa",2011-06-01,2062.5
-"Cement Dangote","Benue","Abakwa",2011-07-01,1766.6650390625
-"Cement Dangote","Benue","Abakwa",2011-10-01,1700.89001464844
-"Cement Dangote","Benue","Abakwa",2011-11-01,1712.5
-"Cement Dangote","Benue","Abakwa",2011-12-01,1704.17004394531
-"Cement Dangote","Benue","Abakwa",2012-01-01,1770
-"Cement Dangote","Benue","Abakwa",2012-02-01,1706.25
-"Cement Dangote","Benue","Abakwa",2012-03-01,1868.75
-"Cement Dangote","Benue","Abakwa",2012-06-01,1884.38000488281
-"Cement Dangote","Benue","Abakwa",2012-07-01,1929.17004394531
-"Cement Dangote","Benue","Abakwa",2012-08-01,1893.75
-"Cement Dangote","Benue","Abakwa",2012-10-01,1731.25
-"Cement Dangote","Benue","Abakwa",2012-11-01,1690
-"Cement Dangote","Benue","Abakwa",2012-12-01,1866.67004394531
-"Drink Swan Water Bottle","Benue","Abakwa",2012-02-01,101.875
+"Cement (Dangote)","Benue","Abakwa",2011-01-01,1463.32995605469
+"Cement (Dangote)","Benue","Abakwa",2011-05-01,2056.25
+"Cement (Dangote)","Benue","Abakwa",2011-06-01,2062.5
+"Cement (Dangote)","Benue","Abakwa",2011-07-01,1766.6650390625
+"Cement (Dangote)","Benue","Abakwa",2011-10-01,1700.89001464844
+"Cement (Dangote)","Benue","Abakwa",2011-11-01,1712.5
+"Cement (Dangote)","Benue","Abakwa",2011-12-01,1704.17004394531
+"Cement (Dangote)","Benue","Abakwa",2012-01-01,1770
+"Cement (Dangote)","Benue","Abakwa",2012-02-01,1706.25
+"Cement (Dangote)","Benue","Abakwa",2012-03-01,1868.75
+"Cement (Dangote)","Benue","Abakwa",2012-06-01,1884.38000488281
+"Cement (Dangote)","Benue","Abakwa",2012-07-01,1929.17004394531
+"Cement (Dangote)","Benue","Abakwa",2012-08-01,1893.75
+"Cement (Dangote)","Benue","Abakwa",2012-10-01,1731.25
+"Cement (Dangote)","Benue","Abakwa",2012-11-01,1690
+"Cement (Dangote)","Benue","Abakwa",2012-12-01,1866.67004394531
+"Water Bottle (Drink Swan)","Benue","Abakwa",2012-02-01,101.875
 "Maize White","Benue","Abakwa",2010-01-01,110.858009338379
 "Maize White","Benue","Abakwa",2010-03-01,93.3153839111328
 "Maize White","Benue","Abakwa",2010-05-01,85.4092483520508
@@ -1959,23 +1959,23 @@
 "Sorghum","Benue","Abakwa",2012-09-01,81.4529113769531
 "Sorghum","Benue","Abakwa",2012-10-01,91.5075378417969
 "Sorghum","Benue","Abakwa",2012-12-01,72.6832122802734
-"Cement Dangote","Cross River","Abasi Obori St",2010-02-01,1516.69995117188
-"Cement Dangote","Cross River","Abasi Obori St",2011-02-01,1887.5
-"Cement Dangote","Cross River","Abasi Obori St",2011-05-01,1881.25
-"Cement Dangote","Cross River","Abasi Obori St",2011-12-01,1683.32995605469
-"Cement Dangote","Cross River","Abasi Obori St",2012-04-01,2008.32995605469
-"Cement Dangote","Cross River","Abasi Obori St",2012-06-01,2233.330078125
-"Cement Dangote","Cross River","Abasi Obori St",2012-07-01,1955
-"Cement Dangote","Cross River","Abasi Obori St",2012-10-01,1791.67004394531
-"Drink Swan Water Bottle","Cross River","Abasi Obori St",2010-05-01,38.3333320617676
-"Drink Swan Water Bottle","Cross River","Abasi Obori St",2011-06-01,111.25
-"Drink Swan Water Bottle","Cross River","Abasi Obori St",2011-07-01,110.949996948242
-"Drink Swan Water Bottle","Cross River","Abasi Obori St",2011-09-01,126.879997253418
-"Drink Swan Water Bottle","Cross River","Abasi Obori St",2011-12-01,118.569999694824
-"Drink Swan Water Bottle","Cross River","Abasi Obori St",2012-02-01,102.860000610352
-"Drink Swan Water Bottle","Cross River","Abasi Obori St",2012-03-01,102.915000915527
-"Drink Swan Water Bottle","Cross River","Abasi Obori St",2012-06-01,115.830001831055
-"Drink Swan Water Bottle","Cross River","Abasi Obori St",2012-10-01,109.440002441406
+"Cement (Dangote)","Cross River","Abasi Obori St",2010-02-01,1516.69995117188
+"Cement (Dangote)","Cross River","Abasi Obori St",2011-02-01,1887.5
+"Cement (Dangote)","Cross River","Abasi Obori St",2011-05-01,1881.25
+"Cement (Dangote)","Cross River","Abasi Obori St",2011-12-01,1683.32995605469
+"Cement (Dangote)","Cross River","Abasi Obori St",2012-04-01,2008.32995605469
+"Cement (Dangote)","Cross River","Abasi Obori St",2012-06-01,2233.330078125
+"Cement (Dangote)","Cross River","Abasi Obori St",2012-07-01,1955
+"Cement (Dangote)","Cross River","Abasi Obori St",2012-10-01,1791.67004394531
+"Water Bottle (Drink Swan)","Cross River","Abasi Obori St",2010-05-01,38.3333320617676
+"Water Bottle (Drink Swan)","Cross River","Abasi Obori St",2011-06-01,111.25
+"Water Bottle (Drink Swan)","Cross River","Abasi Obori St",2011-07-01,110.949996948242
+"Water Bottle (Drink Swan)","Cross River","Abasi Obori St",2011-09-01,126.879997253418
+"Water Bottle (Drink Swan)","Cross River","Abasi Obori St",2011-12-01,118.569999694824
+"Water Bottle (Drink Swan)","Cross River","Abasi Obori St",2012-02-01,102.860000610352
+"Water Bottle (Drink Swan)","Cross River","Abasi Obori St",2012-03-01,102.915000915527
+"Water Bottle (Drink Swan)","Cross River","Abasi Obori St",2012-06-01,115.830001831055
+"Water Bottle (Drink Swan)","Cross River","Abasi Obori St",2012-10-01,109.440002441406
 "Maize White","Cross River","Abasi Obori St",2010-03-01,80.241325378418
 "Maize White","Cross River","Abasi Obori St",2010-04-01,112.304679870605
 "Maize White","Cross River","Abasi Obori St",2010-06-01,53.061222076416
@@ -2073,19 +2073,19 @@
 "Sorghum","Cross River","Abasi Obori St",2012-06-01,79.6470565795898
 "Sorghum","Cross River","Abasi Obori St",2012-08-01,131.578948974609
 "Sorghum","Cross River","Abasi Obori St",2012-09-01,132.447769165039
-"Cement Dangote","Kogi","Abba Central mkt",2011-05-01,3737.5
-"Cement Dangote","Kogi","Abba Central mkt",2011-06-01,1908.33337402344
-"Cement Dangote","Kogi","Abba Central mkt",2011-08-01,1595.82995605469
-"Cement Dangote","Kogi","Abba Central mkt",2012-01-01,1760
-"Cement Dangote","Kogi","Abba Central mkt",2012-03-01,1793.33337402344
-"Cement Dangote","Kogi","Abba Central mkt",2012-06-01,3645
-"Cement Dangote","Kogi","Abba Central mkt",2012-08-01,1822.21997070312
-"Cement Dangote","Kogi","Abba Central mkt",2012-10-01,1641.67004394531
-"Cement Dangote","Kogi","Abba Central mkt",2012-12-01,3800
-"Drink Swan Water Bottle","Kogi","Abba Central mkt",2010-07-01,67.5
-"Drink Swan Water Bottle","Kogi","Abba Central mkt",2011-02-01,80.8300018310547
-"Drink Swan Water Bottle","Kogi","Abba Central mkt",2011-03-01,82.5
-"Drink Swan Water Bottle","Kogi","Abba Central mkt",2011-11-01,96.6699981689453
+"Cement (Dangote)","Kogi","Abba Central mkt",2011-05-01,3737.5
+"Cement (Dangote)","Kogi","Abba Central mkt",2011-06-01,1908.33337402344
+"Cement (Dangote)","Kogi","Abba Central mkt",2011-08-01,1595.82995605469
+"Cement (Dangote)","Kogi","Abba Central mkt",2012-01-01,1760
+"Cement (Dangote)","Kogi","Abba Central mkt",2012-03-01,1793.33337402344
+"Cement (Dangote)","Kogi","Abba Central mkt",2012-06-01,3645
+"Cement (Dangote)","Kogi","Abba Central mkt",2012-08-01,1822.21997070312
+"Cement (Dangote)","Kogi","Abba Central mkt",2012-10-01,1641.67004394531
+"Cement (Dangote)","Kogi","Abba Central mkt",2012-12-01,3800
+"Water Bottle (Drink Swan)","Kogi","Abba Central mkt",2010-07-01,67.5
+"Water Bottle (Drink Swan)","Kogi","Abba Central mkt",2011-02-01,80.8300018310547
+"Water Bottle (Drink Swan)","Kogi","Abba Central mkt",2011-03-01,82.5
+"Water Bottle (Drink Swan)","Kogi","Abba Central mkt",2011-11-01,96.6699981689453
 "Maize White","Kogi","Abba Central mkt",2010-01-01,93.4182586669922
 "Maize White","Kogi","Abba Central mkt",2010-03-01,69.3877563476562
 "Maize White","Kogi","Abba Central mkt",2010-04-01,80.4403076171875
@@ -2241,31 +2241,31 @@
 "Sorghum","Kogi","Abba Central mkt",2012-09-01,85.1869430541992
 "Sorghum","Kogi","Abba Central mkt",2012-11-01,85.1379089355469
 "Sorghum","Kogi","Abba Central mkt",2012-12-01,82.9163665771484
-"Cement Dangote","Kwara","Abdul-Rasaki",2010-09-01,1704
-"Cement Dangote","Kwara","Abdul-Rasaki",2011-01-01,1715
-"Cement Dangote","Kwara","Abdul-Rasaki",2011-03-01,2100
-"Cement Dangote","Kwara","Abdul-Rasaki",2011-04-01,2570.830078125
-"Cement Dangote","Kwara","Abdul-Rasaki",2011-05-01,2300
-"Cement Dangote","Kwara","Abdul-Rasaki",2011-06-01,1941.66662597656
-"Cement Dangote","Kwara","Abdul-Rasaki",2011-07-01,1795.8349609375
-"Cement Dangote","Kwara","Abdul-Rasaki",2011-09-01,1824.17004394531
-"Cement Dangote","Kwara","Abdul-Rasaki",2011-11-01,1789.72338867188
-"Cement Dangote","Kwara","Abdul-Rasaki",2011-12-01,1770.18994140625
-"Cement Dangote","Kwara","Abdul-Rasaki",2012-01-01,2079.48999023438
-"Cement Dangote","Kwara","Abdul-Rasaki",2012-02-01,2075
-"Cement Dangote","Kwara","Abdul-Rasaki",2012-03-01,1965
-"Cement Dangote","Kwara","Abdul-Rasaki",2012-04-01,1910
-"Cement Dangote","Kwara","Abdul-Rasaki",2012-06-01,1876.0400390625
-"Cement Dangote","Kwara","Abdul-Rasaki",2012-08-01,1820.82995605469
-"Cement Dangote","Kwara","Abdul-Rasaki",2012-10-01,1875
-"Cement Dangote","Kwara","Abdul-Rasaki",2012-11-01,1790
-"Drink Swan Water Bottle","Kwara","Abdul-Rasaki",2011-01-01,78.75
-"Drink Swan Water Bottle","Kwara","Abdul-Rasaki",2011-02-01,85.0028610229492
-"Drink Swan Water Bottle","Kwara","Abdul-Rasaki",2011-05-01,101.25
-"Drink Swan Water Bottle","Kwara","Abdul-Rasaki",2011-08-01,91.25
-"Drink Swan Water Bottle","Kwara","Abdul-Rasaki",2011-10-01,108.5
-"Drink Swan Water Bottle","Kwara","Abdul-Rasaki",2012-04-01,117.084999084473
-"Drink Swan Water Bottle","Kwara","Abdul-Rasaki",2012-07-01,118.5
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2010-09-01,1704
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2011-01-01,1715
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2011-03-01,2100
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2011-04-01,2570.830078125
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2011-05-01,2300
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2011-06-01,1941.66662597656
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2011-07-01,1795.8349609375
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2011-09-01,1824.17004394531
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2011-11-01,1789.72338867188
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2011-12-01,1770.18994140625
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2012-01-01,2079.48999023438
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2012-02-01,2075
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2012-03-01,1965
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2012-04-01,1910
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2012-06-01,1876.0400390625
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2012-08-01,1820.82995605469
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2012-10-01,1875
+"Cement (Dangote)","Kwara","Abdul-Rasaki",2012-11-01,1790
+"Water Bottle (Drink Swan)","Kwara","Abdul-Rasaki",2011-01-01,78.75
+"Water Bottle (Drink Swan)","Kwara","Abdul-Rasaki",2011-02-01,85.0028610229492
+"Water Bottle (Drink Swan)","Kwara","Abdul-Rasaki",2011-05-01,101.25
+"Water Bottle (Drink Swan)","Kwara","Abdul-Rasaki",2011-08-01,91.25
+"Water Bottle (Drink Swan)","Kwara","Abdul-Rasaki",2011-10-01,108.5
+"Water Bottle (Drink Swan)","Kwara","Abdul-Rasaki",2012-04-01,117.084999084473
+"Water Bottle (Drink Swan)","Kwara","Abdul-Rasaki",2012-07-01,118.5
 "Maize White","Kwara","Abdul-Rasaki",2010-01-01,57.2363052368164
 "Maize White","Kwara","Abdul-Rasaki",2010-03-01,70.2922668457031
 "Maize White","Kwara","Abdul-Rasaki",2010-04-01,69.6864166259766
@@ -2436,16 +2436,16 @@
 "Rice Imported","Oyo","Abdulahi Adeleke",2009-04-01,206.451614379883
 "Rice Local","Oyo","Abdulahi Adeleke",2009-03-01,141.935485839844
 "Sorghum","Oyo","Abdulahi Adeleke",2009-01-01,60.3174629211426
-"Cement Dangote","Ogun","Abeokuta",2010-06-01,1530
-"Cement Dangote","Ogun","Abeokuta",2011-02-01,1983.33337402344
-"Cement Dangote","Ogun","Abeokuta",2012-03-01,1811.11108398438
-"Cement Dangote","Ogun","Abeokuta",2012-06-01,1808.32995605469
-"Drink Swan Water Bottle","Ogun","Abeokuta",2010-02-01,52.5
-"Drink Swan Water Bottle","Ogun","Abeokuta",2012-01-01,110.476669311523
-"Drink Swan Water Bottle","Ogun","Abeokuta",2012-03-01,110.857139587402
-"Drink Swan Water Bottle","Ogun","Abeokuta",2012-08-01,108.889999389648
-"Drink Swan Water Bottle","Ogun","Abeokuta",2012-10-01,105.23999786377
-"Drink Swan Water Bottle","Ogun","Abeokuta",2012-11-01,118
+"Cement (Dangote)","Ogun","Abeokuta",2010-06-01,1530
+"Cement (Dangote)","Ogun","Abeokuta",2011-02-01,1983.33337402344
+"Cement (Dangote)","Ogun","Abeokuta",2012-03-01,1811.11108398438
+"Cement (Dangote)","Ogun","Abeokuta",2012-06-01,1808.32995605469
+"Water Bottle (Drink Swan)","Ogun","Abeokuta",2010-02-01,52.5
+"Water Bottle (Drink Swan)","Ogun","Abeokuta",2012-01-01,110.476669311523
+"Water Bottle (Drink Swan)","Ogun","Abeokuta",2012-03-01,110.857139587402
+"Water Bottle (Drink Swan)","Ogun","Abeokuta",2012-08-01,108.889999389648
+"Water Bottle (Drink Swan)","Ogun","Abeokuta",2012-10-01,105.23999786377
+"Water Bottle (Drink Swan)","Ogun","Abeokuta",2012-11-01,118
 "Maize White","Ogun","Abeokuta",2009-01-01,94.0557479858398
 "Maize White","Ogun","Abeokuta",2009-02-01,71.3004302978516
 "Maize White","Ogun","Abeokuta",2009-10-01,62.056453704834
@@ -2592,15 +2592,15 @@
 "Sorghum","Ogun","Abeokuta",2012-10-01,96.335319519043
 "Sorghum","Ogun","Abeokuta",2012-11-01,151.179992675781
 "Sorghum","Ogun","Abeokuta",2012-12-01,103.471290588379
-"Cement Dangote","Cross River","Abotai",2009-08-01,1583.33337402344
-"Drink Swan Water Bottle","Cross River","Abotai",2012-11-01,126.25
+"Cement (Dangote)","Cross River","Abotai",2009-08-01,1583.33337402344
+"Water Bottle (Drink Swan)","Cross River","Abotai",2012-11-01,126.25
 "Rice Imported","Cross River","Abotai",2012-11-01,245.586868286133
 "Rice Imported","Cross River","Abotai",2012-12-01,261.90478515625
 "Rice Local","Cross River","Abotai",2012-11-01,144.909088134766
 "Rice Local","Cross River","Abotai",2012-12-01,143.379455566406
-"Cement Dangote","Bayelsa","Achibowe/Omonibo",2010-02-01,2166.66674804688
-"Cement Dangote","Bayelsa","Achibowe/Omonibo",2010-07-01,1313.32995605469
-"Cement Dangote","Bayelsa","Achibowe/Omonibo",2011-09-01,2058.330078125
+"Cement (Dangote)","Bayelsa","Achibowe/Omonibo",2010-02-01,2166.66674804688
+"Cement (Dangote)","Bayelsa","Achibowe/Omonibo",2010-07-01,1313.32995605469
+"Cement (Dangote)","Bayelsa","Achibowe/Omonibo",2011-09-01,2058.330078125
 "Maize White","Bayelsa","Achibowe/Omonibo",2010-06-01,148.063781738281
 "Maize White","Bayelsa","Achibowe/Omonibo",2010-09-01,119.453918457031
 "Maize White","Bayelsa","Achibowe/Omonibo",2011-03-01,88.8625640869141
@@ -2627,11 +2627,11 @@
 "Rice Local","Bayelsa","Achibowe/Omonibo",2011-06-01,218.579238891602
 "Rice Local","Bayelsa","Achibowe/Omonibo",2012-11-01,219.107971191406
 "Sorghum","Bayelsa","Achibowe/Omonibo",2011-03-01,50.9641876220703
-"Cement Dangote","Ogun","Adao",2010-04-01,1640
-"Cement Dangote","Ogun","Adao",2010-06-01,3462.5
-"Cement Dangote","Ogun","Adao",2010-08-01,1623.32995605469
-"Cement Dangote","Ogun","Adao",2010-10-01,1670
-"Cement Dangote","Ogun","Adao",2010-11-01,1635
+"Cement (Dangote)","Ogun","Adao",2010-04-01,1640
+"Cement (Dangote)","Ogun","Adao",2010-06-01,3462.5
+"Cement (Dangote)","Ogun","Adao",2010-08-01,1623.32995605469
+"Cement (Dangote)","Ogun","Adao",2010-10-01,1670
+"Cement (Dangote)","Ogun","Adao",2010-11-01,1635
 "Maize White","Ogun","Adao",2009-03-01,118.095237731934
 "Maize White","Ogun","Adao",2009-09-01,77.0609436035156
 "Maize White","Ogun","Adao",2009-10-01,64.3342895507812
@@ -2703,35 +2703,35 @@
 "Sorghum","Ogun","Adao",2010-12-01,113.328819274902
 "Sorghum","Ogun","Adao",2012-04-01,103.55029296875
 "Sorghum","Ogun","Adao",2012-12-01,95.4328536987305
-"Cement Dangote","Lagos","Adeniyi mushin lga",2010-01-01,1766.66662597656
-"Cement Dangote","Lagos","Adeniyi mushin lga",2011-01-01,1820.83325195312
-"Cement Dangote","Lagos","Adeniyi mushin lga",2011-02-01,1733.3349609375
-"Cement Dangote","Lagos","Adeniyi mushin lga",2011-03-01,2077.77783203125
-"Cement Dangote","Lagos","Adeniyi mushin lga",2011-04-01,2057.5
-"Cement Dangote","Lagos","Adeniyi mushin lga",2011-05-01,2366.669921875
-"Cement Dangote","Lagos","Adeniyi mushin lga",2011-06-01,2177.77783203125
-"Cement Dangote","Lagos","Adeniyi mushin lga",2011-07-01,1880
-"Cement Dangote","Lagos","Adeniyi mushin lga",2011-10-01,2343.52001953125
-"Cement Dangote","Lagos","Adeniyi mushin lga",2011-11-01,1718.75
-"Cement Dangote","Lagos","Adeniyi mushin lga",2011-12-01,1853.70336914062
-"Cement Dangote","Lagos","Adeniyi mushin lga",2012-01-01,2105.556640625
-"Cement Dangote","Lagos","Adeniyi mushin lga",2012-02-01,1923.66003417969
-"Cement Dangote","Lagos","Adeniyi mushin lga",2012-03-01,1903.33337402344
-"Cement Dangote","Lagos","Adeniyi mushin lga",2012-06-01,1894.44506835938
-"Cement Dangote","Lagos","Adeniyi mushin lga",2012-07-01,1904.16662597656
-"Cement Dangote","Lagos","Adeniyi mushin lga",2012-10-01,1807.73852539062
-"Cement Dangote","Lagos","Adeniyi mushin lga",2012-11-01,1822.7900390625
-"Cement Dangote","Lagos","Adeniyi mushin lga",2012-12-01,2373.95874023438
-"Drink Swan Water Bottle","Lagos","Adeniyi mushin lga",2010-06-01,88.3333358764648
-"Drink Swan Water Bottle","Lagos","Adeniyi mushin lga",2011-08-01,101.665000915527
-"Drink Swan Water Bottle","Lagos","Adeniyi mushin lga",2011-09-01,111.875
-"Drink Swan Water Bottle","Lagos","Adeniyi mushin lga",2011-11-01,92.8000030517578
-"Drink Swan Water Bottle","Lagos","Adeniyi mushin lga",2012-01-01,104.379997253418
-"Drink Swan Water Bottle","Lagos","Adeniyi mushin lga",2012-06-01,104.764999389648
-"Drink Swan Water Bottle","Lagos","Adeniyi mushin lga",2012-07-01,112.875999450684
-"Drink Swan Water Bottle","Lagos","Adeniyi mushin lga",2012-08-01,116.875
-"Drink Swan Water Bottle","Lagos","Adeniyi mushin lga",2012-11-01,107.916664123535
-"Drink Swan Water Bottle","Lagos","Adeniyi mushin lga",2012-12-01,100.833335876465
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2010-01-01,1766.66662597656
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2011-01-01,1820.83325195312
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2011-02-01,1733.3349609375
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2011-03-01,2077.77783203125
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2011-04-01,2057.5
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2011-05-01,2366.669921875
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2011-06-01,2177.77783203125
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2011-07-01,1880
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2011-10-01,2343.52001953125
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2011-11-01,1718.75
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2011-12-01,1853.70336914062
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2012-01-01,2105.556640625
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2012-02-01,1923.66003417969
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2012-03-01,1903.33337402344
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2012-06-01,1894.44506835938
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2012-07-01,1904.16662597656
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2012-10-01,1807.73852539062
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2012-11-01,1822.7900390625
+"Cement (Dangote)","Lagos","Adeniyi mushin lga",2012-12-01,2373.95874023438
+"Water Bottle (Drink Swan)","Lagos","Adeniyi mushin lga",2010-06-01,88.3333358764648
+"Water Bottle (Drink Swan)","Lagos","Adeniyi mushin lga",2011-08-01,101.665000915527
+"Water Bottle (Drink Swan)","Lagos","Adeniyi mushin lga",2011-09-01,111.875
+"Water Bottle (Drink Swan)","Lagos","Adeniyi mushin lga",2011-11-01,92.8000030517578
+"Water Bottle (Drink Swan)","Lagos","Adeniyi mushin lga",2012-01-01,104.379997253418
+"Water Bottle (Drink Swan)","Lagos","Adeniyi mushin lga",2012-06-01,104.764999389648
+"Water Bottle (Drink Swan)","Lagos","Adeniyi mushin lga",2012-07-01,112.875999450684
+"Water Bottle (Drink Swan)","Lagos","Adeniyi mushin lga",2012-08-01,116.875
+"Water Bottle (Drink Swan)","Lagos","Adeniyi mushin lga",2012-11-01,107.916664123535
+"Water Bottle (Drink Swan)","Lagos","Adeniyi mushin lga",2012-12-01,100.833335876465
 "Maize White","Lagos","Adeniyi mushin lga",2010-01-01,94.5432205200195
 "Maize White","Lagos","Adeniyi mushin lga",2010-02-01,80.0533676147461
 "Maize White","Lagos","Adeniyi mushin lga",2010-03-01,101.650512695312
@@ -2872,21 +2872,21 @@
 "Rice Imported","Ekiti","Ado Ekiti",2009-01-01,201.470581054688
 "Rice Local","Ekiti","Ado Ekiti",2009-01-01,112.877578735352
 "Sorghum","Ekiti","Ado Ekiti",2009-01-01,101.426025390625
-"Cement Dangote","Ekiti","Ado-Ekiti",2010-04-01,3037.5
-"Cement Dangote","Ekiti","Ado-Ekiti",2010-11-01,991
-"Cement Dangote","Ekiti","Ado-Ekiti",2011-01-01,1532.5
-"Cement Dangote","Ekiti","Ado-Ekiti",2011-04-01,2260.7099609375
-"Cement Dangote","Ekiti","Ado-Ekiti",2011-05-01,2285.7099609375
-"Cement Dangote","Ekiti","Ado-Ekiti",2011-06-01,1841.66662597656
-"Cement Dangote","Ekiti","Ado-Ekiti",2011-09-01,1788.5400390625
-"Cement Dangote","Ekiti","Ado-Ekiti",2012-01-01,2087.5
-"Cement Dangote","Ekiti","Ado-Ekiti",2012-02-01,1850.8349609375
-"Cement Dangote","Ekiti","Ado-Ekiti",2012-04-01,1815
-"Cement Dangote","Ekiti","Ado-Ekiti",2012-06-01,1824.77001953125
-"Cement Dangote","Ekiti","Ado-Ekiti",2012-07-01,1812.5
-"Cement Dangote","Ekiti","Ado-Ekiti",2012-08-01,1819.86206054688
-"Cement Dangote","Ekiti","Ado-Ekiti",2012-10-01,1730.89245605469
-"Cement Dangote","Ekiti","Ado-Ekiti",2012-11-01,1764.375
+"Cement (Dangote)","Ekiti","Ado-Ekiti",2010-04-01,3037.5
+"Cement (Dangote)","Ekiti","Ado-Ekiti",2010-11-01,991
+"Cement (Dangote)","Ekiti","Ado-Ekiti",2011-01-01,1532.5
+"Cement (Dangote)","Ekiti","Ado-Ekiti",2011-04-01,2260.7099609375
+"Cement (Dangote)","Ekiti","Ado-Ekiti",2011-05-01,2285.7099609375
+"Cement (Dangote)","Ekiti","Ado-Ekiti",2011-06-01,1841.66662597656
+"Cement (Dangote)","Ekiti","Ado-Ekiti",2011-09-01,1788.5400390625
+"Cement (Dangote)","Ekiti","Ado-Ekiti",2012-01-01,2087.5
+"Cement (Dangote)","Ekiti","Ado-Ekiti",2012-02-01,1850.8349609375
+"Cement (Dangote)","Ekiti","Ado-Ekiti",2012-04-01,1815
+"Cement (Dangote)","Ekiti","Ado-Ekiti",2012-06-01,1824.77001953125
+"Cement (Dangote)","Ekiti","Ado-Ekiti",2012-07-01,1812.5
+"Cement (Dangote)","Ekiti","Ado-Ekiti",2012-08-01,1819.86206054688
+"Cement (Dangote)","Ekiti","Ado-Ekiti",2012-10-01,1730.89245605469
+"Cement (Dangote)","Ekiti","Ado-Ekiti",2012-11-01,1764.375
 "Maize White","Ekiti","Ado-Ekiti",2010-02-01,91.6902542114258
 "Maize White","Ekiti","Ado-Ekiti",2010-03-01,81.2064971923828
 "Maize White","Ekiti","Ado-Ekiti",2010-04-01,79.5947952270508
@@ -3052,7 +3052,7 @@
 "Sorghum","Ekiti","Ado-Ekiti",2012-10-01,98.5377960205078
 "Sorghum","Ekiti","Ado-Ekiti",2012-11-01,148.125
 "Sorghum","Ekiti","Ado-Ekiti",2012-12-01,106.556091308594
-"Cement Dangote","Ekiti","Afao mkt Ikere lga",2012-12-01,1707.5
+"Cement (Dangote)","Ekiti","Afao mkt Ikere lga",2012-12-01,1707.5
 "Maize White","Ekiti","Afao mkt Ikere lga",2010-01-01,88.9586715698242
 "Maize White","Ekiti","Afao mkt Ikere lga",2010-02-01,88.4393005371094
 "Maize White","Ekiti","Afao mkt Ikere lga",2010-03-01,91.4463500976562
@@ -3107,37 +3107,37 @@
 "Sorghum","Ekiti","Afao mkt Ikere lga",2010-12-01,86.3259658813477
 "Sorghum","Ekiti","Afao mkt Ikere lga",2012-04-01,99.4596405029297
 "Sorghum","Ekiti","Afao mkt Ikere lga",2012-12-01,93.802360534668
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2010-02-01,1620
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2010-03-01,1540
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2010-07-01,1580
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2010-10-01,1523.32995605469
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2011-01-01,1487.5
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2011-02-01,1620.82995605469
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2011-04-01,1747.5
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2011-06-01,1842.70837402344
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2011-07-01,1661.10998535156
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2011-09-01,1788.60998535156
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2011-10-01,1743.2099609375
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2011-12-01,1771.09997558594
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2012-01-01,1844.0966796875
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2012-02-01,1807.85498046875
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2012-03-01,1802.02001953125
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2012-04-01,2052.5
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2012-07-01,1878.92004394531
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2012-08-01,1838.68994140625
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2012-10-01,1749.06994628906
-"Cement Dangote","Enugu","Afor Iwollo - Ezeagu",2012-11-01,1731.82006835938
-"Drink Swan Water Bottle","Enugu","Afor Iwollo - Ezeagu",2011-06-01,128.33332824707
-"Drink Swan Water Bottle","Enugu","Afor Iwollo - Ezeagu",2011-09-01,103.800003051758
-"Drink Swan Water Bottle","Enugu","Afor Iwollo - Ezeagu",2011-10-01,98.3349990844727
-"Drink Swan Water Bottle","Enugu","Afor Iwollo - Ezeagu",2011-12-01,116.919998168945
-"Drink Swan Water Bottle","Enugu","Afor Iwollo - Ezeagu",2012-01-01,117.669998168945
-"Drink Swan Water Bottle","Enugu","Afor Iwollo - Ezeagu",2012-02-01,106.610000610352
-"Drink Swan Water Bottle","Enugu","Afor Iwollo - Ezeagu",2012-03-01,123.949996948242
-"Drink Swan Water Bottle","Enugu","Afor Iwollo - Ezeagu",2012-04-01,115.050003051758
-"Drink Swan Water Bottle","Enugu","Afor Iwollo - Ezeagu",2012-07-01,115.300003051758
-"Drink Swan Water Bottle","Enugu","Afor Iwollo - Ezeagu",2012-08-01,115.220001220703
-"Drink Swan Water Bottle","Enugu","Afor Iwollo - Ezeagu",2012-11-01,118.334999084473
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2010-02-01,1620
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2010-03-01,1540
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2010-07-01,1580
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2010-10-01,1523.32995605469
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2011-01-01,1487.5
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2011-02-01,1620.82995605469
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2011-04-01,1747.5
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2011-06-01,1842.70837402344
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2011-07-01,1661.10998535156
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2011-09-01,1788.60998535156
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2011-10-01,1743.2099609375
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2011-12-01,1771.09997558594
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2012-01-01,1844.0966796875
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2012-02-01,1807.85498046875
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2012-03-01,1802.02001953125
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2012-04-01,2052.5
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2012-07-01,1878.92004394531
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2012-08-01,1838.68994140625
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2012-10-01,1749.06994628906
+"Cement (Dangote)","Enugu","Afor Iwollo - Ezeagu",2012-11-01,1731.82006835938
+"Water Bottle (Drink Swan)","Enugu","Afor Iwollo - Ezeagu",2011-06-01,128.33332824707
+"Water Bottle (Drink Swan)","Enugu","Afor Iwollo - Ezeagu",2011-09-01,103.800003051758
+"Water Bottle (Drink Swan)","Enugu","Afor Iwollo - Ezeagu",2011-10-01,98.3349990844727
+"Water Bottle (Drink Swan)","Enugu","Afor Iwollo - Ezeagu",2011-12-01,116.919998168945
+"Water Bottle (Drink Swan)","Enugu","Afor Iwollo - Ezeagu",2012-01-01,117.669998168945
+"Water Bottle (Drink Swan)","Enugu","Afor Iwollo - Ezeagu",2012-02-01,106.610000610352
+"Water Bottle (Drink Swan)","Enugu","Afor Iwollo - Ezeagu",2012-03-01,123.949996948242
+"Water Bottle (Drink Swan)","Enugu","Afor Iwollo - Ezeagu",2012-04-01,115.050003051758
+"Water Bottle (Drink Swan)","Enugu","Afor Iwollo - Ezeagu",2012-07-01,115.300003051758
+"Water Bottle (Drink Swan)","Enugu","Afor Iwollo - Ezeagu",2012-08-01,115.220001220703
+"Water Bottle (Drink Swan)","Enugu","Afor Iwollo - Ezeagu",2012-11-01,118.334999084473
 "Maize White","Enugu","Afor Iwollo - Ezeagu",2010-01-01,134.387344360352
 "Maize White","Enugu","Afor Iwollo - Ezeagu",2010-04-01,111.607139587402
 "Maize White","Enugu","Afor Iwollo - Ezeagu",2010-07-01,140.29850769043
@@ -3269,10 +3269,10 @@
 "Sorghum","Enugu","Afor Iwollo - Ezeagu",2012-10-01,98.3613433837891
 "Sorghum","Enugu","Afor Iwollo - Ezeagu",2012-11-01,117.358489990234
 "Sorghum","Enugu","Afor Iwollo - Ezeagu",2012-12-01,125.570777893066
-"Cement Dangote","Akwa Ibom","Afua mkt",2010-06-01,1466.67004394531
-"Cement Dangote","Akwa Ibom","Afua mkt",2010-07-01,1425
-"Cement Dangote","Akwa Ibom","Afua mkt",2010-12-01,2025
-"Drink Swan Water Bottle","Akwa Ibom","Afua mkt",2010-03-01,88
+"Cement (Dangote)","Akwa Ibom","Afua mkt",2010-06-01,1466.67004394531
+"Cement (Dangote)","Akwa Ibom","Afua mkt",2010-07-01,1425
+"Cement (Dangote)","Akwa Ibom","Afua mkt",2010-12-01,2025
+"Water Bottle (Drink Swan)","Akwa Ibom","Afua mkt",2010-03-01,88
 "Maize White","Akwa Ibom","Afua mkt",2010-03-01,128.403121948242
 "Maize White","Akwa Ibom","Afua mkt",2010-05-01,98.8505706787109
 "Maize White","Akwa Ibom","Afua mkt",2010-08-01,116.877830505371
@@ -3293,18 +3293,18 @@
 "Rice Local","Akwa Ibom","Afua mkt",2010-09-01,145.833343505859
 "Rice Local","Akwa Ibom","Afua mkt",2010-11-01,133.929077148438
 "Sorghum","Akwa Ibom","Afua mkt",2010-04-01,120.678733825684
-"Cement Dangote","Niger","Agaie",2011-02-01,1711.67004394531
-"Cement Dangote","Niger","Agaie",2011-04-01,2975
-"Cement Dangote","Niger","Agaie",2011-09-01,1858.32995605469
-"Cement Dangote","Niger","Agaie",2012-02-01,1940
-"Cement Dangote","Niger","Agaie",2012-03-01,2016.66662597656
-"Cement Dangote","Niger","Agaie",2012-04-01,2116.669921875
-"Cement Dangote","Niger","Agaie",2012-06-01,1946.88000488281
-"Cement Dangote","Niger","Agaie",2012-07-01,1922.21997070312
-"Cement Dangote","Niger","Agaie",2012-11-01,3687.5
-"Cement Dangote","Niger","Agaie",2012-12-01,1833.32995605469
-"Drink Swan Water Bottle","Niger","Agaie",2011-04-01,89.9400024414062
-"Drink Swan Water Bottle","Niger","Agaie",2012-04-01,99.4400024414062
+"Cement (Dangote)","Niger","Agaie",2011-02-01,1711.67004394531
+"Cement (Dangote)","Niger","Agaie",2011-04-01,2975
+"Cement (Dangote)","Niger","Agaie",2011-09-01,1858.32995605469
+"Cement (Dangote)","Niger","Agaie",2012-02-01,1940
+"Cement (Dangote)","Niger","Agaie",2012-03-01,2016.66662597656
+"Cement (Dangote)","Niger","Agaie",2012-04-01,2116.669921875
+"Cement (Dangote)","Niger","Agaie",2012-06-01,1946.88000488281
+"Cement (Dangote)","Niger","Agaie",2012-07-01,1922.21997070312
+"Cement (Dangote)","Niger","Agaie",2012-11-01,3687.5
+"Cement (Dangote)","Niger","Agaie",2012-12-01,1833.32995605469
+"Water Bottle (Drink Swan)","Niger","Agaie",2011-04-01,89.9400024414062
+"Water Bottle (Drink Swan)","Niger","Agaie",2012-04-01,99.4400024414062
 "Maize White","Niger","Agaie",2009-06-01,61.2096633911133
 "Maize White","Niger","Agaie",2010-01-01,52.3118133544922
 "Maize White","Niger","Agaie",2010-03-01,53.0093841552734
@@ -3471,8 +3471,8 @@
 "Sorghum","Niger","Agaie",2012-10-01,74.2115020751953
 "Sorghum","Niger","Agaie",2012-11-01,68.152458190918
 "Sorghum","Niger","Agaie",2012-12-01,59.0428848266602
-"Cement Dangote","Lagos","Agege",2010-03-01,1665
-"Cement Dangote","Lagos","Agege",2010-07-01,1643.32995605469
+"Cement (Dangote)","Lagos","Agege",2010-03-01,1665
+"Cement (Dangote)","Lagos","Agege",2010-07-01,1643.32995605469
 "Maize White","Lagos","Agege",2009-05-01,87.6785736083984
 "Maize White","Lagos","Agege",2010-01-01,88.3720932006836
 "Maize White","Lagos","Agege",2010-02-01,84.8381576538086
@@ -3543,7 +3543,7 @@
 "Rice Local","Ekiti","Ago Igbira",2009-03-01,135.135131835938
 "Sorghum","Ekiti","Ago Igbira",2009-09-01,90.2166137695312
 "Sorghum","Ekiti","Ago Igbira",2009-11-01,89.4868927001953
-"Cement Dangote","Ebonyi","Agubia Health Centre",2010-04-01,1597.9150390625
+"Cement (Dangote)","Ebonyi","Agubia Health Centre",2010-04-01,1597.9150390625
 "Maize White","Ebonyi","Agubia Health Centre",2010-04-01,129.573181152344
 "Rice Imported","Ebonyi","Agubia Health Centre",2010-04-01,231.707321166992
 "Rice Imported","Ebonyi","Agubia Health Centre",2010-05-01,235.555557250977
@@ -3551,27 +3551,27 @@
 "Rice Imported","Ebonyi","Agubia Health Centre",2010-08-01,197.518524169922
 "Rice Local","Ebonyi","Agubia Health Centre",2010-07-01,141.715118408203
 "Sorghum","Ebonyi","Agubia Health Centre",2010-04-01,102.521011352539
-"Cement Dangote","Anambra","Agulu",2010-06-01,1582.5
-"Cement Dangote","Anambra","Agulu",2010-11-01,1526.67004394531
-"Cement Dangote","Anambra","Agulu",2011-02-01,1735.34973144531
-"Cement Dangote","Anambra","Agulu",2011-04-01,1966.67004394531
-"Cement Dangote","Anambra","Agulu",2011-09-01,1736.14001464844
-"Cement Dangote","Anambra","Agulu",2011-11-01,1857.14001464844
-"Cement Dangote","Anambra","Agulu",2012-01-01,1939.39001464844
-"Cement Dangote","Anambra","Agulu",2012-02-01,1844.17004394531
-"Cement Dangote","Anambra","Agulu",2012-03-01,1960
-"Cement Dangote","Anambra","Agulu",2012-04-01,2070
-"Cement Dangote","Anambra","Agulu",2012-07-01,1930.2099609375
-"Cement Dangote","Anambra","Agulu",2012-10-01,1591.93994140625
-"Cement Dangote","Anambra","Agulu",2012-11-01,1705.82995605469
-"Drink Swan Water Bottle","Anambra","Agulu",2011-09-01,122.330001831055
-"Drink Swan Water Bottle","Anambra","Agulu",2011-10-01,75.5599975585938
-"Drink Swan Water Bottle","Anambra","Agulu",2011-11-01,110.709999084473
-"Drink Swan Water Bottle","Anambra","Agulu",2011-12-01,115.709999084473
-"Drink Swan Water Bottle","Anambra","Agulu",2012-01-01,127.919998168945
-"Drink Swan Water Bottle","Anambra","Agulu",2012-02-01,115.5
-"Drink Swan Water Bottle","Anambra","Agulu",2012-08-01,127.080001831055
-"Drink Swan Water Bottle","Anambra","Agulu",2012-10-01,116.5
+"Cement (Dangote)","Anambra","Agulu",2010-06-01,1582.5
+"Cement (Dangote)","Anambra","Agulu",2010-11-01,1526.67004394531
+"Cement (Dangote)","Anambra","Agulu",2011-02-01,1735.34973144531
+"Cement (Dangote)","Anambra","Agulu",2011-04-01,1966.67004394531
+"Cement (Dangote)","Anambra","Agulu",2011-09-01,1736.14001464844
+"Cement (Dangote)","Anambra","Agulu",2011-11-01,1857.14001464844
+"Cement (Dangote)","Anambra","Agulu",2012-01-01,1939.39001464844
+"Cement (Dangote)","Anambra","Agulu",2012-02-01,1844.17004394531
+"Cement (Dangote)","Anambra","Agulu",2012-03-01,1960
+"Cement (Dangote)","Anambra","Agulu",2012-04-01,2070
+"Cement (Dangote)","Anambra","Agulu",2012-07-01,1930.2099609375
+"Cement (Dangote)","Anambra","Agulu",2012-10-01,1591.93994140625
+"Cement (Dangote)","Anambra","Agulu",2012-11-01,1705.82995605469
+"Water Bottle (Drink Swan)","Anambra","Agulu",2011-09-01,122.330001831055
+"Water Bottle (Drink Swan)","Anambra","Agulu",2011-10-01,75.5599975585938
+"Water Bottle (Drink Swan)","Anambra","Agulu",2011-11-01,110.709999084473
+"Water Bottle (Drink Swan)","Anambra","Agulu",2011-12-01,115.709999084473
+"Water Bottle (Drink Swan)","Anambra","Agulu",2012-01-01,127.919998168945
+"Water Bottle (Drink Swan)","Anambra","Agulu",2012-02-01,115.5
+"Water Bottle (Drink Swan)","Anambra","Agulu",2012-08-01,127.080001831055
+"Water Bottle (Drink Swan)","Anambra","Agulu",2012-10-01,116.5
 "Maize White","Anambra","Agulu",2010-05-01,88.2352981567383
 "Maize White","Anambra","Agulu",2010-06-01,104.408348083496
 "Maize White","Anambra","Agulu",2010-08-01,103.684204101562
@@ -3677,35 +3677,35 @@
 "Sorghum","Anambra","Agulu",2012-10-01,106.816139221191
 "Sorghum","Anambra","Agulu",2012-11-01,113.289474487305
 "Sorghum","Anambra","Agulu",2012-12-01,123.966941833496
-"Cement Dangote","Abia","Ahia Eke",2009-10-01,1583.33312988281
+"Cement (Dangote)","Abia","Ahia Eke",2009-10-01,1583.33312988281
 "Maize White","Abia","Ahia Eke",2009-10-01,120.568786621094
 "Maize Yellow","Abia","Ahia Eke",2009-10-01,110.793655395508
 "Rice Imported","Abia","Ahia Eke",2009-01-01,115.151512145996
 "Rice Local","Abia","Ahia Eke",2009-01-01,125.974029541016
-"Cement Dangote","Abia","Ahia Eke Akoli Akanu",2009-03-01,1733.33312988281
-"Cement Dangote","Abia","Ahia Eke Akoli Akanu",2009-06-01,1588
-"Cement Dangote","Rivers","Ahoada",2009-08-01,1611.11108398438
-"Cement Dangote","Rivers","Ahoada",2010-06-01,1566.66662597656
-"Cement Dangote","Rivers","Ahoada",2011-07-01,1891.6650390625
-"Cement Dangote","Rivers","Ahoada",2011-11-01,1793.75
-"Cement Dangote","Rivers","Ahoada",2012-01-01,2095.8349609375
-"Cement Dangote","Rivers","Ahoada",2012-02-01,1816.6650390625
-"Cement Dangote","Rivers","Ahoada",2012-03-01,1912.5
-"Cement Dangote","Rivers","Ahoada",2012-04-01,2226.66674804688
-"Cement Dangote","Rivers","Ahoada",2012-06-01,2239.58251953125
-"Cement Dangote","Rivers","Ahoada",2012-08-01,1966.66662597656
-"Cement Dangote","Rivers","Ahoada",2012-10-01,1808.33337402344
-"Cement Dangote","Rivers","Ahoada",2012-11-01,1826.66662597656
-"Drink Swan Water Bottle","Rivers","Ahoada",2011-07-01,101.430000305176
-"Drink Swan Water Bottle","Rivers","Ahoada",2011-09-01,107.779998779297
-"Drink Swan Water Bottle","Rivers","Ahoada",2011-12-01,101.666664123535
-"Drink Swan Water Bottle","Rivers","Ahoada",2012-01-01,105.79125213623
-"Drink Swan Water Bottle","Rivers","Ahoada",2012-02-01,102.223335266113
-"Drink Swan Water Bottle","Rivers","Ahoada",2012-03-01,114
-"Drink Swan Water Bottle","Rivers","Ahoada",2012-06-01,103.125
-"Drink Swan Water Bottle","Rivers","Ahoada",2012-07-01,108.214996337891
-"Drink Swan Water Bottle","Rivers","Ahoada",2012-08-01,111.349998474121
-"Drink Swan Water Bottle","Rivers","Ahoada",2012-11-01,111.666664123535
+"Cement (Dangote)","Abia","Ahia Eke Akoli Akanu",2009-03-01,1733.33312988281
+"Cement (Dangote)","Abia","Ahia Eke Akoli Akanu",2009-06-01,1588
+"Cement (Dangote)","Rivers","Ahoada",2009-08-01,1611.11108398438
+"Cement (Dangote)","Rivers","Ahoada",2010-06-01,1566.66662597656
+"Cement (Dangote)","Rivers","Ahoada",2011-07-01,1891.6650390625
+"Cement (Dangote)","Rivers","Ahoada",2011-11-01,1793.75
+"Cement (Dangote)","Rivers","Ahoada",2012-01-01,2095.8349609375
+"Cement (Dangote)","Rivers","Ahoada",2012-02-01,1816.6650390625
+"Cement (Dangote)","Rivers","Ahoada",2012-03-01,1912.5
+"Cement (Dangote)","Rivers","Ahoada",2012-04-01,2226.66674804688
+"Cement (Dangote)","Rivers","Ahoada",2012-06-01,2239.58251953125
+"Cement (Dangote)","Rivers","Ahoada",2012-08-01,1966.66662597656
+"Cement (Dangote)","Rivers","Ahoada",2012-10-01,1808.33337402344
+"Cement (Dangote)","Rivers","Ahoada",2012-11-01,1826.66662597656
+"Water Bottle (Drink Swan)","Rivers","Ahoada",2011-07-01,101.430000305176
+"Water Bottle (Drink Swan)","Rivers","Ahoada",2011-09-01,107.779998779297
+"Water Bottle (Drink Swan)","Rivers","Ahoada",2011-12-01,101.666664123535
+"Water Bottle (Drink Swan)","Rivers","Ahoada",2012-01-01,105.79125213623
+"Water Bottle (Drink Swan)","Rivers","Ahoada",2012-02-01,102.223335266113
+"Water Bottle (Drink Swan)","Rivers","Ahoada",2012-03-01,114
+"Water Bottle (Drink Swan)","Rivers","Ahoada",2012-06-01,103.125
+"Water Bottle (Drink Swan)","Rivers","Ahoada",2012-07-01,108.214996337891
+"Water Bottle (Drink Swan)","Rivers","Ahoada",2012-08-01,111.349998474121
+"Water Bottle (Drink Swan)","Rivers","Ahoada",2012-11-01,111.666664123535
 "Maize White","Rivers","Ahoada",2010-01-01,109.427612304688
 "Maize White","Rivers","Ahoada",2010-04-01,100.806449890137
 "Maize White","Rivers","Ahoada",2010-05-01,109.489051818848
@@ -3810,7 +3810,7 @@
 "Sorghum","Rivers","Ahoada",2012-09-01,119.704223632812
 "Sorghum","Rivers","Ahoada",2012-10-01,123.080169677734
 "Sorghum","Rivers","Ahoada",2012-11-01,131.712265014648
-"Cement Dangote","Nasarawa","Aiagye",2012-12-01,1930
+"Cement (Dangote)","Nasarawa","Aiagye",2012-12-01,1930
 "Maize White","Nasarawa","Aiagye",2012-11-01,60.2182540893555
 "Maize White","Nasarawa","Aiagye",2012-12-01,60.3217163085938
 "Maize Yellow","Nasarawa","Aiagye",2012-11-01,62.2350654602051
@@ -3835,8 +3835,8 @@
 "Sorghum","Oyo","Aiyede",2009-02-01,72.6048812866211
 "Sorghum","Oyo","Aiyede",2009-04-01,70.8227081298828
 "Sorghum","Oyo","Aiyede",2009-05-01,65.4761962890625
-"Cement Dangote","Rivers","Ajegunle mkt Bonny lga",2012-12-01,1806.25
-"Drink Swan Water Bottle","Rivers","Ajegunle mkt Bonny lga",2012-12-01,98.3333358764648
+"Cement (Dangote)","Rivers","Ajegunle mkt Bonny lga",2012-12-01,1806.25
+"Water Bottle (Drink Swan)","Rivers","Ajegunle mkt Bonny lga",2012-12-01,98.3333358764648
 "Maize White","Rivers","Ajegunle mkt Bonny lga",2010-01-01,132.645538330078
 "Maize White","Rivers","Ajegunle mkt Bonny lga",2010-02-01,107.78443145752
 "Maize White","Rivers","Ajegunle mkt Bonny lga",2010-03-01,123.923049926758
@@ -3858,11 +3858,11 @@
 "Sorghum","Rivers","Ajegunle mkt Bonny lga",2012-12-01,30
 "Rice Imported","Lagos","Akinola mkt Apapa LGA",2009-01-01,152.419357299805
 "Sorghum","Lagos","Akinola mkt Apapa LGA",2009-01-01,99.2307739257812
-"Cement Dangote","Ondo","Akure",2010-09-01,1536.67004394531
-"Cement Dangote","Ondo","Akure",2010-10-01,1606
-"Drink Swan Water Bottle","Ondo","Akure",2010-01-01,84
-"Drink Swan Water Bottle","Ondo","Akure",2010-07-01,76.25
-"Drink Swan Water Bottle","Ondo","Akure",2012-04-01,87.1399993896484
+"Cement (Dangote)","Ondo","Akure",2010-09-01,1536.67004394531
+"Cement (Dangote)","Ondo","Akure",2010-10-01,1606
+"Water Bottle (Drink Swan)","Ondo","Akure",2010-01-01,84
+"Water Bottle (Drink Swan)","Ondo","Akure",2010-07-01,76.25
+"Water Bottle (Drink Swan)","Ondo","Akure",2012-04-01,87.1399993896484
 "Maize White","Ondo","Akure",2010-01-01,89.6337585449219
 "Maize White","Ondo","Akure",2010-02-01,89.4556121826172
 "Maize White","Ondo","Akure",2010-03-01,82.915412902832
@@ -3925,10 +3925,10 @@
 "Sorghum","Ondo","Akure",2010-12-01,108.9248046875
 "Sorghum","Ondo","Akure",2012-04-01,94.4306259155273
 "Sorghum","Ondo","Akure",2012-12-01,92.6549911499023
-"Cement Dangote","Anambra","Akwa",2010-02-01,1565
-"Cement Dangote","Anambra","Akwa",2010-10-01,1490
-"Cement Dangote","Anambra","Akwa",2012-12-01,1630
-"Drink Swan Water Bottle","Anambra","Akwa",2010-01-01,76.6699981689453
+"Cement (Dangote)","Anambra","Akwa",2010-02-01,1565
+"Cement (Dangote)","Anambra","Akwa",2010-10-01,1490
+"Cement (Dangote)","Anambra","Akwa",2012-12-01,1630
+"Water Bottle (Drink Swan)","Anambra","Akwa",2010-01-01,76.6699981689453
 "Maize White","Anambra","Akwa",2010-06-01,110.526321411133
 "Maize White","Anambra","Akwa",2010-08-01,124.90364074707
 "Maize White","Anambra","Akwa",2012-11-01,95.2914810180664
@@ -3945,8 +3945,8 @@
 "Rice Local","Anambra","Akwa",2012-11-01,136.554611206055
 "Sorghum","Anambra","Akwa",2010-08-01,107.066375732422
 "Sorghum","Anambra","Akwa",2012-11-01,96.6183547973633
-"Cement Dangote","Nasarawa","Akwanga",2010-04-01,1606.25
-"Drink Swan Water Bottle","Nasarawa","Akwanga",2010-01-01,93
+"Cement (Dangote)","Nasarawa","Akwanga",2010-04-01,1606.25
+"Water Bottle (Drink Swan)","Nasarawa","Akwanga",2010-01-01,93
 "Maize White","Nasarawa","Akwanga",2010-03-01,59.0044097900391
 "Maize White","Nasarawa","Akwanga",2010-04-01,58.2560691833496
 "Maize White","Nasarawa","Akwanga",2010-05-01,63.6174659729004
@@ -3990,22 +3990,22 @@
 "Sorghum","Nasarawa","Akwanga",2010-09-01,66.5188446044922
 "Sorghum","Nasarawa","Akwanga",2010-11-01,67.0707092285156
 "Sorghum","Nasarawa","Akwanga",2010-12-01,66.0446701049805
-"Cement Dangote","Yobe","Alh. Audu Mai manda",2011-04-01,1975
-"Cement Dangote","Yobe","Alh. Audu Mai manda",2011-05-01,2250
-"Cement Dangote","Yobe","Alh. Audu Mai manda",2011-06-01,2080
-"Cement Dangote","Yobe","Alh. Audu Mai manda",2011-07-01,1970.83337402344
-"Cement Dangote","Yobe","Alh. Audu Mai manda",2011-08-01,2053.125
-"Cement Dangote","Yobe","Alh. Audu Mai manda",2011-09-01,2141.669921875
-"Cement Dangote","Yobe","Alh. Audu Mai manda",2012-03-01,1866.66662597656
-"Cement Dangote","Yobe","Alh. Audu Mai manda",2012-04-01,2055
-"Drink Swan Water Bottle","Yobe","Alh. Audu Mai manda",2011-02-01,85.0849990844727
-"Drink Swan Water Bottle","Yobe","Alh. Audu Mai manda",2011-03-01,110.83332824707
-"Drink Swan Water Bottle","Yobe","Alh. Audu Mai manda",2011-04-01,104.800003051758
-"Drink Swan Water Bottle","Yobe","Alh. Audu Mai manda",2011-08-01,84.1699981689453
-"Drink Swan Water Bottle","Yobe","Alh. Audu Mai manda",2011-09-01,123.019996643066
-"Drink Swan Water Bottle","Yobe","Alh. Audu Mai manda",2012-01-01,103.75
-"Drink Swan Water Bottle","Yobe","Alh. Audu Mai manda",2012-02-01,115.332000732422
-"Drink Swan Water Bottle","Yobe","Alh. Audu Mai manda",2012-04-01,112.139999389648
+"Cement (Dangote)","Yobe","Alh. Audu Mai manda",2011-04-01,1975
+"Cement (Dangote)","Yobe","Alh. Audu Mai manda",2011-05-01,2250
+"Cement (Dangote)","Yobe","Alh. Audu Mai manda",2011-06-01,2080
+"Cement (Dangote)","Yobe","Alh. Audu Mai manda",2011-07-01,1970.83337402344
+"Cement (Dangote)","Yobe","Alh. Audu Mai manda",2011-08-01,2053.125
+"Cement (Dangote)","Yobe","Alh. Audu Mai manda",2011-09-01,2141.669921875
+"Cement (Dangote)","Yobe","Alh. Audu Mai manda",2012-03-01,1866.66662597656
+"Cement (Dangote)","Yobe","Alh. Audu Mai manda",2012-04-01,2055
+"Water Bottle (Drink Swan)","Yobe","Alh. Audu Mai manda",2011-02-01,85.0849990844727
+"Water Bottle (Drink Swan)","Yobe","Alh. Audu Mai manda",2011-03-01,110.83332824707
+"Water Bottle (Drink Swan)","Yobe","Alh. Audu Mai manda",2011-04-01,104.800003051758
+"Water Bottle (Drink Swan)","Yobe","Alh. Audu Mai manda",2011-08-01,84.1699981689453
+"Water Bottle (Drink Swan)","Yobe","Alh. Audu Mai manda",2011-09-01,123.019996643066
+"Water Bottle (Drink Swan)","Yobe","Alh. Audu Mai manda",2012-01-01,103.75
+"Water Bottle (Drink Swan)","Yobe","Alh. Audu Mai manda",2012-02-01,115.332000732422
+"Water Bottle (Drink Swan)","Yobe","Alh. Audu Mai manda",2012-04-01,112.139999389648
 "Maize White","Yobe","Alh. Audu Mai manda",2010-01-01,53.9113845825195
 "Maize White","Yobe","Alh. Audu Mai manda",2010-02-01,54.0048522949219
 "Maize White","Yobe","Alh. Audu Mai manda",2010-06-01,52.1739158630371
@@ -4140,38 +4140,38 @@
 "Sorghum","Yobe","Alh. Audu Mai manda",2012-07-01,75.8233947753906
 "Sorghum","Yobe","Alh. Audu Mai manda",2012-09-01,82.203742980957
 "Sorghum","Yobe","Alh. Audu Mai manda",2012-11-01,104.65217590332
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2010-03-01,1830.58666992188
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2010-04-01,1968.19604492188
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2010-05-01,1896.42700195312
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2010-06-01,4890
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2010-07-01,2233
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2010-11-01,1830
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2011-01-01,1735.41662597656
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2011-02-01,1756.88000488281
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2011-07-01,1899.40002441406
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2011-08-01,1916.67004394531
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2011-09-01,1883.56994628906
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2011-10-01,2204.1650390625
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2011-11-01,2296.25
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2012-02-01,1905
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2012-04-01,2040
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2012-07-01,2033.32995605469
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2012-08-01,2129.68994140625
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2012-10-01,2073.21508789062
-"Cement Dangote","Zamfara","Alh. Samaila-Gusau",2012-12-01,1980
-"Drink Swan Water Bottle","Zamfara","Alh. Samaila-Gusau",2011-01-01,84.1666641235352
-"Drink Swan Water Bottle","Zamfara","Alh. Samaila-Gusau",2011-02-01,68.9799957275391
-"Drink Swan Water Bottle","Zamfara","Alh. Samaila-Gusau",2011-03-01,108.125
-"Drink Swan Water Bottle","Zamfara","Alh. Samaila-Gusau",2011-04-01,115.25
-"Drink Swan Water Bottle","Zamfara","Alh. Samaila-Gusau",2011-05-01,74.8938140869141
-"Drink Swan Water Bottle","Zamfara","Alh. Samaila-Gusau",2011-09-01,105.440002441406
-"Drink Swan Water Bottle","Zamfara","Alh. Samaila-Gusau",2011-10-01,81.0299987792969
-"Drink Swan Water Bottle","Zamfara","Alh. Samaila-Gusau",2011-11-01,103.980003356934
-"Drink Swan Water Bottle","Zamfara","Alh. Samaila-Gusau",2012-01-01,92.0599975585938
-"Drink Swan Water Bottle","Zamfara","Alh. Samaila-Gusau",2012-04-01,111.110000610352
-"Drink Swan Water Bottle","Zamfara","Alh. Samaila-Gusau",2012-05-01,74.8707656860352
-"Drink Swan Water Bottle","Zamfara","Alh. Samaila-Gusau",2012-06-01,77.8000030517578
-"Drink Swan Water Bottle","Zamfara","Alh. Samaila-Gusau",2012-07-01,79.4400024414062
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2010-03-01,1830.58666992188
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2010-04-01,1968.19604492188
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2010-05-01,1896.42700195312
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2010-06-01,4890
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2010-07-01,2233
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2010-11-01,1830
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2011-01-01,1735.41662597656
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2011-02-01,1756.88000488281
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2011-07-01,1899.40002441406
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2011-08-01,1916.67004394531
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2011-09-01,1883.56994628906
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2011-10-01,2204.1650390625
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2011-11-01,2296.25
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2012-02-01,1905
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2012-04-01,2040
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2012-07-01,2033.32995605469
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2012-08-01,2129.68994140625
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2012-10-01,2073.21508789062
+"Cement (Dangote)","Zamfara","Alh. Samaila-Gusau",2012-12-01,1980
+"Water Bottle (Drink Swan)","Zamfara","Alh. Samaila-Gusau",2011-01-01,84.1666641235352
+"Water Bottle (Drink Swan)","Zamfara","Alh. Samaila-Gusau",2011-02-01,68.9799957275391
+"Water Bottle (Drink Swan)","Zamfara","Alh. Samaila-Gusau",2011-03-01,108.125
+"Water Bottle (Drink Swan)","Zamfara","Alh. Samaila-Gusau",2011-04-01,115.25
+"Water Bottle (Drink Swan)","Zamfara","Alh. Samaila-Gusau",2011-05-01,74.8938140869141
+"Water Bottle (Drink Swan)","Zamfara","Alh. Samaila-Gusau",2011-09-01,105.440002441406
+"Water Bottle (Drink Swan)","Zamfara","Alh. Samaila-Gusau",2011-10-01,81.0299987792969
+"Water Bottle (Drink Swan)","Zamfara","Alh. Samaila-Gusau",2011-11-01,103.980003356934
+"Water Bottle (Drink Swan)","Zamfara","Alh. Samaila-Gusau",2012-01-01,92.0599975585938
+"Water Bottle (Drink Swan)","Zamfara","Alh. Samaila-Gusau",2012-04-01,111.110000610352
+"Water Bottle (Drink Swan)","Zamfara","Alh. Samaila-Gusau",2012-05-01,74.8707656860352
+"Water Bottle (Drink Swan)","Zamfara","Alh. Samaila-Gusau",2012-06-01,77.8000030517578
+"Water Bottle (Drink Swan)","Zamfara","Alh. Samaila-Gusau",2012-07-01,79.4400024414062
 "Maize White","Zamfara","Alh. Samaila-Gusau",2010-01-01,55.9997673034668
 "Maize White","Zamfara","Alh. Samaila-Gusau",2010-02-01,56.6103668212891
 "Maize White","Zamfara","Alh. Samaila-Gusau",2010-03-01,57.217845916748
@@ -4340,37 +4340,37 @@
 "Sorghum","Zamfara","Alh. Samaila-Gusau",2012-10-01,67.5635070800781
 "Sorghum","Zamfara","Alh. Samaila-Gusau",2012-11-01,66.9505233764648
 "Sorghum","Zamfara","Alh. Samaila-Gusau",2012-12-01,63.3491439819336
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2010-01-01,2061.66674804688
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2010-02-01,4466.669921875
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2010-07-01,1735
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2010-09-01,3543.75
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2010-10-01,1729.16662597656
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2011-01-01,1673.9599609375
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2011-02-01,1592.41003417969
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2011-05-01,2444.443359375
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2011-06-01,1933.33337402344
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2011-07-01,1928.125
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2011-08-01,1775.8349609375
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2011-09-01,1951.10998535156
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2011-10-01,1743.75
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2011-11-01,1745.27661132812
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2012-01-01,1792.7099609375
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2012-02-01,1935
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2012-03-01,1987.5
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2012-06-01,1944.43994140625
-"Cement Dangote","Katsina","Alh. Sanni Gogalo",2012-11-01,1895
-"Drink Swan Water Bottle","Katsina","Alh. Sanni Gogalo",2010-06-01,94
-"Drink Swan Water Bottle","Katsina","Alh. Sanni Gogalo",2010-09-01,78.129997253418
-"Drink Swan Water Bottle","Katsina","Alh. Sanni Gogalo",2011-02-01,86.7300033569336
-"Drink Swan Water Bottle","Katsina","Alh. Sanni Gogalo",2011-03-01,142.5
-"Drink Swan Water Bottle","Katsina","Alh. Sanni Gogalo",2011-05-01,112.199996948242
-"Drink Swan Water Bottle","Katsina","Alh. Sanni Gogalo",2011-07-01,112.220001220703
-"Drink Swan Water Bottle","Katsina","Alh. Sanni Gogalo",2011-08-01,124.375
-"Drink Swan Water Bottle","Katsina","Alh. Sanni Gogalo",2011-09-01,105.629997253418
-"Drink Swan Water Bottle","Katsina","Alh. Sanni Gogalo",2011-11-01,119
-"Drink Swan Water Bottle","Katsina","Alh. Sanni Gogalo",2012-03-01,122.222221374512
-"Drink Swan Water Bottle","Katsina","Alh. Sanni Gogalo",2012-04-01,128.334991455078
-"Drink Swan Water Bottle","Katsina","Alh. Sanni Gogalo",2012-07-01,93.129997253418
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2010-01-01,2061.66674804688
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2010-02-01,4466.669921875
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2010-07-01,1735
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2010-09-01,3543.75
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2010-10-01,1729.16662597656
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2011-01-01,1673.9599609375
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2011-02-01,1592.41003417969
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2011-05-01,2444.443359375
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2011-06-01,1933.33337402344
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2011-07-01,1928.125
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2011-08-01,1775.8349609375
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2011-09-01,1951.10998535156
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2011-10-01,1743.75
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2011-11-01,1745.27661132812
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2012-01-01,1792.7099609375
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2012-02-01,1935
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2012-03-01,1987.5
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2012-06-01,1944.43994140625
+"Cement (Dangote)","Katsina","Alh. Sanni Gogalo",2012-11-01,1895
+"Water Bottle (Drink Swan)","Katsina","Alh. Sanni Gogalo",2010-06-01,94
+"Water Bottle (Drink Swan)","Katsina","Alh. Sanni Gogalo",2010-09-01,78.129997253418
+"Water Bottle (Drink Swan)","Katsina","Alh. Sanni Gogalo",2011-02-01,86.7300033569336
+"Water Bottle (Drink Swan)","Katsina","Alh. Sanni Gogalo",2011-03-01,142.5
+"Water Bottle (Drink Swan)","Katsina","Alh. Sanni Gogalo",2011-05-01,112.199996948242
+"Water Bottle (Drink Swan)","Katsina","Alh. Sanni Gogalo",2011-07-01,112.220001220703
+"Water Bottle (Drink Swan)","Katsina","Alh. Sanni Gogalo",2011-08-01,124.375
+"Water Bottle (Drink Swan)","Katsina","Alh. Sanni Gogalo",2011-09-01,105.629997253418
+"Water Bottle (Drink Swan)","Katsina","Alh. Sanni Gogalo",2011-11-01,119
+"Water Bottle (Drink Swan)","Katsina","Alh. Sanni Gogalo",2012-03-01,122.222221374512
+"Water Bottle (Drink Swan)","Katsina","Alh. Sanni Gogalo",2012-04-01,128.334991455078
+"Water Bottle (Drink Swan)","Katsina","Alh. Sanni Gogalo",2012-07-01,93.129997253418
 "Maize White","Katsina","Alh. Sanni Gogalo",2009-05-01,48.351203918457
 "Maize White","Katsina","Alh. Sanni Gogalo",2009-12-01,86.6141738891602
 "Maize White","Katsina","Alh. Sanni Gogalo",2010-01-01,53.8254165649414
@@ -4576,28 +4576,28 @@
 "Maize White","Katsina","Alh.Sule Tama",2009-07-01,72.2697067260742
 "Sorghum","Katsina","Alh.Sule Tama",2009-07-01,58.4757843017578
 "Sorghum","Katsina","Alh.Sule Tama",2009-12-01,45.3918685913086
-"Cement Dangote","Gombe","Allugel",2009-09-01,1883.33337402344
-"Cement Dangote","Gombe","Allugel",2011-01-01,1733.33337402344
-"Cement Dangote","Gombe","Allugel",2011-05-01,1931.25
-"Cement Dangote","Gombe","Allugel",2011-06-01,1920.83325195312
-"Cement Dangote","Gombe","Allugel",2011-09-01,2066.669921875
-"Cement Dangote","Gombe","Allugel",2011-12-01,1945.8349609375
-"Cement Dangote","Gombe","Allugel",2012-01-01,2412.5
-"Cement Dangote","Gombe","Allugel",2012-02-01,2058.3349609375
-"Cement Dangote","Gombe","Allugel",2012-03-01,1797.22216796875
-"Cement Dangote","Gombe","Allugel",2012-08-01,2070.8349609375
-"Cement Dangote","Gombe","Allugel",2012-09-01,2276.669921875
-"Drink Swan Water Bottle","Gombe","Allugel",2011-05-01,97.379997253418
-"Drink Swan Water Bottle","Gombe","Allugel",2011-06-01,103.657409667969
-"Drink Swan Water Bottle","Gombe","Allugel",2011-09-01,102.404998779297
-"Drink Swan Water Bottle","Gombe","Allugel",2011-10-01,100.209999084473
-"Drink Swan Water Bottle","Gombe","Allugel",2011-11-01,96.5749969482422
-"Drink Swan Water Bottle","Gombe","Allugel",2011-12-01,94.9149932861328
-"Drink Swan Water Bottle","Gombe","Allugel",2012-01-01,109.065002441406
-"Drink Swan Water Bottle","Gombe","Allugel",2012-03-01,101
-"Drink Swan Water Bottle","Gombe","Allugel",2012-04-01,98.8899993896484
-"Drink Swan Water Bottle","Gombe","Allugel",2012-09-01,103.809997558594
-"Drink Swan Water Bottle","Gombe","Allugel",2012-10-01,100.830001831055
+"Cement (Dangote)","Gombe","Allugel",2009-09-01,1883.33337402344
+"Cement (Dangote)","Gombe","Allugel",2011-01-01,1733.33337402344
+"Cement (Dangote)","Gombe","Allugel",2011-05-01,1931.25
+"Cement (Dangote)","Gombe","Allugel",2011-06-01,1920.83325195312
+"Cement (Dangote)","Gombe","Allugel",2011-09-01,2066.669921875
+"Cement (Dangote)","Gombe","Allugel",2011-12-01,1945.8349609375
+"Cement (Dangote)","Gombe","Allugel",2012-01-01,2412.5
+"Cement (Dangote)","Gombe","Allugel",2012-02-01,2058.3349609375
+"Cement (Dangote)","Gombe","Allugel",2012-03-01,1797.22216796875
+"Cement (Dangote)","Gombe","Allugel",2012-08-01,2070.8349609375
+"Cement (Dangote)","Gombe","Allugel",2012-09-01,2276.669921875
+"Water Bottle (Drink Swan)","Gombe","Allugel",2011-05-01,97.379997253418
+"Water Bottle (Drink Swan)","Gombe","Allugel",2011-06-01,103.657409667969
+"Water Bottle (Drink Swan)","Gombe","Allugel",2011-09-01,102.404998779297
+"Water Bottle (Drink Swan)","Gombe","Allugel",2011-10-01,100.209999084473
+"Water Bottle (Drink Swan)","Gombe","Allugel",2011-11-01,96.5749969482422
+"Water Bottle (Drink Swan)","Gombe","Allugel",2011-12-01,94.9149932861328
+"Water Bottle (Drink Swan)","Gombe","Allugel",2012-01-01,109.065002441406
+"Water Bottle (Drink Swan)","Gombe","Allugel",2012-03-01,101
+"Water Bottle (Drink Swan)","Gombe","Allugel",2012-04-01,98.8899993896484
+"Water Bottle (Drink Swan)","Gombe","Allugel",2012-09-01,103.809997558594
+"Water Bottle (Drink Swan)","Gombe","Allugel",2012-10-01,100.830001831055
 "Maize White","Gombe","Allugel",2009-09-01,60.3988609313965
 "Maize White","Gombe","Allugel",2009-12-01,52.991455078125
 "Maize White","Gombe","Allugel",2010-02-01,63.5714302062988
@@ -4740,17 +4740,17 @@
 "Sorghum","Katsina","Amadu Mai UNG.",2009-09-01,48.315860748291
 "Sorghum","Katsina","Amadu Mai UNG.",2009-11-01,40.6472816467285
 "Sorghum","Katsina","Amadu Mai UNG.",2009-12-01,43.7983741760254
-"Cement Dangote","Abia","Amaelu",2009-01-01,1560
+"Cement (Dangote)","Abia","Amaelu",2009-01-01,1560
 "Rice Local","Enugu","Amagunze",2011-12-01,144.627456665039
-"Cement Dangote","Jigawa","Amaryawa",2011-04-01,2118.75
-"Cement Dangote","Jigawa","Amaryawa",2011-07-01,1099.77795410156
-"Cement Dangote","Jigawa","Amaryawa",2011-09-01,2152.080078125
-"Cement Dangote","Jigawa","Amaryawa",2012-04-01,2016.67004394531
-"Cement Dangote","Jigawa","Amaryawa",2012-10-01,1956.25
-"Drink Swan Water Bottle","Jigawa","Amaryawa",2010-10-01,51.5
-"Drink Swan Water Bottle","Jigawa","Amaryawa",2011-02-01,76.0699996948242
-"Drink Swan Water Bottle","Jigawa","Amaryawa",2011-09-01,97.3300018310547
-"Drink Swan Water Bottle","Jigawa","Amaryawa",2011-10-01,92
+"Cement (Dangote)","Jigawa","Amaryawa",2011-04-01,2118.75
+"Cement (Dangote)","Jigawa","Amaryawa",2011-07-01,1099.77795410156
+"Cement (Dangote)","Jigawa","Amaryawa",2011-09-01,2152.080078125
+"Cement (Dangote)","Jigawa","Amaryawa",2012-04-01,2016.67004394531
+"Cement (Dangote)","Jigawa","Amaryawa",2012-10-01,1956.25
+"Water Bottle (Drink Swan)","Jigawa","Amaryawa",2010-10-01,51.5
+"Water Bottle (Drink Swan)","Jigawa","Amaryawa",2011-02-01,76.0699996948242
+"Water Bottle (Drink Swan)","Jigawa","Amaryawa",2011-09-01,97.3300018310547
+"Water Bottle (Drink Swan)","Jigawa","Amaryawa",2011-10-01,92
 "Maize White","Jigawa","Amaryawa",2010-01-01,74.1590194702148
 "Maize White","Jigawa","Amaryawa",2010-02-01,53.3391723632812
 "Maize White","Jigawa","Amaryawa",2010-03-01,54.1550788879395
@@ -4916,30 +4916,30 @@
 "Sorghum","Jigawa","Amaryawa",2012-10-01,60.7101707458496
 "Sorghum","Jigawa","Amaryawa",2012-11-01,58.0887489318848
 "Sorghum","Jigawa","Amaryawa",2012-12-01,52.4828414916992
-"Cement Dangote","Ebonyi","Amasiri",2009-01-01,1674
-"Cement Dangote","Kebbi","Amiru",2010-02-01,1758.32995605469
-"Cement Dangote","Kebbi","Amiru",2010-04-01,1754.2900390625
-"Cement Dangote","Kebbi","Amiru",2010-06-01,960
-"Cement Dangote","Kebbi","Amiru",2010-11-01,1495.7099609375
-"Cement Dangote","Kebbi","Amiru",2010-12-01,1546.25
-"Cement Dangote","Kebbi","Amiru",2011-01-01,1722.08337402344
-"Cement Dangote","Kebbi","Amiru",2011-02-01,1756.33337402344
-"Cement Dangote","Kebbi","Amiru",2011-04-01,2060
-"Cement Dangote","Kebbi","Amiru",2011-06-01,2466.66674804688
-"Cement Dangote","Kebbi","Amiru",2011-09-01,1901.32995605469
-"Cement Dangote","Kebbi","Amiru",2011-11-01,1765
-"Cement Dangote","Kebbi","Amiru",2012-01-01,1866.6650390625
-"Cement Dangote","Kebbi","Amiru",2012-04-01,1505
-"Cement Dangote","Kebbi","Amiru",2012-07-01,2158.330078125
-"Cement Dangote","Kebbi","Amiru",2012-08-01,2162.5
-"Cement Dangote","Kebbi","Amiru",2012-10-01,2098.125
-"Cement Dangote","Kebbi","Amiru",2012-11-01,2010
-"Drink Swan Water Bottle","Kebbi","Amiru",2011-02-01,105.559997558594
-"Drink Swan Water Bottle","Kebbi","Amiru",2011-04-01,102.25
-"Drink Swan Water Bottle","Kebbi","Amiru",2011-07-01,104.165000915527
-"Drink Swan Water Bottle","Kebbi","Amiru",2011-10-01,103.569999694824
-"Drink Swan Water Bottle","Kebbi","Amiru",2012-01-01,114.165000915527
-"Drink Swan Water Bottle","Kebbi","Amiru",2012-08-01,121.834999084473
+"Cement (Dangote)","Ebonyi","Amasiri",2009-01-01,1674
+"Cement (Dangote)","Kebbi","Amiru",2010-02-01,1758.32995605469
+"Cement (Dangote)","Kebbi","Amiru",2010-04-01,1754.2900390625
+"Cement (Dangote)","Kebbi","Amiru",2010-06-01,960
+"Cement (Dangote)","Kebbi","Amiru",2010-11-01,1495.7099609375
+"Cement (Dangote)","Kebbi","Amiru",2010-12-01,1546.25
+"Cement (Dangote)","Kebbi","Amiru",2011-01-01,1722.08337402344
+"Cement (Dangote)","Kebbi","Amiru",2011-02-01,1756.33337402344
+"Cement (Dangote)","Kebbi","Amiru",2011-04-01,2060
+"Cement (Dangote)","Kebbi","Amiru",2011-06-01,2466.66674804688
+"Cement (Dangote)","Kebbi","Amiru",2011-09-01,1901.32995605469
+"Cement (Dangote)","Kebbi","Amiru",2011-11-01,1765
+"Cement (Dangote)","Kebbi","Amiru",2012-01-01,1866.6650390625
+"Cement (Dangote)","Kebbi","Amiru",2012-04-01,1505
+"Cement (Dangote)","Kebbi","Amiru",2012-07-01,2158.330078125
+"Cement (Dangote)","Kebbi","Amiru",2012-08-01,2162.5
+"Cement (Dangote)","Kebbi","Amiru",2012-10-01,2098.125
+"Cement (Dangote)","Kebbi","Amiru",2012-11-01,2010
+"Water Bottle (Drink Swan)","Kebbi","Amiru",2011-02-01,105.559997558594
+"Water Bottle (Drink Swan)","Kebbi","Amiru",2011-04-01,102.25
+"Water Bottle (Drink Swan)","Kebbi","Amiru",2011-07-01,104.165000915527
+"Water Bottle (Drink Swan)","Kebbi","Amiru",2011-10-01,103.569999694824
+"Water Bottle (Drink Swan)","Kebbi","Amiru",2012-01-01,114.165000915527
+"Water Bottle (Drink Swan)","Kebbi","Amiru",2012-08-01,121.834999084473
 "Maize White","Kebbi","Amiru",2009-03-01,42.6724128723145
 "Maize White","Kebbi","Amiru",2009-12-01,50.2765731811523
 "Maize White","Kebbi","Amiru",2010-01-01,52.9798431396484
@@ -5126,7 +5126,7 @@
 "Maize Yellow","Anambra","Amogwugwu",2009-09-01,79.6153869628906
 "Sorghum","Anambra","Amogwugwu",2009-09-01,88.194450378418
 "Sorghum","Anambra","Amogwugwu",2009-11-01,86.0215072631836
-"Cement Dangote","Plateau","Ang.Madaki",2009-08-01,1777.41931152344
+"Cement (Dangote)","Plateau","Ang.Madaki",2009-08-01,1777.41931152344
 "Maize White","Plateau","Ang.Madaki",2009-03-01,45.299144744873
 "Maize White","Plateau","Ang.Madaki",2009-04-01,52.7065505981445
 "Maize Yellow","Plateau","Ang.Madaki",2009-03-01,41.5954437255859
@@ -5136,8 +5136,8 @@
 "Rice Local","Plateau","Ang.Madaki",2009-04-01,107.514129638672
 "Sorghum","Plateau","Ang.Madaki",2009-04-01,59.4805183410645
 "Sorghum","Plateau","Ang.Madaki",2009-12-01,57.8664131164551
-"Drink Swan Water Bottle","Kogi","Ankpa",2010-04-01,77.5
-"Drink Swan Water Bottle","Kogi","Ankpa",2010-10-01,103.834999084473
+"Water Bottle (Drink Swan)","Kogi","Ankpa",2010-04-01,77.5
+"Water Bottle (Drink Swan)","Kogi","Ankpa",2010-10-01,103.834999084473
 "Maize White","Kogi","Ankpa",2010-01-01,88.3744201660156
 "Maize White","Kogi","Ankpa",2010-03-01,68.027214050293
 "Maize White","Kogi","Ankpa",2010-04-01,100.69157409668
@@ -5194,8 +5194,8 @@
 "Maize Yellow","Ogun","Apena",2009-09-01,92.8571472167969
 "Maize Yellow","Ogun","Apena",2009-12-01,59.7580642700195
 "Sorghum","Ogun","Apena",2009-09-01,96.2962951660156
-"Drink Swan Water Bottle","Akwa Ibom","Apostolic Church",2012-11-01,112.082504272461
-"Drink Swan Water Bottle","Rivers","Apostolic Church",2012-12-01,96.1100006103516
+"Water Bottle (Drink Swan)","Akwa Ibom","Apostolic Church",2012-11-01,112.082504272461
+"Water Bottle (Drink Swan)","Rivers","Apostolic Church",2012-12-01,96.1100006103516
 "Maize White","Akwa Ibom","Apostolic Church",2012-11-01,128.560409545898
 "Maize White","Akwa Ibom","Apostolic Church",2012-12-01,137.338912963867
 "Maize White","Rivers","Apostolic Church",2012-12-01,148.012557983398
@@ -5206,11 +5206,11 @@
 "Rice Local","Akwa Ibom","Apostolic Church",2012-11-01,165.909088134766
 "Rice Local","Rivers","Apostolic Church",2012-11-01,151.084335327148
 "Sorghum","Akwa Ibom","Apostolic Church",2010-02-01,129.310989379883
-"Cement Dangote","Kebbi","Argungu",2010-10-01,1708.3349609375
-"Drink Swan Water Bottle","Kebbi","Argungu",2010-04-01,88.75
-"Drink Swan Water Bottle","Kebbi","Argungu",2010-06-01,63.75
-"Drink Swan Water Bottle","Kebbi","Argungu",2010-11-01,88.5714340209961
-"Drink Swan Water Bottle","Kebbi","Argungu",2010-12-01,31
+"Cement (Dangote)","Kebbi","Argungu",2010-10-01,1708.3349609375
+"Water Bottle (Drink Swan)","Kebbi","Argungu",2010-04-01,88.75
+"Water Bottle (Drink Swan)","Kebbi","Argungu",2010-06-01,63.75
+"Water Bottle (Drink Swan)","Kebbi","Argungu",2010-11-01,88.5714340209961
+"Water Bottle (Drink Swan)","Kebbi","Argungu",2010-12-01,31
 "Maize White","Kebbi","Argungu",2009-01-01,72.7474975585938
 "Maize White","Kebbi","Argungu",2009-06-01,58.1612892150879
 "Maize White","Kebbi","Argungu",2009-11-01,82.4127426147461
@@ -5287,33 +5287,33 @@
 "Sorghum","Kebbi","Argungu",2010-11-01,60.3175773620605
 "Sorghum","Kebbi","Argungu",2010-12-01,63.1685218811035
 "Sorghum","Kebbi","Argungu",2012-12-01,67.2823181152344
-"Cement Dangote","Borno","Ari Bukar",2009-10-01,1954.54541015625
-"Cement Dangote","Borno","Ari Bukar",2010-01-01,1844
-"Cement Dangote","Borno","Ari Bukar",2011-05-01,2550
-"Cement Dangote","Borno","Ari Bukar",2011-08-01,1952.0849609375
-"Cement Dangote","Borno","Ari Bukar",2011-09-01,2206.25
-"Cement Dangote","Borno","Ari Bukar",2011-10-01,1915
-"Cement Dangote","Borno","Ari Bukar",2011-11-01,1722.72998046875
-"Cement Dangote","Borno","Ari Bukar",2012-01-01,2237.5
-"Cement Dangote","Borno","Ari Bukar",2012-02-01,2331.25
-"Cement Dangote","Borno","Ari Bukar",2012-03-01,2014.2900390625
-"Cement Dangote","Borno","Ari Bukar",2012-04-01,2155
-"Cement Dangote","Borno","Ari Bukar",2012-06-01,2204.55004882812
-"Drink Swan Water Bottle","Borno","Ari Bukar",2010-01-01,58.75
-"Drink Swan Water Bottle","Borno","Ari Bukar",2010-03-01,88.3349990844727
-"Drink Swan Water Bottle","Borno","Ari Bukar",2010-09-01,39
-"Drink Swan Water Bottle","Borno","Ari Bukar",2011-02-01,87.7799987792969
-"Drink Swan Water Bottle","Borno","Ari Bukar",2011-04-01,99.1699981689453
-"Drink Swan Water Bottle","Borno","Ari Bukar",2011-08-01,112.75
-"Drink Swan Water Bottle","Borno","Ari Bukar",2011-09-01,119.199996948242
-"Drink Swan Water Bottle","Borno","Ari Bukar",2011-10-01,115.910003662109
-"Drink Swan Water Bottle","Borno","Ari Bukar",2011-11-01,116.430000305176
-"Drink Swan Water Bottle","Borno","Ari Bukar",2011-12-01,113.849998474121
-"Drink Swan Water Bottle","Borno","Ari Bukar",2012-02-01,111.730003356934
-"Drink Swan Water Bottle","Borno","Ari Bukar",2012-04-01,117.690002441406
-"Drink Swan Water Bottle","Borno","Ari Bukar",2012-06-01,99.4199981689453
-"Drink Swan Water Bottle","Borno","Ari Bukar",2012-08-01,117.080001831055
-"Drink Swan Water Bottle","Borno","Ari Bukar",2012-10-01,130.649993896484
+"Cement (Dangote)","Borno","Ari Bukar",2009-10-01,1954.54541015625
+"Cement (Dangote)","Borno","Ari Bukar",2010-01-01,1844
+"Cement (Dangote)","Borno","Ari Bukar",2011-05-01,2550
+"Cement (Dangote)","Borno","Ari Bukar",2011-08-01,1952.0849609375
+"Cement (Dangote)","Borno","Ari Bukar",2011-09-01,2206.25
+"Cement (Dangote)","Borno","Ari Bukar",2011-10-01,1915
+"Cement (Dangote)","Borno","Ari Bukar",2011-11-01,1722.72998046875
+"Cement (Dangote)","Borno","Ari Bukar",2012-01-01,2237.5
+"Cement (Dangote)","Borno","Ari Bukar",2012-02-01,2331.25
+"Cement (Dangote)","Borno","Ari Bukar",2012-03-01,2014.2900390625
+"Cement (Dangote)","Borno","Ari Bukar",2012-04-01,2155
+"Cement (Dangote)","Borno","Ari Bukar",2012-06-01,2204.55004882812
+"Water Bottle (Drink Swan)","Borno","Ari Bukar",2010-01-01,58.75
+"Water Bottle (Drink Swan)","Borno","Ari Bukar",2010-03-01,88.3349990844727
+"Water Bottle (Drink Swan)","Borno","Ari Bukar",2010-09-01,39
+"Water Bottle (Drink Swan)","Borno","Ari Bukar",2011-02-01,87.7799987792969
+"Water Bottle (Drink Swan)","Borno","Ari Bukar",2011-04-01,99.1699981689453
+"Water Bottle (Drink Swan)","Borno","Ari Bukar",2011-08-01,112.75
+"Water Bottle (Drink Swan)","Borno","Ari Bukar",2011-09-01,119.199996948242
+"Water Bottle (Drink Swan)","Borno","Ari Bukar",2011-10-01,115.910003662109
+"Water Bottle (Drink Swan)","Borno","Ari Bukar",2011-11-01,116.430000305176
+"Water Bottle (Drink Swan)","Borno","Ari Bukar",2011-12-01,113.849998474121
+"Water Bottle (Drink Swan)","Borno","Ari Bukar",2012-02-01,111.730003356934
+"Water Bottle (Drink Swan)","Borno","Ari Bukar",2012-04-01,117.690002441406
+"Water Bottle (Drink Swan)","Borno","Ari Bukar",2012-06-01,99.4199981689453
+"Water Bottle (Drink Swan)","Borno","Ari Bukar",2012-08-01,117.080001831055
+"Water Bottle (Drink Swan)","Borno","Ari Bukar",2012-10-01,130.649993896484
 "Maize White","Borno","Ari Bukar",2009-12-01,61.4661636352539
 "Maize White","Borno","Ari Bukar",2010-01-01,48.3138008117676
 "Maize White","Borno","Ari Bukar",2010-02-01,48.4061164855957
@@ -5464,33 +5464,33 @@
 "Sorghum","Borno","Ari Bukar",2012-07-01,68.4478759765625
 "Sorghum","Borno","Ari Bukar",2012-08-01,67.3849029541016
 "Sorghum","Borno","Ari Bukar",2012-10-01,66.629264831543
-"Cement Dangote","Bauchi","Army Barrack/BLK 108-139",2010-09-01,4375
-"Cement Dangote","Bauchi","Army Barrack/BLK 108-139",2011-01-01,1670.82995605469
-"Cement Dangote","Bauchi","Army Barrack/BLK 108-139",2011-03-01,1814.2900390625
-"Cement Dangote","Bauchi","Army Barrack/BLK 108-139",2011-04-01,1763.32995605469
-"Cement Dangote","Bauchi","Army Barrack/BLK 108-139",2011-06-01,2030
-"Cement Dangote","Bauchi","Army Barrack/BLK 108-139",2011-08-01,1855
-"Cement Dangote","Bauchi","Army Barrack/BLK 108-139",2011-09-01,1995.83337402344
-"Cement Dangote","Bauchi","Army Barrack/BLK 108-139",2011-11-01,2045.81005859375
-"Cement Dangote","Bauchi","Army Barrack/BLK 108-139",2012-01-01,2135
-"Cement Dangote","Bauchi","Army Barrack/BLK 108-139",2012-02-01,2036
-"Cement Dangote","Bauchi","Army Barrack/BLK 108-139",2012-04-01,1993
-"Cement Dangote","Bauchi","Army Barrack/BLK 108-139",2012-06-01,2049.169921875
-"Cement Dangote","Bauchi","Army Barrack/BLK 108-139",2012-07-01,1958.3349609375
-"Cement Dangote","Bauchi","Army Barrack/BLK 108-139",2012-08-01,1920
-"Cement Dangote","Bauchi","Army Barrack/BLK 108-139",2012-10-01,1885.7099609375
-"Cement Dangote","Bauchi","Army Barrack/BLK 108-139",2012-12-01,1988.89001464844
-"Drink Swan Water Bottle","Bauchi","Army Barrack/BLK 108-139",2010-09-01,61.6699981689453
-"Drink Swan Water Bottle","Bauchi","Army Barrack/BLK 108-139",2011-01-01,99.5800018310547
-"Drink Swan Water Bottle","Bauchi","Army Barrack/BLK 108-139",2011-02-01,94.7600021362305
-"Drink Swan Water Bottle","Bauchi","Army Barrack/BLK 108-139",2011-05-01,96.6999969482422
-"Drink Swan Water Bottle","Bauchi","Army Barrack/BLK 108-139",2011-09-01,109.519996643066
-"Drink Swan Water Bottle","Bauchi","Army Barrack/BLK 108-139",2011-11-01,94.4199981689453
-"Drink Swan Water Bottle","Bauchi","Army Barrack/BLK 108-139",2012-01-01,82.8099975585938
-"Drink Swan Water Bottle","Bauchi","Army Barrack/BLK 108-139",2012-02-01,101.330001831055
-"Drink Swan Water Bottle","Bauchi","Army Barrack/BLK 108-139",2012-04-01,91.4300003051758
-"Drink Swan Water Bottle","Bauchi","Army Barrack/BLK 108-139",2012-06-01,102.779998779297
-"Drink Swan Water Bottle","Bauchi","Army Barrack/BLK 108-139",2012-07-01,109.790000915527
+"Cement (Dangote)","Bauchi","Army Barrack/BLK 108-139",2010-09-01,4375
+"Cement (Dangote)","Bauchi","Army Barrack/BLK 108-139",2011-01-01,1670.82995605469
+"Cement (Dangote)","Bauchi","Army Barrack/BLK 108-139",2011-03-01,1814.2900390625
+"Cement (Dangote)","Bauchi","Army Barrack/BLK 108-139",2011-04-01,1763.32995605469
+"Cement (Dangote)","Bauchi","Army Barrack/BLK 108-139",2011-06-01,2030
+"Cement (Dangote)","Bauchi","Army Barrack/BLK 108-139",2011-08-01,1855
+"Cement (Dangote)","Bauchi","Army Barrack/BLK 108-139",2011-09-01,1995.83337402344
+"Cement (Dangote)","Bauchi","Army Barrack/BLK 108-139",2011-11-01,2045.81005859375
+"Cement (Dangote)","Bauchi","Army Barrack/BLK 108-139",2012-01-01,2135
+"Cement (Dangote)","Bauchi","Army Barrack/BLK 108-139",2012-02-01,2036
+"Cement (Dangote)","Bauchi","Army Barrack/BLK 108-139",2012-04-01,1993
+"Cement (Dangote)","Bauchi","Army Barrack/BLK 108-139",2012-06-01,2049.169921875
+"Cement (Dangote)","Bauchi","Army Barrack/BLK 108-139",2012-07-01,1958.3349609375
+"Cement (Dangote)","Bauchi","Army Barrack/BLK 108-139",2012-08-01,1920
+"Cement (Dangote)","Bauchi","Army Barrack/BLK 108-139",2012-10-01,1885.7099609375
+"Cement (Dangote)","Bauchi","Army Barrack/BLK 108-139",2012-12-01,1988.89001464844
+"Water Bottle (Drink Swan)","Bauchi","Army Barrack/BLK 108-139",2010-09-01,61.6699981689453
+"Water Bottle (Drink Swan)","Bauchi","Army Barrack/BLK 108-139",2011-01-01,99.5800018310547
+"Water Bottle (Drink Swan)","Bauchi","Army Barrack/BLK 108-139",2011-02-01,94.7600021362305
+"Water Bottle (Drink Swan)","Bauchi","Army Barrack/BLK 108-139",2011-05-01,96.6999969482422
+"Water Bottle (Drink Swan)","Bauchi","Army Barrack/BLK 108-139",2011-09-01,109.519996643066
+"Water Bottle (Drink Swan)","Bauchi","Army Barrack/BLK 108-139",2011-11-01,94.4199981689453
+"Water Bottle (Drink Swan)","Bauchi","Army Barrack/BLK 108-139",2012-01-01,82.8099975585938
+"Water Bottle (Drink Swan)","Bauchi","Army Barrack/BLK 108-139",2012-02-01,101.330001831055
+"Water Bottle (Drink Swan)","Bauchi","Army Barrack/BLK 108-139",2012-04-01,91.4300003051758
+"Water Bottle (Drink Swan)","Bauchi","Army Barrack/BLK 108-139",2012-06-01,102.779998779297
+"Water Bottle (Drink Swan)","Bauchi","Army Barrack/BLK 108-139",2012-07-01,109.790000915527
 "Maize White","Bauchi","Army Barrack/BLK 108-139",2010-01-01,51.7847633361816
 "Maize White","Bauchi","Army Barrack/BLK 108-139",2010-02-01,52.1419830322266
 "Maize White","Bauchi","Army Barrack/BLK 108-139",2010-03-01,73.0993728637695
@@ -5683,8 +5683,8 @@
 "Sorghum","Delta","Asaba",2010-09-01,117.924530029297
 "Sorghum","Delta","Asaba",2012-11-01,150.886703491211
 "Sorghum","Delta","Asaba",2012-12-01,134.012878417969
-"Cement Dangote","Edo","Auchi",2010-12-01,1705
-"Drink Swan Water Bottle","Edo","Auchi",2010-02-01,81.6699981689453
+"Cement (Dangote)","Edo","Auchi",2010-12-01,1705
+"Water Bottle (Drink Swan)","Edo","Auchi",2010-02-01,81.6699981689453
 "Maize White","Edo","Auchi",2010-01-01,130.431228637695
 "Maize White","Edo","Auchi",2010-02-01,108.56453704834
 "Maize White","Edo","Auchi",2010-05-01,116.040962219238
@@ -5723,11 +5723,11 @@
 "Rice Local","Anambra","Awka",2009-05-01,137.500015258789
 "Maize White","Lagos","Ayetoro - Epe",2009-03-01,74.5454559326172
 "Rice Imported","Lagos","Ayetoro - Epe",2009-03-01,161.993774414062
-"Cement Dangote","Nasarawa","Azare",2012-12-01,1991.66662597656
-"Drink Swan Water Bottle","Bauchi","Azare",2010-05-01,81.5
-"Drink Swan Water Bottle","Bauchi","Azare",2010-07-01,53
-"Drink Swan Water Bottle","Bauchi","Azare",2012-11-01,148.443328857422
-"Drink Swan Water Bottle","Nasarawa","Azare",2012-11-01,132.666000366211
+"Cement (Dangote)","Nasarawa","Azare",2012-12-01,1991.66662597656
+"Water Bottle (Drink Swan)","Bauchi","Azare",2010-05-01,81.5
+"Water Bottle (Drink Swan)","Bauchi","Azare",2010-07-01,53
+"Water Bottle (Drink Swan)","Bauchi","Azare",2012-11-01,148.443328857422
+"Water Bottle (Drink Swan)","Nasarawa","Azare",2012-11-01,132.666000366211
 "Maize White","Bauchi","Azare",2009-11-01,67.7254943847656
 "Maize White","Bauchi","Azare",2009-12-01,59.1003456115723
 "Maize White","Bauchi","Azare",2010-01-01,54.7547950744629
@@ -5829,26 +5829,26 @@
 "Sorghum","Borno","B.Sedegu",2009-11-01,51.6605987548828
 "Maize White","Borno","B.Tujani",2009-09-01,81.3392868041992
 "Maize White","Borno","B.Tujani",2009-11-01,127.142852783203
-"Cement Dangote","Taraba","Baaku Audu",2010-08-01,1275
-"Cement Dangote","Taraba","Baaku Audu",2010-11-01,1608.33325195312
-"Cement Dangote","Taraba","Baaku Audu",2011-02-01,1603.3349609375
-"Cement Dangote","Taraba","Baaku Audu",2011-03-01,1758.33337402344
-"Cement Dangote","Taraba","Baaku Audu",2011-04-01,1646.88000488281
-"Cement Dangote","Taraba","Baaku Audu",2011-05-01,2037.5
-"Cement Dangote","Taraba","Baaku Audu",2011-09-01,2059.3798828125
-"Cement Dangote","Taraba","Baaku Audu",2012-01-01,1810.9375
-"Cement Dangote","Taraba","Baaku Audu",2012-03-01,1900.66662597656
-"Cement Dangote","Taraba","Baaku Audu",2012-06-01,2185
-"Cement Dangote","Taraba","Baaku Audu",2012-08-01,2001.58996582031
-"Cement Dangote","Taraba","Baaku Audu",2012-10-01,2103.56982421875
-"Cement Dangote","Taraba","Baaku Audu",2012-11-01,1941.67004394531
-"Drink Swan Water Bottle","Taraba","Baaku Audu",2010-07-01,99.1650009155273
-"Drink Swan Water Bottle","Taraba","Baaku Audu",2011-01-01,105.5625
-"Drink Swan Water Bottle","Taraba","Baaku Audu",2011-02-01,104.190002441406
-"Drink Swan Water Bottle","Taraba","Baaku Audu",2011-03-01,100.416664123535
-"Drink Swan Water Bottle","Taraba","Baaku Audu",2011-04-01,101.779998779297
-"Drink Swan Water Bottle","Taraba","Baaku Audu",2012-08-01,123.129997253418
-"Drink Swan Water Bottle","Taraba","Baaku Audu",2012-10-01,120.709999084473
+"Cement (Dangote)","Taraba","Baaku Audu",2010-08-01,1275
+"Cement (Dangote)","Taraba","Baaku Audu",2010-11-01,1608.33325195312
+"Cement (Dangote)","Taraba","Baaku Audu",2011-02-01,1603.3349609375
+"Cement (Dangote)","Taraba","Baaku Audu",2011-03-01,1758.33337402344
+"Cement (Dangote)","Taraba","Baaku Audu",2011-04-01,1646.88000488281
+"Cement (Dangote)","Taraba","Baaku Audu",2011-05-01,2037.5
+"Cement (Dangote)","Taraba","Baaku Audu",2011-09-01,2059.3798828125
+"Cement (Dangote)","Taraba","Baaku Audu",2012-01-01,1810.9375
+"Cement (Dangote)","Taraba","Baaku Audu",2012-03-01,1900.66662597656
+"Cement (Dangote)","Taraba","Baaku Audu",2012-06-01,2185
+"Cement (Dangote)","Taraba","Baaku Audu",2012-08-01,2001.58996582031
+"Cement (Dangote)","Taraba","Baaku Audu",2012-10-01,2103.56982421875
+"Cement (Dangote)","Taraba","Baaku Audu",2012-11-01,1941.67004394531
+"Water Bottle (Drink Swan)","Taraba","Baaku Audu",2010-07-01,99.1650009155273
+"Water Bottle (Drink Swan)","Taraba","Baaku Audu",2011-01-01,105.5625
+"Water Bottle (Drink Swan)","Taraba","Baaku Audu",2011-02-01,104.190002441406
+"Water Bottle (Drink Swan)","Taraba","Baaku Audu",2011-03-01,100.416664123535
+"Water Bottle (Drink Swan)","Taraba","Baaku Audu",2011-04-01,101.779998779297
+"Water Bottle (Drink Swan)","Taraba","Baaku Audu",2012-08-01,123.129997253418
+"Water Bottle (Drink Swan)","Taraba","Baaku Audu",2012-10-01,120.709999084473
 "Maize White","Taraba","Baaku Audu",2010-01-01,47.9671096801758
 "Maize White","Taraba","Baaku Audu",2010-02-01,48.4094047546387
 "Maize White","Taraba","Baaku Audu",2010-03-01,37.728458404541
@@ -5991,34 +5991,34 @@
 "Sorghum","Taraba","Baaku Audu",2012-10-01,60.7104988098145
 "Sorghum","Taraba","Baaku Audu",2012-11-01,63.5609741210938
 "Sorghum","Taraba","Baaku Audu",2012-12-01,62.8866004943848
-"Cement Dangote","Kano","Babbarniga",2010-01-01,1575.32470703125
-"Cement Dangote","Kano","Babbarniga",2010-05-01,1661.66674804688
-"Cement Dangote","Kano","Babbarniga",2010-06-01,1480
-"Cement Dangote","Kano","Babbarniga",2010-07-01,1708.32995605469
-"Cement Dangote","Kano","Babbarniga",2010-10-01,1718.66662597656
-"Cement Dangote","Kano","Babbarniga",2011-01-01,1629.71997070312
-"Cement Dangote","Kano","Babbarniga",2011-02-01,1670.33337402344
-"Cement Dangote","Kano","Babbarniga",2011-03-01,2183.33349609375
-"Cement Dangote","Kano","Babbarniga",2011-04-01,2135.7099609375
-"Cement Dangote","Kano","Babbarniga",2011-05-01,2312.5
-"Cement Dangote","Kano","Babbarniga",2011-06-01,1943.75
-"Cement Dangote","Kano","Babbarniga",2011-08-01,1820.8349609375
-"Cement Dangote","Kano","Babbarniga",2011-10-01,1880.556640625
-"Cement Dangote","Kano","Babbarniga",2012-01-01,1924.25
-"Cement Dangote","Kano","Babbarniga",2012-04-01,1883.3349609375
-"Cement Dangote","Kano","Babbarniga",2012-07-01,2004.1650390625
-"Cement Dangote","Kano","Babbarniga",2012-10-01,1815.625
-"Drink Swan Water Bottle","Kano","Babbarniga",2010-03-01,70.8300018310547
-"Drink Swan Water Bottle","Kano","Babbarniga",2011-04-01,96.1399993896484
-"Drink Swan Water Bottle","Kano","Babbarniga",2011-07-01,91.625
-"Drink Swan Water Bottle","Kano","Babbarniga",2011-09-01,115.279998779297
-"Drink Swan Water Bottle","Kano","Babbarniga",2011-10-01,99.0650024414062
-"Drink Swan Water Bottle","Kano","Babbarniga",2011-11-01,103.334999084473
-"Drink Swan Water Bottle","Kano","Babbarniga",2012-04-01,98.3333282470703
-"Drink Swan Water Bottle","Kano","Babbarniga",2012-06-01,114.443336486816
-"Drink Swan Water Bottle","Kano","Babbarniga",2012-07-01,108.334999084473
-"Drink Swan Water Bottle","Kano","Babbarniga",2012-08-01,98.0199966430664
-"Drink Swan Water Bottle","Kano","Babbarniga",2012-12-01,114.187217712402
+"Cement (Dangote)","Kano","Babbarniga",2010-01-01,1575.32470703125
+"Cement (Dangote)","Kano","Babbarniga",2010-05-01,1661.66674804688
+"Cement (Dangote)","Kano","Babbarniga",2010-06-01,1480
+"Cement (Dangote)","Kano","Babbarniga",2010-07-01,1708.32995605469
+"Cement (Dangote)","Kano","Babbarniga",2010-10-01,1718.66662597656
+"Cement (Dangote)","Kano","Babbarniga",2011-01-01,1629.71997070312
+"Cement (Dangote)","Kano","Babbarniga",2011-02-01,1670.33337402344
+"Cement (Dangote)","Kano","Babbarniga",2011-03-01,2183.33349609375
+"Cement (Dangote)","Kano","Babbarniga",2011-04-01,2135.7099609375
+"Cement (Dangote)","Kano","Babbarniga",2011-05-01,2312.5
+"Cement (Dangote)","Kano","Babbarniga",2011-06-01,1943.75
+"Cement (Dangote)","Kano","Babbarniga",2011-08-01,1820.8349609375
+"Cement (Dangote)","Kano","Babbarniga",2011-10-01,1880.556640625
+"Cement (Dangote)","Kano","Babbarniga",2012-01-01,1924.25
+"Cement (Dangote)","Kano","Babbarniga",2012-04-01,1883.3349609375
+"Cement (Dangote)","Kano","Babbarniga",2012-07-01,2004.1650390625
+"Cement (Dangote)","Kano","Babbarniga",2012-10-01,1815.625
+"Water Bottle (Drink Swan)","Kano","Babbarniga",2010-03-01,70.8300018310547
+"Water Bottle (Drink Swan)","Kano","Babbarniga",2011-04-01,96.1399993896484
+"Water Bottle (Drink Swan)","Kano","Babbarniga",2011-07-01,91.625
+"Water Bottle (Drink Swan)","Kano","Babbarniga",2011-09-01,115.279998779297
+"Water Bottle (Drink Swan)","Kano","Babbarniga",2011-10-01,99.0650024414062
+"Water Bottle (Drink Swan)","Kano","Babbarniga",2011-11-01,103.334999084473
+"Water Bottle (Drink Swan)","Kano","Babbarniga",2012-04-01,98.3333282470703
+"Water Bottle (Drink Swan)","Kano","Babbarniga",2012-06-01,114.443336486816
+"Water Bottle (Drink Swan)","Kano","Babbarniga",2012-07-01,108.334999084473
+"Water Bottle (Drink Swan)","Kano","Babbarniga",2012-08-01,98.0199966430664
+"Water Bottle (Drink Swan)","Kano","Babbarniga",2012-12-01,114.187217712402
 "Maize White","Kano","Babbarniga",2010-01-01,46.4536552429199
 "Maize White","Kano","Babbarniga",2010-02-01,52.6308898925781
 "Maize White","Kano","Babbarniga",2010-03-01,52.4209022521973
@@ -6190,26 +6190,26 @@
 "Sorghum","Kano","Babbarniga",2012-10-01,60.9040031433105
 "Sorghum","Kano","Babbarniga",2012-11-01,51.3213768005371
 "Sorghum","Kano","Babbarniga",2012-12-01,50.5912284851074
-"Cement Dangote","Sokoto","Bachalla",2010-02-01,4075
-"Cement Dangote","Sokoto","Bachalla",2010-04-01,1870
-"Cement Dangote","Sokoto","Bachalla",2010-06-01,1916.66662597656
-"Cement Dangote","Sokoto","Bachalla",2011-02-01,1795.76000976562
-"Cement Dangote","Sokoto","Bachalla",2011-08-01,1834.43994140625
-"Cement Dangote","Sokoto","Bachalla",2011-09-01,2002.78002929688
-"Cement Dangote","Sokoto","Bachalla",2012-03-01,1962.5
-"Cement Dangote","Sokoto","Bachalla",2012-06-01,2137.5
-"Cement Dangote","Sokoto","Bachalla",2012-07-01,2083.330078125
-"Cement Dangote","Sokoto","Bachalla",2012-10-01,1806.0400390625
-"Drink Swan Water Bottle","Sokoto","Bachalla",2010-04-01,86
-"Drink Swan Water Bottle","Sokoto","Bachalla",2010-08-01,60.8300018310547
-"Drink Swan Water Bottle","Sokoto","Bachalla",2011-01-01,89.1666641235352
-"Drink Swan Water Bottle","Sokoto","Bachalla",2011-02-01,82.0800018310547
-"Drink Swan Water Bottle","Sokoto","Bachalla",2011-04-01,81.3899993896484
-"Drink Swan Water Bottle","Sokoto","Bachalla",2011-05-01,74.375
-"Drink Swan Water Bottle","Sokoto","Bachalla",2011-08-01,119.290000915527
-"Drink Swan Water Bottle","Sokoto","Bachalla",2011-09-01,131.669998168945
-"Drink Swan Water Bottle","Sokoto","Bachalla",2012-08-01,129
-"Drink Swan Water Bottle","Sokoto","Bachalla",2012-10-01,114.580001831055
+"Cement (Dangote)","Sokoto","Bachalla",2010-02-01,4075
+"Cement (Dangote)","Sokoto","Bachalla",2010-04-01,1870
+"Cement (Dangote)","Sokoto","Bachalla",2010-06-01,1916.66662597656
+"Cement (Dangote)","Sokoto","Bachalla",2011-02-01,1795.76000976562
+"Cement (Dangote)","Sokoto","Bachalla",2011-08-01,1834.43994140625
+"Cement (Dangote)","Sokoto","Bachalla",2011-09-01,2002.78002929688
+"Cement (Dangote)","Sokoto","Bachalla",2012-03-01,1962.5
+"Cement (Dangote)","Sokoto","Bachalla",2012-06-01,2137.5
+"Cement (Dangote)","Sokoto","Bachalla",2012-07-01,2083.330078125
+"Cement (Dangote)","Sokoto","Bachalla",2012-10-01,1806.0400390625
+"Water Bottle (Drink Swan)","Sokoto","Bachalla",2010-04-01,86
+"Water Bottle (Drink Swan)","Sokoto","Bachalla",2010-08-01,60.8300018310547
+"Water Bottle (Drink Swan)","Sokoto","Bachalla",2011-01-01,89.1666641235352
+"Water Bottle (Drink Swan)","Sokoto","Bachalla",2011-02-01,82.0800018310547
+"Water Bottle (Drink Swan)","Sokoto","Bachalla",2011-04-01,81.3899993896484
+"Water Bottle (Drink Swan)","Sokoto","Bachalla",2011-05-01,74.375
+"Water Bottle (Drink Swan)","Sokoto","Bachalla",2011-08-01,119.290000915527
+"Water Bottle (Drink Swan)","Sokoto","Bachalla",2011-09-01,131.669998168945
+"Water Bottle (Drink Swan)","Sokoto","Bachalla",2012-08-01,129
+"Water Bottle (Drink Swan)","Sokoto","Bachalla",2012-10-01,114.580001831055
 "Maize White","Sokoto","Bachalla",2009-02-01,50.6172828674316
 "Maize White","Sokoto","Bachalla",2009-03-01,53.7037048339844
 "Maize White","Sokoto","Bachalla",2010-01-01,115.496688842773
@@ -6383,26 +6383,26 @@
 "Sorghum","Sokoto","Bachalla",2012-10-01,64.8122482299805
 "Sorghum","Sokoto","Bachalla",2012-11-01,68.9217834472656
 "Sorghum","Sokoto","Bachalla",2012-12-01,72.7802047729492
-"Cement Dangote","Kaduna","Badiko",2010-02-01,1780
-"Cement Dangote","Kaduna","Badiko",2011-02-01,1657.40661621094
-"Cement Dangote","Kaduna","Badiko",2011-04-01,2256.669921875
-"Cement Dangote","Kaduna","Badiko",2011-05-01,1895.8349609375
-"Cement Dangote","Kaduna","Badiko",2011-06-01,1970.83325195312
-"Cement Dangote","Kaduna","Badiko",2011-08-01,1773.60998535156
-"Cement Dangote","Kaduna","Badiko",2011-09-01,1869.08996582031
-"Cement Dangote","Kaduna","Badiko",2011-11-01,1779.68994140625
-"Cement Dangote","Kaduna","Badiko",2012-03-01,1959.375
-"Cement Dangote","Kaduna","Badiko",2012-04-01,2231.25
-"Cement Dangote","Kaduna","Badiko",2012-07-01,2006.25
-"Cement Dangote","Kaduna","Badiko",2012-08-01,1917.7099609375
-"Cement Dangote","Kaduna","Badiko",2012-11-01,2490.4765625
-"Cement Dangote","Kaduna","Badiko",2012-12-01,4291.66650390625
-"Drink Swan Water Bottle","Kaduna","Badiko",2010-01-01,106.665000915527
-"Drink Swan Water Bottle","Kaduna","Badiko",2011-02-01,96.0920028686523
-"Drink Swan Water Bottle","Kaduna","Badiko",2011-07-01,106.794998168945
-"Drink Swan Water Bottle","Kaduna","Badiko",2011-08-01,100.180000305176
-"Drink Swan Water Bottle","Kaduna","Badiko",2011-09-01,108.730003356934
-"Drink Swan Water Bottle","Kaduna","Badiko",2012-01-01,116.324996948242
+"Cement (Dangote)","Kaduna","Badiko",2010-02-01,1780
+"Cement (Dangote)","Kaduna","Badiko",2011-02-01,1657.40661621094
+"Cement (Dangote)","Kaduna","Badiko",2011-04-01,2256.669921875
+"Cement (Dangote)","Kaduna","Badiko",2011-05-01,1895.8349609375
+"Cement (Dangote)","Kaduna","Badiko",2011-06-01,1970.83325195312
+"Cement (Dangote)","Kaduna","Badiko",2011-08-01,1773.60998535156
+"Cement (Dangote)","Kaduna","Badiko",2011-09-01,1869.08996582031
+"Cement (Dangote)","Kaduna","Badiko",2011-11-01,1779.68994140625
+"Cement (Dangote)","Kaduna","Badiko",2012-03-01,1959.375
+"Cement (Dangote)","Kaduna","Badiko",2012-04-01,2231.25
+"Cement (Dangote)","Kaduna","Badiko",2012-07-01,2006.25
+"Cement (Dangote)","Kaduna","Badiko",2012-08-01,1917.7099609375
+"Cement (Dangote)","Kaduna","Badiko",2012-11-01,2490.4765625
+"Cement (Dangote)","Kaduna","Badiko",2012-12-01,4291.66650390625
+"Water Bottle (Drink Swan)","Kaduna","Badiko",2010-01-01,106.665000915527
+"Water Bottle (Drink Swan)","Kaduna","Badiko",2011-02-01,96.0920028686523
+"Water Bottle (Drink Swan)","Kaduna","Badiko",2011-07-01,106.794998168945
+"Water Bottle (Drink Swan)","Kaduna","Badiko",2011-08-01,100.180000305176
+"Water Bottle (Drink Swan)","Kaduna","Badiko",2011-09-01,108.730003356934
+"Water Bottle (Drink Swan)","Kaduna","Badiko",2012-01-01,116.324996948242
 "Maize White","Kaduna","Badiko",2010-01-01,48.6636695861816
 "Maize White","Kaduna","Badiko",2010-02-01,49.7482948303223
 "Maize White","Kaduna","Badiko",2010-03-01,49.4553985595703
@@ -6579,21 +6579,21 @@
 "Rice Local","Kano","Badumo",2009-02-01,134.482757568359
 "Rice Local","Kano","Badumo",2009-05-01,124.161308288574
 "Sorghum","Kano","Badumo",2009-02-01,41.5094337463379
-"Cement Dangote","Adamawa","Bakin Kasuwa",2009-10-01,1792.85717773438
-"Cement Dangote","Adamawa","Bakin Kasuwa",2010-01-01,1555
-"Cement Dangote","Adamawa","Bakin Kasuwa",2010-08-01,1662.5
-"Cement Dangote","Adamawa","Bakin Kasuwa",2011-01-01,1638.81005859375
-"Cement Dangote","Adamawa","Bakin Kasuwa",2011-02-01,1676.28002929688
-"Cement Dangote","Adamawa","Bakin Kasuwa",2011-04-01,1490.39001464844
-"Drink Swan Water Bottle","Adamawa","Bakin Kasuwa",2011-02-01,93.4400024414062
-"Drink Swan Water Bottle","Adamawa","Bakin Kasuwa",2011-03-01,99.3300018310547
-"Drink Swan Water Bottle","Adamawa","Bakin Kasuwa",2011-04-01,96.9000015258789
-"Drink Swan Water Bottle","Adamawa","Bakin Kasuwa",2011-05-01,98.3300018310547
-"Drink Swan Water Bottle","Adamawa","Bakin Kasuwa",2011-11-01,108.150001525879
-"Drink Swan Water Bottle","Adamawa","Bakin Kasuwa",2012-01-01,105.415000915527
-"Drink Swan Water Bottle","Adamawa","Bakin Kasuwa",2012-02-01,109.860000610352
-"Drink Swan Water Bottle","Adamawa","Bakin Kasuwa",2012-03-01,110.480003356934
-"Drink Swan Water Bottle","Adamawa","Bakin Kasuwa",2012-04-01,103.629997253418
+"Cement (Dangote)","Adamawa","Bakin Kasuwa",2009-10-01,1792.85717773438
+"Cement (Dangote)","Adamawa","Bakin Kasuwa",2010-01-01,1555
+"Cement (Dangote)","Adamawa","Bakin Kasuwa",2010-08-01,1662.5
+"Cement (Dangote)","Adamawa","Bakin Kasuwa",2011-01-01,1638.81005859375
+"Cement (Dangote)","Adamawa","Bakin Kasuwa",2011-02-01,1676.28002929688
+"Cement (Dangote)","Adamawa","Bakin Kasuwa",2011-04-01,1490.39001464844
+"Water Bottle (Drink Swan)","Adamawa","Bakin Kasuwa",2011-02-01,93.4400024414062
+"Water Bottle (Drink Swan)","Adamawa","Bakin Kasuwa",2011-03-01,99.3300018310547
+"Water Bottle (Drink Swan)","Adamawa","Bakin Kasuwa",2011-04-01,96.9000015258789
+"Water Bottle (Drink Swan)","Adamawa","Bakin Kasuwa",2011-05-01,98.3300018310547
+"Water Bottle (Drink Swan)","Adamawa","Bakin Kasuwa",2011-11-01,108.150001525879
+"Water Bottle (Drink Swan)","Adamawa","Bakin Kasuwa",2012-01-01,105.415000915527
+"Water Bottle (Drink Swan)","Adamawa","Bakin Kasuwa",2012-02-01,109.860000610352
+"Water Bottle (Drink Swan)","Adamawa","Bakin Kasuwa",2012-03-01,110.480003356934
+"Water Bottle (Drink Swan)","Adamawa","Bakin Kasuwa",2012-04-01,103.629997253418
 "Maize White","Adamawa","Bakin Kasuwa",2010-01-01,55.5571937561035
 "Maize White","Adamawa","Bakin Kasuwa",2010-02-01,56.9900856018066
 "Maize White","Adamawa","Bakin Kasuwa",2010-03-01,65.3810043334961
@@ -6762,8 +6762,8 @@
 "Sorghum","Adamawa","Bakin Kasuwa",2012-10-01,73.2201080322266
 "Sorghum","Adamawa","Bakin Kasuwa",2012-11-01,71.5268249511719
 "Sorghum","Adamawa","Bakin Kasuwa",2012-12-01,70.2274932861328
-"Cement Dangote","Borno","Bama",2009-10-01,1908.92858886719
-"Drink Swan Water Bottle","Borno","Bama",2009-10-01,115.599998474121
+"Cement (Dangote)","Borno","Bama",2009-10-01,1908.92858886719
+"Water Bottle (Drink Swan)","Borno","Bama",2009-10-01,115.599998474121
 "Maize White","Borno","Bama",2009-02-01,52.3364486694336
 "Maize White","Borno","Bama",2009-04-01,50.4464302062988
 "Maize White","Borno","Bama",2009-05-01,51.3392791748047
@@ -6836,7 +6836,7 @@
 "Sorghum","Borno","Bama",2010-12-01,59.5474395751953
 "Sorghum","Borno","Bama",2012-11-01,82.191780090332
 "Sorghum","Borno","Bama",2012-12-01,79.2452774047852
-"Cement Dangote","Jigawa","Bardo Gabas",2009-02-01,1833.33325195312
+"Cement (Dangote)","Jigawa","Bardo Gabas",2009-02-01,1833.33325195312
 "Maize White","Jigawa","Bardo Gabas",2009-04-01,51.0897445678711
 "Rice Imported","Jigawa","Bardo Gabas",2009-04-01,113.331275939941
 "Rice Local","Jigawa","Bardo Gabas",2009-04-01,128.489013671875
@@ -6851,8 +6851,8 @@
 "Sorghum","Bauchi","Bauchi",2010-10-01,79.4585189819336
 "Sorghum","Bauchi","Bauchi",2012-11-01,79.3281631469727
 "Sorghum","Bauchi","Bauchi",2012-12-01,68.3544311523438
-"Drink Swan Water Bottle","Katsina","Baure",2010-04-01,128.570007324219
-"Drink Swan Water Bottle","Katsina","Baure",2010-07-01,68.3300018310547
+"Water Bottle (Drink Swan)","Katsina","Baure",2010-04-01,128.570007324219
+"Water Bottle (Drink Swan)","Katsina","Baure",2010-07-01,68.3300018310547
 "Maize White","Katsina","Baure",2010-01-01,45.922477722168
 "Maize White","Katsina","Baure",2010-02-01,54.9618339538574
 "Maize White","Katsina","Baure",2010-03-01,52.4747734069824
@@ -6918,7 +6918,7 @@
 "Rice Local","Borno","Benishekh town",2012-12-01,145.270935058594
 "Sorghum","Borno","Benishekh town",2012-11-01,69.6018829345703
 "Sorghum","Borno","Benishekh town",2012-12-01,109.497520446777
-"Drink Swan Water Bottle","Niger","Bida",2009-08-01,85.8823547363281
+"Water Bottle (Drink Swan)","Niger","Bida",2009-08-01,85.8823547363281
 "Maize White","Niger","Bida",2009-02-01,57.6271171569824
 "Maize White","Niger","Bida",2009-08-01,69.3855209350586
 "Maize White","Niger","Bida",2010-01-01,57.3770484924316
@@ -7043,7 +7043,7 @@
 "Sorghum","Jigawa","Birnin Kudu",2010-09-01,40.1541938781738
 "Sorghum","Jigawa","Birnin Kudu",2010-11-01,42.0490951538086
 "Maize White","Adamawa","Biyama Hospital",2009-10-01,49.6428604125977
-"Cement Dangote","Plateau","Block 08",2009-08-01,1832.25805664062
+"Cement (Dangote)","Plateau","Block 08",2009-08-01,1832.25805664062
 "Maize White","Plateau","Block 08",2009-09-01,53.7191619873047
 "Maize Yellow","Plateau","Block 08",2009-03-01,56.6239318847656
 "Maize Yellow","Plateau","Block 08",2009-12-01,45.8671531677246
@@ -7076,10 +7076,10 @@
 "Sorghum","FCT","Bwari-Abuja",2009-03-01,60.275691986084
 "Sorghum","FCT","Bwari-Abuja",2009-04-01,76.1083755493164
 "Sorghum","FCT","Bwari-Abuja",2009-06-01,76.7857131958008
-"Cement Dangote","Cross River","Calabar",2010-03-01,3166.669921875
-"Cement Dangote","Cross River","Calabar",2010-06-01,1483.32995605469
-"Cement Dangote","Cross River","Calabar",2010-12-01,1433.32995605469
-"Drink Swan Water Bottle","Cross River","Calabar",2010-04-01,81.6650009155273
+"Cement (Dangote)","Cross River","Calabar",2010-03-01,3166.669921875
+"Cement (Dangote)","Cross River","Calabar",2010-06-01,1483.32995605469
+"Cement (Dangote)","Cross River","Calabar",2010-12-01,1433.32995605469
+"Water Bottle (Drink Swan)","Cross River","Calabar",2010-04-01,81.6650009155273
 "Maize White","Cross River","Calabar",2010-02-01,94.8616638183594
 "Maize White","Cross River","Calabar",2010-03-01,100.59171295166
 "Maize White","Cross River","Calabar",2010-04-01,145.614044189453
@@ -7115,33 +7115,33 @@
 "Sorghum","Cross River","Calabar",2010-07-01,94.8976745605469
 "Sorghum","Cross River","Calabar",2010-12-01,136.201919555664
 "Sorghum","Cross River","Calabar",2012-11-01,117.066116333008
-"Cement Dangote","Bauchi","Central Market",2009-10-01,2233.33325195312
-"Cement Dangote","Bauchi","Central Market",2012-11-01,1972.22338867188
-"Drink Swan Water Bottle","Bauchi","Central Market",2010-01-01,97.8571395874023
-"Drink Swan Water Bottle","Bauchi","Central Market",2010-02-01,102.380950927734
-"Drink Swan Water Bottle","Bauchi","Central Market",2010-03-01,99.2857131958008
-"Drink Swan Water Bottle","Bauchi","Central Market",2010-09-01,149.190002441406
-"Drink Swan Water Bottle","Bauchi","Central Market",2010-10-01,111.190475463867
-"Drink Swan Water Bottle","Bauchi","Central Market",2011-01-01,96.10888671875
-"Drink Swan Water Bottle","Bauchi","Central Market",2011-02-01,90.533332824707
-"Drink Swan Water Bottle","Bauchi","Central Market",2011-03-01,85.8333358764648
-"Drink Swan Water Bottle","Bauchi","Central Market",2011-04-01,87.9633331298828
-"Drink Swan Water Bottle","Bauchi","Central Market",2011-05-01,85.5374984741211
-"Drink Swan Water Bottle","Bauchi","Central Market",2011-06-01,95.7755584716797
-"Drink Swan Water Bottle","Bauchi","Central Market",2011-09-01,116.903327941895
-"Drink Swan Water Bottle","Bauchi","Central Market",2011-10-01,112.333335876465
-"Drink Swan Water Bottle","Bauchi","Central Market",2011-11-01,99.6133346557617
-"Drink Swan Water Bottle","Bauchi","Central Market",2012-01-01,84.3733291625977
-"Drink Swan Water Bottle","Bauchi","Central Market",2012-02-01,114.220001220703
-"Drink Swan Water Bottle","Bauchi","Central Market",2012-04-01,97.620002746582
-"Drink Swan Water Bottle","Bauchi","Central Market",2012-05-01,91.966667175293
-"Drink Swan Water Bottle","Bauchi","Central Market",2012-06-01,106.296669006348
-"Drink Swan Water Bottle","Bauchi","Central Market",2012-07-01,112.776664733887
-"Drink Swan Water Bottle","Bauchi","Central Market",2012-08-01,114.666664123535
-"Drink Swan Water Bottle","Bauchi","Central Market",2012-10-01,99.3977813720703
-"Drink Swan Water Bottle","Bauchi","Central Market",2012-11-01,97.4739990234375
-"Drink Swan Water Bottle","Sokoto","Central Market",2012-11-01,95.7099990844727
-"Drink Swan Water Bottle","Bauchi","Central Market",2012-12-01,86.6660003662109
+"Cement (Dangote)","Bauchi","Central Market",2009-10-01,2233.33325195312
+"Cement (Dangote)","Bauchi","Central Market",2012-11-01,1972.22338867188
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2010-01-01,97.8571395874023
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2010-02-01,102.380950927734
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2010-03-01,99.2857131958008
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2010-09-01,149.190002441406
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2010-10-01,111.190475463867
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2011-01-01,96.10888671875
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2011-02-01,90.533332824707
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2011-03-01,85.8333358764648
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2011-04-01,87.9633331298828
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2011-05-01,85.5374984741211
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2011-06-01,95.7755584716797
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2011-09-01,116.903327941895
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2011-10-01,112.333335876465
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2011-11-01,99.6133346557617
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2012-01-01,84.3733291625977
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2012-02-01,114.220001220703
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2012-04-01,97.620002746582
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2012-05-01,91.966667175293
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2012-06-01,106.296669006348
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2012-07-01,112.776664733887
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2012-08-01,114.666664123535
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2012-10-01,99.3977813720703
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2012-11-01,97.4739990234375
+"Water Bottle (Drink Swan)","Sokoto","Central Market",2012-11-01,95.7099990844727
+"Water Bottle (Drink Swan)","Bauchi","Central Market",2012-12-01,86.6660003662109
 "Maize White","Sokoto","Central Market",2009-02-01,56.6137542724609
 "Maize White","Bauchi","Central Market",2009-04-01,59.0659370422363
 "Maize White","Sokoto","Central Market",2009-04-01,60.6111831665039
@@ -7252,8 +7252,8 @@
 "Sorghum","Ogun","Chicken Joe Rest",2009-05-01,94.4061279296875
 "Sorghum","Ogun","Chicken Joe Rest",2009-10-01,95.1581878662109
 "Sorghum","Ogun","Chicken Joe Rest",2009-12-01,96.8644027709961
-"Cement Dangote","Kano","City",2010-01-01,1655
-"Drink Swan Water Bottle","Kano","City",2010-03-01,89.9999923706055
+"Cement (Dangote)","Kano","City",2010-01-01,1655
+"Water Bottle (Drink Swan)","Kano","City",2010-03-01,89.9999923706055
 "Maize White","Kano","City",2009-03-01,47.6190452575684
 "Maize White","Kano","City",2010-01-01,50.3027648925781
 "Maize White","Kano","City",2010-02-01,51.5687065124512
@@ -7328,14 +7328,14 @@
 "Rice Imported","Zamfara","Dakko-Bakura",2009-04-01,173.057464599609
 "Rice Local","Zamfara","Dakko-Bakura",2009-04-01,124.444442749023
 "Sorghum","Zamfara","Dakko-Bakura",2009-04-01,49.5238075256348
-"Cement Dangote","Yobe","Damaturu",2010-02-01,1050
-"Cement Dangote","Yobe","Damaturu",2010-03-01,1474.83337402344
-"Cement Dangote","Yobe","Damaturu",2010-04-01,1766
-"Cement Dangote","Yobe","Damaturu",2010-09-01,1000.83001708984
-"Cement Dangote","Yobe","Damaturu",2010-10-01,1860
-"Drink Swan Water Bottle","Yobe","Damaturu",2010-03-01,82.2222213745117
-"Drink Swan Water Bottle","Yobe","Damaturu",2010-04-01,78.5699996948242
-"Drink Swan Water Bottle","Yobe","Damaturu",2010-05-01,83
+"Cement (Dangote)","Yobe","Damaturu",2010-02-01,1050
+"Cement (Dangote)","Yobe","Damaturu",2010-03-01,1474.83337402344
+"Cement (Dangote)","Yobe","Damaturu",2010-04-01,1766
+"Cement (Dangote)","Yobe","Damaturu",2010-09-01,1000.83001708984
+"Cement (Dangote)","Yobe","Damaturu",2010-10-01,1860
+"Water Bottle (Drink Swan)","Yobe","Damaturu",2010-03-01,82.2222213745117
+"Water Bottle (Drink Swan)","Yobe","Damaturu",2010-04-01,78.5699996948242
+"Water Bottle (Drink Swan)","Yobe","Damaturu",2010-05-01,83
 "Maize White","Yobe","Damaturu",2009-12-01,57.0408172607422
 "Maize White","Yobe","Damaturu",2010-01-01,55.4794502258301
 "Maize White","Yobe","Damaturu",2010-02-01,56.8965492248535
@@ -7409,7 +7409,7 @@
 "Rice Local","Niger","Doko",2009-05-01,111.634613037109
 "Sorghum","Niger","Doko",2009-05-01,58.3727531433105
 "Sorghum","Niger","Doko",2009-06-01,72.8476791381836
-"Cement Dangote","Jigawa","Dutse",2009-10-01,616.666687011719
+"Cement (Dangote)","Jigawa","Dutse",2009-10-01,616.666687011719
 "Maize Yellow","Jigawa","Dutse",2009-04-01,58.7911949157715
 "Maize Yellow","Jigawa","Dutse",2009-09-01,74.0384674072266
 "Rice Imported","Jigawa","Dutse",2009-04-01,176.724136352539
@@ -7419,12 +7419,12 @@
 "Sorghum","Jigawa","Dutse",2009-10-01,35.2564086914062
 "Sorghum","Jigawa","Dutse",2009-11-01,52.9578056335449
 "Maize White","Imo","Ejekwu Aku",2012-03-01,94.8456726074219
-"Cement Dangote","Imo","Eke Owerri",2010-01-01,1513.32995605469
-"Cement Dangote","Imo","Eke Owerri",2010-04-01,1516.67004394531
-"Cement Dangote","Imo","Eke Owerri",2010-06-01,1393.32995605469
-"Cement Dangote","Imo","Eke Owerri",2010-07-01,1371.6650390625
-"Cement Dangote","Imo","Eke Owerri",2010-09-01,1457.5
-"Cement Dangote","Imo","Eke Owerri",2010-10-01,1435
+"Cement (Dangote)","Imo","Eke Owerri",2010-01-01,1513.32995605469
+"Cement (Dangote)","Imo","Eke Owerri",2010-04-01,1516.67004394531
+"Cement (Dangote)","Imo","Eke Owerri",2010-06-01,1393.32995605469
+"Cement (Dangote)","Imo","Eke Owerri",2010-07-01,1371.6650390625
+"Cement (Dangote)","Imo","Eke Owerri",2010-09-01,1457.5
+"Cement (Dangote)","Imo","Eke Owerri",2010-10-01,1435
 "Maize White","Imo","Eke Owerri",2010-05-01,106.944442749023
 "Maize White","Imo","Eke Owerri",2010-06-01,95.2380981445312
 "Maize Yellow","Imo","Eke Owerri",2010-02-01,50.5
@@ -7447,23 +7447,23 @@
 "Maize White","Ogun","Engineer Tunji",2009-02-01,70.2664794921875
 "Maize White","Ogun","Engineer Tunji",2009-03-01,65.3221282958984
 "Maize White","Ogun","Engineer Tunji",2009-05-01,70.1587295532227
-"Cement Dangote","Enugu","Enugu",2009-01-01,1666
-"Cement Dangote","Enugu","Enugu",2009-04-01,1626.66674804688
-"Cement Dangote","Enugu","Enugu",2009-06-01,1610
-"Cement Dangote","Enugu","Enugu",2009-08-01,1595
-"Cement Dangote","Enugu","Enugu",2009-09-01,1575.64709472656
-"Cement Dangote","Enugu","Enugu",2009-10-01,1597.05883789062
-"Cement Dangote","Enugu","Enugu",2009-11-01,1576.66662597656
-"Cement Dangote","Enugu","Enugu",2009-12-01,1580.80004882812
-"Cement Dangote","Enugu","Enugu",2010-04-01,1522.5
-"Cement Dangote","Enugu","Enugu",2010-05-01,1551.66662597656
-"Cement Dangote","Enugu","Enugu",2010-06-01,1528
-"Cement Dangote","Enugu","Enugu",2010-07-01,1300
-"Cement Dangote","Enugu","Enugu",2010-08-01,1542.5
-"Cement Dangote","Enugu","Enugu",2010-10-01,1544
-"Cement Dangote","Enugu","Enugu",2010-11-01,1507.5
-"Drink Swan Water Bottle","Enugu","Enugu",2009-09-01,94.2307662963867
-"Drink Swan Water Bottle","Enugu","Enugu",2009-10-01,71.2087936401367
+"Cement (Dangote)","Enugu","Enugu",2009-01-01,1666
+"Cement (Dangote)","Enugu","Enugu",2009-04-01,1626.66674804688
+"Cement (Dangote)","Enugu","Enugu",2009-06-01,1610
+"Cement (Dangote)","Enugu","Enugu",2009-08-01,1595
+"Cement (Dangote)","Enugu","Enugu",2009-09-01,1575.64709472656
+"Cement (Dangote)","Enugu","Enugu",2009-10-01,1597.05883789062
+"Cement (Dangote)","Enugu","Enugu",2009-11-01,1576.66662597656
+"Cement (Dangote)","Enugu","Enugu",2009-12-01,1580.80004882812
+"Cement (Dangote)","Enugu","Enugu",2010-04-01,1522.5
+"Cement (Dangote)","Enugu","Enugu",2010-05-01,1551.66662597656
+"Cement (Dangote)","Enugu","Enugu",2010-06-01,1528
+"Cement (Dangote)","Enugu","Enugu",2010-07-01,1300
+"Cement (Dangote)","Enugu","Enugu",2010-08-01,1542.5
+"Cement (Dangote)","Enugu","Enugu",2010-10-01,1544
+"Cement (Dangote)","Enugu","Enugu",2010-11-01,1507.5
+"Water Bottle (Drink Swan)","Enugu","Enugu",2009-09-01,94.2307662963867
+"Water Bottle (Drink Swan)","Enugu","Enugu",2009-10-01,71.2087936401367
 "Maize White","Enugu","Enugu",2009-03-01,93.8271636962891
 "Maize White","Enugu","Enugu",2009-05-01,129.285720825195
 "Maize White","Enugu","Enugu",2009-10-01,105.820098876953
@@ -7506,7 +7506,7 @@
 "Sorghum","Enugu","Enugu",2010-12-01,127.333335876465
 "Sorghum","Enugu","Enugu",2012-12-01,107.623313903809
 "Maize Yellow","Bauchi","Faggo",2009-10-01,47.9616279602051
-"Cement Dangote","Abia","Faith Tab.Congregation",2009-08-01,1495
+"Cement (Dangote)","Abia","Faith Tab.Congregation",2009-08-01,1495
 "Maize White","Jigawa","Farin Dutse",2009-06-01,52.470157623291
 "Maize Yellow","Jigawa","Farin Dutse",2009-06-01,56.9462890625
 "Rice Imported","Jigawa","Farin Dutse",2009-06-01,192.456893920898
@@ -7635,7 +7635,7 @@
 "Rice Local","Yobe","Garin grema",2009-06-01,92.1875
 "Sorghum","Yobe","Garin grema",2009-10-01,33.9285736083984
 "Sorghum","Yobe","Garin grema",2009-12-01,33.0357131958008
-"Cement Dangote","FCT","Garki",2010-06-01,1586.67004394531
+"Cement (Dangote)","FCT","Garki",2010-06-01,1586.67004394531
 "Maize White","FCT","Garki",2010-04-01,78.605598449707
 "Maize White","FCT","Garki",2010-05-01,77.8625946044922
 "Maize White","FCT","Garki",2010-06-01,78.1586227416992
@@ -7699,7 +7699,7 @@
 "Maize Yellow","Kano","Gaya",2009-06-01,36.9262313842773
 "Rice Imported","Kano","Gaya",2009-06-01,176.300582885742
 "Rice Local","Kano","Gaya",2009-06-01,114.492752075195
-"Cement Dangote","Benue","Gboko",2010-05-01,1516.66662597656
+"Cement (Dangote)","Benue","Gboko",2010-05-01,1516.66662597656
 "Maize White","Benue","Gboko",2010-01-01,67.1105194091797
 "Maize White","Benue","Gboko",2010-03-01,91.0780639648438
 "Maize White","Benue","Gboko",2010-04-01,82.7689971923828
@@ -7751,10 +7751,10 @@
 "Sorghum","Zamfara","Gidan Dan Jatau-Maradun",2009-02-01,44.3121681213379
 "Maize Yellow","Zamfara","Giwa Barunje-Maru",2009-04-01,53.2659912109375
 "Sorghum","Zamfara","Giwa Barunje-Maru",2009-03-01,37.9310340881348
-"Cement Dangote","Gombe","Gombe",2009-11-01,1613.63635253906
-"Cement Dangote","Gombe","Gombe",2009-12-01,1730
-"Drink Swan Water Bottle","Gombe","Gombe",2010-07-01,40.5719985961914
-"Drink Swan Water Bottle","Gombe","Gombe",2010-08-01,77
+"Cement (Dangote)","Gombe","Gombe",2009-11-01,1613.63635253906
+"Cement (Dangote)","Gombe","Gombe",2009-12-01,1730
+"Water Bottle (Drink Swan)","Gombe","Gombe",2010-07-01,40.5719985961914
+"Water Bottle (Drink Swan)","Gombe","Gombe",2010-08-01,77
 "Maize White","Gombe","Gombe",2009-11-01,66.1728363037109
 "Maize White","Gombe","Gombe",2009-12-01,45.1178436279297
 "Maize White","Gombe","Gombe",2010-03-01,65.4929580688477
@@ -7810,10 +7810,10 @@
 "Rice Local","Sokoto","Gombila",2009-05-01,108.620681762695
 "Rice Local","Sokoto","Gombila",2009-06-01,102.155166625977
 "Sorghum","Sokoto","Gombila",2009-02-01,47.6190490722656
-"Cement Dangote","Zamfara","Gusau",2010-01-01,3250
-"Cement Dangote","Zamfara","Gusau",2010-11-01,4266.66650390625
-"Cement Dangote","Zamfara","Gusau",2010-12-01,4266.669921875
-"Drink Swan Water Bottle","Zamfara","Gusau",2010-12-01,81.4300003051758
+"Cement (Dangote)","Zamfara","Gusau",2010-01-01,3250
+"Cement (Dangote)","Zamfara","Gusau",2010-11-01,4266.66650390625
+"Cement (Dangote)","Zamfara","Gusau",2010-12-01,4266.669921875
+"Water Bottle (Drink Swan)","Zamfara","Gusau",2010-12-01,81.4300003051758
 "Maize White","Zamfara","Gusau",2009-09-01,58.641975402832
 "Maize White","Zamfara","Gusau",2010-01-01,53.9259262084961
 "Maize White","Zamfara","Gusau",2010-02-01,56.1349678039551
@@ -7894,7 +7894,7 @@
 "Rice Local","FCT","Gwagwalada-Abuja",2009-02-01,109.677421569824
 "Sorghum","FCT","Gwagwalada-Abuja",2009-08-01,73.0769271850586
 "Sorghum","FCT","Gwagwalada-Abuja",2009-12-01,81.7307739257812
-"Cement Dangote","Kebbi","Gwandu",2009-04-01,1783.33312988281
+"Cement (Dangote)","Kebbi","Gwandu",2009-04-01,1783.33312988281
 "Maize White","Kebbi","Gwandu",2009-02-01,50.9031219482422
 "Maize White","Kebbi","Gwandu",2009-03-01,48.4729042053223
 "Maize White","Kebbi","Gwandu",2009-04-01,50.3448257446289
@@ -7923,7 +7923,7 @@
 "Sorghum","Jigawa","Hadejia",2009-09-01,50.5660362243652
 "Sorghum","Jigawa","Hadejia",2009-11-01,49.9445037841797
 "Sorghum","Jigawa","Hadejia",2009-12-01,37.1764717102051
-"Cement Dangote","Oyo","Ibadan",2010-01-01,1652.5
+"Cement (Dangote)","Oyo","Ibadan",2010-01-01,1652.5
 "Maize White","Oyo","Ibadan",2009-01-01,67.3611145019531
 "Maize White","Oyo","Ibadan",2009-02-01,66.25
 "Maize White","Oyo","Ibadan",2009-04-01,64.8897094726562
@@ -8012,9 +8012,9 @@
 "Sorghum","Ekiti","Idagba mkt Efon lga",2009-11-01,101.612899780273
 "Rice Imported","Kaduna","Idon",2009-04-01,194.642868041992
 "Rice Imported","Kaduna","Idon",2009-06-01,194.117645263672
-"Cement Dangote","Imo","Ifekala",2009-09-01,1554.66638183594
-"Cement Dangote","Imo","Ifekala",2009-12-01,1556.57141113281
-"Drink Swan Water Bottle","Imo","Ifekala",2009-09-01,94.7058792114258
+"Cement (Dangote)","Imo","Ifekala",2009-09-01,1554.66638183594
+"Cement (Dangote)","Imo","Ifekala",2009-12-01,1556.57141113281
+"Water Bottle (Drink Swan)","Imo","Ifekala",2009-09-01,94.7058792114258
 "Maize White","Imo","Ifekala",2009-09-01,114.285697937012
 "Maize White","Imo","Ifekala",2009-12-01,108.333351135254
 "Rice Local","Imo","Ifekala",2009-06-01,170.370346069336
@@ -8040,7 +8040,7 @@
 "Maize White","Lagos","Ijede-Ikorodu",2009-05-01,85.7549819946289
 "Maize Yellow","Lagos","Ijede-Ikorodu",2009-05-01,105.137397766113
 "Rice Imported","Lagos","Ijede-Ikorodu",2009-05-01,145.601181030273
-"Cement Dangote","Lagos","Ikeja",2009-12-01,1666.66674804688
+"Cement (Dangote)","Lagos","Ikeja",2009-12-01,1666.66674804688
 "Maize White","Lagos","Ikeja",2009-02-01,100.208335876465
 "Maize White","Lagos","Ikeja",2009-03-01,116.071434020996
 "Maize White","Lagos","Ikeja",2009-04-01,103.061241149902
@@ -8074,10 +8074,10 @@
 "Maize White","Kwara","Ile Apa",2009-06-01,58.8510856628418
 "Rice Imported","Kwara","Ile Apa",2009-06-01,199.564788818359
 "Sorghum","Kwara","Ile Apa",2009-06-01,59.6309356689453
-"Cement Dangote","Osun","Ile-Ife",2009-10-01,1520
-"Cement Dangote","Osun","Ile-Ife",2010-02-01,1643.33337402344
-"Cement Dangote","Osun","Ile-Ife",2010-11-01,1570
-"Drink Swan Water Bottle","Osun","Ile-Ife",2010-12-01,126.669998168945
+"Cement (Dangote)","Osun","Ile-Ife",2009-10-01,1520
+"Cement (Dangote)","Osun","Ile-Ife",2010-02-01,1643.33337402344
+"Cement (Dangote)","Osun","Ile-Ife",2010-11-01,1570
+"Water Bottle (Drink Swan)","Osun","Ile-Ife",2010-12-01,126.669998168945
 "Maize White","Osun","Ile-Ife",2010-01-01,57.7777786254883
 "Maize White","Osun","Ile-Ife",2010-02-01,58.646614074707
 "Maize White","Osun","Ile-Ife",2010-03-01,57.2580680847168
@@ -8129,9 +8129,9 @@
 "Sorghum","Osun","Ile-Ife",2012-12-01,108.280250549316
 "Maize White","Ekiti","Ilokun Camp",2009-01-01,101.363632202148
 "Rice Imported","Ekiti","Ilokun Camp",2009-01-01,179.802795410156
-"Cement Dangote","Kwara","Ilorin",2010-04-01,1626.67004394531
-"Cement Dangote","Kwara","Ilorin",2010-07-01,1593.32995605469
-"Drink Swan Water Bottle","Kwara","Ilorin",2010-12-01,78.3300018310547
+"Cement (Dangote)","Kwara","Ilorin",2010-04-01,1626.67004394531
+"Cement (Dangote)","Kwara","Ilorin",2010-07-01,1593.32995605469
+"Water Bottle (Drink Swan)","Kwara","Ilorin",2010-12-01,78.3300018310547
 "Maize White","Kwara","Ilorin",2010-01-01,68.2464447021484
 "Maize White","Kwara","Ilorin",2010-07-01,63.9498443603516
 "Maize Yellow","Kwara","Ilorin",2010-03-01,61.4457817077637
@@ -8186,8 +8186,8 @@
 "Rice Local","Plateau","J.Dabal",2009-03-01,115.254234313965
 "Rice Local","Plateau","J.Dabal",2009-04-01,122.033897399902
 "Sorghum","Plateau","J.Dabal",2009-02-01,51.9370460510254
-"Cement Dangote","Taraba","Jalingo",2010-06-01,1691.66662597656
-"Cement Dangote","Taraba","Jalingo",2010-11-01,1670.8349609375
+"Cement (Dangote)","Taraba","Jalingo",2010-06-01,1691.66662597656
+"Cement (Dangote)","Taraba","Jalingo",2010-11-01,1670.8349609375
 "Maize White","Taraba","Jalingo",2009-12-01,51.298698425293
 "Maize White","Taraba","Jalingo",2010-01-01,49.9599685668945
 "Maize White","Taraba","Jalingo",2010-02-01,48.2972145080566
@@ -8270,11 +8270,11 @@
 "Maize White","Taraba","Jem mkt Karim Lamido lga",2009-11-01,65.5208892822266
 "Sorghum","Taraba","Jem mkt Karim Lamido lga",2009-11-01,83.2644653320312
 "Sorghum","Taraba","Jem mkt Karim Lamido lga",2009-12-01,65.9090881347656
-"Cement Dangote","Plateau","Jos",2009-09-01,4164.28564453125
-"Cement Dangote","Plateau","Jos",2010-01-01,4616.66650390625
-"Cement Dangote","Plateau","Jos",2010-07-01,3950
-"Drink Swan Water Bottle","Plateau","Jos",2009-09-01,106.296295166016
-"Drink Swan Water Bottle","Plateau","Jos",2009-10-01,96.6666564941406
+"Cement (Dangote)","Plateau","Jos",2009-09-01,4164.28564453125
+"Cement (Dangote)","Plateau","Jos",2010-01-01,4616.66650390625
+"Cement (Dangote)","Plateau","Jos",2010-07-01,3950
+"Water Bottle (Drink Swan)","Plateau","Jos",2009-09-01,106.296295166016
+"Water Bottle (Drink Swan)","Plateau","Jos",2009-10-01,96.6666564941406
 "Maize White","Plateau","Jos",2010-07-01,52.8634338378906
 "Maize White","Plateau","Jos",2010-11-01,44.0476188659668
 "Maize White","Plateau","Jos",2010-12-01,44.0499992370605
@@ -8325,12 +8325,12 @@
 "Rice Local","Plateau","K.Abu",2009-05-01,148.531066894531
 "Rice Local","Plateau","K.West",2009-02-01,90.625
 "Sorghum","Plateau","K.West",2009-10-01,63.8431358337402
-"Cement Dangote","Kaduna","Kachia",2009-04-01,1932.935546875
-"Cement Dangote","Kaduna","Kaduna",2009-03-01,1766.66784667969
-"Cement Dangote","Kaduna","Kaduna",2010-01-01,2870
-"Cement Dangote","Kaduna","Kaduna",2010-02-01,1445
-"Cement Dangote","Kaduna","Kaduna",2010-03-01,1496
-"Cement Dangote","Kaduna","Kaduna",2010-04-01,1840
+"Cement (Dangote)","Kaduna","Kachia",2009-04-01,1932.935546875
+"Cement (Dangote)","Kaduna","Kaduna",2009-03-01,1766.66784667969
+"Cement (Dangote)","Kaduna","Kaduna",2010-01-01,2870
+"Cement (Dangote)","Kaduna","Kaduna",2010-02-01,1445
+"Cement (Dangote)","Kaduna","Kaduna",2010-03-01,1496
+"Cement (Dangote)","Kaduna","Kaduna",2010-04-01,1840
 "Maize White","Kaduna","Kaduna",2009-03-01,49.5481033325195
 "Maize White","Kaduna","Kaduna",2009-04-01,46.5367965698242
 "Maize White","Kaduna","Kaduna",2009-05-01,52.9256744384766
@@ -8412,9 +8412,9 @@
 "Maize Yellow","Niger","Kaffin-Koro",2009-12-01,73.4693832397461
 "Rice Imported","Niger","Kaffin-Koro",2009-06-01,209.230773925781
 "Rice Imported","Katsina","Kafin Duku-Duku",2009-02-01,148.148147583008
-"Cement Dangote","Kano","Kano Municipal",2009-03-01,1777.08337402344
-"Drink Swan Water Bottle","Kano","Kano Municipal",2009-05-01,77.8125
-"Drink Swan Water Bottle","Kano","Kano Municipal",2009-09-01,86.1111068725586
+"Cement (Dangote)","Kano","Kano Municipal",2009-03-01,1777.08337402344
+"Water Bottle (Drink Swan)","Kano","Kano Municipal",2009-05-01,77.8125
+"Water Bottle (Drink Swan)","Kano","Kano Municipal",2009-09-01,86.1111068725586
 "Maize White","Kano","Kano Municipal",2009-02-01,54.5509223937988
 "Maize White","Kano","Kano Municipal",2009-03-01,52.8575706481934
 "Maize White","Kano","Kano Municipal",2009-04-01,51.9073143005371
@@ -8477,7 +8477,7 @@
 "Maize Yellow","Zamfara","Kaura Namoda",2009-12-01,77.0713119506836
 "Sorghum","Zamfara","Kaura Namoda",2009-03-01,47.2883605957031
 "Sorghum","Zamfara","Kaura Namoda",2009-12-01,70.9375
-"Drink Swan Water Bottle","Jigawa","Kazaure",2011-02-01,75.7099990844727
+"Water Bottle (Drink Swan)","Jigawa","Kazaure",2011-02-01,75.7099990844727
 "Maize White","Jigawa","Kazaure",2009-01-01,48.9432792663574
 "Maize White","Jigawa","Kazaure",2009-06-01,60.0502243041992
 "Maize White","Jigawa","Kazaure",2009-11-01,57.0151710510254
@@ -8560,7 +8560,7 @@
 "Maize White","Bauchi","Lumbu",2009-06-01,72.2222213745117
 "Maize Yellow","Bauchi","Lumbu",2009-06-01,70.2702713012695
 "Rice Local","Bauchi","Lumbu",2009-06-01,126.315795898438
-"Cement Dangote","Kano","M. Jama'a",2009-05-01,1835
+"Cement (Dangote)","Kano","M. Jama'a",2009-05-01,1835
 "Maize White","Kano","M. Jama'a",2009-02-01,46.6529083251953
 "Maize White","Kano","M. Jama'a",2009-03-01,42.9750823974609
 "Maize Yellow","Kano","M. Jama'a",2009-02-01,55.5768585205078
@@ -8592,8 +8592,8 @@
 "Rice Imported","Kano","Madaki",2009-03-01,169.491516113281
 "Maize White","Niger","Madalla",2009-08-01,66.744384765625
 "Maize Yellow","Niger","Madalla",2009-08-01,66.5018844604492
-"Drink Swan Water Bottle","Borno","Maiduguri",2009-10-01,80.75
-"Drink Swan Water Bottle","Borno","Maiduguri",2009-12-01,77.1428604125977
+"Water Bottle (Drink Swan)","Borno","Maiduguri",2009-10-01,80.75
+"Water Bottle (Drink Swan)","Borno","Maiduguri",2009-12-01,77.1428604125977
 "Maize White","Borno","Maiduguri",2009-09-01,63.0952453613281
 "Maize White","Borno","Maiduguri",2009-10-01,59.5238189697266
 "Maize White","Borno","Maiduguri",2009-11-01,61.7346954345703
@@ -8641,12 +8641,12 @@
 "Rice Local","Kebbi","Makufa",2009-03-01,103.409088134766
 "Sorghum","Kebbi","Makufa",2009-03-01,34.528076171875
 "Sorghum","Kebbi","Makufa",2009-06-01,38.7096786499023
-"Cement Dangote","Yobe","Mal Lauwali",2009-10-01,2183.33325195312
+"Cement (Dangote)","Yobe","Mal Lauwali",2009-10-01,2183.33325195312
 "Maize White","Yobe","Mal Lauwali",2009-09-01,64.1666641235352
 "Sorghum","Kaduna","Malagum",2009-11-01,55.4945068359375
 "Rice Imported","Sokoto","Malam Usman",2009-03-01,163.33332824707
 "Sorghum","Adamawa","Malamre",2009-12-01,70.9956665039062
-"Drink Swan Water Bottle","Sokoto","Mammy Market",2009-10-01,50.7142868041992
+"Water Bottle (Drink Swan)","Sokoto","Mammy Market",2009-10-01,50.7142868041992
 "Maize White","Sokoto","Mammy Market",2012-12-01,66.667854309082
 "Rice Imported","Sokoto","Mammy Market",2009-05-01,186.66667175293
 "Rice Local","Sokoto","Mammy Market",2012-12-01,126.437934875488
@@ -8671,8 +8671,8 @@
 "Maize Yellow","Taraba","Mile 6 mkt Jalingo lga",2009-11-01,57.8850555419922
 "Sorghum","Taraba","Mile 6 mkt Jalingo lga",2009-11-01,82.4173278808594
 "Sorghum","Taraba","Mile 6 mkt Jalingo lga",2009-12-01,85.3535308837891
-"Drink Swan Water Bottle","Niger","Minna",2009-09-01,42.5
-"Drink Swan Water Bottle","Niger","Minna",2009-11-01,57.5
+"Water Bottle (Drink Swan)","Niger","Minna",2009-09-01,42.5
+"Water Bottle (Drink Swan)","Niger","Minna",2009-11-01,57.5
 "Maize White","Niger","Minna",2009-02-01,45.7516326904297
 "Maize White","Niger","Minna",2009-06-01,60.7090682983398
 "Maize White","Niger","Minna",2009-09-01,52.7777786254883
@@ -8717,7 +8717,7 @@
 "Sorghum","Adamawa","Mubi-Main MKT",2009-05-01,58.5858573913574
 "Sorghum","Adamawa","Mubi-Main MKT",2009-09-01,106.060607910156
 "Sorghum","Adamawa","Mubi-Main MKT",2009-12-01,55.6988563537598
-"Drink Swan Water Bottle","Bauchi","Muda Lawan",2009-10-01,33.125
+"Water Bottle (Drink Swan)","Bauchi","Muda Lawan",2009-10-01,33.125
 "Rice Imported","Bauchi","Muda Lawan",2009-04-01,179.661010742188
 "Rice Imported","Kaduna","Musa Ogah",2009-05-01,196.491241455078
 "Maize White","Taraba","Mutum Biyu",2009-11-01,74.510871887207
@@ -8756,17 +8756,17 @@
 "Sorghum","Anambra","Ngene Hall",2009-03-01,100.289840698242
 "Sorghum","Yobe","Nguru",2009-11-01,39.0306129455566
 "Sorghum","Yobe","Nguru",2009-12-01,29.4642868041992
-"Cement Dangote","Enugu","Nkwo Akpugo - Nkanu-w",2009-03-01,2800
+"Cement (Dangote)","Enugu","Nkwo Akpugo - Nkanu-w",2009-03-01,2800
 "Maize White","Enugu","Nkwo-Agu Udi",2011-12-01,94.4814758300781
 "Maize White","Sokoto","Nomau Garba",2009-10-01,71.6049346923828
 "Rice Local","Sokoto","Nomau Garba",2009-06-01,126.43677520752
 "Sorghum","Sokoto","Nomau Garba",2009-03-01,51.9230804443359
 "Sorghum","Sokoto","Nomau Garba",2009-10-01,58.9743614196777
-"Cement Dangote","Enugu","Nsukka",2009-01-01,1590
-"Cement Dangote","Enugu","Nsukka",2009-10-01,1555.55554199219
+"Cement (Dangote)","Enugu","Nsukka",2009-01-01,1590
+"Cement (Dangote)","Enugu","Nsukka",2009-10-01,1555.55554199219
 "Sorghum","Enugu","Nsukka",2009-02-01,100.148139953613
-"Cement Dangote","Adamawa","Numan",2009-12-01,1671.66662597656
-"Drink Swan Water Bottle","Adamawa","Numan",2009-12-01,90.8333358764648
+"Cement (Dangote)","Adamawa","Numan",2009-12-01,1671.66662597656
+"Water Bottle (Drink Swan)","Adamawa","Numan",2009-12-01,90.8333358764648
 "Rice Imported","Adamawa","Numan",2009-02-01,213.33332824707
 "Rice Local","Adamawa","Numan",2009-05-01,156.430908203125
 "Sorghum","Adamawa","Numan",2009-12-01,67.2268905639648
@@ -8804,7 +8804,7 @@
 "Rice Local","Ogun","Ogunfunke's House",2009-03-01,141.538467407227
 "Rice Local","Ogun","Ogunfunke's House",2009-04-01,169.230773925781
 "Sorghum","Ogun","Ogunfunke's House",2009-10-01,81.1372985839844
-"Cement Dangote","Abia","Ohambele",2009-03-01,1984.61535644531
+"Cement (Dangote)","Abia","Ohambele",2009-03-01,1984.61535644531
 "Maize White","Ekiti","Oja Orita mkt Ijero lga",2009-01-01,85.3128967285156
 "Rice Imported","Ekiti","Oja Orita mkt Ijero lga",2009-01-01,156.312225341797
 "Rice Local","Ekiti","Oja Orita mkt Ijero lga",2009-01-01,125.906120300293
@@ -8857,10 +8857,10 @@
 "Maize White","Ogun","Onigangan",2009-10-01,59.3702011108398
 "Maize Yellow","Ogun","Onigangan",2009-05-01,97.6190490722656
 "Maize Yellow","Ogun","Onigangan",2009-10-01,70.2116394042969
-"Cement Dangote","Anambra","Onitsha",2009-10-01,1556.66662597656
+"Cement (Dangote)","Anambra","Onitsha",2009-10-01,1556.66662597656
 "Sorghum","Anambra","Onitsha",2009-03-01,126.099998474121
-"Cement Dangote","Enugu","Orie Nenwe - Aninri",2009-10-01,1681
-"Cement Dangote","Enugu","Orie Orba-Udenu",2009-04-01,1616.66674804688
+"Cement (Dangote)","Enugu","Orie Nenwe - Aninri",2009-10-01,1681
+"Cement (Dangote)","Enugu","Orie Orba-Udenu",2009-04-01,1616.66674804688
 "Maize Yellow","Enugu","Orie Orba-Udenu",2009-02-01,73.7777786254883
 "Maize Yellow","Enugu","Orie Orba-Udenu",2009-03-01,75.5555572509766
 "Maize Yellow","Enugu","Orie Orba-Udenu",2009-04-01,92.6666717529297
@@ -8879,11 +8879,11 @@
 "Rice Local","Benue","Otukpo",2009-02-01,116.363639831543
 "Sorghum","Benue","Otukpo",2009-02-01,73.6420822143555
 "Sorghum","Benue","Otukpo",2009-05-01,106.363639831543
-"Drink Swan Water Bottle","Imo","Owerri",2009-02-01,106.666687011719
+"Water Bottle (Drink Swan)","Imo","Owerri",2009-02-01,106.666687011719
 "Maize White","Imo","Owerri",2009-02-01,102.142860412598
 "Rice Local","Imo","Owerri",2009-02-01,147.619049072266
 "Sorghum","Imo","Owerri",2009-02-01,98.0158767700195
-"Cement Dangote","Ondo","Owo",2009-09-01,1653.33361816406
+"Cement (Dangote)","Ondo","Owo",2009-09-01,1653.33361816406
 "Maize White","Ondo","Owo",2009-09-01,86.8303604125977
 "Rice Local","Ondo","Owo",2009-01-01,107.486633300781
 "Sorghum","Ondo","Owo",2009-01-01,127.058822631836
@@ -8915,10 +8915,10 @@
 "Rice Local","Yobe","Potiskum",2009-05-01,118.380058288574
 "Rice Local","Yobe","Potiskum",2009-06-01,134.375
 "Sorghum","Yobe","Potiskum",2009-12-01,103.673469543457
-"Cement Dangote","Akwa Ibom","Primary School",2012-11-01,2267.857421875
-"Cement Dangote","Kaduna","Primary School",2012-11-01,2391.66674804688
-"Drink Swan Water Bottle","Akwa Ibom","Primary School",2012-11-01,112.915000915527
-"Drink Swan Water Bottle","Kaduna","Primary School",2012-11-01,112.860000610352
+"Cement (Dangote)","Akwa Ibom","Primary School",2012-11-01,2267.857421875
+"Cement (Dangote)","Kaduna","Primary School",2012-11-01,2391.66674804688
+"Water Bottle (Drink Swan)","Akwa Ibom","Primary School",2012-11-01,112.915000915527
+"Water Bottle (Drink Swan)","Kaduna","Primary School",2012-11-01,112.860000610352
 "Maize White","Kaduna","Primary School",2010-12-01,41.1412086486816
 "Maize White","Akwa Ibom","Primary School",2012-11-01,81.3172302246094
 "Maize White","Kaduna","Primary School",2012-11-01,55.9552764892578
@@ -8933,7 +8933,7 @@
 "Rice Local","Kaduna","Primary School",2012-11-01,128.034271240234
 "Rice Local","Akwa Ibom","Primary School",2012-12-01,242.733337402344
 "Rice Local","Kaduna","Primary School",2012-12-01,151.790328979492
-"Cement Dangote","Kano","Rano",2009-03-01,1841.66687011719
+"Cement (Dangote)","Kano","Rano",2009-03-01,1841.66687011719
 "Maize White","Kano","Rano",2009-03-01,56.3393440246582
 "Maize White","Kano","Rano",2009-06-01,53.2000007629395
 "Maize White","Kano","Rano",2009-10-01,40.6857223510742
@@ -8991,9 +8991,9 @@
 "Rice Imported","Kaduna","Sabo",2009-02-01,145.099990844727
 "Rice Imported","Kaduna","Sabo",2009-06-01,188.745452880859
 "Sorghum","Kaduna","Sabo",2009-10-01,55.9500007629395
-"Cement Dangote","Borno","Sabo Gari",2012-11-01,1927.77673339844
-"Cement Dangote","Kano","Sabo Gari",2012-11-01,1913.63500976562
-"Drink Swan Water Bottle","Borno","Sabo Gari",2012-12-01,116.791481018066
+"Cement (Dangote)","Borno","Sabo Gari",2012-11-01,1927.77673339844
+"Cement (Dangote)","Kano","Sabo Gari",2012-11-01,1913.63500976562
+"Water Bottle (Drink Swan)","Borno","Sabo Gari",2012-12-01,116.791481018066
 "Maize White","Kano","Sabo Gari",2009-11-01,59.3334808349609
 "Maize White","Borno","Sabo Gari",2012-11-01,56.7924461364746
 "Maize White","Kano","Sabo Gari",2012-11-01,55.2800369262695
@@ -9016,7 +9016,7 @@
 "Sorghum","Kano","Sabon Gari",2009-02-01,45.6615371704102
 "Rice Local","Bauchi","Sabon Sura",2009-05-01,138
 "Sorghum","Kano","Samadi",2009-11-01,42.3976593017578
-"Drink Swan Water Bottle","Kaduna","Samaru",2009-04-01,98.5699996948242
+"Water Bottle (Drink Swan)","Kaduna","Samaru",2009-04-01,98.5699996948242
 "Maize White","Kaduna","Samaru",2009-04-01,52.027027130127
 "Rice Imported","Kaduna","Samaru",2009-04-01,162.352935791016
 "Rice Local","Kaduna","Samaru",2009-02-01,111.111106872559
@@ -9029,8 +9029,8 @@
 "Rice Imported","Kano","Sarkin Ali",2009-06-01,205.418716430664
 "Rice Local","Kano","Sarkin Ali",2009-06-01,125.77758026123
 "Sorghum","Kano","Sarkin Ali",2009-06-01,54.9423942565918
-"Cement Dangote","Kebbi","Shafa Zane",2009-09-01,1826.19067382812
-"Drink Swan Water Bottle","Kebbi","Shafa Zane",2009-09-01,109.333358764648
+"Cement (Dangote)","Kebbi","Shafa Zane",2009-09-01,1826.19067382812
+"Water Bottle (Drink Swan)","Kebbi","Shafa Zane",2009-09-01,109.333358764648
 "Maize White","Kebbi","Shafa Zane",2009-09-01,64.2101440429688
 "Maize White","Kebbi","Shafa Zane",2009-11-01,60.1580238342285
 "Maize White","Kebbi","Shafa Zane",2009-12-01,51.8394012451172
@@ -9049,8 +9049,8 @@
 "Rice Imported","Kaduna","Shayal",2009-03-01,179.421310424805
 "Rice Local","Kaduna","Shayal",2009-03-01,99.7345275878906
 "Sorghum","Kaduna","Shayal",2009-03-01,48.7244911193848
-"Cement Dangote","Sokoto","Sokoto",2011-02-01,1785.32995605469
-"Drink Swan Water Bottle","Sokoto","Sokoto",2011-02-01,78.7090911865234
+"Cement (Dangote)","Sokoto","Sokoto",2011-02-01,1785.32995605469
+"Water Bottle (Drink Swan)","Sokoto","Sokoto",2011-02-01,78.7090911865234
 "Maize White","Sokoto","Sokoto",2009-05-01,59.5238075256348
 "Maize White","Sokoto","Sokoto",2011-02-01,58.2901611328125
 "Maize Yellow","Sokoto","Sokoto",2009-05-01,65.0793685913086
@@ -9090,13 +9090,13 @@
 "Sorghum","Gombe","Ugn.Tunga",2009-09-01,42.2477645874023
 "Sorghum","Gombe","Ugn.Tunga",2009-11-01,43.5052490234375
 "Sorghum","Gombe","Ugn.Tunga",2009-12-01,47.5264549255371
-"Cement Dangote","Abia","Umuahia",2009-01-01,1250
-"Cement Dangote","Abia","Umuahia",2009-10-01,1507.69226074219
+"Cement (Dangote)","Abia","Umuahia",2009-01-01,1250
+"Cement (Dangote)","Abia","Umuahia",2009-10-01,1507.69226074219
 "Rice Imported","Abia","Umuahia",2012-03-01,130.681518554688
 "Maize White","Imo","Umuaririogu",2012-03-01,99.9259262084961
-"Cement Dangote","Imo","Umueze Ala Owerre",2009-04-01,1761.42858886719
-"Cement Dangote","Imo","Umueze Ala Owerre",2009-09-01,1570.37023925781
-"Cement Dangote","Imo","Umueze Ala Owerre",2009-11-01,1576
+"Cement (Dangote)","Imo","Umueze Ala Owerre",2009-04-01,1761.42858886719
+"Cement (Dangote)","Imo","Umueze Ala Owerre",2009-09-01,1570.37023925781
+"Cement (Dangote)","Imo","Umueze Ala Owerre",2009-11-01,1576
 "Maize White","Imo","Umueze Ala Owerre",2009-04-01,139.166641235352
 "Maize Yellow","Imo","Umueze Ala Owerre",2009-04-01,142
 "Rice Imported","Imo","Umueze Ala Owerre",2009-04-01,267.444458007812

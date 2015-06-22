@@ -16,13 +16,11 @@
 <link rel="stylesheet" href="libraries/main.css">
 
 <style>
-
 .sliderPoly path{
 	fill:white;
 	stroke:black;
 	shape-rendering:crispEdges;
 }
-
 </style>
 </head>
 
@@ -115,7 +113,6 @@
 </body>
 
 <script>
-
 //THE FUNCTIONS AND VARIABLES THAT ARE USED WITHIN DRAW FUNCTIONS
 function uniq_fast(a) { // quickly drop duplicate values from an array
 		var seen = {};
@@ -131,7 +128,6 @@ function uniq_fast(a) { // quickly drop duplicate values from an array
 		}
 		return out;
 	}
-
 function processPrices(d, i) { //formats price data for the map
 	var dateFormat = d3.time.format("%Y-%m-%d");
 	function deString(d) {
@@ -150,7 +146,6 @@ function processPrices(d, i) { //formats price data for the map
 	};
 	return state;
 }
-
 function processHist(d, i) { //formats price data for the map
 	var dateFormat = d3.time.format("%Y-%m-%d");
 	function deString(d) {
@@ -169,7 +164,6 @@ function processHist(d, i) { //formats price data for the map
 	};
 	return array;
 }
-
 function setBins(max,min) {// calculates the bins for the color domain in the map
 		var bounds = [];
 		for (var i=1;i<=5;i++) { // create 5 equally sized bins between min*.95 and max*1.05
@@ -184,7 +178,6 @@ var dateFormat = d3.time.format("%Y-%m-%d");
 var monthFormat = d3.time.format("%b-%y");
 var monthFormatToString = d3.time.format("%Y-%m");
 var monthYear = d3.time.format("%b %y");
-
 var sliderMonths = [];
 for (var i=2009; i<=2012;i++) {
 	for (var j=0;j<=11;j++) {
@@ -195,17 +188,14 @@ for (var i=2009; i<=2012;i++) {
 	var margin = {top: 0, right: 30, bottom: 0, left: 20},
 	    width = 300 - margin.left - margin.right,
 	    height = 30 - margin.top - margin.bottom;
-
 	var x = d3.time.scale()
 	    .domain([sliderMonths[0], sliderMonths[sliderMonths.length-1]])
 	    .range([0, width]);
-
 	var svg = d3.select("#sliderAxis").append("svg")
 	    .attr("width", width + margin.left + margin.right)
 	    .attr("height", height + margin.top + margin.bottom)
 	    .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + (20) + ")");
-
 	var axis = d3.svg.axis()
 		.scale(x)
 	  	.orient("top")
@@ -218,7 +208,6 @@ for (var i=2009; i<=2012;i++) {
 	var g = svg.append("g")
 	    .attr("class", "x axis")
 	    .call(axis)
-
 	$( "#slider" ).slider({
 		range: true,
 		min: 0,
@@ -237,7 +226,6 @@ for (var i=2009; i<=2012;i++) {
 		}
 	});
 })();
-
 d3.selectAll('.ui-slider-handle')
 	.append('svg')
 	.attr({
@@ -250,7 +238,6 @@ d3.selectAll('.ui-slider-handle')
 	.append('path')
 	.attr('d', "M0 2L13 2L13 13L7 19L0 12 Z")
 ;
-
 function processVolatility(d, i) { //formats price data for the map
       function deString(d) {
         if (d==="") {
@@ -301,7 +288,6 @@ function processVolDateLabels(d, i) { //formats price data for the map
       };
       return array;
 }
-
 //THE DATA QUEUE
 queue()
 	.defer(d3.csv, "data/priceStateData.csv", processPrices) //converts into the desired format for the map and the line chart
@@ -317,7 +303,6 @@ queue()
 	.defer(d3.json, "data/passZoneLabels.json") //the dataset for first layer of x-labels for zones
 	.defer(d3.json, "data/passItemLabels.json") //the dataset for item labels
 	.await(ready);
-
 //THE FUNCTION THAT CALLS THE OTHER DRAW FUNCTIONS
 function ready(error,priceData,nigeriaStates,allData, volatility, volLabels, volDateLabels, segmentation,segZoneLabels,segItemLabels,passthrough,passZoneLabels,passItemLabels) {
 	console.log(allData, priceData)
@@ -328,7 +313,6 @@ function ready(error,priceData,nigeriaStates,allData, volatility, volLabels, vol
 	drawSegmentation(segmentation,segZoneLabels,segItemLabels);
 	drawPassthrough(passthrough,passZoneLabels,passItemLabels);
 }
-
 //THE FUNCTION THAT DRAWS THE MAP AND THE LEGEND
 function drawMap(nigeriaStates,priceData){
 	//CREATING FUNCTIONS USED FOR THIS CHART
@@ -339,7 +323,6 @@ function drawMap(nigeriaStates,priceData){
 			var stateData = priceData.filter(function(e) {return e.state===d && e.date>=startDate && e.date<=endDate && e.item===item});
 			var meanPrice = NaN;
 			var weightTotal = NaN;
-
 			stateData.forEach(function(e) {
 				if (isNaN(meanPrice) && !isNaN(e.price)) {
 					meanPrice = e.price*e.weight;
@@ -347,7 +330,6 @@ function drawMap(nigeriaStates,priceData){
 				else if (!isNaN(meanPrice) && !isNaN(e.price)) {
 					meanPrice += e.price*e.weight;
 				}
-
 				if (isNaN(weightTotal) && !isNaN(e.weight)) {
 					weightTotal = e.weight;
 				}
@@ -355,7 +337,6 @@ function drawMap(nigeriaStates,priceData){
 					weightTotal += e.weight;
 				}
 			});
-
 			meanPrice = (meanPrice/weightTotal);
 			array.push({'state':d,'price':meanPrice})
 		});
@@ -367,14 +348,12 @@ function drawMap(nigeriaStates,priceData){
 			var dataState = mapData[i].state;
 			//pulling corresponding price values
 			var dataValue = mapData[i].price;
-
 			//adding the price value to the map properties
 			var feature = stateFeatures.filter(function(d) { return d.properties.state_name===dataState});
 			if (feature.length>0) feature[0].properties.price = dataValue;
 		}
 		return stateFeatures;
 	}
-
 	//GETTING THE DATA READY
 	var dates = $('#slider').slider('values');
 	var startDate = sliderMonths[dates[0]];
@@ -382,7 +361,6 @@ function drawMap(nigeriaStates,priceData){
 	var sel = document.getElementById('productSelectPrice'); //selecting the default based on current input
 	var product = sel.options[sel.selectedIndex].value;
 	var mapData = getMapData(startDate,endDate,priceData,product);
-
 	//CREATING THE CANVAS
 	var mapContainerSize = d3.select('#mapContainer').node().getBoundingClientRect()
 	var mapSize = {'height':mapContainerSize.height * 1,'width':mapContainerSize.width * 1};
@@ -397,20 +375,15 @@ function drawMap(nigeriaStates,priceData){
 			width: mapSize.width,
 			height: mapSize.height,
 		});
-
 	//DEFINING THE COLOR AND AXIS FUNCTION
 	var max = d3.max(mapData, function(d) { return d.price; });
 	var min = d3.min(mapData, function(d) { return d.price; });
-
 	var bounds = setBins(max,min);
-
 	var colorArray = ['rgb(255,51,51)','rgb(200,30,100)','rgb(130,15,150)','rgb(60,5,200)','rgb(0,0,255)'];
 	colorArray.reverse();
-
 	var color = d3.scale.threshold()
 		.domain(bounds)
 		.range(colorArray);
-
 	var y = d3.scale.linear().domain([min*.95, max*1.05]).range([180, 0]);
     var axis = d3.svg.axis()
     	.scale(y)
@@ -418,12 +391,10 @@ function drawMap(nigeriaStates,priceData){
     	.tickSize(9)
     	.tickValues([min*.95]
     	.concat(bounds));
-
     //DRAWING THE LEGEND
     var key = mapContainer.append("g")
         .attr("class", "key")
         .attr("transform", "translate("+(mapSize.width*.80)+","+(mapSize.height*.08)+")");
-
     key.selectAll("rect")
         .data(color.range().map(function(d, i) {
           return {
@@ -438,9 +409,7 @@ function drawMap(nigeriaStates,priceData){
         .attr("width", 8)
         .attr("x",-9)
         .style("fill", function(d) { return d.z; });
-
     key.call(axis);
-
     //CREATING THE TOOL-TIP
   	var tip = d3.tip()
       .attr('class', 'd3-tip')
@@ -451,20 +420,16 @@ function drawMap(nigeriaStates,priceData){
           "<strong>Mean Price:</strong> <span style='color:silver'>" + d3.round(d.properties.price,2) + "</span>"
           ;
     })
-
     //MERGING THE MAP AND PRICE DATA
     var stateFeatures = topojson.feature(nigeriaStates, nigeriaStates.objects.NGA_adm1).features;
     stateFeatures = mergeGeoPrice(mapData,stateFeatures);
-
     //DEFINING THE MAPPING VARIABLES
 	var projection = d3.geo.mercator()
 		.center([8.5,10.5])
 		.scale(1250)
 		.translate([mapSize.width*.35, mapSize.height*.34]);
-
 	var path = d3.geo.path()
 		.projection(projection);
-
     //DRAWING THE MAP
     var states = map.selectAll('.states')
 		.data(stateFeatures)
@@ -485,7 +450,6 @@ function drawMap(nigeriaStates,priceData){
 		.call(tip)
 		.on("mouseover", mouseoverState)
 		.on("mouseout", mouseoutState);
-
 	//DRAWING THE BOUNDARIES
 	map.append("path")
 		.datum(topojson.mesh(nigeriaStates, nigeriaStates.objects.NGA_adm1, function(a, b) { return a !== b ; }))
@@ -493,9 +457,7 @@ function drawMap(nigeriaStates,priceData){
 			d: path,
 			'class': 'state-boundary'
 		});
-
 	var stateArray = uniq_fast(stateFeatures.map(function(d) {return d.properties.state_name}))
-
 	stateArray.forEach(function(d) {
 		map.append("path")
 			.datum(topojson.mesh(nigeriaStates, nigeriaStates.objects.NGA_adm1, function(a, b) { return a.properties.state_name===d || b.properties.state_name===d ; }))
@@ -505,7 +467,6 @@ function drawMap(nigeriaStates,priceData){
 			})
 			.attr("id",function(e) {return d.replace(' ','')});
 	});
-
 	//DEFINING THE MOUSEOVER FUNCTIONS FOR THE MAP
 	function mouseoverState(d) {
 		var obs = d3.selectAll('.histDots').filter(function(e){return e.state === d.properties.state_name}).size()
@@ -516,7 +477,6 @@ function drawMap(nigeriaStates,priceData){
 		d3.selectAll('.histDots').filter(function(e) {return e.state===d.properties.state_name}).style('fill', 'red').attr({r: 3}).moveToFront()
 		tip.show(d)
 	}
-
 	function mouseoutState(d) {
 		var obs = d3.selectAll('.histDots').size()
 		d3.selectAll('.histText').text('Total observations: ' + obs)
@@ -526,7 +486,6 @@ function drawMap(nigeriaStates,priceData){
 		d3.selectAll('.histDots').filter(function(e) {return e.state===d.properties.state_name}).style('fill', 'silver').attr({r: 2})
 		tip.hide(d)
 	}
-
 	//RESELECTING THE PRODUCT AND REDRAWING THE MAP BASED ON CHANGES
 	d3.select('#productSelectPrice').on('change.map', function(d) {
         var product = d3.select(this).property('value');
@@ -535,7 +494,6 @@ function drawMap(nigeriaStates,priceData){
 	   	var endDate = sliderMonths[dates[1]];
         redrawMap(product, startDate, endDate);
     });
-
     $("#slider").on( "slide", function( event, ui ) {
 	    if ((ui.values[0]) >= ui.values[1]) {
 	    	return false;
@@ -548,7 +506,6 @@ function drawMap(nigeriaStates,priceData){
 	    	redrawMap(product, startDate, endDate);
 	    }
     });
-
 	function redrawMap(product, startDate, endDate) {
 		mapData = getMapData(startDate,endDate,priceData,product);
 		// set the color and axis functions
@@ -559,9 +516,7 @@ function drawMap(nigeriaStates,priceData){
 		y.domain([min*.95, max*1.05]);
     	axis.scale(y).tickValues([min*.95].concat(bounds));
     	key.call(axis)
-
     	stateFeatures = mergeGeoPrice(mapData,stateFeatures);
-
 		states
 			.data(stateFeatures)
 			.style('fill', function(d, i){
@@ -574,7 +529,6 @@ function drawMap(nigeriaStates,priceData){
 			});
 	}
 }
-
 //THE FUNCTION THAT DRAWS THE HISTOGRAM
 function drawHistogram(allData){
 	//CREATING THE FUNCTIONS USED FOR THIS CHART
@@ -601,14 +555,12 @@ function drawHistogram(allData){
 	var startDate = sliderMonths[dates[0]];
    	var endDate = sliderMonths[dates[1]];
   	var data = allData.filter(function(d){return d.item == product && dateFormat.parse(d.date)>= startDate && dateFormat.parse(d.date) <= endDate});
-
   	//CREATING THE CANVAS AND Y-SCALES
   	var containerSize = d3.select('#histChartContainer').node().getBoundingClientRect()
   	var margin = {top: 0.04*containerSize.height , right: 0.006*containerSize.width, bottom: 0.08*containerSize.height, left: 0.15*containerSize.width};
   	var padding = {top: 0.006*containerSize.height, right: 0.06*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
   	var width = containerSize.width - margin.right - margin.left; //Chart width
   	var height = containerSize.height - margin.top - margin.bottom; //Chart height
-
   	var histChart = d3.select('#histChartContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
         .attr({
           height: height + margin.top + margin.bottom,
@@ -616,19 +568,15 @@ function drawHistogram(allData){
         })
       	.append('g')
       	.attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
-
 	var yScale = d3.scale.linear()
       .domain(d3.extent(data, function(d){return d.meanPrice}))
       .range([height, 0])
-
     //CREATING THE HISTOGRAM DATA
   	var numBins = 30;
   	var histogram = d3.layout.histogram()
       .bins(yScale.ticks(numBins))
       .value(function(d){return d.meanPrice});
-
   	var histData = getData(data, histogram);
-
   	//CALCULATING THE x-Axis AND COLOUR SCALES BASED ON THE HISTOGRAM DATA
 	var maxX = d3.max(histData, function(d){return d.x})
 	var xDomain =  [];
@@ -638,24 +586,19 @@ function drawHistogram(allData){
 	var xScale = d3.scale.ordinal()
 	    .domain(xDomain)
 	    .rangeBands([0, width-padding.right], 0.01)
-
 	var max = d3.max(histData, function(d) { return d.meanPrice; });
 	var min = d3.min(histData, function(d) { return d.meanPrice; });
-
 	var axis = d3.svg.axis()//setting the axis based on the yScale
 	    .scale(yScale)
 	    .orient("left")
 	    .tickSize(4)
-
   	var dotChartSeparation = 3
   	var dotRadius = 2
-
   	//DRAWING THE ELEMENTS
   	var axisLine = histChart.append("g")
         .attr('class', 'yAxis')
         .style('cursor', 'default')
         .call(axis);
-
     var dots = histChart.append('g')
       	.selectAll('.histDots')
       	.data(histData)
@@ -668,8 +611,6 @@ function drawHistogram(allData){
         	class: 'histDots'
       	})
       	.attr('fill', 'silver')
-
-
     //CREATING LABELS AND TEXT
     var totObs = data.length
   	var histText = histChart.append('text')
@@ -680,7 +621,6 @@ function drawHistogram(allData){
       class: 'histText'
     })
     .attr('font-size', 11)
-
   	//MARKING THE NEW PRODUCT SELECTION AND CALLING THE REDRAW FUNCTION
   	d3.select('#productSelectPrice') //changes the product based on user input from the dropdown menu
 	    .on('change.histogram', function(d) {
@@ -710,14 +650,12 @@ function drawHistogram(allData){
 	    histData = getData(data, histogram)
 	    totObs = data.length
 	    histText.text('Total Price Observations: ' + totObs)
-
 	    maxX = d3.max(histData, function(d){return d.x})
 	    xDomain =  [];
 	    for(i=1; i<=maxX; i++){
 	      xDomain.push(i)
 	    }
 	    xScale.domain(xDomain)
-
 	    dots = dots.data(histData); //updating the dots
 	    dots.exit().remove();
 	    dots.enter().append('circle');
@@ -728,11 +666,9 @@ function drawHistogram(allData){
 	        class: 'histDots'
 	      })
 	    .attr('fill', 'silver');
-
 	    axisLine.call(axis)
   	}
 }
-
 //THE LINE CHART FUNCTION
 function drawLine(priceData){
 	//CONSTRUCTED FUNCTIONS FOR USE WITHIN THE DRAW
@@ -757,7 +693,6 @@ function drawLine(priceData){
 					price:monthlyPrice[i].price
 				};
 				mainArray.filter(function(d) {return d.state===monthlyPrice[i].state})[0].values.push(values);
-
 			}
 		}
 		for (var i=0;i<mainArray.length;i++) {
@@ -778,14 +713,12 @@ function drawLine(priceData){
 	var startDate = sliderMonths[dates[0]];
    	var endDate = sliderMonths[dates[1]];
 	var lineData = reshapeMonthlyPrice(priceData,product,startDate,endDate);
-
 	//CREATING THE CANVAS
 	var containerSize = d3.select('#lineChartContainer').node().getBoundingClientRect()
   	var margin = {top: 0.08*containerSize.height , right: 0.03*containerSize.width, bottom: 0.15*containerSize.height, left: 0.06*containerSize.width};
   	var padding = {top: 0.006*containerSize.height, right: 0.012*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
   	var width = containerSize.width - margin.right - margin.left; //Chart width
   	var height = containerSize.height - margin.top - margin.bottom; //Chart height
-
   	var lineChart = d3.select('#lineChartContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
         .attr({
           height: height + margin.top + margin.bottom,
@@ -793,7 +726,6 @@ function drawLine(priceData){
         })
       	.append('g')
       	.attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
-
     lineChart.append("clipPath")
 		.attr('id', 'lineclip')
 		.append('rect')
@@ -801,7 +733,6 @@ function drawLine(priceData){
 		.attr("width", width)
 		.attr("y", 0)
 		.attr("height", height);
-
 	var lineRectBackground = lineChart.append('rect')
 		.attr({
 			x: 0,
@@ -810,8 +741,6 @@ function drawLine(priceData){
 			height: height,
 			class: 'lineRect'
 		});
-
-
 	//DEFINING THE CHARTING VARIABLES
 	var xScale = d3.time.scale()
 		.domain(d3.extent(months))
@@ -819,12 +748,10 @@ function drawLine(priceData){
 	var yScale = d3.scale.linear()
 		.domain([0, d3.max(priceData.filter(function(e) {return e.item===product}).map(function(d) { return d.price; }))*1.05])
 		.range([height, 0]);
-
     var line = d3.svg.line()
 	    .defined(function(d) { return (d !== null && !isNaN(d.price)); })
 	    .x(function(d) { return xScale(d.month); })
 	    .y(function(d) { return yScale(d.price); });
-
 	var xAxis = d3.svg.axis()
         .scale(xScale)
         .tickSize(7)
@@ -834,7 +761,6 @@ function drawLine(priceData){
         })
         .tickPadding(8)
         .orient('bottom');
-
     //CREATING THE TOOL-TIP
   	var tip = d3.tip()
       	.attr('class', 'd3-tip')
@@ -845,25 +771,20 @@ function drawLine(priceData){
           	"<strong>Month:</strong> <span style='color:silver'>" + monthFormat(d.month) + "</span>" + "<br>" +
           	"<strong>Avg. Price:</strong> <span style='color:silver'>" + d3.round(d.price,2) + "</span>"
     	});
-
     //DRAWING THE ELEMENTS
     var xAxisNodes = lineChart.append("g")
           .attr("class", "x axis")
           .attr("transform", "translate(0," + height + ")")
           .call(xAxis);
-
 	var yAxis = d3.svg.axis()
         .scale(yScale).ticks(5)
         .orient("left")
         .tickSize(-width)
         .tickPadding(6)
         .tickFormat(function(d) { return d});
-
     var g = lineChart.append("g")
         .attr("class", "y axis")
         .call(yAxis);
-
-
 	var states = lineChart.append("g")
 		.selectAll("path")
 		.data(lineData)
@@ -871,14 +792,10 @@ function drawLine(priceData){
 		.attr("class", "stateLines")
 		.attr("d", function(d) { d.line = this; return line(d.values); })
 		.attr("clip-path", 'url(#lineclip)')
-
-
 	var voronoi = d3.geom.voronoi()
 	    .x(function(d) { return xScale(d.month); })
 	    .y(function(d) { return yScale(d.price); })
 	    .clipExtent([[0, 0], [width, height]]);
-
-
   	var voronoiGroup = lineChart.append("g")
 		.attr("class", "voronoi")
 		.selectAll("path")
@@ -893,18 +810,14 @@ function drawLine(priceData){
 		.style("cursor","default")
 		.on("mouseover", mouseoverLine)
 		.on("mouseout", mouseoutLine);
-
 	var focus = lineChart.append("g")
 		.attr("transform", "translate(-100,-100)")
 		.attr("class", "focus");
-
 	focus.append("circle")
 		.attr("r", 3.5)
 		.style("fill","red")
 		.style("stroke","none")
 		.call(tip);
-
-
 	//DEFINING THE MOUSEOVER FUNCTIONS
 	function mouseoverLine(d) {
 		var obs = d3.selectAll('.histDots').filter(function(e){return e.state === d.state && e.date === dateFormat(d.month)}).size()
@@ -926,7 +839,6 @@ function drawLine(priceData){
 		d3.selectAll('.histDots').filter(function(t){return t.state === (d.state)}).style('fill', 'silver').attr({r: 2});
 		tip.hide(d);
 	}
-
 	d3.select('#productSelectPrice').on('change.line', function(d) {
         var product = d3.select(this).property('value');
 		var dates = $('#slider').slider('values');
@@ -947,7 +859,6 @@ function drawLine(priceData){
 	        redrawLine(product,startDate,endDate,drawVoronoi);
 	    }
     });
-
     $("#slider").on( "slidestop", function( event, ui ) {
 	    if ((ui.values[0]) >= ui.values[1]) {
 	    	return false;
@@ -960,30 +871,25 @@ function drawLine(priceData){
 	        redrawLine(product,startDate,endDate,drawVoronoi);
 	    }
     });
-
 	function redrawLine(item,startDate,endDate,drawVoronoi) {
 		// var months = uniq_fast(priceData.filter(function(e) {return e.item===item && e.date>=startDate && e.date<=endDate}).map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
 		var lineData = reshapeMonthlyPrice(priceData,item,startDate,endDate);
-
 		xScale.domain([startDate,endDate]);
 		yScale.domain([0, d3.max(priceData.filter(function(e) {return e.item===item}).map(function(d) { return d.price; }))*1.05]);
 		xAxisNodes.call(xAxis);
 		g.call(yAxis);
-
 		states = states.data(lineData);
 		states.exit().remove();
 		states.enter().append('path');
 		states.attr("class","stateLines")
 			.attr("d",function(d) { d.line = this; return line(d.values); })
 			.attr("clip-path", 'url(#lineclip)');
-
 	  	if (drawVoronoi===true) {
 	  		voronoiGroup = voronoiGroup.data(voronoi(d3.nest()
 				.key(function(d) { return xScale(d.month) + "," + yScale(d.price); })
 				.rollup(function(v) { return v[0]; })
 				.entries(d3.merge(lineData.map(function(d) { return d.values; })))
 				.map(function(d) { return d.values; })));
-
 			voronoiGroup.exit().remove();
 			voronoiGroup.enter().append("path");
 			voronoiGroup
@@ -994,10 +900,8 @@ function drawLine(priceData){
 				.on("mouseover", mouseoverLine)
 				.on("mouseout", mouseoutLine);
 	  	}
-
 	}
 }
-
 //THE DRAW FUNCTION FOR THE VOLATILITY
 function drawVolatility(volatility, volLabels, volDateLabels){
  // console.log(monthFormat(volDateLabels[0].date))
@@ -1008,7 +912,6 @@ function drawVolatility(volatility, volLabels, volDateLabels){
   /*var uniqDates = uniq_fast(data.map(function(d){return d.date})).sort(function(a,b) { return a - b;})
   var test = data.filter(function(d){return monthFormatToString(d.date) === monthFormatToString(uniqDates[0])})
   console.log(test)*/
-
   function getMean(data, xScale, yScale){
     var uniqDates = uniq_fast(data.map(function(d){return d.date})).sort(function(a,b) { return a - b;});
     var uniqZones = uniq_fast(data.map(function(d){return d.zoneCode})).sort(function(a,b) { return a - b;});
@@ -1058,7 +961,6 @@ function drawVolatility(volatility, volLabels, volDateLabels){
   };
   var yDomain = d3.extent(data, function(d){return d.volMoving}) //the y-axis is set to the range of volatility values
   var colorDomain = yDomain
-
   //CREATING THE CANVAS AND MAKING THE SCALES
   var mainSize = d3.select('#main').node().getBoundingClientRect()
   var containerSize = {'width':(mainSize.width*.9)*.6, 'height':240};
@@ -1066,7 +968,6 @@ function drawVolatility(volatility, volLabels, volDateLabels){
   var padding = {top: 0.06*containerSize.height, right: 0.006*containerSize.width, bottom: 0.07*containerSize.height, left: 0.04*containerSize.width};
   var width = containerSize.width - margin.right - margin.left; //Chart width
   var height = containerSize.height - margin.top - margin.bottom; //Chart height
-
   var volChart = d3.select('#volatilityContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
       .attr({
         height: height + margin.top + margin.bottom,
@@ -1074,34 +975,27 @@ function drawVolatility(volatility, volLabels, volDateLabels){
       })
       .append('g')
       .attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
-
   var xScale = d3.scale.ordinal() //the ordinal scale uses dotpositions to place them on charts
       .domain(xDomain)
       .rangeBands([padding.left, width], .1);
-
   var yScale = d3.scale.linear() //set to the range of seg values
       .domain(yDomain)
       .range([height - padding.bottom, 0]);
-
   var colorScale = d3.scale.linear() //could change the scale later
       .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
       .range(["#C0C0C0", "#ff0000"])
       .interpolate(d3.interpolateLab);
-
   var yAxis = d3.svg.axis()
       .scale(yScale)
       .orient("left")
       .tickSize(3)
       .ticks(6)
       .tickPadding(8);
-
   var dotRadius = 3;
   var xFont = 10;
   var itemNamestagger = 10;
-
   //GETTING THE MEAN DATA READY
   var means = getMean(data, xScale, yScale)
-
   //SETTING THE TOOL-TIPs AND TEXT DATA
   var dotTip = d3.tip()
       .attr('class', 'd3-tip')
@@ -1112,7 +1006,6 @@ function drawVolatility(volatility, volLabels, volDateLabels){
           "<strong>Centre:</strong> <span style='color:silver'>" + d.centre + "</span>" + "<br>" +
           "<strong>Volatility:</strong> <span style=" + "'" + "color:" + colorScale(d.volMoving) +"'" +">" + d3.round(d.volMoving, 2) + "</span>" + "<br>" + "<strong>State Mean:</strong> <span style=" + "'" + "color:" + colorScale(mean) +"'" +">" + mean + "</span>";
     });
-
   //DRAWING THE ELEMENTS
   volChart.append('g')
     .selectAll('.volZoneLab')
@@ -1128,7 +1021,6 @@ function drawVolatility(volatility, volLabels, volDateLabels){
     .style('text-anchor', 'middle')
     .attr('font-size', xFont)
     .style('cursor', 'default');
-
   volChart.append('g')
     .selectAll('.dateLabels')
     .data(volDateLabels)
@@ -1142,12 +1034,10 @@ function drawVolatility(volatility, volLabels, volDateLabels){
     .style('text-anchor', 'middle')
     .style('font-size', xFont)
     .style('cursor', 'default');
-
   var yAxisLine = volChart.append('g')
       .attr('class', 'yAxis')
       .call(yAxis)
       .style('pointer-events', 'none')
-
   var hoverRects = volChart.append('g')
       .selectAll('.hoverRects')
       .data(volLabels)
@@ -1162,7 +1052,6 @@ function drawVolatility(volatility, volLabels, volDateLabels){
       .attr("fill-opacity", "0")
       .on('mouseover', mouseoverRect)
       .on('mouseout', mouseoutRect)
-
   var dots = volChart.append('g')
       .selectAll('.volDots')
       .data(data)
@@ -1178,7 +1067,6 @@ function drawVolatility(volatility, volLabels, volDateLabels){
       .call(dotTip)
       .on('mouseover', mouseoverDot)
       .on('mouseout', mouseoutDot)
-
   var meanCross = volChart.append('g')
       .selectAll('.meanCross')
       .data(means[1])
@@ -1197,7 +1085,6 @@ function drawVolatility(volatility, volLabels, volDateLabels){
       .style('text-anchor', 'middle')
       .style('cursor', 'default')
       .style('pointer-events', 'none')
-
   var meanLines = volChart.append('g')
       .selectAll('.meanLines')
       .data(means[0])
@@ -1212,7 +1099,6 @@ function drawVolatility(volatility, volLabels, volDateLabels){
       })
       .style('stroke', 'black')
       .style('pointer-events', 'none')
-
   //ADDING AXIS LABELS AND SUMMARY TEXT
   var totMean = d3.round(d3.mean(data, function(d){return d.volMoving}), 2);
   var totObs = data.length;
@@ -1224,7 +1110,6 @@ function drawVolatility(volatility, volLabels, volDateLabels){
     })
     .attr('font-size', xFont+2)
     .style('cursor', 'default')
-
   yAxisLine.append('text')
       .text("Price Volatility (12 month window)")
       .attr("text-anchor", "middle")
@@ -1242,15 +1127,12 @@ function drawVolatility(volatility, volLabels, volDateLabels){
       })
       .style("font-size", xFont+2)
       .style('text-anchor', 'middle')
-
-
   //MARKING THE NEW PRODUCT SELECTION AND CALLING THE REDRAW FUNCTION
   d3.select('#productSelectVolatility') //changes the product based on user input from the dropdown menu
     .on('change', function(d) {
         var product = d3.select(this).property('value')
         redraw(product)
     })
-
   //CREATING THE REDRAW FUNCTION
   function redraw(product){
     data = volatility.filter(function(d){return d.item === product});
@@ -1262,7 +1144,6 @@ function drawVolatility(volatility, volLabels, volDateLabels){
     totMean = d3.round(d3.mean(data, function(d){return d.volMoving}), 2)
     totObs = data.length
     zoneText.text('National Mean: ' + totMean + ', Observations: ' + totObs + ' (across all dates)')
-
     yAxisLine.call(yAxis)
     dots = dots.data(data)
     dots.exit().remove()
@@ -1274,7 +1155,6 @@ function drawVolatility(volatility, volLabels, volDateLabels){
       class: 'volDots',
       fill: function(d){return colorScale(d.volMoving)}
     })
-
     meanCross = meanCross.data(means[1])
     meanCross.exit().remove()
     meanCross.enter().append('text').text('x')
@@ -1283,7 +1163,6 @@ function drawVolatility(volatility, volLabels, volDateLabels){
       y: function(d){return d.meanZone},
       class: 'meanCross'
     })
-
     meanLines = meanLines.data(means[0])
     meanLines.exit().remove()
     meanLines.enter().append('line')
@@ -1294,9 +1173,7 @@ function drawVolatility(volatility, volLabels, volDateLabels){
       y2: function(d){return d.meanDate},
       class: 'meanLines'
     })
-
   }
-
   function mouseoverRect(d){
     var obs = d3.selectAll('.volDots').filter(function(e){return e.zoneCode === d.zoneCode}).size()
     var mean = d3.round(d3.mean(data.filter(function(g) {return g.zoneCode === d.zoneCode}), function(z){return z.volMoving}),2)
@@ -1313,7 +1190,6 @@ function drawVolatility(volatility, volLabels, volDateLabels){
     d3.selectAll('.volZoneLab').filter(function(t){return t.zoneCode === d.zoneCode}).classed('textHoverShow', false)
     d3.selectAll('.meanCross').filter(function(t){return t.zoneCode === d.zoneCode}).classed('textHoverShow', false)
   }
-
   function mouseoverDot(d){
     var obs = d3.selectAll('.volDots').filter(function(e){return e.zoneCode === d.zoneCode}).size()
     var mean = d3.round(d3.mean(data.filter(function(g) {return g.zoneCode === d.zoneCode}), function(z){return z.volMoving}),2)
@@ -1332,8 +1208,6 @@ function drawVolatility(volatility, volLabels, volDateLabels){
     dotTip.hide(d)
   }
 }
-
-
 //THE DRAW FUNCTION FOR THE SEGMENTATION
 function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
 	/*GETTING THE DATA AND DOMAINS READY*/
@@ -1344,7 +1218,6 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
   };
   var yDomain = d3.extent(segmentation, function(d){return d.seg}); //the domain of the y-axis is set to the range of segmentation values
   var colorDomain = yDomain; //same with the color scale
-
   /*CREATING THE CANVAS*/
   var mainSize = d3.select('#main').node().getBoundingClientRect()
   var containerSize = {'width':(mainSize.width*.9)*.6, 'height':240};
@@ -1353,7 +1226,6 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
   var padding = {top: 0.006*containerSize.height, right: 0.0006*containerSize.width, bottom: 0.1*containerSize.height, left: 0.05*containerSize.width};
   var width = containerSize.width - margin.right - margin.left; //Chart width
   var height = containerSize.height - margin.top - margin.bottom; //Chart height
-
   var segChart = d3.select('#segmentationContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
         .attr({
           height: height + margin.top + margin.bottom,
@@ -1361,31 +1233,25 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
         })
       .append('g')
       .attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
-
   var xScale = d3.scale.ordinal() //the ordinal scale uses dotpositions to place them on charts
       .domain(xDomain)
       .rangeBands([padding.left, width], .1);
-
   var yScale = d3.scale.linear() //set to the range of seg values
       .domain(yDomain)
       .range([height - padding.bottom, 0]);
-
   var yAxis = d3.svg.axis()
       .scale(yScale)
       .orient("left")
       .tickSize(3)
       .ticks(5)
       .tickPadding(8);
-
   var colorScale = d3.scale.linear() //could change the scale later
       .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
       .range(["#C0C0C0", "#ff0000"])
       .interpolate(d3.interpolateLab);
-
   var dotRadius = 3;
   var xFont = 10;
   var itemNamestagger = 10;
-
   //TOOL-TIP
   var tip = d3.tip()
       .attr('class', 'd3-tip')
@@ -1412,7 +1278,6 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
       .style('text-anchor', 'middle')
       .attr('font-size', xFont)
       .style('cursor', 'default');
-
   segChart.append('g')
       .attr('class', 'item-labels')
       .selectAll('text')
@@ -1427,8 +1292,6 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
       .style('text-anchor', 'middle')
       .style('font-size', xFont)
       .style('cursor', 'default');
-
-
   segChart.append('g')
       .selectAll('.segHoverRects')
       .data(segZoneLabels)
@@ -1446,12 +1309,10 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
       .style('pointer-events', 'all')
       .on('mouseover', mouseoverRect)
       .on('mouseout', mouseoutRect);
-
   var yAxisLine = segChart.append('g') //Adding the axis to the bottom of the first panel
       .attr('class', 'yAxis')
       .style('cursor', 'default')
       .call(yAxis)
-
   segChart.append('g')
       .selectAll('.segDots')
       .data(segmentation)
@@ -1468,7 +1329,6 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
       .call(tip)
       .on('mouseover', mouseoverDot)
       .on('mouseout', mouseoutDot);
-
   segChart.append('g')
       .selectAll('.segMeanCross')
       .data(segZoneLabels)
@@ -1487,7 +1347,6 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
       .style('text-anchor', 'middle')
       .style('cursor', 'default')
       .style('pointer-events', 'none');
-
   segChart.append('g')
       .selectAll('.segMeanLines')
       .data(filterData(segItemLabels, 0))
@@ -1502,7 +1361,6 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
       })
       .style('stroke', 'black')
       .style('pointer-events', 'none')
-
   //ADDING AXIS LABELS AND SUMMARY TEXT
   var totMean = d3.round(d3.mean(segmentation, function(d){return d.seg}),2);
   var totObs = segmentation.length
@@ -1513,7 +1371,6 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
       y:-itemNamestagger,
     })
     .attr('font-size', xFont+2)
-
   yAxisLine.append('text')
       .text("Market Segmentation (%)")
       .attr("text-anchor", "middle")
@@ -1522,7 +1379,6 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
       .attr('x', -(height-padding.bottom)/2)
       .attr("dy", "0.75em")
       .attr("transform", "rotate(-90)")
-
   segChart.append('text')
       .text("Zones--")
       .attr({
@@ -1531,7 +1387,6 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
       })
       .style("font-size", xFont+2)
       .style('text-anchor', 'middle')
-
   //DEFINING THE MOUSEOVER FUNCTION
   function mouseoverRect(d){
   	var obs = d3.selectAll('.segDots').filter(function(e){return e.zoneCode === d.zoneCode}).size()
@@ -1569,7 +1424,6 @@ function drawSegmentation(segmentation,segZoneLabels,segItemLabels){
     tip.hide(d)
   }
 }
-
 //THE DRAW FUNCTION FOR PASSTHROUGH
 function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
   /*GETTING THE DATA READY AND IDENTIFYING THE DOMAINS FOR THE CHARTING VARIABLES*/
@@ -1580,7 +1434,6 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
   };
   var yDomain = d3.extent(passthrough, function(d){return d.pT}); // the domain of the y-axis is set to the range of passthrough values
   var colorDomain = yDomain; //same with the color scale
-
   //CREATING THE CANVAS
   var mainSize = d3.select('#main').node().getBoundingClientRect()
   var containerSize = {'width':(mainSize.width*.9)*.4, 'height':240};
@@ -1600,18 +1453,15 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
   var xScale = d3.scale.ordinal() //the ordinal scale uses dotpositions to place them on charts
       .domain(xDomain)
       .rangeBands([padding.left, width], .1);
-
   var yScale = d3.scale.linear() //set to the range of seg values
       .domain(yDomain)
       .range([height - padding.bottom, 0]);
-
   var yAxis = d3.svg.axis()
       .scale(yScale)
       .orient("left")
       .tickSize(3)
       .ticks(5)
       .tickPadding(8);
-
   var colorScale = d3.scale.linear() //could change the scale later
       .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
       .range(["#C0C0C0", "#ff0000"])
@@ -1629,7 +1479,6 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
           return "<strong>State:</strong> <span style='color:silver'>" + d.state + "</span>" + "<br>" +
           "<strong>Passthrough:</strong> <span style=" + "'" + "color:" + colorScale(d.pT) +"'" +">" + d3.round(d.pT, 2) + "</span>" + "<br>" + "<strong>State Mean:</strong> <span style=" + "'" + "color:" + colorScale(mean) +"'" +">" + mean + "</span>";
     })
-
   //DRAWING THE DIFFERENT ELEMENTS
   passChart.append('g')
       .selectAll('.passZoneLab') //corresponding to each column of dots
@@ -1645,7 +1494,6 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
       .style('text-anchor', 'middle')
       .attr('font-size', xFont)
       .style('cursor', 'default');
-
   passChart.append('g')
       .attr('class', 'item-labels')
       .selectAll('text')
@@ -1660,8 +1508,6 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
       .style('text-anchor', 'middle')
       .style('font-size', xFont)
       .style('cursor', 'default');
-
-
   passChart.append('g')
       .selectAll('.passHoverRects')
       .data(passZoneLabels)
@@ -1679,12 +1525,10 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
       .style('pointer-events', 'all')
       .on('mouseover', mouseoverRect)
       .on('mouseout', mouseoutRect);
-
   var yAxisLine = passChart.append('g') //Adding the axis to the bottom of the first panel
       .attr('class', 'yAxis')
       .style('cursor', 'default')
       .call(yAxis)
-
   passChart.append('g')
       .selectAll('.passDots')
       .data(passthrough)
@@ -1701,7 +1545,6 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
       .call(tip)
       .on('mouseover', mouseoverDot)
       .on('mouseout', mouseoutDot);
-
   passChart.append('g')
       .selectAll('.passMeanCross')
       .data(passZoneLabels)
@@ -1720,7 +1563,6 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
       .style('text-anchor', 'middle')
       .style('cursor', 'default')
       .style('pointer-events', 'none');
-
   passChart.append('g')
       .selectAll('.passMeanLines')
       .data(filterData(passItemLabels, 0))
@@ -1735,7 +1577,6 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
       })
       .style('stroke', 'black')
       .style('pointer-events', 'none')
-
   //ADDING AXIS LABELS AND SUMMARY TEXT
   var totMean = d3.round(d3.mean(passthrough, function(d){return d.pT}),2);
   var totObs = passthrough.length
@@ -1746,7 +1587,6 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
       y:-itemNamestagger,
     })
     .attr('font-size', xFont+2)
-
   yAxisLine.append('text')
       .text("Pass-Through")
       .attr("text-anchor", "middle")
@@ -1755,7 +1595,6 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
       .attr('x', -(height-padding.bottom)/2)
       .attr("dy", "0.75em")
       .attr("transform", "rotate(-90)")
-
   passChart.append('text')
       .text("Zones--")
       .attr({
@@ -1764,7 +1603,6 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
       })
       .style("font-size", xFont+2)
       .style('text-anchor', 'middle')
-
   //DEFINING THE MOUSEOVER FUNCTION
   function mouseoverRect(d){
   	var obs = d3.selectAll('.passDots').filter(function(e){return e.zoneCode === d.zoneCode}).size()
@@ -1802,7 +1640,5 @@ function drawPassthrough(passthrough,passZoneLabels,passItemLabels){
     tip.hide(d)
   }
 }
-
-
 </script>
 </html>

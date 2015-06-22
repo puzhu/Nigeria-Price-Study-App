@@ -2,7 +2,7 @@
 <html>
 <meta charset="utf-8">
 <head>
-<title>Ethiopia Price Monitor</title>
+<title>Nigeria Price Monitor</title>
 <script src="libraries/d3.v3.min.js"></script>
 <script src="libraries/topojson.v1.min.js"></script>
 <script src="libraries/queue.v1.min.js"></script>
@@ -17,12 +17,18 @@
 
 <style>
 
+.sliderPoly path{
+	fill:white;
+	stroke:black;
+	shape-rendering:crispEdges;
+}
+
 </style>
 </head>
 
 <body>
 <div id="main">
-	<h1>Ethiopia Price Monitor</h1>
+	<h1>Nigeria Price Monitor</h1>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="#prices" data-toggle="tab">Prices</a></li>
 		<li><a href="#indicators" data-toggle="tab">Indicators</a></li>
@@ -32,13 +38,13 @@
 			<div id="leftDiv">
 				<div id="selectorDiv">
 					<select id="productSelectPrice">
-							<option selected value="Barley">Barley</option>
-							<option value="Beer">Beer</option>
-							<option value="Cement">Cement</option>
-							<option value="Maize">Maize</option>
-							<option value="Rice">Rice</option>
-							<option value="Teff">Teff</option>
-							<option value="Wheat">Wheat</option>
+						<option selected value="Cement (Dangote)">Cement (Dangote)</option>
+						<option value="Water Bottle (Drink Swan)">Water Bottle (Drink Swan)</option>
+						<option value="Maize White">Maize White</option>
+						<option value="Maize Yellow">Maize Yellow</option>
+						<option value="Rice Imported">Rice Imported</option>
+						<option value="Rice Local">Rice Local</option>
+						<option value="Sorghum">Sorghum</option>
 					</select>
 					<div id="sliderContainer">
 						<div id="sliderAxis"></div>
@@ -47,39 +53,41 @@
 				</div>
 				<div id="chartsDiv">
 					<div id="mapOuter">
-						<h3>Average prices in zones and regions</h3>
+						<h3>Average prices</h3>
 						<div id="mapContainer"></div>
 					</div>
 					<div id="histOuter">
-						<h3>Town level prices</h3>
+						<h3>Centre level prices</h3>
 						<div id="histChartContainer"></div>
 					</div>
 					<div id="lineOuter">
-						<h3>Prices over time in regions</h3>
+						<h3>Prices over time</h3>
 						<div id="lineChartContainer"></div>
 					</div>
 				</div>
 			</div>
 			<div id='textDiv'>
-				<p id = 'text'>Ethiopia is administratively divided into regions and zones. The data used for this dashboard is collected monthly through surveys of shops in different towns from each zone.</p>
+				<p id = 'text'>Nigeria is administratively divided into 36 states and one Federal Capital Territory (FCT). This dashboard uses price observations from 327 markets across the country.</p>
 				<p id = 'text'>The three charts on this tab present price data for a commodity at different levels of aggregation.</p>
-				<p>The <strong>maps</strong> shows the average of all the price observations across the selected time-period for zones and region The <strong>line chart</strong> represents the monthly average price for each zone during the selected time period. The <strong>histogram</strong> shows the observed prices from each town for the entire selected time period for a particular commodity</p>
-				<p>Hovering over a zone or region would show the data points from that state in the histogram and the line chart. The same is true for the line chart.</p>
+				<p>The <strong>map</strong> shows the average of all the price observations across the selected time-period. The <strong>line chart</strong> represents the monthly average price for each state during the selected time period. The <strong>histogram</strong> show the observed prices from each location for the entire selected time period for a particular commodity</p>
+				<p>Hovering over a state would show data on the state and corresponding observations in the histogram and the line chart. The same is true for the line chart.</p>
 				<p>The three charts together offer a view of the spread, the trend and the overall levels of prices in different states in Nigeria</p>
 			</div>
 		</div>
 		<div class="tab-pane" id="indicators">
 			<div id="tab2row1">
-				<p>We are currently remodeling this page based on user feedback. The second iteration of this prototype would present information for each commodity on the volatility of prices, the degree to which markets in different regions act differently from one another (segmentation) and the speed and extent to which international shocks or shifts in prices are absorbed in different markets in Ethiopia.</p>
-				<p>Additional indicators could be added to this section over time depending on data availability. This information would eventally act as a diagnostic for market health in different regions of Ethiopia and highlight those that need attention.</p>
+				<p>We are currently remodeling this page based on user feedback. The second iteration of this prototype would present information for each commodity on the volatility of prices, the degree to which markets act differently from one another (segmentation) and the speed and extent to which international shocks or shifts in prices are absorbed in different markets in Nigeria.</p>
+				<p>Additional indicators could be added to this section over time depending on data availability. This information would eventally act as a diagnostic for market health in different states of Nigeria and highlight those that need attention.</p>
 			</div>
 		</div>
 	</div>
+
 </div>
 </body>
+
 <script>
 //DATA PROCESSING FUNCTIONS
-function processZonePriceData(d, i){
+function processStatePrices(d, i) { //formats price data for the MAP AND LINE
 	var dateFormat = d3.time.format("%Y-%m-%d");
 	function deString(d) {
 		if (d==="") {
@@ -89,17 +97,16 @@ function processZonePriceData(d, i){
 		}
 	}
 	var array = {
+		state: d.state,
+		price: deString(d.meanPrice),
 		item: d.item,
-		region: d.region,
-		zone: d.zone,
 		date: dateFormat.parse(d.date),
-		price: deString(d.price),
 		weight: deString(d.weight)
-	}
-	return array
+	};
+	return array;
 }
 
-function processTownPriceData(d, i){
+function processAllPrices(d, i) { //formats price data for the HISTOGRAM
 	var dateFormat = d3.time.format("%Y-%m-%d");
 	function deString(d) {
 		if (d==="") {
@@ -110,68 +117,136 @@ function processTownPriceData(d, i){
 	}
 	var array = {
 		item: d.item,
-		region: d.region,
-		zone: d.zone,
-		town: d.town,
+		state: d.state,
+		centre: d.centre,
 		date: dateFormat.parse(d.date),
-		price: deString(d.price)
-	}
-	return array
+		price: deString(d.meanPrice)
+	};
+	return array;
 }
 
-//DATA MANIPULATION FUNCTIONS
+//THE FUNCTIONS AND VARIABLES THAT ARE USED WITHIN DRAW FUNCTIONS
 function uniq_fast(a) { // quickly drop duplicate values from an array
-	var seen = {};
-	var out = [];
-	var len = a.length;
-	var j = 0;
-	for(var i = 0; i < len; i++) {
-		var item = a[i];
-		if(seen[item] !== 1) {
-		    seen[item] = 1;
-		    out[j++] = item;
+		var seen = {};
+		var out = [];
+		var len = a.length;
+		var j = 0;
+		for(var i = 0; i < len; i++) {
+		   var item = a[i];
+		   if(seen[item] !== 1) {
+		         seen[item] = 1;
+		         out[j++] = item;
+		   }
 		}
+		return out;
 	}
-	return out;
-}
+
 function setBins(max,min) {// calculates the bins for the color domain in the map
-	var bounds = [];
-	for (var i=1;i<=5;i++) { // create 5 equally sized bins between min*.95 and max*1.05
-		bounds.push(min*.95+(((max*1.05)-(min*.95))*(i/5)));
-	}
-	return bounds;
+		var bounds = [];
+		for (var i=1;i<=5;i++) { // create 5 equally sized bins between min*.95 and max*1.05
+			bounds.push(min*.95+(((max*1.05)-(min*.95))*(i/5)));
+		}
+		return bounds;
 }
 var dateFormat = d3.time.format("%Y-%m-%d");
 var monthFormat = d3.time.format("%b-%y");
 var monthFormatToString = d3.time.format("%Y-%m");
 var monthYear = d3.time.format("%b %y");
 
+//SLIDER FUNCTIONS
+var sliderMonths = [];
+for (var i=2009; i<=2012;i++) {
+	for (var j=0;j<=11;j++) {
+    	sliderMonths.push(new Date(i,j,1))
+  	}
+}
+(function() { // initialize the slider -- the dates are hardcoded
+	var margin = {top: 0, right: 30, bottom: 0, left: 20},
+	    width = 300 - margin.left - margin.right,
+	    height = 30 - margin.top - margin.bottom;
+
+	var x = d3.time.scale()
+	    .domain([sliderMonths[0], sliderMonths[sliderMonths.length-1]])
+	    .range([0, width]);
+
+	var svg = d3.select("#sliderAxis").append("svg")
+	    .attr("width", width + margin.left + margin.right)
+	    .attr("height", height + margin.top + margin.bottom)
+	    .append("g")
+	    .attr("transform", "translate(" + margin.left + "," + (20) + ")");
+
+	var axis = d3.svg.axis()
+		.scale(x)
+	  	.orient("top")
+	  	.tickPadding(8)
+	  	.tickSize(0)
+	  	.tickValues(sliderMonths)
+	  	.tickFormat(function(d, i) {
+	        if (d===sliderMonths[0] || d===sliderMonths[sliderMonths.length-1]) return monthFormat(d);
+	    });
+	var g = svg.append("g")
+	    .attr("class", "x axis")
+	    .call(axis)
+
+	$( "#slider" ).slider({
+		range: true,
+		min: 0,
+		max: sliderMonths.length-1,
+		values: [0, sliderMonths.length-1],
+		slide: function( event, ui ) {
+		    if ( ( ui.values[ 0 ] ) >= ui.values[ 1 ] ) {
+		    	return false;
+		    }
+	    	else {
+				axis.tickFormat(function(d, i) {
+					if (d===sliderMonths[ui.values[0]] || d===sliderMonths[ui.values[1]]) return monthFormat(d);
+				});
+				g.call(axis)
+			}
+		}
+	});
+})();
+
+d3.selectAll('.ui-slider-handle')
+	.append('svg')
+	.attr({
+		height: '19px',
+		width: '17px',
+		class: 'sliderPoly'
+	})
+	// .append('polygon')
+	// .attr('points', "0,2 13,2 13,13 7,19 0,12 0,2")
+	.append('path')
+	.attr('d', "M0 2L13 2L13 13L7 19L0 12 Z")
+;
+
 
 //THE DATA QUEUE
 queue()
-	.defer(d3.json, "maps/ethiopiaZones.json") //the map
-	.defer(d3.csv, "data/regionPriceData.csv", processZonePriceData) //the  main dataset for the histogram
-	.defer(d3.csv, "data/townPriceData.csv", processTownPriceData) //converts into the desired format for the map and the line chart
+	.defer(d3.csv, "data/priceStateData.csv", processStatePrices) //converts into the desired format for the map and the line chart
+	.defer(d3.json, "maps/nga-states-topo-05.json") //the map
+	.defer(d3.csv, "data/priceAllData.csv", processAllPrices) //the  main dataset for the histogram
 	.await(ready);
 
-//THE FUNCTION THAT CALLS THE OTHER DRAW FUNCTION
-function ready(error,ethiopiaRegions,regionPriceData,townPriceData) {
-	drawMap(ethiopiaRegions,regionPriceData);
-	drawHistogram(townPriceData);
-	drawLine(townPriceData);
+//THE FUNCTION THAT CALLS THE OTHER DRAW FUNCTIONS
+function ready(error,priceData,nigeriaStates,allData) {
+	drawMap(nigeriaStates,priceData);
+	drawHistogram(allData);
+	drawLine(priceData);
 }
 
-function drawMap(ethiopiaRegions,regionPriceData){
-	//FUNCTIONS FOR PROCESSING DATA IN CHART
-	function getMapData(startDate,endDate,regionPriceData,item) { //getting the data ready
+//THE FUNCTION THAT DRAWS THE MAP AND THE LEGEND
+function drawMap(nigeriaStates,priceData){
+	//CREATING FUNCTIONS USED FOR THIS CHART
+	function getMapData(startDate,endDate,priceData,item) { //getting the data ready
 		var array= []
-		var regions = uniq_fast(regionPriceData.map(function(d) {return d.region})) //creates the unique list of states
-		regions.forEach(function(d) { //loop through states to calculate the mean price
-			var regionData = regionPriceData.filter(function(e) {return e.region===d && e.date>=startDate && e.date<=endDate && e.item===item});
+		var states = uniq_fast(priceData.map(function(d) {return d.state})) //creates the unique list of states
+		states.forEach(function(d) { //loop through states to calculate the mean price
+			var stateData = priceData.filter(function(e) {return e.state===d && e.date>=startDate && e.date<=endDate && e.item===item});
 			var meanPrice = NaN;
 			var weightTotal = NaN;
 
-			regionData.forEach(function(e) {
+			stateData.forEach(function(e) {
 				if (isNaN(meanPrice) && !isNaN(e.price)) {
 					meanPrice = e.price*e.weight;
 				}
@@ -188,33 +263,32 @@ function drawMap(ethiopiaRegions,regionPriceData){
 			});
 
 			meanPrice = (meanPrice/weightTotal);
-			array.push({'region':d,'price':meanPrice})
+			array.push({'state':d,'price':meanPrice})
 		});
 		return array;
 	}
-
-	function mergeGeoPrice(mapData,regionFeatures) { //function that merges map and price data
+	function mergeGeoPrice(mapData,stateFeatures) { //function that merges map and price data
 		for(var i = 0; i < mapData.length; i++){
 			//pulling the states from csv file
-			var dataRegion = mapData[i].region;
+			var dataState = mapData[i].state;
 			//pulling corresponding price values
 			var dataValue = mapData[i].price;
 
 			//adding the price value to the map properties
-			var feature = regionFeatures.filter(function(d) { return d.properties.region===dataRegion});
+			var feature = stateFeatures.filter(function(d) { return d.properties.state_name===dataState});
 			if (feature.length>0) feature[0].properties.price = dataValue;
 		}
-		return regionFeatures;
+		return stateFeatures;
 	}
-	
+
 	//GETTING THE DATA READY
-	//var dates = $('#slider').slider('values');
-	var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
-   	var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
+	var dates = $('#slider').slider('values');
+	var startDate = sliderMonths[dates[0]];
+   	var endDate = sliderMonths[dates[1]];
 	var sel = document.getElementById('productSelectPrice'); //selecting the default based on current input
 	var product = sel.options[sel.selectedIndex].value;
-	var mapData = getMapData(startDate,endDate,regionPriceData,product);
-	
+	var mapData = getMapData(startDate,endDate,priceData,product);
+
 	//CREATING THE CANVAS
 	var mapContainerSize = d3.select('#mapContainer').node().getBoundingClientRect()
 	var mapSize = {'height':mapContainerSize.height * 1,'width':mapContainerSize.width * 1};
@@ -282,13 +356,12 @@ function drawMap(ethiopiaRegions,regionPriceData){
           return "<strong>State:</strong> <span style='color:silver'>" + d.properties.state_name+ "</span>" + "<br>" +
           "<strong>Mean Price:</strong> <span style='color:silver'>" + d3.round(d.properties.price,2) + "</span>"
           ;
-    });
+    })
 
     //MERGING THE MAP AND PRICE DATA
-    var regionFeatures = topojson.feature(ethiopiaRegions, ethiopiaRegions.objects.Ethiopia_admin_WGS84).features;
-    console.log(regionFeatures)
-    //regionFeatures = mergeGeoPrice(mapData,regionFeatures);
-    
+    var stateFeatures = topojson.feature(nigeriaStates, nigeriaStates.objects.NGA_adm1).features;
+    stateFeatures = mergeGeoPrice(mapData,stateFeatures);
+
     //DEFINING THE MAPPING VARIABLES
 	var projection = d3.geo.mercator()
 		.center([8.5,10.5])
@@ -299,49 +372,118 @@ function drawMap(ethiopiaRegions,regionPriceData){
 		.projection(projection);
 
     //DRAWING THE MAP
-    var regions = map.selectAll('.states')
-		.data(regionFeatures)
+    var states = map.selectAll('.states')
+		.data(stateFeatures)
 		.enter()
 		.append('path')
 		.attr({
 			d: path,
 			'class': 'states'
 		})
-		/*.style('fill', function(d, i){
+		.style('fill', function(d, i){
 			var value = d.properties.price;
 			if(isNaN(value) || value==undefined) { // 2 negative cases: 1) state exists in csv file but no price value (NaN). 2) state doesnt exist in csv file but exists in map file (undefined).
 				return "#ccc";
 			} else {
 				return color(value);
 			}
-		})*/
-		//.call(tip)
-		// .on("mouseover", mouseoverState)
-		// .on("mouseout", mouseoutState);
+		})
+		.call(tip)
+		.on("mouseover", mouseoverState)
+		.on("mouseout", mouseoutState);
 
 	//DRAWING THE BOUNDARIES
 	map.append("path")
-		.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.Ethiopia_admin_WGS84, function(a, b) { return a !== b ; }))
+		.datum(topojson.mesh(nigeriaStates, nigeriaStates.objects.NGA_adm1, function(a, b) { return a !== b ; }))
 		.attr({
 			d: path,
 			'class': 'state-boundary'
 		});
 
-	var regionArray = uniq_fast(regionFeatures.map(function(d) {return d.properties.region}))
+	var stateArray = uniq_fast(stateFeatures.map(function(d) {return d.properties.state_name}))
 
-	regionArray.forEach(function(d) {
+	stateArray.forEach(function(d) {
 		map.append("path")
-			.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.Ethiopia_admin_WGS84, function(a, b) { return a.properties.region===d || b.properties.region===d ; }))
+			.datum(topojson.mesh(nigeriaStates, nigeriaStates.objects.NGA_adm1, function(a, b) { return a.properties.state_name===d || b.properties.state_name===d ; }))
 			.attr({
 				d: path,
 				'class': 'boundary-hover', //controls the fill in css
 			})
 			.attr("id",function(e) {return d.replace(' ','')});
 	});
+
+	//DEFINING THE MOUSEOVER FUNCTIONS FOR THE MAP
+	function mouseoverState(d) {
+		var obs = d3.selectAll('.histDots').filter(function(e){return e.state === d.properties.state_name}).size()
+		d3.selectAll('.histText').text(d.properties.state_name +' observations: ' + obs)
+		var stateName = d.properties.state_name.replace(' ','')
+		d3.selectAll('.boundary-hover#'+stateName).filter(function(e) { return e}).classed('boundary-hover-hide',false).classed('boundary-hover-show',true)
+		d3.selectAll('.stateLines').filter(function(e) {return e.state===d.properties.state_name}).style('stroke','red').style('stroke-width','2px').moveToFront();
+		d3.selectAll('.histDots').filter(function(e) {return e.state===d.properties.state_name}).style('fill', 'red').attr({r: 3}).moveToFront()
+		tip.show(d)
+	}
+
+	function mouseoutState(d) {
+		var obs = d3.selectAll('.histDots').size()
+		d3.selectAll('.histText').text('Total observations: ' + obs)
+		var stateName = d.properties.state_name.replace(' ','')
+		d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',true).classed('boundary-hover-show',false)
+		d3.selectAll('.stateLines').filter(function(e) {return e.state===d.properties.state_name}).style('stroke','rgb(150,150,150)').style('stroke-width','1px');
+		d3.selectAll('.histDots').filter(function(e) {return e.state===d.properties.state_name}).style('fill', 'silver').attr({r: 2})
+		tip.hide(d)
+	}
+
+	//RESELECTING THE PRODUCT AND REDRAWING THE MAP BASED ON CHANGES
+	d3.select('#productSelectPrice').on('change.map', function(d) {
+        var product = d3.select(this).property('value');
+		var dates = $('#slider').slider('values');
+		var startDate = sliderMonths[dates[0]];
+	   	var endDate = sliderMonths[dates[1]];
+        redrawMap(product, startDate, endDate);
+    });
+
+    $("#slider").on( "slide", function( event, ui ) {
+	    if ((ui.values[0]) >= ui.values[1]) {
+	    	return false;
+	    }
+	    else {
+	    	var sel = document.getElementById('productSelectPrice');
+	    	var product = sel.options[sel.selectedIndex].value;
+	    	var startDate = sliderMonths[ui.values[0]];
+	    	var endDate = sliderMonths[ui.values[1]];
+	    	redrawMap(product, startDate, endDate);
+	    }
+    });
+
+	function redrawMap(product, startDate, endDate) {
+		mapData = getMapData(startDate,endDate,priceData,product);
+		// set the color and axis functions
+		max = d3.max(mapData, function(d) { return d.price; });
+		min = d3.min(mapData, function(d) { return d.price; });
+		bounds = setBins(max,min);
+		color.domain(bounds);
+		y.domain([min*.95, max*1.05]);
+    	axis.scale(y).tickValues([min*.95].concat(bounds));
+    	key.call(axis)
+
+    	stateFeatures = mergeGeoPrice(mapData,stateFeatures);
+
+		states
+			.data(stateFeatures)
+			.style('fill', function(d, i){
+				var value = d.properties.price;
+				if(isNaN(value) || value==undefined) { // 2 negative cases: 1) state exists in csv file but no price value (NaN). 2) state doesnt exist in csv file but exists in map file (undefined).
+					return "#ccc";
+				} else {
+					return color(value);
+				}
+			});
+	}
 }
 
-function drawHistogram(townPriceData){
-	//THIS FUNCTION CONVERTS THE FILTERED DATA INTO A HISTOGRAM LAYOUT FORMAT
+//THE FUNCTION THAT DRAWS THE HISTOGRAM
+function drawHistogram(allData){
+	//CREATING THE FUNCTIONS USED FOR THIS CHART
 	function getData(data, histogram){
     	var histData = histogram(data); //create the array of arrays with hist data
     	array = [];//empty array to populate
@@ -358,18 +500,17 @@ function drawHistogram(townPriceData){
     	})
     	return array
   	}
-
-  	//GETTING THE DATA READY
+	//GETTING THE DATA READY
   	var sel = document.getElementById('productSelectPrice'); //selecting the default based on currentinput
-  	var product = sel.options[sel.selectedIndex].value; //pulling the value of the selected product
-	//var dates = $('#slider').slider('values'); //pulls the date values from the slider
-	var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
-   	var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
-  	var data = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
+  	var product = sel.options[sel.selectedIndex].value;
+	var dates = $('#slider').slider('values');
+	var startDate = sliderMonths[dates[0]];
+   	var endDate = sliderMonths[dates[1]];
+  	var data = allData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
 
   	//CREATING THE CANVAS AND Y-SCALES
   	var containerSize = d3.select('#histChartContainer').node().getBoundingClientRect()
-  	var margin = {top: 0.04*containerSize.height , right: 0.006*containerSize.width, bottom: 0.08*containerSize.height, left: 0.08*containerSize.width};
+  	var margin = {top: 0.04*containerSize.height , right: 0.006*containerSize.width, bottom: 0.08*containerSize.height, left: 0.15*containerSize.width};
   	var padding = {top: 0.006*containerSize.height, right: 0.06*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
   	var width = containerSize.width - margin.right - margin.left; //Chart width
   	var height = containerSize.height - margin.top - margin.bottom; //Chart height
@@ -395,14 +536,14 @@ function drawHistogram(townPriceData){
   	var histData = getData(data, histogram);
 
   	//CALCULATING THE x-Axis AND COLOUR SCALES BASED ON THE HISTOGRAM DATA
-	var maxX = d3.max(histData, function(d){return d.x});
+	var maxX = d3.max(histData, function(d){return d.x})
 	var xDomain =  [];
 	for(i=1; i<=maxX; i++){
 	    xDomain.push(i)
 	}
 	var xScale = d3.scale.ordinal()
 	    .domain(xDomain)
-	    .rangeBands([0, width-padding.right], 0.01);
+	    .rangeBands([0, width-padding.right], 0.01)
 
 	var max = d3.max(histData, function(d) { return d.price; });
 	var min = d3.min(histData, function(d) { return d.price; });
@@ -410,17 +551,16 @@ function drawHistogram(townPriceData){
 	var axis = d3.svg.axis()//setting the axis based on the yScale
 	    .scale(yScale)
 	    .orient("left")
-	    .tickSize(4);
+	    .tickSize(4)
 
-  	var dotChartSeparation = 3;
-  	var dotRadius = 1.5;
+  	var dotChartSeparation = 3
+  	var dotRadius = 2
 
   	//DRAWING THE ELEMENTS
   	var axisLine = histChart.append("g")
         .attr('class', 'yAxis')
         .style('cursor', 'default')
         .call(axis);
-
     var dots = histChart.append('g')
       	.selectAll('.histDots')
       	.data(histData)
@@ -444,18 +584,18 @@ function drawHistogram(townPriceData){
       y:0,
       class: 'histText'
     })
-    .attr('font-size', 11);
+    .attr('font-size', 11)
 
-    //MARKING THE NEW PRODUCT SELECTION AND CALLING THE REDRAW FUNCTION
+  	//MARKING THE NEW PRODUCT SELECTION AND CALLING THE REDRAW FUNCTION
   	d3.select('#productSelectPrice') //changes the product based on user input from the dropdown menu
 	    .on('change.histogram', function(d) {
 	        var product = d3.select(this).property('value')
-	        //var dates = $('#slider').slider('values');
-			var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
-   			var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
+	        var dates = $('#slider').slider('values');
+			var startDate = sliderMonths[dates[0]];
+	   		var endDate = sliderMonths[dates[1]];
 	        redraw(product,startDate,endDate)
 	    })
-    /*$("#slider").on( "slide", function( event, ui ) {
+    $("#slider").on( "slide", function( event, ui ) {
 	    if ((ui.values[0]) >= ui.values[1]) {
 	    	return false;
 	    }
@@ -466,10 +606,10 @@ function drawHistogram(townPriceData){
 	        var product = d3.select('#productSelectPrice').property('value');
 	        redraw(product,startDate,endDate);
 	    }
-    });*/
+    });
   	//REDRAWING ELEMENTS BASED ON PRODUCT SELECTIONS
   	function redraw(product, startDate, endDate){
-	    data = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
+	    data = allData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
 	    yScale.domain(d3.extent(data, function(d){return d.price}));
 	    histogram.bins(yScale.ticks(numBins))
 	    histData = getData(data, histogram)
@@ -498,52 +638,53 @@ function drawHistogram(townPriceData){
   	}
 }
 
-function drawLine(townPriceData){
-	//console.log(townPriceData)
-	//THIS FUNCTION GETS THE DATA IN FORMAT FOR THE CHART
-	function reshapeMonthlyPrice(data,product,startDate,endDate) {
-		var monthlyPrice = data;
+//THE LINE CHART FUNCTION
+function drawLine(priceData){
+	//CONSTRUCTED FUNCTIONS FOR USE WITHIN THE DRAW
+	function reshapeMonthlyPrice(monthlyPrice,product,startDate,endDate) {
+		monthlyPrice = monthlyPrice.filter(function(d) { return d.item===product && d.date>=startDate && d.date<=endDate});
 		var mainArray = [];
 		for (var i=0;i<monthlyPrice.length;i++) {
-			if (mainArray.filter(function(d) {return d.region===monthlyPrice[i].region}).length===0) { // does the state have its own list item yet?
-				var region = {
-					zone:monthlyPrice[i].zone,
+			if (mainArray.filter(function(d) {return d.state===monthlyPrice[i].state}).length===0) { // does the state have its own list item yet?
+				var state = {
+					state:monthlyPrice[i].state,
 					values: [{
-						zone:monthlyPrice[i].zone,
-						region:monthlyPrice[i].region,
-						date:monthlyPrice[i].date,
+						state:monthlyPrice[i].state,
+						month:monthlyPrice[i].date,
 						price:monthlyPrice[i].price
 					}]
 				};
-				mainArray.push(region);
+				mainArray.push(state);
 			} else {
 				var values = {
-					zone:monthlyPrice[i].zone,
-					region:monthlyPrice[i].region,
-					date:monthlyPrice[i].date,
+					state:monthlyPrice[i].state,
+					month:monthlyPrice[i].date,
 					price:monthlyPrice[i].price
 				};
-				mainArray.filter(function(d) {return d.region===monthlyPrice[i].region})[0].values.push(values);
+				mainArray.filter(function(d) {return d.state===monthlyPrice[i].state})[0].values.push(values);
 
 			}
 		}
 		for (var i=0;i<mainArray.length;i++) {
-			mainArray[i].values.sort(function(a,b) {return a.date - b.date;}) // for every state sort the values array by month, ascending
+			mainArray[i].values.sort(function(a,b) {return a.month - b.month;}) // for every state sort the values array by month, ascending
 		}
 		return mainArray;
 	}
-
 	//GETTING THE DATA READY
-  	var sel = document.getElementById('productSelectPrice'); //selecting the default based on currentinput
-  	var product = sel.options[sel.selectedIndex].value; //pulling the value of the selected product
-	//var dates = $('#slider').slider('values'); //pulls the date values from the slider
-	var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
-   	var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
-  	var data = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
-  	var months = uniq_fast(data.map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
-  	var lineData = reshapeMonthlyPrice(data,product,startDate,endDate);
+	d3.selection.prototype.moveToFront = function() {
+	  	return this.each(function(){
+	    this.parentNode.appendChild(this);
+	  	});
+	};
+	var sel = document.getElementById('productSelectPrice');
+	var product = sel.options[sel.selectedIndex].value;
+	var months = uniq_fast(priceData.filter(function(e) {return e.item===product}).map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
+	var dates = $('#slider').slider('values');
+	var startDate = sliderMonths[dates[0]];
+   	var endDate = sliderMonths[dates[1]];
+	var lineData = reshapeMonthlyPrice(priceData,product,startDate,endDate);
 
-  	//CREATING THE CANVAS
+	//CREATING THE CANVAS
 	var containerSize = d3.select('#lineChartContainer').node().getBoundingClientRect()
   	var margin = {top: 0.08*containerSize.height , right: 0.03*containerSize.width, bottom: 0.15*containerSize.height, left: 0.06*containerSize.width};
   	var padding = {top: 0.006*containerSize.height, right: 0.012*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
@@ -580,14 +721,13 @@ function drawLine(townPriceData){
 	var xScale = d3.time.scale()
 		.domain(d3.extent(months))
 		.range([0, width]);
-
 	var yScale = d3.scale.linear()
-		.domain([0, d3.max(data.map(function(d) { return d.price; }))*1.05])
+		.domain([0, d3.max(priceData.filter(function(e) {return e.item===product}).map(function(d) { return d.price; }))*1.05])
 		.range([height, 0]);
 
     var line = d3.svg.line()
 	    .defined(function(d) { return (d !== null && !isNaN(d.price)); })
-	    .x(function(d) { return xScale(d.date); })
+	    .x(function(d) { return xScale(d.month); })
 	    .y(function(d) { return yScale(d.price); });
 
 	var xAxis = d3.svg.axis()
@@ -600,22 +740,15 @@ function drawLine(townPriceData){
         .tickPadding(8)
         .orient('bottom');
 
-    var yAxis = d3.svg.axis()
-        .scale(yScale).ticks(5)
-        .orient("left")
-        .tickSize(-width)
-        .tickPadding(6)
-        .tickFormat(function(d) { return d});
-
     //CREATING THE TOOL-TIP
   	var tip = d3.tip()
       	.attr('class', 'd3-tip')
       	.offset([10, 0])
       	.direction('e')
       	.html(function(d) {
-          	return "<strong>State:</strong> <span style='color:silver'>" + d.zone + "</span>" + "<br>" +
-          	"<strong>Month:</strong> <span style='color:silver'>" + monthFormat(d.date) + "</span>" + "<br>" +
-          	"<strong>Avg. Price:</strong> <span style='color:silver'>" + d.price + "</span>"
+          	return "<strong>State:</strong> <span style='color:silver'>" + d.state + "</span>" + "<br>" +
+          	"<strong>Month:</strong> <span style='color:silver'>" + monthFormat(d.month) + "</span>" + "<br>" +
+          	"<strong>Avg. Price:</strong> <span style='color:silver'>" + d3.round(d.price,2) + "</span>"
     	});
 
     //DRAWING THE ELEMENTS
@@ -624,9 +757,17 @@ function drawLine(townPriceData){
           .attr("transform", "translate(0," + height + ")")
           .call(xAxis);
 
+	var yAxis = d3.svg.axis()
+        .scale(yScale).ticks(5)
+        .orient("left")
+        .tickSize(-width)
+        .tickPadding(6)
+        .tickFormat(function(d) { return d});
+
     var g = lineChart.append("g")
         .attr("class", "y axis")
         .call(yAxis);
+
 
 	var states = lineChart.append("g")
 		.selectAll("path")
@@ -638,7 +779,7 @@ function drawLine(townPriceData){
 
 
 	var voronoi = d3.geom.voronoi()
-	    .x(function(d) { return xScale(d.date); })
+	    .x(function(d) { return xScale(d.month); })
 	    .y(function(d) { return yScale(d.price); })
 	    .clipExtent([[0, 0], [width, height]]);
 
@@ -647,7 +788,7 @@ function drawLine(townPriceData){
 		.attr("class", "voronoi")
 		.selectAll("path")
 		.data(voronoi(d3.nest()
-			.key(function(d) { return xScale(d.date) + "," + yScale(d.price); })
+			.key(function(d) { return xScale(d.month) + "," + yScale(d.price); })
 			.rollup(function(v) { return v[0]; })
 			.entries(d3.merge(lineData.map(function(d) { return d.values; })))
 			.map(function(d) { return d.values; })))
@@ -668,38 +809,39 @@ function drawLine(townPriceData){
 		.style("stroke","none")
 		.call(tip);
 
+
 	//DEFINING THE MOUSEOVER FUNCTIONS
 	function mouseoverLine(d) {
-		console.log(d)
-		var obs = d3.selectAll('.histDots').filter(function(e){return e.zone === d.zone && e.date === d.date}).size()
-		d3.selectAll('.histText').text(d.zone +' ('+ monthYear(d.date) + ') ' +' observations: ' + obs)
-		//var stateName = d.state.replace(' ','')
-		focus.attr("transform", "translate(" + xScale(d.date) + "," + yScale(d.price) + ")");
+		console.log(d.month)
+		var obs = d3.selectAll('.histDots').filter(function(e){return e.state === d.state && dateFormat(e.date) === dateFormat(d.month)}).size()
+		d3.selectAll('.histText').text(d.state +' ('+ monthYear(d.month) + ') ' +' observations: ' + obs)
+		var stateName = d.state.replace(' ','')
+		focus.attr("transform", "translate(" + xScale(d.month) + "," + yScale(d.price) + ")");
 		states.filter(function(e) {return e.state===d.state}).style('stroke','red').style('stroke-width','2px').moveToFront();
-		//d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',false).classed('boundary-hover-show',true)
-		d3.selectAll('.histDots').filter(function(t){return t.zone === d.zone && t.date === d.date}).style('fill', 'red').attr({r: 3}).moveToFront()
+		d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',false).classed('boundary-hover-show',true)
+		d3.selectAll('.histDots').filter(function(t){return t.state === d.state && dateFormat(t.date) === dateFormat(d.month)}).style('fill', 'red').attr({r: 3}).moveToFront()
 		tip.show(d);
 	}
 	function mouseoutLine(d) {
 		var obs = d3.selectAll('.histDots').size()
 		d3.selectAll('.histText').text('Total observations: ' + obs)
-		//var stateName = d.state.replace(' ','')
+		var stateName = d.state.replace(' ','')
 		states.filter(function(e) {return e.state===d.state}).style('stroke','rgb(150,150,150)').style('stroke-width','1px');
 		focus.attr("transform", "translate(-100,-100)");
-		//d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',true).classed('boundary-hover-show',false);
-		d3.selectAll('.histDots').filter(function(t){return t.zone === d.zone}).style('fill', 'silver').attr({r: 2});
+		d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',true).classed('boundary-hover-show',false);
+		d3.selectAll('.histDots').filter(function(t){return t.state === (d.state)}).style('fill', 'silver').attr({r: 2});
 		tip.hide(d);
 	}
 
 	d3.select('#productSelectPrice').on('change.line', function(d) {
         var product = d3.select(this).property('value');
-		//var dates = $('#slider').slider('values');
-		var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
-   		var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
+		var dates = $('#slider').slider('values');
+		var startDate = sliderMonths[dates[0]];
+	   	var endDate = sliderMonths[dates[1]];
 	   	var drawVoronoi = true;
         redrawLine(product,startDate,endDate,drawVoronoi);
     });
-    /*$("#slider").on( "slide", function( event, ui ) {
+    $("#slider").on( "slide", function( event, ui ) {
 	    if ((ui.values[0]) >= ui.values[1]) {
 	    	return false;
 	    }
@@ -723,15 +865,14 @@ function drawLine(townPriceData){
 	        var drawVoronoi = true;
 	        redrawLine(product,startDate,endDate,drawVoronoi);
 	    }
-    });*/
+    });
+
 	function redrawLine(item,startDate,endDate,drawVoronoi) {
 		// var months = uniq_fast(priceData.filter(function(e) {return e.item===item && e.date>=startDate && e.date<=endDate}).map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
-		data = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
-		months = uniq_fast(data.map(function(d){ return d.date})).sort(function(a,b) { return a - b;})
-		var lineData = reshapeMonthlyPrice(data,item,startDate,endDate);
+		var lineData = reshapeMonthlyPrice(priceData,item,startDate,endDate);
 
 		xScale.domain([startDate,endDate]);
-		yScale.domain([0, d3.max(data.map(function(d) { return d.price; }))*1.05]);
+		yScale.domain([0, d3.max(priceData.filter(function(e) {return e.item===item}).map(function(d) { return d.price; }))*1.05]);
 		xAxisNodes.call(xAxis);
 		g.call(yAxis);
 
@@ -744,7 +885,7 @@ function drawLine(townPriceData){
 
 	  	if (drawVoronoi===true) {
 	  		voronoiGroup = voronoiGroup.data(voronoi(d3.nest()
-				.key(function(d) { return xScale(d.date) + "," + yScale(d.price); })
+				.key(function(d) { return xScale(d.month) + "," + yScale(d.price); })
 				.rollup(function(v) { return v[0]; })
 				.entries(d3.merge(lineData.map(function(d) { return d.values; })))
 				.map(function(d) { return d.values; })));
@@ -762,6 +903,7 @@ function drawLine(townPriceData){
 
 	}
 }
+
 
 </script>
 </html>

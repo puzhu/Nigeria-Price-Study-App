@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<head>
+<script src="libraries/d3.v3.min.js"></script>
+<script src="libraries/topojson.v1.min.js"></script>
+<script src="libraries/queue.v1.min.js"></script>
+<style>
+
+</style>
+</head>
+<body>
+
+<div id="main">
+	<div id="volChart"></div>
+</div>
+
+</body>
+<script>
+//Constructed Functions and variables for the cade
+function uniq_fast(a) { // quickly drop duplicate values from an array
+      var seen = {};
+      var out = [];
+      var len = a.length;
+      var j = 0;
+      for(var i = 0; i < len; i++) {
+           var item = a[i];
+           if(seen[item] !== 1) {
+                 seen[item] = 1;
+                 out[j++] = item;
+           }
+      }
+      return out;
+  }
+var monthYear = d3.time.format("%b %y"); //converts to Month-Year
+var monthFormat = d3.time.format("%Y-%m").parse; //Parse dates and converts to a d3 time format
+
+//queing the data file
+queue()
+  .defer(d3.json, "data/volatility.json")
+  .await(ready);
+
+function ready(error, volatility){
+  var input = "Cement Dangote"
+  //LOADING THE DATA AND CREATING CHART DOMAINS
+  var data = volatility.filter(function(d) { return d.item === input })
+  var allDates = uniq_fast(data.map(function(d){return monthFormat(d.date.slice(0,7))})).sort(function(a,b) { return a - b;});//unique list of dates
+  var zones = uniq_fast(data.map(function(d){return d.zonecode})).sort(function(a,b) { return a - b;}); //for some reason when I sort it does not work properly, so the data is presorted.
+
+  var maxY = d3.max(data, function(d){return d.position}) //This sets the height of the charts (all the charts would have the same height)
+  var maxBin = d3.max(data, function(d){return d.bin}) //this determines the number of bins in each chart
+  var maxVol = d3.max(data, function(d){return d.volMoving}) //this determines the color scale
+
+  //CREATING THE CANVAS
+  var containerSize = {'height': 1000, 'width': 1000}
+  var margin = {top: 100, right: 10, bottom: 20, left: 40}
+  var padding = {top: 60, right: 60, bottom: 60, left: 60}
+  var panelSize = {'height': containerSize.height - margin.top - margin.bottom, 'width': containerSize.width - margin.right - margin.bottom}
+  var width = panelSize.width - padding.left - padding.right
+  var height = panelSize.height - padding.top - padding.bottom
+
+  var volPanel = d3.select('#volChart').append('svg') //http://bl.ocks.org/mbostock/3019563
+        .attr({
+          height: containerSize.height,
+          width: containerSize.width
+        })
+      .append('g')
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  var yPanelScale = d3.scale.ordinal()
+        .domain(zones) //setting the domain to the number of states in the data
+        .rangeRoundBands([0, height], 0.05) //setting the range to the height of the panel
+
+  var xPanelScale = d3.scale.ordinal()
+        .domain(allDates)
+        .rangeRoundBands([0, width], 0.05)
+
+  var colorScales = d3.scale.linear() //could change the scale later
+        .domain([1, maxVol]) //based on the maximum volatility value in the data (better than just binning)
+        .range(["#0000ff","#ff0000"])
+        .interpolate(d3.interpolateHcl);
+
+  var plotSize = {'height': yPanelScale.rangeBand(), 'width': xPanelScale.rangeBand()} //determines the size of each plot in the panel
+
+  var yPlotDomain = [1]
+  for (i=1; i<maxY; i++){
+    yPlotDomain[i] = yPlotDomain[i-1] + 1 //creates an array of domain values (dot positions) based on the maximum number of dots in a bin
+  }
+  var yPlotScale = d3.scale.ordinal()
+        .domain(yPlotDomain)
+        .rangeBands([0, plotSize.height], 0.1)
+
+  var xPlotDomain = [1]
+  for (i=1; i<maxBin; i++){
+    xPlotDomain[i] = xPlotDomain[i-1] + 1
+  }
+  var xPlotScale = d3.scale.ordinal()
+        .domain(xPlotDomain)
+        .rangeBands([0, plotSize.width], 0.2)
+
+  var dotRadius = Math.min(yPlotScale.rangeBand(), xPlotScale.rangeBand())/2 //calculates the dot radius based on the plot height and width
+
+//Drawing the chart
+  
+    //Drawing the dots
+  volPanel.append('g')
+        .attr('class', 'dots')
+        .selectAll('circle')
+        .data(data)
+        .enter()
+        .append('circle')
+        .attr({
+          r: dotRadius,
+          cx: function(d){return xPanelScale(d.date) + xPlotScale(d.bin)},
+          cy: function(d){return yPanelScale(d.zonecode) - yPlotScale(d.position)}
+        })
+        .style({
+          fill: function(d){return colorScales(d.volMoving)}
+        });
+    //Drawing the grid
+  volPanel.append('g')
+        .selectAll(".hlines")
+        .data(zones)
+        .enter()
+        .append('line')
+        .attr({
+          x1: 0,
+          y1: function(d){return yPanelScale(d)},
+          x2:width,
+          y2: function(d){return yPanelScale(d)}
+        })
+        .style("stroke", "#9e9e9e");
+
+  volPanel.append('g')
+        .selectAll(".vlines")
+        .data(allDates)
+        .enter()
+        .append('line')
+        .attr({
+          x1: function(d){return xPanelScale(d)},
+          y1: 0,
+          x2: function(d){return xPanelScale(d)},
+          y2: height
+        })
+        .style("stroke", "#9e9e9e");
+
+    //Drawing the labels
+    volPanel.append('g')
+        .attr('class', 'x-labels')
+        .selectAll('text')
+        .data(allDates)
+        .enter()
+        .append('text')
+        .text(function(d){return monthYear(d)})
+        .attr({
+          x: function(d){return xPanelScale(d) + plotSize.width/2},
+          y: 0
+        })
+        .style('font-size', 12)
+
+
+}
+
+
+
+
+</script>
+</html>

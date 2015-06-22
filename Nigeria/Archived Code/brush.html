@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link href="libraries/jquery-ui/jquery-ui.css" rel="stylesheet">
+<style>
+
+.axis {
+  font: 10px sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.axis line {
+  fill: none;
+  stroke: black;
+  stroke-width:1px;
+  shape-rendering:crispEdges;
+}
+.axis path {
+  fill:none;
+}
+
+#slider {
+  width:300px;
+  margin-left:20px;
+  margin-right:20px;
+  margin-top:-15px;
+}
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="libraries/jquery-1.8.3.min.js"></script>
+<script src="libraries/jquery-ui/jquery-ui.js"></script>
+<div id="sliderContainer">
+  <div id="sliderAxis"></div>
+  <div id="slider"></div>
+
+</div>
+
+<script>
+
+var months = [];
+
+for (var i=2009; i<=2012;i++) {
+  for (var j=0;j<=11;j++) {
+    months.push(new Date(i,j,1))
+  }
+}
+var monthFormat = d3.time.format("%b-%y");
+
+var margin = {top: 0, right: 20, bottom: 0, left: 20},
+    width = 340 - margin.left - margin.right,
+    height = 30 - margin.top - margin.bottom;
+
+var x = d3.time.scale()
+    .domain([months[0], months[months.length-1]])
+    .range([0, width]);
+
+var svg = d3.select("#sliderAxis").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + (20) + ")");
+
+var axis = d3.svg.axis()
+  .scale(x)
+  .orient("top")
+  .tickPadding(5)
+  .tickSize(5)
+  .tickValues(months)
+  .tickFormat(function(d, i) {
+        if (d===months[0] || d===months[months.length-1]) return monthFormat(d);
+    });
+var g = svg.append("g")
+    .attr("class", "x axis")
+    .call(axis)
+
+$( "#slider" ).slider({
+  range: true,
+  min: 0,
+  max: months.length-1,
+  values: [0, months.length-1],
+  slide: function( event, ui ) {
+    if ( ( ui.values[ 0 ] ) >= ui.values[ 1 ] ) {
+      return false;
+    }
+    else {
+      console.log(months[ui.value])
+      axis.tickFormat(function(d, i) {
+          if (d===months[ui.values[0]] || d===months[ui.values[1]]) return monthFormat(d);
+      });
+      g.call(axis)
+    }
+
+  }
+});
+
+
+
+
+</script>

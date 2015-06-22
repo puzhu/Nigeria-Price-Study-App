@@ -1,0 +1,43 @@
+"item","zoneCode","mean","median","dotPosition","boxPosition"
+"Cement Dangote",1,47.8333333333333,48.5,1,1
+"Cement Dangote",2,68.3333333333333,73,2,1
+"Cement Dangote",3,54.8333333333333,75.5,3,1
+"Cement Dangote",4,52,77,4,1
+"Cement Dangote",5,56,73,5,1
+"Cement Dangote",6,46.7142857142857,71,6,1
+"Drink Swan Water Bottle",1,75.2,79,9,3
+"Drink Swan Water Bottle",2,75.5,75.5,10,3
+"Drink Swan Water Bottle",3,60.5,87,11,3
+"Drink Swan Water Bottle",4,69.5555555555556,83,12,3
+"Drink Swan Water Bottle",5,72.1428571428571,95,13,3
+"Drink Swan Water Bottle",6,54.2222222222222,46,14,3
+"Maize White",1,60.1666666666667,63,17,5
+"Maize White",2,81.2,82,18,5
+"Maize White",3,58.6666666666667,80,19,5
+"Maize White",4,64.9,88,20,5
+"Maize White",5,66.625,84,21,5
+"Maize White",6,73.6666666666667,98,22,5
+"Maize Yellow",1,51.8333333333333,44.5,25,7
+"Maize Yellow",2,77.2,85,26,7
+"Maize Yellow",3,48.5,57.5,27,7
+"Maize Yellow",4,41.6,33.5,28,7
+"Maize Yellow",5,66.375,88,29,7
+"Maize Yellow",6,61.8888888888889,86,30,7
+"Rice Imported",1,54.5,56.5,33,9
+"Rice Imported",2,81.8,80,34,9
+"Rice Imported",3,31.5,27.5,35,9
+"Rice Imported",4,65,89,36,9
+"Rice Imported",5,63.8571428571429,82,37,9
+"Rice Imported",6,61.7777777777778,86,38,9
+"Rice Local",1,40.1666666666667,28,41,11
+"Rice Local",2,80.5,80,42,11
+"Rice Local",3,22,3,43,11
+"Rice Local",4,61.3,85.5,44,11
+"Rice Local",5,67.375,87.5,45,11
+"Rice Local",6,66.2222222222222,81,46,11
+"Sorghum",1,52.8333333333333,46.5,49,13
+"Sorghum",2,79.6,78,50,13
+"Sorghum",3,61.8333333333333,89.5,51,13
+"Sorghum",4,71.2222222222222,91,52,13
+"Sorghum",5,72,80,53,13
+"Sorghum",6,59.7142857142857,73,54,13

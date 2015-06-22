@@ -1,0 +1,255 @@
+/*Text styling*/
+h3 {
+	font-size:14px;
+}
+
+
+
+
+#main {
+	width: 90%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#leftDiv {
+	float:left;
+	width:69%;
+}
+/*Outer set of divs*/
+#selectorDiv{
+	
+}
+#chartsDiv{
+/*	float: left;
+	width: 69%;*/
+	/*border:1px solid black;*/
+}
+#textDiv{
+	float: left;
+	width:23%;
+	/*border:1px solid black;*/
+}
+
+/*Common CSS for axis classes (histogram and indicators, line chart has a separate one)*/
+.yAxis path,
+.yAxis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+    stroke-width:1px;
+}
+.yAxis text {
+    font-family: sans-serif;
+    font-size: 9px;
+}
+
+/*Selector Div on price*/
+#productSelectPrice {
+	margin-right:40px;
+}
+#sliderContainer {
+	display:inline-block;
+}
+#sliderContainer .axis {
+  font: 10px sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+#sliderContainer .axis line {
+  fill: none;
+  stroke: black;
+  stroke-width:1px;
+  shape-rendering:crispEdges;
+}
+#sliderContainer .axis path {
+  fill:none;
+}
+
+#sliderContainer #slider {
+  width:250px;
+  margin-left:20px;
+  margin-right:20px;
+  margin-top:-15px;
+}
+
+/*Text Div Prices*/
+#textDiv {
+	padding:2% 3% 0% 3%;
+}
+
+/*Map Div and CSS*/
+#mapOuter{
+	float: left;
+	width:60%;
+	height: 300px;
+}
+#volatilityOuter{
+	float: left;
+	width:60%;
+	/*border:1px solid black;*/
+}
+/*#volatilityContainer{
+	margin: auto;
+}*/
+#indicatorTextContainer {
+	float: left;
+	width:30%;
+	padding:2% 3% 0% 3%;
+	/*border:1px solid black;*/
+}
+#segmentationOuter {
+	float:left;
+	width:58%;
+	/*border:1px solid black;*/
+}
+
+#passthroughOuter {
+	float:left;
+	width:40%;
+	/*border:1px solid black;*/
+}
+
+#mapContainer{
+	width:95%;
+	height:75%;
+	margin:auto;
+}
+.key path {
+	display:none;
+}
+.key line {
+	stroke:white;
+	shape-rendering:crispEdges;
+}
+.key text {
+	font-size:12px;
+}
+.state-boundary {
+	fill:none;
+	stroke:rgb(240,240,240);
+	stroke-width:.5px;
+	stroke-linejoin:round;
+	stroke-linecap:round;
+}
+.boundary-hover {
+	fill:none;
+}
+.boundary-hover-show {
+	stroke:black;
+	fill:none;
+	stroke-width:1.5px;
+}
+.boundary-hover-hide {
+	stroke:none;
+	fill:none;
+}
+
+/*Hist div and CSS*/
+#histOuter{
+	float: left;
+	width:39%;
+	height: 300px;
+}
+#histChartContainer{
+	width:95%;
+	height:75%;
+	margin:auto;
+}
+
+/*Line CSS*/
+#lineOuter{
+	clear: both;
+	width:98%;
+	height: 300px;
+}
+#lineChartContainer{
+	width:98%;
+	height:75%;
+	margin: auto;
+}
+.lineRect {
+	fill:rgb(100,100,100);
+	fill-opacity:.2;
+	stroke:none;
+}
+.voronoi path {
+  fill: none;
+  stroke:none;
+  pointer-events: all;
+}
+.x.axis path {
+	display: none;
+}
+.x.axis text, .y.axis text {
+	font-size:13px;
+}
+.x.axis line {
+	shape-rendering:crispEdges;
+	stroke: black;
+}
+.y.axis path {
+	display: none;
+/*	stroke:lightgrey;
+	stroke-width:1px;*/
+}
+.y.axis line {
+	stroke:lightgrey;
+	stroke-width:1px;
+}
+.state--hover {
+	stroke:red;
+}
+.stateLines {
+	fill:none;
+	stroke-width: 1px;
+	stroke: rgb(150,150,150);
+}
+.focus {
+	pointer-events:none;
+}
+select:focus {
+	border: 1px solid #ccc;
+  	box-shadow: none;
+  	outline: 0 none;
+}
+.ui-state-focus {
+	border: 1px solid #000;
+  	box-shadow: none;
+  	outline: 0 none;
+ }
+.ui-slider .ui-slider-handle {
+ 	cursor:grab;
+ 	cursor:-webkit-grab;
+ }
+ 
+/*Common CSS for the indicators*/
+.zoneHoverShow{
+  stroke:black;
+  stroke-width:0.08px;
+}
+.zoneHoverHide {
+  fill: none;
+  stroke:black;
+  stroke-width:0.06px;
+}
+
+.textHoverShow{
+  font-size: 16px;
+}
+.textHoverHide{
+  color: red;
+}
+
+.meanLines line{
+	stroke: black;
+	stroke-width:1px;
+}
+
+.meanCross{
+
+}
+
+/*Volatility CSS*/

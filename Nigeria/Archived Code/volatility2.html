@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<head>
+<script src="libraries/d3.v3.min.js"></script>
+<script src="libraries/topojson.v1.min.js"></script>
+<script src="libraries/queue.v1.min.js"></script>
+<style>
+
+body {
+font-family: 'Franklin Gothic Medium','Franklin Gothic', 'ITC Franklin Gothic', Arial, sans-serif;
+}
+line {
+  stroke-width:1;
+  stroke:rgb(50,50,50);
+}
+</style>
+</head>
+<body>
+
+<div id="main">
+	<div id="volChart"></div>
+</div>
+
+</body>
+<script>
+//Constructed Functions and variables for the cade
+function uniq_fast(a) { // quickly drop duplicate values from an array
+      var seen = {};
+      var out = [];
+      var len = a.length;
+      var j = 0;
+      for(var i = 0; i < len; i++) {
+           var item = a[i];
+           if(seen[item] !== 1) {
+                 seen[item] = 1;
+                 out[j++] = item;
+           }
+      }
+      return out;
+  }
+var monthYear = d3.time.format("%b %y"); //converts to Month-Year
+var monthFormat = d3.time.format("%Y-%m").parse; //Parse dates and converts to a d3 time format
+
+function filterData(data, input){ //generic funciton to filter data based on an input
+  return data.filter(function(d) {return d.item === input})
+}
+
+
+//queing the data file
+queue()
+  .defer(d3.json, "data/volatility.json")
+  .defer(d3.json, "data/volBoxValues.json")
+  .defer(d3.json, "data/volStateLabels.json")
+  .defer(d3.json, "data/volZonePosition.json")
+  .await(ready);
+//creating the function ready
+function ready(error, volatility, volBoxValues, volStateLabels, volZonePosition){
+  console.log(volStateLabels)
+  var input = "Sorghum" //This would be the input value based on user input
+
+  //Loading the data and creating domain and data variables
+  var data = filterData(volatility, input); //loading the volatility data based on input
+  var zoneData = filterData(volBoxValues, input); //loading the zones data based on the input
+
+  /*We have two sets of domains. One for the chart and the other for each individual panel. The chart domain is mapped to the number of zones and the number of dates. While the panel domains are set to the number of states per zone and the volatility values*/
+  var xChartDomain = uniq_fast(zoneData.map(function(d){return monthFormat(d.date.slice(0,7))})).sort(function(a,b) { return a - b;});//the width of chart is based on the number of dates.
+  var xPanelDomain = d3.extent(data, function(d){return d.volMoving}); // the width of each panel is set to the range of volatility for the selected input
+  var maxYPosition = d3.max(volStateLabels, function(d){return d.yPosition})
+  var yPanelDomain = [] //the states within each panel are positioned using this domain with a stagger for each zone added
+  for(i = 1; i <= maxYPosition; i++){
+    yPanelDomain.push(i)
+  }
+  var colorDomain = d3.extent(data, function(d){return d.volMoving}) //the color domain is set to the range of volatility values
+  console.log(xChartDomain, yPanelDomain)
+  
+  //Creating the canvas
+  var containerSize = {'height': 600, 'width': 1000}
+  var containerMargin = {top: 0.02 * containerSize.height , right: 0.01 * containerSize.width, bottom: 0.02 * containerSize.height, left: 100} //controls the spacing between the edge of the container and the inner chart
+  var containerPadding = {top: 0.06 * containerSize.height, right: 0.006 * containerSize.width, bottom: 0.06 * containerSize.height, left: 0.01 * containerSize.width} //controls the size of the chart
+  var chartSize = {'height': containerSize.height - containerMargin.top - containerMargin.bottom, 'width': containerSize.width - containerMargin.right - containerMargin.left}
+  var width = chartSize.width - containerPadding.left - containerPadding.right
+  var height = chartSize.height - containerPadding.top - containerPadding.bottom
+
+  var volChart = d3.select('#volChart').append('svg') //http://bl.ocks.org/mbostock/3019563
+        .attr({
+          height: containerSize.height,
+          width: containerSize.width
+        })
+      .append('g')
+      .attr("transform", "translate(" + containerMargin.left + "," + containerMargin.top + ")");
+
+  var xChartScale = d3.scale.ordinal()
+      .domain(xChartDomain)
+      .rangeRoundBands([containerPadding.left, width+containerPadding.left], .1)
+
+  var panelWidth = containerPadding.right+xChartScale.rangeBand()
+  //console.log(panelWidth)
+
+  var yPanelScale = d3.scale.ordinal()
+      .domain(yPanelDomain)
+      .rangeBands([containerPadding.top, containerPadding.top+height], 0.2)
+
+  var xPanelScale = d3.scale.linear()
+      .domain(xPanelDomain)
+      .range([containerPadding.right, panelWidth])
+
+  var colorScales = d3.scale.linear() //could change the scale later
+        .domain(colorDomain) //based on the maximum volatility value in the data (better than just binning)
+        .range(["#0000ff","#ff0000"])
+        .interpolate(d3.interpolateHcl);
+
+  //Drawing the chart
+  volChart.append('g') //vertical panels
+      .selectAll(".vboxes")
+      .data(xChartDomain)
+      .enter()
+      .append('rect')
+      .attr({
+        x: function(d){return xChartScale(d)},
+        y: 20,
+        height: height + 20,
+        width: panelWidth
+      })
+      .style("stroke", "none")
+      .style("fill", "rgb(252,255,252)");
+
+  volChart.append('g') //mean
+      .selectAll(".boxLines")
+      .data(zoneData)
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+        y1: function(d) {return yPanelScale(d.minY)},
+        x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+        y2: function(d){return yPanelScale(d.maxY)}
+      })
+  volChart.append('g') //left-top
+      .selectAll(".boxLines")
+      .data(zoneData)
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) - 3},
+        y1: function(d) {return yPanelScale(d.minY) - 3},
+        x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+        y2: function(d){return yPanelScale(d.minY)}
+      })
+  volChart.append('g') //right-top
+      .selectAll(".boxLines")
+      .data(zoneData)
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) + 3},
+        y1: function(d) {return yPanelScale(d.minY) - 3},
+        x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+        y2: function(d){return yPanelScale(d.minY)}
+      })
+  volChart.append('g') //bottom-left
+      .selectAll(".boxLines")
+      .data(zoneData)
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) - 3},
+        y1: function(d) {return yPanelScale(d.maxY) + 3},
+        x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+        y2: function(d){return yPanelScale(d.maxY)}
+      })
+  volChart.append('g') //bottom-right
+      .selectAll(".boxLines")
+      .data(zoneData)
+      .enter()
+      .append('line')
+      .attr({
+        x1: function(d){return (xPanelScale(d.mean) + xChartScale(d.date)) + 3},
+        y1: function(d) {return yPanelScale(d.maxY) + 3},
+        x2: function(d){return xPanelScale(d.mean) + xChartScale(d.date)},
+        y2: function(d){return yPanelScale(d.maxY)}
+      })
+
+  var dots = volChart.append('g') //the circles
+      .selectAll('.dots')
+      .data(data)
+
+  dots.enter()
+      .append('circle')
+      .attr({
+        r: 2,
+        cx: function(d){return xChartScale(d.date) + xPanelScale(d.volMoving)},
+        cy: function(d){return yPanelScale(d.yPosition)}
+      })
+      .style({
+          fill: function(d){return colorScales(d.volMoving)}
+        })
+
+  dots.exit()
+      .remove();
+
+  volChart.append('g')
+      .attr('class', 'y-labels')
+      .selectAll('text')
+      .data(volZonePosition)
+      .enter()
+      .append('text')
+      .text(function(d){return ('Z'+d.zoneCode)})
+      .attr({
+        x: -80,
+        y: function(d){return (yPanelScale(Math.floor(d.position)) + yPanelScale(Math.ceil(d.position)))/2}
+      })
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'start');
+
+  volChart.append('g')
+      .attr('class', 'x-labels')
+      .selectAll('text')
+      .data(xChartDomain)
+      .enter()
+      .append('text')
+      .text(function(d){return monthYear(d)})
+      .attr({
+        x: function(d){return xChartScale(d) + panelWidth/2},
+        y: 20
+      })
+      .style('font-size', 12)
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'middle');
+
+  volChart.append('g')
+      .attr('class', "state-labels")
+      .selectAll('text')
+      .data(volStateLabels)
+      .enter()
+      .append('text')
+      .text(function(d){return d.state})
+      .attr({
+        x: 10,
+        y: function(d){return yPanelScale(d.yPosition)}
+      })
+      .style('font-size', 12)
+      .style('alignment-baseline', 'central')
+      .style('text-anchor', 'end');
+
+}
+
+</script>
+</html>

@@ -216,20 +216,20 @@ function drawMap(ethiopiaRegions,regionPriceData){
 	var mapData = getMapData(startDate,endDate,regionPriceData,product);
 	
 	//CREATING THE CANVAS
-	var mapContainerSize = d3.select('#mapContainer').node().getBoundingClientRect()
-	var mapSize = {'height':mapContainerSize.height * 1,'width':mapContainerSize.width * 1};
-	var mapContainer = d3.select('#mapContainer').append('svg')
-		.attr({
-			width: mapContainerSize.width,
-			height: mapContainerSize.height,
-			'class': 'mapSVG'
-		});
-	var map = mapContainer.append('g')
-		.attr({
-			width: mapSize.width,
-			height: mapSize.height,
-		});
+	var containerSize = d3.select('#mapContainer').node().getBoundingClientRect()
+	console.log(containerSize)
+  	var margin = {top: 0.008*containerSize.height , right: 0.008*containerSize.width, bottom: 0.008*containerSize.height, left: 0.008*containerSize.width};
+  	var padding = {top: 0.006*containerSize.height, right: 0.06*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
+  	var width = containerSize.width - margin.right - margin.left; //Chart width
+  	var height = containerSize.height - margin.top - margin.bottom; //Chart height
 
+  	var map = d3.select('#mapContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
+        .attr({
+          height: height + margin.top + margin.bottom,
+          width: width + margin.left + margin.right
+        })
+      	.attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
+    console.log(map)
 	//DEFINING THE COLOR AND AXIS FUNCTION
 	var max = d3.max(mapData, function(d) { return d.price; });
 	var min = d3.min(mapData, function(d) { return d.price; });
@@ -252,9 +252,9 @@ function drawMap(ethiopiaRegions,regionPriceData){
     	.concat(bounds));
 
     //DRAWING THE LEGEND
-    var key = mapContainer.append("g")
+    var key = map.append("g")
         .attr("class", "key")
-        .attr("transform", "translate("+(mapSize.width*.80)+","+(mapSize.height*.08)+")");
+        .attr("transform", "translate("+(width*.80)+","+(height*.08)+")");
 
     key.selectAll("rect")
         .data(color.range().map(function(d, i) {
@@ -279,27 +279,26 @@ function drawMap(ethiopiaRegions,regionPriceData){
       .offset([0, 0])
       .direction('e')
       .html(function(d) {
-          return "<strong>State:</strong> <span style='color:silver'>" + d.properties.state_name+ "</span>" + "<br>" +
-          "<strong>Mean Price:</strong> <span style='color:silver'>" + d3.round(d.properties.price,2) + "</span>"
+          return "<strong>State:</strong> <span style='color:silver'>" + d.properties.zone+ "</span>" + "<br>" +
+          "<strong>Mean Price:</strong> <span style='color:silver'>" + d.properties.price + "</span>"
           ;
     });
 
     //MERGING THE MAP AND PRICE DATA
     var regionFeatures = topojson.feature(ethiopiaRegions, ethiopiaRegions.objects.Ethiopia_admin_WGS84).features;
-    console.log(regionFeatures)
     //regionFeatures = mergeGeoPrice(mapData,regionFeatures);
-    
+    console.log(regionFeatures)
     //DEFINING THE MAPPING VARIABLES
 	var projection = d3.geo.mercator()
 		.center([8.5,10.5])
-		.scale(1250)
-		.translate([mapSize.width*.35, mapSize.height*.34]);
+		.scale(1000)
+		.translate([-0.95*width, .4*height]);
 
 	var path = d3.geo.path()
 		.projection(projection);
 
     //DRAWING THE MAP
-    var regions = map.selectAll('.states')
+    var regions = map.append('g').selectAll('.states')
 		.data(regionFeatures)
 		.enter()
 		.append('path')
@@ -314,10 +313,10 @@ function drawMap(ethiopiaRegions,regionPriceData){
 			} else {
 				return color(value);
 			}
-		})*/
-		//.call(tip)
-		// .on("mouseover", mouseoverState)
-		// .on("mouseout", mouseoutState);
+		})
+		.call(tip)
+		.on("mouseover", mouseoverState)
+		.on("mouseout", mouseoutState);*/
 
 	//DRAWING THE BOUNDARIES
 	map.append("path")
@@ -381,7 +380,7 @@ function drawHistogram(townPriceData){
         })
       	.append('g')
       	.attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
-
+      	console.log(histChart.height)
 	var yScale = d3.scale.linear()
       .domain(d3.extent(data, function(d){return d.price}))
       .range([height, 0])

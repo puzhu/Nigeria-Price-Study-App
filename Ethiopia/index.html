@@ -306,6 +306,9 @@ function drawMap(ethiopiaRegions,regionPriceData){
 			d: path,
 			'class': 'states'
 		})
+		.style('fill','gray')
+		.style('stroke','black')
+		.on('click',function(d) {console.log(d.properties.zone)})
 		/*.style('fill', function(d, i){
 			var value = d.properties.price;
 			if(isNaN(value) || value==undefined) { // 2 negative cases: 1) state exists in csv file but no price value (NaN). 2) state doesnt exist in csv file but exists in map file (undefined).
@@ -318,25 +321,26 @@ function drawMap(ethiopiaRegions,regionPriceData){
 		.on("mouseover", mouseoverState)
 		.on("mouseout", mouseoutState);*/
 
-	//DRAWING THE BOUNDARIES
+	// DRAWING THE BOUNDARIES
 	map.append("path")
 		.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.Ethiopia_admin_WGS84, function(a, b) { return a !== b ; }))
 		.attr({
 			d: path,
 			'class': 'state-boundary'
-		});
+		})
+		.style('stroke','white');
 
-	var regionArray = uniq_fast(regionFeatures.map(function(d) {return d.properties.region}))
+// 	var regionArray = uniq_fast(regionFeatures.map(function(d) {return d.properties.region}))
 
-	regionArray.forEach(function(d) {
-		map.append("path")
-			.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.Ethiopia_admin_WGS84, function(a, b) { return a.properties.region===d || b.properties.region===d ; }))
-			.attr({
-				d: path,
-				'class': 'boundary-hover', //controls the fill in css
-			})
-			.attr("id",function(e) {return d.replace(' ','')});
-	});
+// 	regionArray.forEach(function(d) {
+// 		map.append("path")
+// 			.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.Ethiopia_admin_WGS84, function(a, b) { return a.properties.region===d || b.properties.region===d ; }))
+// 			.attr({
+// 				d: path,
+// 				'class': 'boundary-hover', //controls the fill in css
+// 			})
+// 			.attr("id",function(e) {return d.replace(' ','')});
+// 	});
 }
 
 function drawHistogram(townPriceData){

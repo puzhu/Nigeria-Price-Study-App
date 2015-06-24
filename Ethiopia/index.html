@@ -114,7 +114,9 @@ function processTownPriceData(d, i){
 		zone: d.zone,
 		town: d.town,
 		date: dateFormat.parse(d.date),
-		price: deString(d.price)
+		price: deString(d.price),
+		lat: deString(d.lat),
+		lon: deString(d.lon)
 	}
 	return array
 }
@@ -156,12 +158,12 @@ queue()
 
 //THE FUNCTION THAT CALLS THE OTHER DRAW FUNCTION
 function ready(error,ethiopiaRegions,regionPriceData,townPriceData) {
-	drawMap(ethiopiaRegions,regionPriceData);
+	drawMap(ethiopiaRegions,regionPriceData, townPriceData);
 	drawHistogram(townPriceData);
 	drawLine(townPriceData);
 }
 
-function drawMap(ethiopiaRegions,regionPriceData){
+function drawMap(ethiopiaRegions,regionPriceData, townPriceData){
 	//FUNCTIONS FOR PROCESSING DATA IN CHART
 	function getMapData(startDate,endDate,regionPriceData,item) { //getting the data ready
 		var array= []
@@ -217,7 +219,6 @@ function drawMap(ethiopiaRegions,regionPriceData){
 	
 	//CREATING THE CANVAS
 	var containerSize = d3.select('#mapContainer').node().getBoundingClientRect()
-	console.log(containerSize)
   	var margin = {top: 0.008*containerSize.height , right: 0.008*containerSize.width, bottom: 0.008*containerSize.height, left: 0.008*containerSize.width};
   	var padding = {top: 0.006*containerSize.height, right: 0.06*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
   	var width = containerSize.width - margin.right - margin.left; //Chart width
@@ -229,7 +230,7 @@ function drawMap(ethiopiaRegions,regionPriceData){
           width: width + margin.left + margin.right
         })
       	.attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
-    console.log(map)
+
 	//DEFINING THE COLOR AND AXIS FUNCTION
 	var max = d3.max(mapData, function(d) { return d.price; });
 	var min = d3.min(mapData, function(d) { return d.price; });
@@ -285,26 +286,54 @@ function drawMap(ethiopiaRegions,regionPriceData){
     });
 
     //MERGING THE MAP AND PRICE DATA
-    var regionFeatures = topojson.feature(ethiopiaRegions, ethiopiaRegions.objects.Ethiopia_admin_WGS84).features;
+    var regionFeatures = topojson.feature(ethiopiaRegions, ethiopiaRegions.objects.ETH).features;
     //regionFeatures = mergeGeoPrice(mapData,regionFeatures);
-    console.log(regionFeatures)
-    //DEFINING THE MAPPING VARIABLES
-	var projection = d3.geo.mercator()
-		.center([8.5,10.5])
-		.scale(1000)
-		.translate([-0.95*width, .4*height]);
 
-	var path = d3.geo.path()
-		.projection(projection);
+    //DEFINING THE MAPPING VARIABLES
+	var projectionZone = d3.geo.mercator()
+		.center([8.5,10.5])
+		.scale(2000)
+		.translate([-1.2*width, .4*height]);
+
+	var projectionRegion = d3.geo.mercator()
+		.center([8.5,10.5])
+		.scale(800)
+		.translate([-0.1*width, .2*height]);
+
+	var pathZone = d3.geo.path()
+		.projection(projectionZone);
+
+	var pathRegion = d3.geo.path()
+		.projection(projectionRegion);
 
     //DRAWING THE MAP
-    var regions = map.append('g').selectAll('.states')
+    var zoneMap = map.append('g').selectAll('.zone')
 		.data(regionFeatures)
 		.enter()
 		.append('path')
 		.attr({
-			d: path,
-			'class': 'states'
+			d: pathZone,
+			'class': 'zone'
+		})
+		/*.style('fill', function(d, i){
+			var value = d.properties.price;
+			if(isNaN(value) || value==undefined) { // 2 negative cases: 1) state exists in csv file but no price value (NaN). 2) state doesnt exist in csv file but exists in map file (undefined).
+				return "#ccc";
+			} else {
+				return color(value);
+			}
+		})
+		.call(tip)
+		.on("mouseover", mouseoverState)
+		.on("mouseout", mouseoutState);*/
+
+	var regionMap = map.append('g').selectAll('.region')
+		.data(regionFeatures)
+		.enter()
+		.append('path')
+		.attr({
+			d: pathRegion,
+			'class': 'region'
 		})
 		/*.style('fill', function(d, i){
 			var value = d.properties.price;
@@ -319,24 +348,55 @@ function drawMap(ethiopiaRegions,regionPriceData){
 		.on("mouseout", mouseoutState);*/
 
 	//DRAWING THE BOUNDARIES
-	map.append("path")
-		.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.Ethiopia_admin_WGS84, function(a, b) { return a !== b ; }))
+	map.append("path") //the zonal boundaries
+		.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.ETH, function(a, b) { return a !== b ; }))
 		.attr({
-			d: path,
-			'class': 'state-boundary'
+			d: pathZone,
+			'class': 'zone-boundary'
 		});
 
-	var regionArray = uniq_fast(regionFeatures.map(function(d) {return d.properties.region}))
+	map.append('path') //region boundaries
+		.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.ETH, function(a, b) { return a.properties.regionName !== b.properties.regionName;}))
+		.attr({
+			d: pathZone,
+			'class': 'region-boundary'
+		});
+
+	map.append('path') //region boundaries
+		.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.ETH, function(a, b) { return a.properties.regionName !== b.properties.regionName;}))
+		.attr({
+			d: pathRegion,
+			'class': 'region-boundary'
+		});
+	/*var regionArray = uniq_fast(regionFeatures.map(function(d) {return d.properties.region}))
 
 	regionArray.forEach(function(d) {
 		map.append("path")
-			.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.Ethiopia_admin_WGS84, function(a, b) { return a.properties.region===d || b.properties.region===d ; }))
+			.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.ETH, function(a, b) { return a.properties.region===d || b.properties.region===d ; }))
 			.attr({
 				d: path,
 				'class': 'boundary-hover', //controls the fill in css
 			})
 			.attr("id",function(e) {return d.replace(' ','')});
-	});
+	});*/
+
+	//PLOTTING POINTS ON THE MAP
+	console.log(regionPriceData,townPriceData)
+	var test = [14.100111554, 38.281111968]
+	console.log(projectionZone(test))
+	
+	var towns = map.selectAll('.towns')
+		.append('g')
+		.data(test)
+		.enter()
+		.append('circle')
+		.attr({
+			cx: function(d){return projectionZone(d)[0]},
+			cy: function(d){return projectionZone(d)[1]},
+			r: 3,
+			class: 'town',
+			fill: 'red'
+		})
 }
 
 function drawHistogram(townPriceData){
@@ -345,13 +405,13 @@ function drawHistogram(townPriceData){
     	var histData = histogram(data); //create the array of arrays with hist data
     	array = [];//empty array to populate
     	histData.forEach(function(d){
-	     	var y = d.x // gives the vertical position of the dots
-	      	var dy = d.dx //the width of the bin
-	      	var x = d.y //this gives the number of dots
+	     	var x = d.x // gives the vertical position of the dots
+	      	var dx = d.dx //the width of the bin
+	      	var y = d.y //this gives the number of dots
 	      	d.forEach(function(e, i){
-	        	e.y = y;
-	        	e.dy = dy;
-	        	e.x = x - i; //reversing the order since the hist layout sets the highest value in the lowest position in the array
+	        	e.x = x;
+	        	e.dx = dx;
+	        	e.y = y - i; //reversing the order since the hist layout sets the highest value in the lowest position in the array
 	        	array.push(e)
 	      	})
     	})
@@ -380,35 +440,35 @@ function drawHistogram(townPriceData){
         })
       	.append('g')
       	.attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
-      	console.log(histChart.height)
-	var yScale = d3.scale.linear()
+
+	var xScale = d3.scale.linear()
       .domain(d3.extent(data, function(d){return d.price}))
-      .range([height, 0])
+      .range([0, width])
 
     //CREATING THE HISTOGRAM DATA
   	var numBins = 30;
   	var histogram = d3.layout.histogram()
-      .bins(yScale.ticks(numBins))
+      .bins(xScale.ticks(numBins))
       .value(function(d){return d.price});
 
   	var histData = getData(data, histogram);
-
+  	console.log(histData)
   	//CALCULATING THE x-Axis AND COLOUR SCALES BASED ON THE HISTOGRAM DATA
-	var maxX = d3.max(histData, function(d){return d.x});
-	var xDomain =  [];
-	for(i=1; i<=maxX; i++){
-	    xDomain.push(i)
+	var maxY = d3.max(histData, function(d){return d.y});
+	var yDomain =  [];
+	for(i=1; i<=maxY; i++){
+	    yDomain.push(i)
 	}
-	var xScale = d3.scale.ordinal()
-	    .domain(xDomain)
-	    .rangeBands([0, width-padding.right], 0.01);
+	var yScale = d3.scale.ordinal()
+	    .domain(yDomain)
+	    .rangeBands([height-padding.top, 0], 0.01);
 
 	var max = d3.max(histData, function(d) { return d.price; });
 	var min = d3.min(histData, function(d) { return d.price; });
 
 	var axis = d3.svg.axis()//setting the axis based on the yScale
-	    .scale(yScale)
-	    .orient("left")
+	    .scale(xScale)
+	    .orient("bottom")
 	    .tickSize(4);
 
   	var dotChartSeparation = 3;
@@ -418,6 +478,7 @@ function drawHistogram(townPriceData){
   	var axisLine = histChart.append("g")
         .attr('class', 'yAxis')
         .style('cursor', 'default')
+        .attr("transform", "translate(0," + height + ")")
         .call(axis);
 
     var dots = histChart.append('g')
@@ -427,8 +488,8 @@ function drawHistogram(townPriceData){
       	.append('circle')
       	.attr({
         	r: dotRadius,
-        	cx: function(d){return xScale(d.x) + dotChartSeparation},
-        	cy: function(d){return yScale(d.y)},
+        	cx: function(d){return xScale(d.x) },
+        	cy: function(d){return yScale(d.y)+ dotChartSeparation},
         	class: 'histDots'
       	})
       	.attr('fill', 'silver')
@@ -469,26 +530,26 @@ function drawHistogram(townPriceData){
   	//REDRAWING ELEMENTS BASED ON PRODUCT SELECTIONS
   	function redraw(product, startDate, endDate){
 	    data = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
-	    yScale.domain(d3.extent(data, function(d){return d.price}));
-	    histogram.bins(yScale.ticks(numBins))
+	    xScale.domain(d3.extent(data, function(d){return d.price}));
+	    histogram.bins(xScale.ticks(numBins))
 	    histData = getData(data, histogram)
 	    totObs = data.length
 	    histText.text('Total Price Observations: ' + totObs)
 
-	    maxX = d3.max(histData, function(d){return d.x})
-	    xDomain =  [];
-	    for(i=1; i<=maxX; i++){
-	      xDomain.push(i)
+	    maxY = d3.max(histData, function(d){return d.y})
+	    yDomain =  [];
+	    for(i=1; i<=maxY; i++){
+	      yDomain.push(i)
 	    }
-	    xScale.domain(xDomain)
+	    yScale.domain(yDomain)
 
 	    dots = dots.data(histData); //updating the dots
 	    dots.exit().remove();
 	    dots.enter().append('circle');
 	    dots.attr({
 	        r: dotRadius,
-	        cx: function(d){return xScale(d.x) + dotChartSeparation},
-	        cy: function(d){return yScale(d.y )}, //the dy centers the dots between the two ticks
+	        cx: function(d){return xScale(d.x) },
+        	cy: function(d){return yScale(d.y)+ dotChartSeparation},
 	        class: 'histDots'
 	      })
 	    .attr('fill', 'silver');

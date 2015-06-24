@@ -5,7 +5,7 @@ h3 {
 
 
 
-
+/*Position the Divs*/
 #main {
 	width: 90%;
 	margin-left:auto;
@@ -14,7 +14,7 @@ h3 {
 
 #leftDiv {
 	float:left;
-	width:69%;
+	width:100%;
 }
 /*Outer set of divs*/
 #selectorDiv{
@@ -27,7 +27,7 @@ h3 {
 }
 #textDiv{
 	float: left;
-	width:23%;
+	width:20%;
 	/*border:1px solid black;*/
 }
 
@@ -83,33 +83,8 @@ h3 {
 /*Map Div and CSS*/
 #mapOuter{
 	float: left;
-	width:60%;
-	height: 300px;
-}
-#volatilityOuter{
-	float: left;
-	width:60%;
-	/*border:1px solid black;*/
-}
-/*#volatilityContainer{
-	margin: auto;
-}*/
-#indicatorTextContainer {
-	float: left;
-	width:30%;
-	padding:2% 3% 0% 3%;
-	/*border:1px solid black;*/
-}
-#segmentationOuter {
-	float:left;
-	width:58%;
-	/*border:1px solid black;*/
-}
-
-#passthroughOuter {
-	float:left;
-	width:40%;
-	/*border:1px solid black;*/
+	width:70%;
+	height: 600px;
 }
 
 #mapContainer{
@@ -117,6 +92,7 @@ h3 {
 	height:75%;
 	margin:auto;
 }
+/*Map key*/
 .key path {
 	display:none;
 }
@@ -127,10 +103,19 @@ h3 {
 .key text {
 	font-size:12px;
 }
-.state-boundary {
+
+/*Map Boundaries*/
+.zone-boundary{
+	fill:none;
+	stroke:rgb(60,60,60);
+	stroke-width:0.2px;
+	stroke-linejoin:round;
+	stroke-linecap:round;
+}
+.region-boundary {
 	fill:none;
 	stroke:rgb(240,240,240);
-	stroke-width:.5px;
+	stroke-width:0.5px;
 	stroke-linejoin:round;
 	stroke-linecap:round;
 }
@@ -150,8 +135,8 @@ h3 {
 /*Hist div and CSS*/
 #histOuter{
 	float: left;
-	width:39%;
-	height: 300px;
+	width:29%;
+	height: 600px;
 }
 #histChartContainer{
 	width:95%;
@@ -253,3 +238,28 @@ select:focus {
 }
 
 /*Volatility CSS*/
+#volatilityOuter{
+	float: left;
+	width:60%;
+	/*border:1px solid black;*/
+}
+/*#volatilityContainer{
+	margin: auto;
+}*/
+#indicatorTextContainer {
+	float: left;
+	width:30%;
+	padding:2% 3% 0% 3%;
+	/*border:1px solid black;*/
+}
+#segmentationOuter {
+	float:left;
+	width:58%;
+	/*border:1px solid black;*/
+}
+
+#passthroughOuter {
+	float:left;
+	width:40%;
+	/*border:1px solid black;*/
+}

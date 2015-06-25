@@ -1,24 +1,53 @@
 /*Text styling*/
 h3 {
-	font-size:14px;
+	font-size:1.2em;
+	margin-left: 1em;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	line-height: 1.5em;
 }
-
-
-
 
 #main {
 	width: 90%;
 	margin-left:auto;
 	margin-right:auto;
+	font-family: "Verdana";
 }
 
 #leftDiv {
 	float:left;
 	width:69%;
+	margin-top: 0.5em;
+	margin-left:0.5em;
+	margin-bottom:0.5em;
+	background: #EEEEEE;
+	box-shadow: 0 0 5px #888888;
 }
+
+#mapOuter{
+	float: left;
+	width:60%;
+	height: 250px;
+}
+
+#histOuter{
+	float: left;
+	width:39%;
+	height: 250px;
+}
+
+#lineOuter{
+	clear: both;
+	width:98%;
+	height: 250px;
+}
+
 /*Outer set of divs*/
 #selectorDiv{
-	
+	margin-top: 1em;
+	margin-left:1em;
+	background: #EEEEEE;
+
 }
 #chartsDiv{
 /*	float: left;
@@ -26,9 +55,15 @@ h3 {
 	/*border:1px solid black;*/
 }
 #textDiv{
-	float: left;
-	width:23%;
-	/*border:1px solid black;*/
+	width:25%;
+	margin-top: 2em;
+	margin-right: 1em;
+	margin-left: 1em;
+	font-size: 0.9em;
+	padding:2% 1% 1% 1%;
+	float: right;
+	box-shadow: 0 0 0.5em #888888;
+	border:1px solid #888888;
 }
 
 /*Common CSS for axis classes (histogram and indicators, line chart has a separate one)*/
@@ -75,17 +110,9 @@ h3 {
   margin-top:-15px;
 }
 
-/*Text Div Prices*/
-#textDiv {
-	padding:2% 3% 0% 3%;
-}
 
 /*Map Div and CSS*/
-#mapOuter{
-	float: left;
-	width:60%;
-	height: 300px;
-}
+
 #volatilityOuter{
 	float: left;
 	width:60%;
@@ -148,11 +175,7 @@ h3 {
 }
 
 /*Hist div and CSS*/
-#histOuter{
-	float: left;
-	width:39%;
-	height: 300px;
-}
+
 #histChartContainer{
 	width:95%;
 	height:75%;
@@ -160,11 +183,7 @@ h3 {
 }
 
 /*Line CSS*/
-#lineOuter{
-	clear: both;
-	width:98%;
-	height: 300px;
-}
+
 #lineChartContainer{
 	width:98%;
 	height:75%;

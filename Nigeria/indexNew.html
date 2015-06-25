@@ -76,8 +76,8 @@
 		</div>
 		<div class="tab-pane" id="indicators">
 			<div id="tab2row1">
-				<p>We are currently remodeling this page based on user feedback. The second iteration of this prototype would present information for each commodity on the volatility of prices, the degree to which markets act differently from one another (segmentation) and the speed and extent to which international shocks or shifts in prices are absorbed in different markets in Nigeria.</p>
-				<p>Additional indicators could be added to this section over time depending on data availability. This information would eventally act as a diagnostic for market health in different states of Nigeria and highlight those that need attention.</p>
+				<p>We are currently remodeling this page based on user feedback. The second iteration of this prototype would present information on the volatility of prices, the degree to which markets act differently from one another (segmentation) and the speed and extent to which international shocks or shifts in prices are absorbed in different markets in Nigeria.</p>
+				<p>Additional indicators could be added to this section over time depending on data availability. This information would act as a market health diagnostic that highlights markets that need attention.</p>
 			</div>
 		</div>
 	</div>
@@ -328,7 +328,7 @@ function drawMap(nigeriaStates,priceData){
     //DRAWING THE LEGEND
     var key = mapContainer.append("g")
         .attr("class", "key")
-        .attr("transform", "translate("+(mapSize.width*.80)+","+(mapSize.height*.08)+")");
+        .attr("transform", "translate("+(mapSize.width*.80)+","+(mapSize.height*.022)+")");
 
     key.selectAll("rect")
         .data(color.range().map(function(d, i) {
@@ -339,7 +339,7 @@ function drawMap(nigeriaStates,priceData){
           };
         }))
         .enter().append("rect")
-        .attr("height", function(d,i) { return d.x0 - d.x1})
+        .attr("height", function(d,i) { return (d.x0 - d.x1)})
         .attr("y", function(d, i) { return d.x1; })
         .attr("width", 8)
         .attr("x",-9)
@@ -365,8 +365,8 @@ function drawMap(nigeriaStates,priceData){
     //DEFINING THE MAPPING VARIABLES
 	var projection = d3.geo.mercator()
 		.center([8.5,10.5])
-		.scale(1250)
-		.translate([mapSize.width*.35, mapSize.height*.34]);
+		.scale(1100)
+		.translate([mapSize.width*.34, mapSize.height*.36]);
 
 	var path = d3.geo.path()
 		.projection(projection);
@@ -510,7 +510,7 @@ function drawHistogram(allData){
 
   	//CREATING THE CANVAS AND Y-SCALES
   	var containerSize = d3.select('#histChartContainer').node().getBoundingClientRect()
-  	var margin = {top: 0.04*containerSize.height , right: 0.006*containerSize.width, bottom: 0.08*containerSize.height, left: 0.15*containerSize.width};
+  	var margin = {top: 0.05*containerSize.height , right: 0.006*containerSize.width, bottom: 0.08*containerSize.height, left: 0.15*containerSize.width};
   	var padding = {top: 0.006*containerSize.height, right: 0.06*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
   	var width = containerSize.width - margin.right - margin.left; //Chart width
   	var height = containerSize.height - margin.top - margin.bottom; //Chart height

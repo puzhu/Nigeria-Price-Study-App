@@ -69,8 +69,8 @@
 		</div>
 		<div class="tab-pane" id="indicators">
 			<div id="tab2row1">
-				<p>We are currently remodeling this page based on user feedback. The second iteration of this prototype would present information for each commodity on the volatility of prices, the degree to which markets in different regions act differently from one another (segmentation) and the speed and extent to which international shocks or shifts in prices are absorbed in different markets in Ethiopia.</p>
-				<p>Additional indicators could be added to this section over time depending on data availability. This information would eventally act as a diagnostic for market health in different regions of Ethiopia and highlight those that need attention.</p>
+				<p>We are currently remodeling this page based on user feedback. The second iteration of this prototype would present information on the volatility of prices, the degree to which markets in different regions act differently from one another (segmentation) and the speed and extent to which international shocks or shifts in prices are absorbed in different markets in Ethiopia.</p>
+				<p>Additional indicators could be added to this section over time depending on data availability. This information would eventally act as a market health diagnostic that highlights markets those that need attention.</p>
 			</div>
 		</div>
 	</div>
@@ -474,7 +474,6 @@ function drawLine(townPriceData){
    	var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
   	var lineData = townPriceData.filter(function(d){return d.item === product && d.date>= startDate && d.date <= endDate});//reshapeMonthlyPrice(townPriceData,product,startDate,endDate);
   	var months = uniq_fast(lineData.map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
-  	console.log(lineData[0].dx)
 
   	//CREATING THE CANVAS
 	var containerSize = d3.select('#lineChartContainer').node().getBoundingClientRect()

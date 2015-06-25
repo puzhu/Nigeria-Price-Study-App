@@ -12,23 +12,39 @@ h3 {
 	margin-right:auto;
 }
 
-#leftDiv {
-	float:left;
-	width:100%;
-}
 /*Outer set of divs*/
 #selectorDiv{
 	
 }
-#chartsDiv{
-/*	float: left;
-	width: 69%;*/
-	/*border:1px solid black;*/
+#topRow{
+	width:95%;
+	height: 400px;
+}
+#mapOuter{
+	float: left;
+	width:60%;
+	height: 100%;
 }
 #textDiv{
-	float: left;
-	width:20%;
+	float: right;
+	width:33%;
+	height: 90%;
 	/*border:1px solid black;*/
+}
+#bottomRow{
+	clear: both;
+	width:95%;
+	height: 300px;
+}
+#lineOuter{
+	float: left;
+	width:60%;
+	height: 100%;
+}
+#histOuter{
+	float: right;
+	width:33%;
+	height: 90%;
 }
 
 /*Common CSS for axis classes (histogram and indicators, line chart has a separate one)*/
@@ -81,15 +97,10 @@ h3 {
 }
 
 /*Map Div and CSS*/
-#mapOuter{
-	float: left;
-	width:70%;
-	height: 600px;
-}
 
 #mapContainer{
 	width:95%;
-	height:75%;
+	height:100%;
 	margin:auto;
 }
 /*Map key*/
@@ -133,11 +144,6 @@ h3 {
 }
 
 /*Hist div and CSS*/
-#histOuter{
-	float: left;
-	width:29%;
-	height: 600px;
-}
 #histChartContainer{
 	width:95%;
 	height:75%;
@@ -145,11 +151,7 @@ h3 {
 }
 
 /*Line CSS*/
-#lineOuter{
-	clear: both;
-	width:98%;
-	height: 300px;
-}
+
 #lineChartContainer{
 	width:98%;
 	height:75%;

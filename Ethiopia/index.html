@@ -50,9 +50,8 @@
 					<div id="mapContainer"></div>
 				</div>
 				<div id='textDiv'>
-					<p id = 'text'>Ethiopia is administratively divided into regions and zones. The data used for this dashboard is collected monthly through surveys of shops in different towns from each zone.</p>
-					<p id = 'text'>The three charts on this tab present price data for a commodity at different levels of aggregation.</p>
-					<p>The <strong>maps</strong> shows the average of all the price observations across the selected time-period for zones and region The <strong>line chart</strong> represents the monthly average price for each zone during the selected time period. The <strong>histogram</strong> shows the observed prices from each town for the entire selected time period for a particular commodity</p>
+					<p>Ethiopia is administratively divided into regions and zones. The data used for this dashboard is collected monthly through surveys of shops in different towns from each zone. The three charts on this tab present price data for a commodity at different levels of aggregation.</p>
+					<p>The <strong>maps</strong> shows the average of all the price observations across the selected time-period for towns and region The <strong>line chart</strong> represents the monthly price for each during the selected time period. The <strong>histogram</strong> shows the observed prices from each town for the entire selected time period for a particular commodity</p>
 					<p>Hovering over a zone or region would show the data points from that state in the histogram and the line chart. The same is true for the line chart.</p>
 					<p>The three charts together offer a view of the spread, the trend and the overall levels of prices in different states in Nigeria</p>
 				</div>
@@ -280,12 +279,12 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 	var projectionZone = d3.geo.mercator()
 		.center([8.5,10.5])
 		.scale(1600)
-		.translate([-1.11*width, .39*height]);
+		.translate([-1*width, .39*height]);
 
 	var projectionRegion = d3.geo.mercator()
 		.center([8.5,10.5])
 		.scale(1000)
-		.translate([-0.25*width, .19*height]);
+		.translate([-0.2*width, .19*height]);
 
 	var pathZone = d3.geo.path()
 		.projection(projectionZone);
@@ -339,7 +338,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 			'class': 'region-boundary'
 		});
 
-
+	//HIGHLIGHTING BOUNDARIES DURING MOUSEOVERS
 	/*regionMap.append('path') //region boundaries
 		.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.ETH_ADM2, function(a, b) { return a.properties.regionName !== b.properties.regionName;}))
 		.attr({
@@ -378,6 +377,59 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
   		.style('stroke', 'black')
   		.style('stroke-width', '0.5px')
   		;
+
+
+  	//RESELECTING THE PRODUCT AND REDRAWING THE MAP BASED ON CHANGES
+	d3.select('#productSelectPrice').on('change.map', function(d) {
+        var product = d3.select(this).property('value');
+		//var dates = $('#slider').slider('values');
+		var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
+   		var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
+        redrawMap(product, startDate, endDate);
+    });
+
+    /*$("#slider").on( "slide", function( event, ui ) {
+	    if ((ui.values[0]) >= ui.values[1]) {
+	    	return false;
+	    }
+	    else {
+	    	var sel = document.getElementById('productSelectPrice');
+	    	var product = sel.options[sel.selectedIndex].value;
+	    	var startDate = sliderMonths[ui.values[0]];
+	    	var endDate = sliderMonths[ui.values[1]];
+	    	redrawMap(product, startDate, endDate);
+	    }
+    });*/
+
+	function redrawMap(product, startDate, endDate) {
+		townData = getTownData(townPriceData,startDate, endDate, product)
+		regionData = getRegionData(townPriceData,startDate, endDate, product)
+		console.log(regionData)
+		// set the color and axis functions
+		max = d3.max(townData, function(d) { return d.price; });
+		min = d3.min(townData, function(d) { return d.price; });
+		bounds = setBins(max,min);
+		color.domain(bounds);
+		y.domain([min*.95, max*1.05]);
+    	axis.scale(y).tickValues([min*.95].concat(bounds));
+    	key.call(axis)
+
+    	regionFeatures = mergeRegionPrice(regionData,regionFeatures) //adding the region data to the region map
+		regionMap
+			.data(regionFeatures)
+			.style('fill', function(d){
+				return color(d.properties.price)
+			});
+
+		towns
+			.data(townData)
+			.attr("transform", function(d) {
+    			return "translate(" + projectionZone([d.lon, d.lat]) + ")"
+  			})
+  			.attr('fill', function(d){
+				return color(d.price)
+			});
+	}
 }
 
 function drawHistogram(townPriceData){

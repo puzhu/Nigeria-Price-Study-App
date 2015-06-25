@@ -432,165 +432,6 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 	}
 }
 
-function drawHistogram(townPriceData){
-	//THIS FUNCTION CONVERTS THE FILTERED DATA INTO A HISTOGRAM LAYOUT FORMAT
-	function getData(data, histogram){
-    	var histData = histogram(data); //create the array of arrays with hist data
-    	array = [];//empty array to populate
-    	histData.forEach(function(d){
-	     	var x = d.x // gives the vertical position of the dots
-	      	var dx = d.dx //the width of the bin
-	      	var y = d.y //this gives the number of dots
-	      	d.forEach(function(e, i){
-	        	e.x = x;
-	        	e.dx = dx;
-	        	e.y = y - i; //reversing the order since the hist layout sets the highest value in the lowest position in the array
-	        	array.push(e)
-	      	})
-    	})
-    	return array
-  	}
-
-  	//GETTING THE DATA READY
-  	var sel = document.getElementById('productSelectPrice'); //selecting the default based on currentinput
-  	var product = sel.options[sel.selectedIndex].value; //pulling the value of the selected product
-	//var dates = $('#slider').slider('values'); //pulls the date values from the slider
-	var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
-   	var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
-  	var data = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
-
-  	//CREATING THE CANVAS AND Y-SCALES
-  	var containerSize = d3.select('#histChartContainer').node().getBoundingClientRect()
-  	var margin = {top: 0.08*containerSize.height , right: 0.006*containerSize.width, bottom: 0.08*containerSize.height, left: 0.00006*containerSize.width};
-  	var padding = {top: 0.006*containerSize.height, right: 0.06*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
-  	var width = containerSize.width - margin.right - margin.left; //Chart width
-  	var height = containerSize.height - margin.top - margin.bottom; //Chart height
-
-  	var histChart = d3.select('#histChartContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
-        .attr({
-          height: height + margin.top + margin.bottom,
-          width: width + margin.left + margin.right
-        })
-      	.append('g')
-      	.attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
-
-	var xScale = d3.scale.linear()
-      .domain(d3.extent(data, function(d){return d.price}))
-      .range([0, width])
-
-    //CREATING THE HISTOGRAM DATA
-  	var numBins = 30;
-  	var histogram = d3.layout.histogram()
-      .bins(xScale.ticks(numBins))
-      .value(function(d){return d.price});
-
-  	var histData = getData(data, histogram);
-  	console.log(histData)
-  	//CALCULATING THE x-Axis AND COLOUR SCALES BASED ON THE HISTOGRAM DATA
-	var maxY = d3.max(histData, function(d){return d.y});
-	var yDomain =  [];
-	for(i=1; i<=maxY; i++){
-	    yDomain.push(i)
-	}
-	var yScale = d3.scale.ordinal()
-	    .domain(yDomain)
-	    .rangeBands([height-padding.top, 0], 0.01);
-
-	var max = d3.max(histData, function(d) { return d.price; });
-	var min = d3.min(histData, function(d) { return d.price; });
-
-	var axis = d3.svg.axis()//setting the axis based on the yScale
-	    .scale(xScale)
-	    .orient("bottom")
-	    .tickSize(4);
-
-  	var dotChartSeparation = 3;
-  	var dotRadius = 1.5;
-
-  	//DRAWING THE ELEMENTS
-  	var axisLine = histChart.append("g")
-        .attr('class', 'yAxis')
-        .style('cursor', 'default')
-        .attr("transform", "translate(0," + height + ")")
-        .call(axis);
-
-    var dots = histChart.append('g')
-      	.selectAll('.histDots')
-      	.data(histData)
-      	.enter()
-      	.append('circle')
-      	.attr({
-        	r: dotRadius,
-        	cx: function(d){return xScale(d.x) },
-        	cy: function(d){return yScale(d.y)+ dotChartSeparation},
-        	class: 'histDots'
-      	})
-      	.attr('fill', 'silver')
-
-
-    //CREATING LABELS AND TEXT
-    var totObs = data.length
-  	var histText = histChart.append('text')
-    .text('Total observations: ' + totObs)
-    .attr({
-      x:dotChartSeparation,
-      y:0,
-      class: 'histText'
-    })
-    .attr('font-size', 11);
-
-    //MARKING THE NEW PRODUCT SELECTION AND CALLING THE REDRAW FUNCTION
-  	d3.select('#productSelectPrice') //changes the product based on user input from the dropdown menu
-	    .on('change.histogram', function(d) {
-	        var product = d3.select(this).property('value')
-	        //var dates = $('#slider').slider('values');
-			var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
-   			var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
-	        redraw(product,startDate,endDate)
-	    })
-    /*$("#slider").on( "slide", function( event, ui ) {
-	    if ((ui.values[0]) >= ui.values[1]) {
-	    	return false;
-	    }
-	    else {
-	    	var product = d3.select(this).property('value')
-	    	var startDate = sliderMonths[ui.values[0]];
-	    	var endDate = sliderMonths[ui.values[1]];
-	        var product = d3.select('#productSelectPrice').property('value');
-	        redraw(product,startDate,endDate);
-	    }
-    });*/
-  	//REDRAWING ELEMENTS BASED ON PRODUCT SELECTIONS
-  	function redraw(product, startDate, endDate){
-	    data = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
-	    xScale.domain(d3.extent(data, function(d){return d.price}));
-	    histogram.bins(xScale.ticks(numBins))
-	    histData = getData(data, histogram)
-	    totObs = data.length
-	    histText.text('Total Price Observations: ' + totObs)
-
-	    maxY = d3.max(histData, function(d){return d.y})
-	    yDomain =  [];
-	    for(i=1; i<=maxY; i++){
-	      yDomain.push(i)
-	    }
-	    yScale.domain(yDomain)
-
-	    dots = dots.data(histData); //updating the dots
-	    dots.exit().remove();
-	    dots.enter().append('circle');
-	    dots.attr({
-	        r: dotRadius,
-	        cx: function(d){return xScale(d.x) },
-        	cy: function(d){return yScale(d.y)+ dotChartSeparation},
-	        class: 'histDots'
-	      })
-	    .attr('fill', 'silver');
-
-	    axisLine.call(axis)
-  	}
-}
-
 function drawLine(townPriceData){
 	//console.log(townPriceData)
 	//THIS FUNCTION GETS THE DATA IN FORMAT FOR THE CHART
@@ -631,8 +472,9 @@ function drawLine(townPriceData){
 	//var dates = $('#slider').slider('values'); //pulls the date values from the slider
 	var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
    	var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
-  	var lineData = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});//reshapeMonthlyPrice(townPriceData,product,startDate,endDate);
+  	var lineData = townPriceData.filter(function(d){return d.item === product && d.date>= startDate && d.date <= endDate});//reshapeMonthlyPrice(townPriceData,product,startDate,endDate);
   	var months = uniq_fast(lineData.map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
+  	console.log(lineData[0].dx)
 
   	//CREATING THE CANVAS
 	var containerSize = d3.select('#lineChartContainer').node().getBoundingClientRect()
@@ -852,6 +694,168 @@ function drawLine(townPriceData){
 
 	}
 }
+
+
+function drawHistogram(townPriceData){
+	//THIS FUNCTION CONVERTS THE FILTERED DATA INTO A HISTOGRAM LAYOUT FORMAT
+	function getData(data, histogram){
+    	var histData = histogram(data); //create the array of arrays with hist data
+    	array = [];//empty array to populate
+    	histData.forEach(function(d){
+	     	var x = d.x // gives the vertical position of the dots
+	      	var dx = d.dx //the width of the bin
+	      	var y = d.y //this gives the number of dots
+	      	d.forEach(function(e, i){
+	        	e.x = x;
+	        	e.dx = dx;
+	        	e.y = y - i; //reversing the order since the hist layout sets the highest value in the lowest position in the array
+	        	array.push(e)
+	      	})
+    	})
+    	return array
+  	}
+
+  	//GETTING THE DATA READY
+  	var sel = document.getElementById('productSelectPrice'); //selecting the default based on currentinput
+  	var product = sel.options[sel.selectedIndex].value; //pulling the value of the selected product
+	//var dates = $('#slider').slider('values'); //pulls the date values from the slider
+	var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
+   	var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
+  	var data = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
+
+  	//CREATING THE CANVAS AND Y-SCALES
+  	var containerSize = d3.select('#histChartContainer').node().getBoundingClientRect()
+  	var margin = {top: 0.08*containerSize.height , right: 0.006*containerSize.width, bottom: 0.08*containerSize.height, left: 0.00006*containerSize.width};
+  	var padding = {top: 0.006*containerSize.height, right: 0.06*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
+  	var width = containerSize.width - margin.right - margin.left; //Chart width
+  	var height = containerSize.height - margin.top - margin.bottom; //Chart height
+
+  	var histChart = d3.select('#histChartContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
+        .attr({
+          height: height + margin.top + margin.bottom,
+          width: width + margin.left + margin.right
+        })
+      	.append('g')
+      	.attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
+
+	var xScale = d3.scale.linear()
+      .domain(d3.extent(data, function(d){return d.price}))
+      .range([0, width])
+
+    //CREATING THE HISTOGRAM DATA
+  	var numBins = 30;
+  	var histogram = d3.layout.histogram()
+      .bins(xScale.ticks(numBins))
+      .value(function(d){return d.price});
+
+  	var histData = getData(data, histogram);
+
+  	//CALCULATING THE x-Axis AND COLOUR SCALES BASED ON THE HISTOGRAM DATA
+	var maxY = d3.max(histData, function(d){return d.y});
+	var yDomain =  [];
+	for(i=1; i<=maxY; i++){
+	    yDomain.push(i)
+	}
+	var yScale = d3.scale.ordinal()
+	    .domain(yDomain)
+	    .rangeBands([height-padding.top, 0], 0.01);
+
+	var max = d3.max(histData, function(d) { return d.price; });
+	var min = d3.min(histData, function(d) { return d.price; });
+
+	var axis = d3.svg.axis()//setting the axis based on the yScale
+	    .scale(xScale)
+	    .orient("bottom")
+	    .tickSize(4);
+
+  	var dotChartSeparation = 4;
+  	var dotRadius = 1.5;
+
+  	//DRAWING THE ELEMENTS
+  	var axisLine = histChart.append("g")
+        .attr('class', 'yAxis')
+        .style('cursor', 'default')
+        .attr("transform", "translate(0," + height + ")")
+        .call(axis);
+
+    var dots = histChart.append('g')
+      	.selectAll('.histDots')
+      	.data(histData)
+      	.enter()
+      	.append('circle')
+      	.attr({
+        	r: dotRadius,
+        	cx: function(d){return xScale(d.x) },
+        	cy: function(d){return yScale(d.y)+ dotChartSeparation},
+        	class: 'histDots'
+      	})
+      	.attr('fill', 'silver')
+
+
+    //CREATING LABELS AND TEXT
+    var totObs = data.length
+  	var histText = histChart.append('text')
+    .text('Total observations: ' + totObs)
+    .attr({
+      x:dotChartSeparation,
+      y:0,
+      class: 'histText'
+    })
+    .attr('font-size', 11);
+
+    //MARKING THE NEW PRODUCT SELECTION AND CALLING THE REDRAW FUNCTION
+  	d3.select('#productSelectPrice') //changes the product based on user input from the dropdown menu
+	    .on('change.histogram', function(d) {
+	        var product = d3.select(this).property('value')
+	        //var dates = $('#slider').slider('values');
+			var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
+   			var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
+	        redraw(product,startDate,endDate)
+	    })
+    /*$("#slider").on( "slide", function( event, ui ) {
+	    if ((ui.values[0]) >= ui.values[1]) {
+	    	return false;
+	    }
+	    else {
+	    	var product = d3.select(this).property('value')
+	    	var startDate = sliderMonths[ui.values[0]];
+	    	var endDate = sliderMonths[ui.values[1]];
+	        var product = d3.select('#productSelectPrice').property('value');
+	        redraw(product,startDate,endDate);
+	    }
+    });*/
+  	//REDRAWING ELEMENTS BASED ON PRODUCT SELECTIONS
+  	function redraw(product, startDate, endDate){
+	    data = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
+	    xScale.domain(d3.extent(data, function(d){return d.price}));
+	    histogram.bins(xScale.ticks(numBins))
+	    histData = getData(data, histogram)
+	    totObs = data.length
+	    histText.text('Total Price Observations: ' + totObs)
+
+	    maxY = d3.max(histData, function(d){return d.y})
+	    yDomain =  [];
+	    for(i=1; i<=maxY; i++){
+	      yDomain.push(i)
+	    }
+	    yScale.domain(yDomain)
+
+	    dots = dots.data(histData); //updating the dots
+	    dots.exit().remove();
+	    dots.enter().append('circle');
+	    dots.attr({
+	        r: dotRadius,
+	        cx: function(d){return xScale(d.x) },
+        	cy: function(d){return yScale(d.y)+ dotChartSeparation},
+	        class: 'histDots'
+	      })
+	    .attr('fill', 'silver');
+
+	    axisLine.call(axis)
+  	}
+}
+
+
 
 </script>
 </html>

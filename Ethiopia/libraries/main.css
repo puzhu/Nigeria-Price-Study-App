@@ -114,8 +114,8 @@ h3 {
 }
 .region-boundary {
 	fill:none;
-	stroke:rgb(240,240,240);
-	stroke-width:0.5px;
+	stroke:black;
+	stroke-width:1px;
 	stroke-linejoin:round;
 	stroke-linecap:round;
 }

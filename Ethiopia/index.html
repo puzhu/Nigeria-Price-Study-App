@@ -152,55 +152,58 @@ var monthYear = d3.time.format("%b %y");
 //THE DATA QUEUE
 queue()
 	.defer(d3.json, "maps/ethiopiaZones.json") //the map
-	.defer(d3.csv, "data/regionPriceData.csv", processZonePriceData) //the  main dataset for the histogram
+	//.defer(d3.csv, "data/regionPriceData.csv", processZonePriceData) //the  main dataset for the histogram
 	.defer(d3.csv, "data/townPriceData.csv", processTownPriceData) //converts into the desired format for the map and the line chart
 	.await(ready);
 
 //THE FUNCTION THAT CALLS THE OTHER DRAW FUNCTION
-function ready(error,ethiopiaRegions,regionPriceData,townPriceData) {
-	drawMap(ethiopiaRegions,regionPriceData, townPriceData);
+function ready(error,ethiopiaRegions,townPriceData) {
+	drawMap(ethiopiaRegions, townPriceData);
 	drawHistogram(townPriceData);
 	drawLine(townPriceData);
 }
 
-function drawMap(ethiopiaRegions,regionPriceData, townPriceData){
+function drawMap(ethiopiaRegions, townPriceData){
 	//FUNCTIONS FOR PROCESSING DATA IN CHART
-	function getMapData(startDate,endDate,regionPriceData,item) { //getting the data ready
-		var array= []
-		var regions = uniq_fast(regionPriceData.map(function(d) {return d.region})) //creates the unique list of states
-		regions.forEach(function(d) { //loop through states to calculate the mean price
-			var regionData = regionPriceData.filter(function(e) {return e.region===d && e.date>=startDate && e.date<=endDate && e.item===item});
-			var meanPrice = NaN;
-			var weightTotal = NaN;
-
-			regionData.forEach(function(e) {
-				if (isNaN(meanPrice) && !isNaN(e.price)) {
-					meanPrice = e.price*e.weight;
-				}
-				else if (!isNaN(meanPrice) && !isNaN(e.price)) {
-					meanPrice += e.price*e.weight;
-				}
-
-				if (isNaN(weightTotal) && !isNaN(e.weight)) {
-					weightTotal = e.weight;
-				}
-				else if (!isNaN(weightTotal) && !isNaN(e.weight)) {
-					weightTotal += e.weight;
-				}
-			});
-
-			meanPrice = (meanPrice/weightTotal);
-			array.push({'region':d,'price':meanPrice})
-		});
-		return array;
+	function getTownData(townPriceData, startDate, endDate, item){
+		var array = [];
+		var towns = uniq_fast(townPriceData.map(function(e){return e.town}));
+		towns.forEach(function(d){
+			var townData = townPriceData.filter(function(e){return e.town===d && e.date>=startDate && e.date<=endDate && e.item===item});
+			var meanPrice = d3.round(d3.mean(townData, function(t){return t.price}), 2);
+			if (!isNaN(meanPrice)){
+			var region = uniq_fast(townData.map(function(g){return g.region}));
+			var zone = uniq_fast(townData.map(function(g){return g.zone}));
+			var lat = uniq_fast(townData.map(function(g){return g.lat}));
+			var lon = uniq_fast(townData.map(function(g){return g.lon}));
+			if(region === "Somali"){
+				console.log(zone, lat, lon)
+			}
+			array.push({'item':item,'region':region[0], 'zone':zone[0], 'town':d, 'price': meanPrice, 'lat': lat[0], 'lon':lon[0]})
+			}
+		})
+		return array
 	}
 
-	function mergeGeoPrice(mapData,regionFeatures) { //function that merges map and price data
-		for(var i = 0; i < mapData.length; i++){
+	function getRegionData(townPriceData,startDate, endDate, item){
+		var array = [];
+		var regions = uniq_fast(townPriceData.map(function(e){return e.region}));
+		regions.forEach(function(d){
+			var regionData = townPriceData.filter(function(e){return e.region===d && e.date>=startDate && e.date<=endDate && e.item===item});
+			var meanPrice = d3.round(d3.mean(regionData, function(t){return t.price}), 2);
+			if (!isNaN(meanPrice)){
+				array.push({'item':item,'region':d, 'price': meanPrice})
+			}
+		})
+		return array
+	}
+
+	function mergeGeoPrice(regionData,regionFeatures) { //function that merges map and price data
+		for(var i = 0; i < regionData.length; i++){
 			//pulling the states from csv file
-			var dataRegion = mapData[i].region;
+			var dataRegion = regionData[i].region;
 			//pulling corresponding price values
-			var dataValue = mapData[i].price;
+			var dataValue = regionData[i].price;
 
 			//adding the price value to the map properties
 			var feature = regionFeatures.filter(function(d) { return d.properties.region===dataRegion});
@@ -208,15 +211,18 @@ function drawMap(ethiopiaRegions,regionPriceData, townPriceData){
 		}
 		return regionFeatures;
 	}
-	
+
 	//GETTING THE DATA READY
 	//var dates = $('#slider').slider('values');
 	var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
    	var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
 	var sel = document.getElementById('productSelectPrice'); //selecting the default based on current input
 	var product = sel.options[sel.selectedIndex].value;
-	var mapData = getMapData(startDate,endDate,regionPriceData,product);
-	
+	//var mapData = getMapData(startDate,endDate,regionPriceData,product);
+	var townData = getTownData(townPriceData,startDate, endDate, product)
+	var regionData = getRegionData(townPriceData,startDate, endDate, product)
+
+
 	//CREATING THE CANVAS
 	var containerSize = d3.select('#mapContainer').node().getBoundingClientRect()
   	var margin = {top: 0.008*containerSize.height , right: 0.008*containerSize.width, bottom: 0.008*containerSize.height, left: 0.008*containerSize.width};
@@ -232,8 +238,8 @@ function drawMap(ethiopiaRegions,regionPriceData, townPriceData){
       	.attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")");//moving the origin to the point where it starts
 
 	//DEFINING THE COLOR AND AXIS FUNCTION
-	var max = d3.max(mapData, function(d) { return d.price; });
-	var min = d3.min(mapData, function(d) { return d.price; });
+	var max = d3.max(townData, function(d) { return d.price; });
+	var min = d3.min(townData, function(d) { return d.price; });
 
 	var bounds = setBins(max,min);
 
@@ -286,14 +292,15 @@ function drawMap(ethiopiaRegions,regionPriceData, townPriceData){
     });
 
     //MERGING THE MAP AND PRICE DATA
-    var regionFeatures = topojson.feature(ethiopiaRegions, ethiopiaRegions.objects.ETH).features;
+    var regionFeatures = topojson.feature(ethiopiaRegions, ethiopiaRegions.objects.ETH_ADM2).features;
+
     //regionFeatures = mergeGeoPrice(mapData,regionFeatures);
 
     //DEFINING THE MAPPING VARIABLES
 	var projectionZone = d3.geo.mercator()
 		.center([8.5,10.5])
 		.scale(2000)
-		.translate([-1.2*width, .4*height]);
+		.translate([-1.1*width, .4*height]);
 
 	var projectionRegion = d3.geo.mercator()
 		.center([8.5,10.5])
@@ -307,27 +314,17 @@ function drawMap(ethiopiaRegions,regionPriceData, townPriceData){
 		.projection(projectionRegion);
 
     //DRAWING THE MAP
-    var zoneMap = map.append('g').selectAll('.zone')
+    var zoneMap = map.append('g').selectAll('.zone') //the large map with zone boundaries
 		.data(regionFeatures)
 		.enter()
 		.append('path')
 		.attr({
 			d: pathZone,
-			'class': 'zone'
+			'class': 'zone',
+			fill: "#F7F7F7"
 		})
-		/*.style('fill', function(d, i){
-			var value = d.properties.price;
-			if(isNaN(value) || value==undefined) { // 2 negative cases: 1) state exists in csv file but no price value (NaN). 2) state doesnt exist in csv file but exists in map file (undefined).
-				return "#ccc";
-			} else {
-				return color(value);
-			}
-		})
-		.call(tip)
-		.on("mouseover", mouseoverState)
-		.on("mouseout", mouseoutState);*/
 
-	var regionMap = map.append('g').selectAll('.region')
+	/*var regionMap = map.append('g').selectAll('.region')// the map with only region boundaries
 		.data(regionFeatures)
 		.enter()
 		.append('path')
@@ -337,7 +334,7 @@ function drawMap(ethiopiaRegions,regionPriceData, townPriceData){
 		})
 		.style('fill','gray')
 		.style('stroke','black')
-		.on('click',function(d) {console.log(d.properties.zone)})
+		.on('click',function(d) {console.log(d.properties.zone)})*/
 		/*.style('fill', function(d, i){
 			var value = d.properties.price;
 			if(isNaN(value) || value==undefined) { // 2 negative cases: 1) state exists in csv file but no price value (NaN). 2) state doesnt exist in csv file but exists in map file (undefined).
@@ -353,30 +350,30 @@ function drawMap(ethiopiaRegions,regionPriceData, townPriceData){
 
 	//DRAWING THE BOUNDARIES
 	map.append("path") //the zonal boundaries
-		.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.ETH, function(a, b) { return a !== b ; }))
+		.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.ETH_ADM2, function(a, b) { return a !== b ; }))
 		.attr({
 			d: pathZone,
 			'class': 'zone-boundary'
 		});
 
 	map.append('path') //region boundaries
-		.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.ETH, function(a, b) { return a.properties.regionName !== b.properties.regionName;}))
+		.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.ETH_ADM2, function(a, b) { return a.properties.regionName !== b.properties.regionName;}))
 		.attr({
 			d: pathZone,
 			'class': 'region-boundary'
 		});
 
-	map.append('path') //region boundaries
-		.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.ETH, function(a, b) { return a.properties.regionName !== b.properties.regionName;}))
+	/*regionMap.append('path') //region boundaries
+		.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.ETH_ADM2, function(a, b) { return a.properties.regionName !== b.properties.regionName;}))
 		.attr({
 			d: pathRegion,
 			'class': 'region-boundary'
-		});
+		});*/
 	/*var regionArray = uniq_fast(regionFeatures.map(function(d) {return d.properties.region}))
 
 	regionArray.forEach(function(d) {
 		map.append("path")
-			.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.ETH, function(a, b) { return a.properties.region===d || b.properties.region===d ; }))
+			.datum(topojson.mesh(ethiopiaRegions, ethiopiaRegions.objects.ETH_ADM2, function(a, b) { return a.properties.region===d || b.properties.region===d ; }))
 			.attr({
 				d: path,
 				'class': 'boundary-hover', //controls the fill in css
@@ -385,22 +382,21 @@ function drawMap(ethiopiaRegions,regionPriceData, townPriceData){
 	});*/
 
 	//PLOTTING POINTS ON THE MAP
-	console.log(regionPriceData,townPriceData)
-	var test = [14.100111554, 38.281111968]
-	console.log(projectionZone(test))
-	
+	var uniqLat = uniq_fast(townData.map(function(d){return d.lat}));
+	var uniqLon = uniq_fast(townData.map(function(d){return d.lon}))
 	var towns = map.selectAll('.towns')
 		.append('g')
-		.data(test)
+		.data(townData)
 		.enter()
 		.append('circle')
 		.attr({
-			cx: function(d){return projectionZone(d)[0]},
-			cy: function(d){return projectionZone(d)[1]},
-			r: 3,
+			r: 4,
 			class: 'town',
-			fill: 'red'
+			fill: function(d){return color(d.price)}
 		})
+		.attr("transform", function(d) {
+    		return "translate(" + projectionZone([d.lon, d.lat]) + ")"
+  		});
 }
 
 function drawHistogram(townPriceData){

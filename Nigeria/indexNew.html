@@ -317,7 +317,7 @@ function drawMap(nigeriaStates,priceData){
 		.domain(bounds)
 		.range(colorArray);
 
-	var y = d3.scale.linear().domain([min*.95, max*1.05]).range([180, 0]);
+	var y = d3.scale.linear().domain([min*.95, max*1.05]).range([160, 0]);
     var axis = d3.svg.axis()
     	.scale(y)
     	.orient("left")
@@ -328,7 +328,7 @@ function drawMap(nigeriaStates,priceData){
     //DRAWING THE LEGEND
     var key = mapContainer.append("g")
         .attr("class", "key")
-        .attr("transform", "translate("+(mapSize.width*.80)+","+(mapSize.height*.022)+")");
+        .attr("transform", "translate("+(mapSize.width*.80)+","+(mapSize.height*.055)+")");
 
     key.selectAll("rect")
         .data(color.range().map(function(d, i) {

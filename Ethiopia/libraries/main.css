@@ -46,7 +46,7 @@ h3 {
 #bottomRow{
 	clear: both;
 	width:95%;
-	height: 300px;
+	height: 250px;
 	border:5px solid yellow;
 }
 #lineOuter{
@@ -62,6 +62,16 @@ h3 {
 	border:1px solid blue;
 }
 
+#tab2row1{
+	margin-top:3em;
+	margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    font-size: 0.9em;
+	padding:2% 1% 1% 1%;
+    box-shadow: 0 0 0.5em #888888;
+	border:1px solid #888888;
+}
 /*Common CSS for axis classes (histogram and indicators, line chart has a separate one)*/
 .yAxis path,
 .yAxis line {
@@ -142,13 +152,23 @@ h3 {
 	stroke-linejoin:round;
 	stroke-linecap:round;
 }
+.region-boundary-small {
+	fill:none;
+	stroke:black;
+	stroke-width:0.1px;
+	stroke-linejoin:round;
+	stroke-linecap:round;
+}
+
 .boundary-hover {
 	fill:none;
+	stroke:black;
+	stroke-width:1px;
 }
 .boundary-hover-show {
-	stroke:black;
+	stroke:green;
 	fill:none;
-	stroke-width:1.5px;
+	stroke-width:2px;
 }
 .boundary-hover-hide {
 	stroke:none;
@@ -158,17 +178,18 @@ h3 {
 /*Hist div and CSS*/
 #histChartContainer{
 	width:95%;
-	height:75%;
+	height:100%;
 	margin:auto;
 }
 
-/*Line CSS*/
-
 #lineChartContainer{
 	width:98%;
-	height:75%;
+	height:100%;
 	margin: auto;
 }
+/*Line CSS*/
+
+
 .lineRect {
 	fill:rgb(100,100,100);
 	fill-opacity:.2;

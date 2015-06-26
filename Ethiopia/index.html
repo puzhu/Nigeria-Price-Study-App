@@ -393,7 +393,8 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
   	function mouseoverTown(d) {
 		//for the histogram
 		var obs = d3.selectAll('.histDots').filter(function(e){return e.town === d.town}).size()
-		d3.selectAll('.histText').text(d.region +" region, " +d.town +' town observations: ' + obs)
+		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate && e.region === d.region}), function(g){return g.price}),2)
+		d3.selectAll('.histText').text(d.town +' town,' + " Avg. Pri.: " + d.price + " birr" + ", Avg. Pri. in " + d.region +" region:" +meanPrice+ " birr," +'  obs.: ' + obs)
 		d3.selectAll('.histDots').filter(function(e) {return e.town===d.town}).style('fill', 'red').attr({r: histDotRadius*1.5}).moveToFront()
 		//for the line chart
 		d3.selectAll('.townLines').filter(function(e) {return e.town===d.town}).style('stroke','red').style('stroke-width','2px').moveToFront();
@@ -411,7 +412,8 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 	function mouseoutTown(d) {
 		//hist
 		var obs = d3.selectAll('.histDots').size()
-		d3.selectAll('.histText').text('Total observations: ' + obs)
+		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate}), function(g){return g.price}),2)
+		d3.selectAll('.histText').text(product + ", Avg. Price: "+ meanPrice + " birr"+', Tot obs: ' + obs)
 		d3.selectAll('.histDots').filter(function(e) {return e.region===d.region}).style('fill', 'silver').attr({r: histDotRadius})
 		//line
 		d3.selectAll('.townLines').filter(function(e) {return e.town===d.town}).style('stroke','rgb(150,150,150)').style('stroke-width','1px');
@@ -672,9 +674,7 @@ function drawLine(townPriceData){
 
 	//DEFINING THE MOUSEOVER FUNCTIONS
 	function mouseoverLine(d) {
-		console.log(d)
 		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate && e.town === d.town}), function(g){return g.price}),2)
-		console.log(meanPrice)
 		d3.selectAll('.histText').text(d.town +' town,' + " Price on "+monthYear(d.date)+": " + d.price + " birr" + ", Avg. Price: " +meanPrice+ " birr")
 		d3.selectAll('.histDots').filter(function(t){return t.town === d.town && t.date === d.date}).style('fill', 'red').attr({r: histDotRadius*2}).moveToFront()
 
@@ -912,7 +912,6 @@ function drawHistogram(townPriceData){
   	//REDRAWING ELEMENTS BASED ON PRODUCT SELECTIONS
   	function redraw(product, startDate, endDate){
 	    data = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
-	    
 	    xScale.domain(d3.extent(data, function(d){return d.price}));
 	    histogram.bins(xScale.ticks(numBins))
 	    histData = getData(data, histogram)

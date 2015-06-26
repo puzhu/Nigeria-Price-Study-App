@@ -785,7 +785,7 @@ function drawHistogram(townPriceData){
 	//THIS FUNCTION CONVERTS THE FILTERED DATA INTO A HISTOGRAM LAYOUT FORMAT
 	function getData(data, histogram){
     	var histData = histogram(data); //create the array of arrays with hist data
-    	array = [];//empty array to populate
+    	var array = [];//empty array to populate
     	histData.forEach(function(d){
 	     	var x = d.x // gives the vertical position of the dots
 	      	var dx = d.dx //the width of the bin
@@ -911,12 +911,17 @@ function drawHistogram(townPriceData){
     });*/
   	//REDRAWING ELEMENTS BASED ON PRODUCT SELECTIONS
   	function redraw(product, startDate, endDate){
+<<<<<<< HEAD
 	    data = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
+=======
+	    var data = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
+	    
+>>>>>>> origin/master
 	    xScale.domain(d3.extent(data, function(d){return d.price}));
 	    histogram.bins(xScale.ticks(numBins))
-	    histData = getData(data, histogram)
+	    var histData = getData(data, histogram)
 	    console.log(data, histData)
-	    maxY = d3.max(histData, function(d){return d.y})
+	    var maxY = d3.max(histData, function(d){return d.y})
 	    yDomain =  [];
 	    for(i=1; i<=maxY; i++){
 	      yDomain.push(i)
@@ -927,7 +932,7 @@ function drawHistogram(townPriceData){
 	    dots.exit().remove();
 	    dots.enter().append('circle');
 	    dots.attr({
-	        r: dotRadius,
+	        r: histDotRadius,
 	        cx: function(d){return xScale(d.x)},
         	cy: function(d){return yScale(d.y) - dotChartSeparation},
 	        class: 'histDots'
@@ -935,8 +940,8 @@ function drawHistogram(townPriceData){
 	    .attr('fill', 'silver');
 
 	    axisLine.call(axis)
-	    totObs = data.length
-	    meanPrice = d3.round(d3.mean(data, function(d){return d.price}), 2)
+	    var totObs = data.length
+	    var meanPrice = d3.round(d3.mean(data, function(d){return d.price}), 2)
 	    histText.text(product + ", Mean Price: "+ meanPrice + " birr"+', Tot obs: ' + totObs)
   	}
 }

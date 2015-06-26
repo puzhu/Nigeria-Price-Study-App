@@ -435,29 +435,33 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 function drawLine(townPriceData){
 	//console.log(townPriceData)
 	//THIS FUNCTION GETS THE DATA IN FORMAT FOR THE CHART
-	/*function reshapeMonthlyPrice(townPriceData,product,startDate,endDate) {
+	console.log(townPriceData)
+	function reshapeMonthlyPrice(townPriceData,product,startDate,endDate) {
 		var monthlyPrice = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});;
 		var mainArray = [];
 		for (var i=0;i<monthlyPrice.length;i++) {
-			if (mainArray.filter(function(d) {return d.region===monthlyPrice[i].region}).length===0) { // does the state have its own list item yet?
-				var region = {
+			if (mainArray.filter(function(d) {return d.town===monthlyPrice[i].town}).length===0) { // does the state have its own list item yet?
+				var town = {
 					zone:monthlyPrice[i].zone,
+					town:monthlyPrice[i].town,
 					values: [{
 						zone:monthlyPrice[i].zone,
+						town:monthlyPrice[i].town,
 						region:monthlyPrice[i].region,
 						date:monthlyPrice[i].date,
 						price:monthlyPrice[i].price
 					}]
 				};
-				mainArray.push(region);
+				mainArray.push(town);
 			} else {
 				var values = {
 					zone:monthlyPrice[i].zone,
+					town:monthlyPrice[i].town,
 					region:monthlyPrice[i].region,
 					date:monthlyPrice[i].date,
 					price:monthlyPrice[i].price
 				};
-				mainArray.filter(function(d) {return d.region===monthlyPrice[i].region})[0].values.push(values);
+				mainArray.filter(function(d) {return d.town===monthlyPrice[i].town})[0].values.push(values);
 
 			}
 		}
@@ -465,15 +469,20 @@ function drawLine(townPriceData){
 			mainArray[i].values.sort(function(a,b) {return a.date - b.date;}) // for every state sort the values array by month, ascending
 		}
 		return mainArray;
-	}*/
+	}
 	//GETTING THE DATA READY
   	var sel = document.getElementById('productSelectPrice'); //selecting the default based on currentinput
   	var product = sel.options[sel.selectedIndex].value; //pulling the value of the selected product
 	//var dates = $('#slider').slider('values'); //pulls the date values from the slider
 	var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
    	var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
-  	var lineData = townPriceData.filter(function(d){return d.item === product && d.date>= startDate && d.date <= endDate});//reshapeMonthlyPrice(townPriceData,product,startDate,endDate);
-  	var months = uniq_fast(lineData.map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
+
+  	// var lineData = townPriceData.filter(function(d){return d.item === product && d.date>= startDate && d.date <= endDate});
+  	var lineData = reshapeMonthlyPrice(townPriceData,product,startDate,endDate);
+  	// var months = uniq_fast(lineData.map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
+  	var months = uniq_fast(townPriceData.filter(function(e) {return e.item===product}).map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
+  	console.log(months)
+  	console.log(lineData)
 
   	//CREATING THE CANVAS
 	var containerSize = d3.select('#lineChartContainer').node().getBoundingClientRect()
@@ -513,7 +522,7 @@ function drawLine(townPriceData){
 		.range([0, width]);
 
 	var yScale = d3.scale.linear()
-		.domain([0, d3.max(lineData.map(function(d) { return d.price; }))*1.05])
+		.domain([0, d3.max(townPriceData.filter(function(e) {return e.item===product}).map(function(d) { return d.price; }))*1.05])
 		.range([height, 0]);
 
     var line = d3.svg.line()
@@ -586,8 +595,8 @@ function drawLine(townPriceData){
 		.attr("d", function(d) { return "M" + d.join("L") + "Z"; })
 		.datum(function(d) { return d.point; })
 		.style("cursor","default")
-		.on("mouseover", mouseoverLine)
-		.on("mouseout", mouseoutLine);
+		// .on("mouseover", mouseoverLine)
+		// .on("mouseout", mouseoutLine);
 
 	var focus = lineChart.append("g")
 		.attr("transform", "translate(-100,-100)")
@@ -655,21 +664,20 @@ function drawLine(townPriceData){
 	        redrawLine(product,startDate,endDate,drawVoronoi);
 	    }
     });*/
-	function redrawLine(item,startDate,endDate,drawVoronoi) {
-		// var months = uniq_fast(priceData.filter(function(e) {return e.item===item && e.date>=startDate && e.date<=endDate}).map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
-		lineData = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
-		months = uniq_fast(data.map(function(d){ return d.date})).sort(function(a,b) { return a - b;})
-		//var lineData = reshapeMonthlyPrice(data,item,startDate,endDate);
+	function redrawLine(product,startDate,endDate,drawVoronoi) {
+	  	var lineData = reshapeMonthlyPrice(townPriceData,product,startDate,endDate);
+
+	  	var months = uniq_fast(townPriceData.filter(function(e) {return e.item===product}).map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
 
 		xScale.domain([startDate,endDate]);
-		yScale.domain([0, d3.max(data.map(function(d) { return d.price; }))*1.05]);
+		yScale.domain([0, d3.max(townPriceData.filter(function(e) {return e.item===product}).map(function(d) { return d.price; }))*1.05])
 		xAxisNodes.call(xAxis);
 		g.call(yAxis);
 
-		states = states.data(lineData);
-		states.exit().remove();
-		states.enter().append('path');
-		states.attr("class","stateLines")
+		towns = towns.data(lineData);
+		towns.exit().remove();
+		towns.enter().append('path');
+		towns.attr("class","townLines")
 			.attr("d",function(d) { d.line = this; return line(d.values); })
 			.attr("clip-path", 'url(#lineclip)');
 

@@ -46,7 +46,7 @@
 			</div>
 			<div id="topRow">
 				<div id="mapOuter">
-					<h3>Average prices in zones and regions</h3>
+					<h3>Average prices in towns and regions</h3>
 					<div id="mapContainer"></div>
 				</div>
 				<div id='textDiv'>
@@ -57,7 +57,7 @@
 			</div>
 			<div id="bottomRow">
 				<div id="lineOuter">
-					<h3>Prices over time in regions</h3>
+					<h3>Prices over time in towns</h3>
 					<div id="lineChartContainer"></div>
 				</div>
 				<div id="histOuter">
@@ -400,10 +400,10 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 		//for the histogram
 		var obs = d3.selectAll('.histDots').filter(function(e){return e.town === d.town}).size()
 		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate && e.region === d.region}), function(g){return g.price}),2)
-		d3.selectAll('.histText').text(d.town + ", Avg. Price: " + d.price + " birr" + ", Avg. Price " + d.region +" :" +meanPrice+ " birr," +'  obs.: ' + obs)
+		d3.selectAll('.histText').text(d.town + ", Avg. Price: " + d.price + " birr" + ", Region Avg.:" +meanPrice+ " birr," +'  obs.: ' + obs)
 		d3.selectAll('.histDots').filter(function(e) {return e.town===d.town}).style('fill', 'red').attr({r: histDotRadius*1.5}).moveToFront()
 		//for the line chart
-		d3.selectAll('.townLines').filter(function(e) {return e.town===d.town}).style('stroke','red').style('stroke-width','2px').moveToFront();
+		d3.selectAll('.townLines').filter(function(e) {return e.town===d.town}).style('stroke','red').style('stroke-width','1.5px').moveToFront();
 		//town map
 		d3.selectAll('.townDots').filter(function(e){return e.town === d.town}).attr({r: townDotRadius * 1.5, opacity: 1, stroke: "LightBlue"}).style('stroke-width', '2px').moveToFront()
 		d3.selectAll('.townDots').filter(function(e){return e.town != d.town}).attr({r: townDotRadius * 0.5, opacity: 0.5*townDotOpacity})
@@ -438,7 +438,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 		d3.selectAll('.histText').text(d.properties.regionName+ ", Avg. Price: "+meanPrice+ " birr," +'  obs.: ' + obs)
 		d3.selectAll('.histDots').filter(function(e) {return e.region === d.properties.regionName}).style('fill', 'red').attr({r: histDotRadius*1.5}).moveToFront()
 		//line chart
-		d3.selectAll('.townLines').filter(function(e) {return e.region === d.properties.regionName}).style('stroke','red').style('stroke-width','2px').moveToFront();
+		d3.selectAll('.townLines').filter(function(e) {return e.region === d.properties.regionName}).style('stroke','red').style('stroke-width','1.5px').moveToFront();
 		//town map
 		d3.selectAll('.townDots').filter(function(e){return e.region === d.properties.regionName}).attr({r: townDotRadius * 1.5, opacity: 1, stroke: "LightBlue"}).style('stroke-width', '2px').moveToFront()
 		d3.selectAll('.townDots').filter(function(e){return e.region != d.properties.regionName}).attr({r: townDotRadius * 0.5, opacity: 0.5*townDotOpacity})
@@ -693,12 +693,12 @@ function drawLine(townPriceData){
 	//DEFINING THE MOUSEOVER FUNCTIONS
 	function mouseoverLine(d) {
 		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate && e.town === d.town}), function(g){return g.price}),2)
-		d3.selectAll('.histText').text(d.town +' town,' + " Price on "+monthYear(d.date)+": " + d.price + " birr" + ", Avg. Price: " +meanPrice+ " birr")
+		d3.selectAll('.histText').text(d.town + " Price on "+monthYear(d.date)+": " + d.price + " birr" + ", Town Avg.: " +meanPrice+ " birr")
 		d3.selectAll('.histDots').filter(function(t){return t.town === d.town && t.date === d.date}).style('fill', 'red').attr({r: histDotRadius*2}).moveToFront()
 
 		//product + ", Mean Price: "+ meanPrice + ', Tot obs: ' + totObs
 		//line chart
-		towns.filter(function(e) {return e.town===d.town}).style('stroke','red').style('stroke-width','2px').moveToFront();
+		towns.filter(function(e) {return e.town===d.town}).style('stroke','red').style('stroke-width','1.5px').moveToFront();
 		//town map
 		d3.selectAll('.townDots').filter(function(e){return e.town===d.town}).attr({r: townDotRadius * 1.5, opacity: 1, stroke: "LightBlue"}).style('stroke-width', '2px').moveToFront()
 		d3.selectAll('.townDots').filter(function(e){return e.town!=d.town}).attr({r: townDotRadius * 0.5, opacity: 0.5*townDotOpacity})

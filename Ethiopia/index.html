@@ -130,6 +130,74 @@ var townDotRadius = 5;
 var townDotOpacity = 0.7;
 var histDotRadius = 1.5;
 
+
+//SLIDER FUNCTIONS
+var sliderMonths = [];
+for (var i=2009; i<=2012;i++) {
+	for (var j=0;j<=11;j++) {
+    	sliderMonths.push(new Date(i,j,1))
+  	}
+}
+(function() { // initialize the slider -- the dates are hardcoded
+	var margin = {top: 0, right: 30, bottom: 0, left: 20},
+	    width = 300 - margin.left - margin.right,
+	    height = 30 - margin.top - margin.bottom;
+
+	var x = d3.time.scale()
+	    .domain([sliderMonths[0], sliderMonths[sliderMonths.length-1]])
+	    .range([0, width]);
+
+	var svg = d3.select("#sliderAxis").append("svg")
+	    .attr("width", width + margin.left + margin.right)
+	    .attr("height", height + margin.top + margin.bottom)
+	    .append("g")
+	    .attr("transform", "translate(" + margin.left + "," + (20) + ")");
+
+	var axis = d3.svg.axis()
+		.scale(x)
+	  	.orient("top")
+	  	.tickPadding(8)
+	  	.tickSize(0)
+	  	.tickValues(sliderMonths)
+	  	.tickFormat(function(d, i) {
+	        if (d===sliderMonths[0] || d===sliderMonths[sliderMonths.length-1]) return monthFormat(d);
+	    });
+	var g = svg.append("g")
+	    .attr("class", "x axis")
+	    .call(axis)
+
+	$( "#slider" ).slider({
+		range: true,
+		min: 0,
+		max: sliderMonths.length-1,
+		values: [0, sliderMonths.length-1],
+		slide: function( event, ui ) {
+		    if ( ( ui.values[ 0 ] ) >= ui.values[ 1 ] ) {
+		    	return false;
+		    }
+	    	else {
+				axis.tickFormat(function(d, i) {
+					if (d===sliderMonths[ui.values[0]] || d===sliderMonths[ui.values[1]]) return monthFormat(d);
+				});
+				g.call(axis)
+			}
+		}
+	});
+})();
+
+d3.selectAll('.ui-slider-handle')
+	.append('svg')
+	.attr({
+		height: '19px',
+		width: '17px',
+		class: 'sliderPoly'
+	})
+	// .append('polygon')
+	// .attr('points', "0,2 13,2 13,13 7,19 0,12 0,2")
+	.append('path')
+	.attr('d', "M0 2L13 2L13 13L7 19L0 12 Z")
+;
+
 //THE DATA QUEUE
 queue()
 	.defer(d3.json, "maps/ethiopiaZones.json") //the zone map
@@ -194,9 +262,9 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 	}
 
 	//GETTING THE DATA READY
-	//var dates = $('#slider').slider('values');
-	var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
-   	var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
+	var dates = $('#slider').slider('values');
+	var startDate = sliderMonths[dates[0]];
+   	var endDate = sliderMonths[dates[1]];
 	var sel = document.getElementById('productSelectPrice'); //selecting the default based on current input
 	var product = sel.options[sel.selectedIndex].value;
 	var townData = getTownData(townPriceData,startDate, endDate, product)
@@ -328,6 +396,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 		.style('fill', function(d, i){
 			return color(d.properties.price)
 		})
+		.style('stroke','none')
 		.call(regionTip)
 		.on("mouseover", mouseoverRegion)
 		.on("mouseout", mouseoutRegion);
@@ -410,7 +479,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 
 		//region map
 		var regionName = d.region.replace(' ','')
-		d3.selectAll('.boundary-hover#'+regionName).filter(function(e) { return e}).classed('region-boundary',false).classed('boundary-hover-show',true)
+		d3.selectAll('.boundary-hover#'+regionName).filter(function(e) { return e}).classed('region-boundary',false).classed('boundary-hover-show',true).moveToFront()
 
 		townTip.show(d)
 	}
@@ -445,7 +514,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 
 		//region map
 		var regionName = d.properties.regionName.replace(' ','')
-		d3.selectAll('.boundary-hover#'+regionName).filter(function(e) { return e}).classed('region-boundary',false).classed('boundary-hover-show',true)
+		d3.selectAll('.boundary-hover#'+regionName).filter(function(e) { return e}).classed('region-boundary',false).classed('boundary-hover-show',true).moveToFront()
 
 		regionTip.show(d)
 	}
@@ -469,13 +538,13 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
   	//RESELECTING THE PRODUCT AND REDRAWING THE MAP BASED ON CHANGES
 	d3.select('#productSelectPrice').on('change.map', function(d) {
         var product = d3.select(this).property('value');
-		//var dates = $('#slider').slider('values');
-		var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
-   		var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
+		var dates = $('#slider').slider('values');
+		var startDate = sliderMonths[dates[0]];
+   		var endDate = sliderMonths[dates[1]];
         redrawMap(product, startDate, endDate);
     });
 
-    /*$("#slider").on( "slide", function( event, ui ) {
+    $("#slider").on( "slide", function( event, ui ) {
 	    if ((ui.values[0]) >= ui.values[1]) {
 	    	return false;
 	    }
@@ -486,7 +555,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 	    	var endDate = sliderMonths[ui.values[1]];
 	    	redrawMap(product, startDate, endDate);
 	    }
-    });*/
+    });
 
 	function redrawMap(product, startDate, endDate) {
 		townData = getTownData(townPriceData,startDate, endDate, product)
@@ -729,13 +798,13 @@ function drawLine(townPriceData){
 
 	d3.select('#productSelectPrice').on('change.line', function(d) {
         var product = d3.select(this).property('value');
-		//var dates = $('#slider').slider('values');
-		var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
-   		var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
+		var dates = $('#slider').slider('values');
+		var startDate = sliderMonths[dates[0]];
+   		var endDate = sliderMonths[dates[1]];
 	   	var drawVoronoi = true;
         redrawLine(product,startDate,endDate,drawVoronoi);
     });
-    /*$("#slider").on( "slide", function( event, ui ) {
+    $("#slider").on( "slide", function( event, ui ) {
 	    if ((ui.values[0]) >= ui.values[1]) {
 	    	return false;
 	    }
@@ -759,7 +828,7 @@ function drawLine(townPriceData){
 	        var drawVoronoi = true;
 	        redrawLine(product,startDate,endDate,drawVoronoi);
 	    }
-    });*/
+    });
 	function redrawLine(product,startDate,endDate,drawVoronoi) {
 	  	var lineData = reshapeMonthlyPrice(townPriceData,product,startDate,endDate);
 
@@ -821,9 +890,9 @@ function drawHistogram(townPriceData){
   	//GETTING THE DATA READY
   	var sel = document.getElementById('productSelectPrice'); //selecting the default based on currentinput
   	var product = sel.options[sel.selectedIndex].value; //pulling the value of the selected product
-	//var dates = $('#slider').slider('values'); //pulls the date values from the slider
-	var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
-   	var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
+	var dates = $('#slider').slider('values'); //pulls the date values from the slider
+	var startDate = sliderMonths[dates[0]];
+   	var endDate = sliderMonths[dates[1]];
   	var data = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
 
   	//CREATING THE CANVAS AND Y-SCALES
@@ -910,12 +979,12 @@ function drawHistogram(townPriceData){
   	d3.select('#productSelectPrice') //changes the product based on user input from the dropdown menu
 	    .on('change.histogram', function(d) {
 	        var product = d3.select(this).property('value')
-	        //var dates = $('#slider').slider('values');
-			var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
-   			var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
+	        var dates = $('#slider').slider('values');
+			var startDate = sliderMonths[dates[0]];
+   			var endDate = sliderMonths[dates[1]];
 	        redraw(product,startDate,endDate)
 	    })
-    /*$("#slider").on( "slide", function( event, ui ) {
+    $("#slider").on( "slide", function( event, ui ) {
 	    if ((ui.values[0]) >= ui.values[1]) {
 	    	return false;
 	    }
@@ -926,7 +995,7 @@ function drawHistogram(townPriceData){
 	        var product = d3.select('#productSelectPrice').property('value');
 	        redraw(product,startDate,endDate);
 	    }
-    });*/
+    });
   	//REDRAWING ELEMENTS BASED ON PRODUCT SELECTIONS
   	function redraw(product, startDate, endDate){
 	    var data = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});

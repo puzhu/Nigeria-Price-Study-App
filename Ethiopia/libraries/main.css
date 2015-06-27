@@ -44,7 +44,8 @@ h3 {
 	padding:1% 1% 1% 1%;
 	float: right;
 	box-shadow: 0 0 0.5em #888888;
-	border:1px solid #888888;
+	/*border:1px solid #888888;*/
+	height:94%;
 }
 #bottomRow{
 	clear: both;
@@ -257,7 +258,11 @@ select:focus {
  	cursor:grab;
  	cursor:-webkit-grab;
  }
- 
+ .sliderPoly path{
+	fill:white;
+	stroke:black;
+	shape-rendering:crispEdges;
+}
 /*Common CSS for the indicators*/
 .zoneHoverShow{
   stroke:black;

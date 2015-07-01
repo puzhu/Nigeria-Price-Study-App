@@ -56,11 +56,11 @@ h3 {
 }
 #textDiv{
 	width:25%;
-	margin-top: 2em;
+	margin-top: 0.5em;
 	margin-right: 1em;
 	margin-left: 1em;
 	font-size: 0.9em;
-	padding:2% 1% 1% 1%;
+	padding:0.5% 1% 1% 0.5%;
 	float: right;
 	box-shadow: 0 0 0.5em #888888;
 	border:1px solid #888888;

@@ -165,6 +165,10 @@ h3 {
 .key text {
 	font-size:12px;
 }
+
+.states{
+	cursor: pointer;
+}
 .state-boundary {
 	fill:none;
 	stroke:rgb(240,240,240);
@@ -235,7 +239,7 @@ h3 {
 .stateLines {
 	fill:none;
 	stroke-width: 1px;
-	stroke: rgb(150,150,150);
+	cursor:pointer;
 }
 .focus {
 	pointer-events:none;

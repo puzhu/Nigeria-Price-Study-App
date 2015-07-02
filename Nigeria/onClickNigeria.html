@@ -420,7 +420,7 @@ function drawMap(nigeriaStates,priceData){
 
 	//THE LINE CHART FUNCTION
 	//FUNCTION THAT GETS THE DATA IN SHAPE FOR LINE CHART
-	function initializeStateList(data){
+	function initializeStateList(data){//initializes the state list to everything false other than Nigeria
 		var array= []
 		var states = uniq_fast(priceData.map(function(d){return d.state}))
 		states.forEach(function(d){
@@ -473,7 +473,7 @@ function drawMap(nigeriaStates,priceData){
 
 	//CREATING THE LINE CANVAS
 	var containerSize = d3.select('#lineChartContainer').node().getBoundingClientRect()
-  	var margin = {top: 0.08*containerSize.height , right: 0.08*containerSize.width, bottom: 0.15*containerSize.height, left: 0.06*containerSize.width};
+  	var margin = {top: 0.08*containerSize.height , right: 0.07*containerSize.width, bottom: 0.15*containerSize.height, left: 0.06*containerSize.width};
   	var padding = {top: 0.006*containerSize.height, right: 0.012*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
   	var width = containerSize.width - margin.right - margin.left; //Chart width
   	var height = containerSize.height - margin.top - margin.bottom; //Chart height
@@ -555,15 +555,15 @@ function drawMap(nigeriaStates,priceData){
         .attr("class", "y axis")
         .call(yAxis);
 
-    var states = lineChart.append("g")
+    var stateLines = lineChart.append("g") //the lines
 		.selectAll("path")
 
-	var voronoi = d3.geom.voronoi()
+	var voronoi = d3.geom.voronoi()//the voronoi function
 	    .x(function(d) { return xScale(d.month); })
 	    .y(function(d) { return yScale(d.price); })
 	    .clipExtent([[0, 0], [width, height]]);
 
-	var voronoiGroup = lineChart.append("g")
+	var voronoiGroup = lineChart.append("g")//the voronoi group
 		.attr("class", "voronoi")
 		.selectAll("path")
 
@@ -571,27 +571,24 @@ function drawMap(nigeriaStates,priceData){
 		.attr("transform", "translate(-100,-100)")
 		.attr("class", "focus");
 
-    function drawLine(lineData){
-    	states = states.data(lineData);
-		states.exit().remove();
-		states.enter().append('path');
-		states.attr("class","stateLines")
+	var maxDate = d3.max(priceData.filter(function(d){return d.state === "Nigeria"}), function(e){return e.date})
+	var endofLine = priceData.filter(function(d){return d.state === "Nigeria" && d.date === maxDate})[0].price
+	var label = lineChart.append('text')
+			.text("Nigeria")
+    function drawLine(lineData){//draws line based on stateList and data
+    	stateLines = stateLines.data(lineData);
+		stateLines.exit().remove();
+		stateLines.enter().append('path');
+		stateLines.attr("class","stateLines")
 			.attr("d",function(d) { d.line = this; return line(d.values); })
 			.attr("clip-path", 'url(#lineclip)')
 			.style("stroke", function(d){if(d.state==="Nigeria"){return "blue"}else{return 'rgb(150,150,150)'}})
-			.style('stroke-width',function(d){if(d.state==="Nigeria"){return "2px"} else {return '1px'}});
+			.style('stroke-width',function(d){if(d.state==="Nigeria"){return "2px"} else {return '1.5px'}});
 
-		lineChart.append('g')
-			.selectAll('text')
-			.data(lineData)
-			.enter()
-			.append('text')
-			.text(function(d){return d.state})
-			.attr({
-				x: width,
-				height: 0
-			})
-			.style("fill", "red")
+		label.attr("transform", "translate(" + (width) + "," + yScale(endofLine) + ")")
+			.attr("text-anchor", "start")
+			.style("fill", "black")
+			.style('alignment-baseline', 'central')
 
     	voronoiGroup = voronoiGroup.data(voronoi(d3.nest()
 			.key(function(d) { return xScale(d.month) + "," + yScale(d.price); })
@@ -605,7 +602,7 @@ function drawMap(nigeriaStates,priceData){
 			.attr('class','voronoi')
 			.attr("d", function(d) { return "M" + d.join("L") + "Z"; })
 			.datum(function(d) { return d.point; })
-			.style("cursor","default")
+			.style("cursor", function(d){if(d.state==="Nigeria"){return "default"}else{return "pointer"}})
 			.on("mouseover", mouseoverLine)
 			.on("mouseout", mouseoutLine)
 			.on("click", onClickLine);
@@ -618,7 +615,7 @@ function drawMap(nigeriaStates,priceData){
     }
 	drawLine(lineData)
 
-	//DEFINING THE MOUSEOVER FUNCTIONS
+	//DEFINING THE MOUSEOVER FUNCTIONS FOR LINE
 	function onClickLine(d){
 		//modify the state list based on click
 		if(d.state != "Nigeria"){
@@ -638,36 +635,117 @@ function drawMap(nigeriaStates,priceData){
 	}
 
 	function mouseoverLine(d) {
-		if(d.state === "Nigeria"){
+		if(d.state === "Nigeria"){//only for Nigeria
+			focus.attr("transform", "translate(" + xScale(d.month) + "," + yScale(d.price) + ")"); //focus dot
+			stateLines.filter(function(e) {return e.state===d.state}).style('stroke','red').style('stroke-width','2px').moveToFront(); //line
 			//histogram
 			var obs = d3.selectAll('.histDots').filter(function(e){return dateFormat(e.date) === dateFormat(d.month)}).size()
 			d3.selectAll('.histText').text(d.state +' ('+ monthYear(d.month) + ') ' +' observations: ' + obs)
 			d3.selectAll('.histDots').filter(function(t){return dateFormat(t.date) === dateFormat(d.month)}).style('fill', 'red').attr({r: 3}).moveToFront()
-		} else {
+		} else {//change styling from onClick status
+			focus.attr("transform", "translate(" + xScale(d.month) + "," + yScale(d.price) + ")"); //focus dot
+			stateLines.filter(function(e) {return e.state===d.state}).style('stroke','red').style('stroke-width','2px').moveToFront(); //line
 			//hist
 			var obs = d3.selectAll('.histDots').filter(function(e){return e.state === d.state && dateFormat(e.date) === dateFormat(d.month)}).size()
 			d3.selectAll('.histText').text(d.state +' ('+ monthYear(d.month) + ') ' +' observations: ' + obs)
 			d3.selectAll('.histDots').filter(function(t){return t.state === d.state && dateFormat(t.date) === dateFormat(d.month)}).style('fill', 'red').attr({r: 3}).moveToFront()
 			//map
 			var stateName = d.state.replace(' ','')
-			d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',false).classed('boundary-hover-show',true)
+			d3.selectAll('.boundary-hover#'+stateName).transition().duration(300).style({'stroke-width':'3px'})
 		}
-		focus.attr("transform", "translate(" + xScale(d.month) + "," + yScale(d.price) + ")"); //focus dot
-		states.filter(function(e) {return e.state===d.state}).style('stroke','red').style('stroke-width','2px').moveToFront(); //line
 		tip.show(d);
 	}
 
 	function mouseoutLine(d) {
+		//applies to all
 		var obs = d3.selectAll('.histDots').size()
 		d3.selectAll('.histText').text('Total observations: ' + obs)
-		var stateName = d.state.replace(' ','')
-		states.filter(function(e) {return e.state===d.state}).style('stroke', function(d){if(d.state==="Nigeria"){return "blue"} else {return 'rgb(150,150,150)'}}).style('stroke-width',function(d){if(d.state==="Nigeria"){return "2px"} else {return '1px'}});
-		focus.attr("transform", "translate(-100,-100)");
-		d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',true).classed('boundary-hover-show',false);
-		d3.selectAll('.histDots').style('fill', 'silver').attr({r: 2});
-		tip.hide(d);
+		focus.attr("transform", "translate(-100,-100)")
+		tip.hide(d)
+		if(d.state === "Nigeria"){ //applies only to Nigeria
+			//hist
+			d3.selectAll('.histDots').filter(function(t){return dateFormat(t.date) === dateFormat(d.month)}).transition().duration(50).style('fill', 'silver').attr({r: 2})
+			//line
+			stateLines.filter(function(e) {return e.state===d.state}).style('stroke','blue').style('stroke-width','2px'); //line
+		} else {//return styling to onClick status
+			//map
+			var stateName = d.state.replace(' ','')
+			d3.selectAll('.boundary-hover#'+stateName).transition().duration(50).style({'stroke-width':'2px'})
+			//line
+			stateLines.filter(function(e) {return e.state===d.state}).style('stroke','rgb(150,150,150)').style('stroke-width','1.5px');
+			//hist
+			d3.selectAll('.histDots').filter(function(t){return t.state === (d.state)}).style('fill', 'silver').attr({r: 2});
+		}
 	}
 
+	//DEFINING THE INTERACTION FUNCTIONS FOR THE MAP
+	function onClickState(d){
+		//modify the state list based on click and draw line
+		stateList.forEach(function(e){
+			if(e.state === d.properties.state_name){
+				if(e.active){
+					e.active = false
+				} else {
+					e.active = true
+				}
+			}
+		})
+		lineData = reshapeMonthlyPrice(priceData, stateList, product,startDate,endDate);
+		drawLine(lineData)
+		//map and histogram
+		var activeStates = stateList.filter(function(e){return e.active && e.state != "Nigeria"})
+		activeStates.forEach(function(e){
+			//map
+			var stateName = e.state.replace(' ','')
+			d3.selectAll('.boundary-hover#'+stateName).transition().duration(300).style({'stroke':'#A9A9A9', 'stroke-width': '2px'})
+
+		})
+		var nonActiveStates = stateList.filter(function(e){return !e.active && e.state != "Nigeria"})
+		nonActiveStates.forEach(function(e){
+			var stateName = e.state.replace(' ','')
+			d3.selectAll('.boundary-hover#'+stateName).style({'stroke':'none','stroke-width':'1px'})
+		})
+	}
+
+	function mouseoverState(d) {
+		var obs = d3.selectAll('.histDots').filter(function(e){return e.state === d.properties.state_name}).size()
+		d3.selectAll('.histText').text(d.properties.state_name +' observations: ' + obs)
+		d3.selectAll('.histDots').filter(function(e) {return e.state===d.properties.state_name}).style('fill', 'red').attr({r: 3}).moveToFront()
+		//if a state is non-active then trigger histogram and boundary hover else if active only trigger line and map
+		var mousedState = stateList.filter(function(e){return e.state === d.properties.state_name})
+		if(mousedState[0].active){
+			//line
+			d3.selectAll('.stateLines').filter(function(e) {return e.state===d.properties.state_name}).style('stroke','red').style('stroke-width','2px').moveToFront();
+			//map
+			var stateName = d.properties.state_name.replace(' ','')
+			d3.selectAll('.boundary-hover#'+stateName).transition().duration(300).style({'stroke-width':'3px'})
+
+		} else {
+			//map
+			var stateName = d.properties.state_name.replace(' ','')
+			d3.selectAll('.boundary-hover#'+stateName).transition().duration(300).style({'stroke':'#F00','stroke-width':'1px'})
+		}
+		//tip.show(d)
+	}
+
+	function mouseoutState(d) {
+		var obs = d3.selectAll('.histDots').size()
+		d3.selectAll('.histText').text('Total observations: ' + obs)
+		d3.selectAll('.histDots').filter(function(e) {return e.state===d.properties.state_name}).style('fill', 'silver').attr({r: 2})
+		//if state is active then only change line and map else change map and hist
+		var mousedOutState = stateList.filter(function(e){return e.state === d.properties.state_name})
+		if(mousedOutState[0].active){
+			d3.selectAll('.stateLines').filter(function(e) {return e.state===d.properties.state_name}).style('stroke','rgb(150,150,150)').style('stroke-width','1px');
+			var stateName = d.properties.state_name.replace(' ','')
+			d3.selectAll('.boundary-hover#'+stateName).transition().duration(50).style({'stroke-width':'2px'})
+		} else {
+			var stateName = d.properties.state_name.replace(' ','')
+			d3.selectAll('.boundary-hover#'+stateName).transition().duration(50).style({'stroke':'none'})
+		}
+		//tip.hide(d)
+	}
+
+	//RESELECTING AND REDRAWING LINE
 	d3.select('#productSelectPrice').on('change.line', function(d) {
         var product = d3.select(this).property('value');
 		var dates = $('#slider').slider('values');
@@ -714,42 +792,6 @@ function drawMap(nigeriaStates,priceData){
 	  	if (drawVoronoi===true) {
 	  		drawLine(lineData)
 	  	}
-	}
-
-	//DEFINING THE INTERACTION FUNCTIONS FOR THE MAP
-	function onClickState(d){
-		//modify the state list based on click
-		stateList.forEach(function(e){
-			if(e.state === d.properties.state_name){
-				if(e.active){
-					e.active = false
-				} else {
-					e.active = true
-				}
-			}
-		})
-		lineData = reshapeMonthlyPrice(priceData, stateList, product,startDate,endDate);
-		drawLine(lineData)
-	}
-
-	function mouseoverState(d) {
-		var obs = d3.selectAll('.histDots').filter(function(e){return e.state === d.properties.state_name}).size()
-		d3.selectAll('.histText').text(d.properties.state_name +' observations: ' + obs)
-		var stateName = d.properties.state_name.replace(' ','')
-		d3.selectAll('.boundary-hover#'+stateName).filter(function(e) { return e}).classed('boundary-hover-hide',false).classed('boundary-hover-show',true)
-		d3.selectAll('.stateLines').filter(function(e) {return e.state===d.properties.state_name}).style('stroke','red').style('stroke-width','2px').moveToFront();
-		d3.selectAll('.histDots').filter(function(e) {return e.state===d.properties.state_name}).style('fill', 'red').attr({r: 3}).moveToFront()
-		tip.show(d)
-	}
-
-	function mouseoutState(d) {
-		var obs = d3.selectAll('.histDots').size()
-		d3.selectAll('.histText').text('Total observations: ' + obs)
-		var stateName = d.properties.state_name.replace(' ','')
-		d3.selectAll('.boundary-hover#'+stateName).classed('boundary-hover-hide',true).classed('boundary-hover-show',false)
-		d3.selectAll('.stateLines').filter(function(e) {return e.state===d.properties.state_name}).style('stroke','rgb(150,150,150)').style('stroke-width','1px');
-		d3.selectAll('.histDots').filter(function(e) {return e.state===d.properties.state_name}).style('fill', 'silver').attr({r: 2})
-		tip.hide(d)
 	}
 
 	//RESELECTING THE PRODUCT AND REDRAWING THE MAP BASED ON CHANGES

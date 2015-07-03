@@ -322,7 +322,10 @@ function drawMap(nigeriaStates,priceData){
 		.domain(bounds)
 		.range(colorArray);
 
-	var y = d3.scale.linear().domain([min*.95, max*1.05]).range([160, 0]);
+	var keySize = {'height':mapSize.height/1.17, 'width':mapSize.width/50.7}
+console.log(mapSize.width/9)
+
+	var y = d3.scale.linear().domain([min*.95, max*1.05]).range([keySize.height, 0]);
     var axis = d3.svg.axis()
     	.scale(y)
     	.orient("left")
@@ -346,8 +349,8 @@ function drawMap(nigeriaStates,priceData){
         .enter().append("rect")
         .attr("height", function(d,i) { return (d.x0 - d.x1)})
         .attr("y", function(d, i) { return d.x1; })
-        .attr("width", 8)
-        .attr("x",-9)
+        .attr("width", keySize.width)
+        .attr("x",-(mapSize.width/45.07))
         .style("fill", function(d) { return d.z; });
 
     key.call(axis);
@@ -370,7 +373,7 @@ function drawMap(nigeriaStates,priceData){
     //DEFINING THE MAPPING VARIABLES
 	var projection = d3.geo.mercator()
 		.center([8.5,10.5])
-		.scale(1100)
+		.scale(mapSize.width*2.67)
 		.translate([mapSize.width*.34, mapSize.height*.36]);
 
 	var path = d3.geo.path()
@@ -585,10 +588,11 @@ function drawMap(nigeriaStates,priceData){
 			.style("stroke", function(d){if(d.state==="Nigeria"){return "blue"}else{return 'rgb(150,150,150)'}})
 			.style('stroke-width',function(d){if(d.state==="Nigeria"){return "2px"} else {return '1.5px'}});
 
-		label.attr("transform", "translate(" + (width) + "," + yScale(endofLine) + ")")
+		label.attr("transform", "translate(" + (width+2) + "," + yScale(endofLine) + ")")
 			.attr("text-anchor", "start")
 			.style("fill", "black")
 			.style('alignment-baseline', 'central')
+			.style('font-size','12px')
 
     	voronoiGroup = voronoiGroup.data(voronoi(d3.nest()
 			.key(function(d) { return xScale(d.month) + "," + yScale(d.price); })

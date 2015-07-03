@@ -169,6 +169,7 @@ h3 {
 .states{
 	cursor: pointer;
 }
+
 .state-boundary {
 	fill:none;
 	stroke:rgb(240,240,240);

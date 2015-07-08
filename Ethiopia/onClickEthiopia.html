@@ -133,7 +133,7 @@ var histDotRadius = 1.5;
 
 //SLIDER FUNCTIONS
 var sliderMonths = [];
-for (var i=2009; i<=2012;i++) {
+for (var i=2010; i<=2014;i++) {
 	for (var j=0;j<=11;j++) {
     	sliderMonths.push(new Date(i,j,1))
   	}
@@ -209,7 +209,6 @@ queue()
 function ready(error,ethiopiaZones, ethiopiaRegions, townPriceData) {
 	drawMap(ethiopiaZones, ethiopiaRegions, townPriceData);
 	drawHistogram(townPriceData);
-	drawLine(townPriceData);
 }
 
 function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
@@ -399,7 +398,8 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 		.style('stroke','none')
 		.call(regionTip)
 		.on("mouseover", mouseoverRegion)
-		.on("mouseout", mouseoutRegion);
+		.on("mouseout", mouseoutRegion)
+		.on('click', onClickRegion);
 
 
 	//DRAWING THE BOUNDARIES
@@ -444,7 +444,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 		.append('circle')
 		.attr({
 			r: townDotRadius,
-			class: 'townDots',
+			class: 'townDots nonActiveDot',
 			fill: function(d){return color(d.price)},
 			opacity: townDotOpacity,
 			stroke: 'black'
@@ -455,184 +455,79 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
   		.style('stroke-width', '0.5px')
   		.on('mouseover', mouseoverTown)
   		.on('mouseout', mouseoutTown)
+  		.on('click', onClickTown)
   		.call(townTip)
   		;
 
 
-  	//MOUSEOVER FUNCTIONS
-  	d3.selection.prototype.moveToFront = function() {
-  		return this.each(function(){
-    	this.parentNode.appendChild(this);
-  		});
-	};
-  	function mouseoverTown(d) {
-		//for the histogram
-		var obs = d3.selectAll('.histDots').filter(function(e){return e.town === d.town}).size()
-		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate && e.region === d.region}), function(g){return g.price}),2)
-		d3.selectAll('.histText').text(d.town + ", Avg. Price: " + d.price + " birr" + ", Region Avg.:" +meanPrice+ " birr," +'  obs.: ' + obs)
-		d3.selectAll('.histDots').filter(function(e) {return e.town===d.town}).style('fill', 'red').attr({r: histDotRadius*1.5}).moveToFront()
-		//for the line chart
-		d3.selectAll('.townLines').filter(function(e) {return e.town===d.town}).style('stroke','red').style('stroke-width','1.5px').moveToFront();
-		//town map
-		d3.selectAll('.townDots').filter(function(e){return e.town === d.town}).attr({r: townDotRadius * 1.5, opacity: 1, stroke: "LightBlue"}).style('stroke-width', '2px').moveToFront()
-		d3.selectAll('.townDots').filter(function(e){return e.town != d.town}).attr({r: townDotRadius * 0.5, opacity: 0.5*townDotOpacity})
+  	//LINE CHART
 
-		//region map
-		var regionName = d.region.replace(' ','')
-		d3.selectAll('.boundary-hover#'+regionName).filter(function(e) { return e}).classed('region-boundary',false).classed('boundary-hover-show',true).moveToFront()
-
-		townTip.show(d)
-	}
-
-	function mouseoutTown(d) {
-		//hist
-		var obs = d3.selectAll('.histDots').size()
-		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate}), function(g){return g.price}),2)
-		d3.selectAll('.histText').text(product + ", Avg. Price: "+ meanPrice + " birr"+', Tot obs: ' + obs)
-		d3.selectAll('.histDots').filter(function(e) {return e.region===d.region}).style('fill', 'silver').attr({r: histDotRadius})
-		//line
-		d3.selectAll('.townLines').filter(function(e) {return e.town===d.town}).style('stroke','rgb(150,150,150)').style('stroke-width','1px');
-		//town
-		d3.selectAll('.townDots').attr({r: townDotRadius, opacity: townDotOpacity, stroke:'black'}).style('stroke-width', '0.5px');
-		//region map
-		var regionName = d.region.replace(' ','')
-		d3.selectAll('.boundary-hover#'+regionName).classed('region-boundary',true).classed('boundary-hover-show',false)
-		townTip.hide(d)
-	}
-
-	function mouseoverRegion(d){
-		//histogram
-		var obs = d3.selectAll('.histDots').filter(function(e){return e.region === d.properties.regionName}).size()
-		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate && e.region === d.properties.regionName}), function(g){return g.price}),2)
-		d3.selectAll('.histText').text(d.properties.regionName+ ", Avg. Price: "+meanPrice+ " birr," +'  obs.: ' + obs)
-		d3.selectAll('.histDots').filter(function(e) {return e.region === d.properties.regionName}).style('fill', 'red').attr({r: histDotRadius*1.5}).moveToFront()
-		//line chart
-		d3.selectAll('.townLines').filter(function(e) {return e.region === d.properties.regionName}).style('stroke','red').style('stroke-width','1.5px').moveToFront();
-		//town map
-		d3.selectAll('.townDots').filter(function(e){return e.region === d.properties.regionName}).attr({r: townDotRadius * 1.5, opacity: 1, stroke: "LightBlue"}).style('stroke-width', '2px').moveToFront()
-		d3.selectAll('.townDots').filter(function(e){return e.region != d.properties.regionName}).attr({r: townDotRadius * 0.5, opacity: 0.5*townDotOpacity})
-
-		//region map
-		var regionName = d.properties.regionName.replace(' ','')
-		d3.selectAll('.boundary-hover#'+regionName).filter(function(e) { return e}).classed('region-boundary',false).classed('boundary-hover-show',true).moveToFront()
-
-		regionTip.show(d)
-	}
-
-	function mouseoutRegion(d){
-		//histogram
-		var obs = d3.selectAll('.histDots').size()
-		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate}), function(g){return g.price}),2)
-		d3.selectAll('.histText').text(product + ", Avg. Price: "+ meanPrice + " birr"+', Tot obs: ' + obs)
-		d3.selectAll('.histDots').style('fill', 'silver').attr({r: histDotRadius})
-		//line
-		d3.selectAll('.townLines').style('stroke','rgb(150,150,150)').style('stroke-width','1px');
-		//town
-		d3.selectAll('.townDots').attr({r: townDotRadius, opacity: townDotOpacity, stroke:'black'}).style('stroke-width', '0.5px');
-		//region map
-		var regionName = d.properties.regionName.replace(' ','')
-		d3.selectAll('.boundary-hover#'+regionName).classed('region-boundary',true).classed('boundary-hover-show',false)
-		regionTip.hide(d)
-	}
-
-  	//RESELECTING THE PRODUCT AND REDRAWING THE MAP BASED ON CHANGES
-	d3.select('#productSelectPrice').on('change.map', function(d) {
-        var product = d3.select(this).property('value');
-		var dates = $('#slider').slider('values');
-		var startDate = sliderMonths[dates[0]];
-   		var endDate = sliderMonths[dates[1]];
-        redrawMap(product, startDate, endDate);
-    });
-
-    $("#slider").on( "slide", function( event, ui ) {
-	    if ((ui.values[0]) >= ui.values[1]) {
-	    	return false;
-	    }
-	    else {
-	    	var sel = document.getElementById('productSelectPrice');
-	    	var product = sel.options[sel.selectedIndex].value;
-	    	var startDate = sliderMonths[ui.values[0]];
-	    	var endDate = sliderMonths[ui.values[1]];
-	    	redrawMap(product, startDate, endDate);
-	    }
-    });
-
-	function redrawMap(product, startDate, endDate) {
-		townData = getTownData(townPriceData,startDate, endDate, product)
-		regionData = getRegionData(townPriceData,startDate, endDate, product)
-		// set the color and axis functions
-		max = d3.max(townData, function(d) { return d.price; });
-		min = d3.min(townData, function(d) { return d.price; });
-		bounds = setBins(max,min);
-		color.domain(bounds);
-		y.domain([min*.95, max*1.05]);
-    	axis.scale(y).tickValues([min*.95].concat(bounds));
-    	key.call(axis)
-
-    	regionFeatures = mergeRegionPrice(regionData,regionFeatures) //adding the region data to the region map
-		regionMap
-			.data(regionFeatures)
-			.style('fill', function(d){
-				return color(d.properties.price)
-			});
-
-		towns
-			.data(townData)
-			.attr("transform", function(d) {
-    			return "translate(" + projectionZone([d.lon, d.lat]) + ")"
-  			})
-  			.attr('fill', function(d){
-				return color(d.price)
-			});
-	}
-}
-
-function drawLine(townPriceData){
-	//console.log(townPriceData)
 	//THIS FUNCTION GETS THE DATA IN FORMAT FOR THE CHART
-	function reshapeMonthlyPrice(townPriceData,product,startDate,endDate) {
-		var monthlyPrice = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});;
-		var mainArray = [];
-		for (var i=0;i<monthlyPrice.length;i++) {
-			if (mainArray.filter(function(d) {return d.town===monthlyPrice[i].town}).length===0) { // does the state have its own list item yet?
-				var town = {
-					region:monthlyPrice[i].region,
-					town:monthlyPrice[i].town,
-					values: [{
-						zone:monthlyPrice[i].zone,
-						town:monthlyPrice[i].town,
-						region:monthlyPrice[i].region,
-						date:monthlyPrice[i].date,
-						price:monthlyPrice[i].price
-					}]
-				};
-				mainArray.push(town);
+	//process flow: create list of towns, intialize town array, feed to updateTownList (if not the master), feed master townList to reshape
+	function initializeTownList(towns, active, draw){//given a list of towns and active and draw status this will create a town array
+		var array = [];
+		var isActive = (active === 0) ? false : true;
+		var isDraw =  (draw ===0) ? false : true;
+		for(i=0; i<towns.length; i++){
+			if(towns[i] === "Ethiopia"){
+				array.push({town: towns[i], active: false, draw: true})
 			} else {
-				var values = {
-					zone:monthlyPrice[i].zone,
-					town:monthlyPrice[i].town,
-					region:monthlyPrice[i].region,
-					date:monthlyPrice[i].date,
-					price:monthlyPrice[i].price
-				};
-				mainArray.filter(function(d) {return d.town===monthlyPrice[i].town})[0].values.push(values);
-
+				array.push({town: towns[i], active: isActive, draw: isDraw})
 			}
 		}
-		for (var i=0;i<mainArray.length;i++) {
-			mainArray[i].values.sort(function(a,b) {return a.date - b.date;}) // for every state sort the values array by month, ascending
-		}
-		return mainArray;
+		return array
 	}
-	//GETTING THE DATA READY
-  	var sel = document.getElementById('productSelectPrice'); //selecting the default based on currentinput
-  	var product = sel.options[sel.selectedIndex].value; //pulling the value of the selected product
-	//var dates = $('#slider').slider('values'); //pulls the date values from the slider
-	var startDate = dateFormat.parse('2010-01-01')//sliderMonths[dates[0]];
-   	var endDate = dateFormat.parse('2014-06-01')//sliderMonths[dates[1]];
 
-  	// var lineData = townPriceData.filter(function(d){return d.item === product && d.date>= startDate && d.date <= endDate});
-  	var lineData = reshapeMonthlyPrice(townPriceData,product,startDate,endDate);
+	function updateTownList(townList, towns){//given the master townList and an array of towns with draw and active status this will spit out the updated master
+		var array = townList
+		towns.forEach(function(d){
+			array.filter(function(e){return e.town === d.town})[0].active = d.active
+			array.filter(function(e){return e.town === d.town})[0].draw = d.draw
+		})
+		return array
+	}
+
+	function reshapeMonthlyPrice(townPriceData,townList, product,startDate,endDate){//reshapes the data for line chart
+		var array = []
+		var drawTowns = townList.filter(function(d){return d.draw})
+		drawTowns.forEach(function(d){
+			var tempData = townPriceData.filter(function(e){return e.item === product && e.date >= startDate && e.date <= endDate && e.town === d.town})
+			tempData.forEach(function(f){
+				if(array.filter(function(g){return g.town === f.town}).length===0){// does the state have its own list item yet?
+					var tempRow = {
+						region: f.region, 
+						town: f.town, 
+						values:[{
+							zone:f.zone,
+							town:f.town,
+							region:f.region,
+							date:f.date,
+							price:f.price
+						}]
+					}
+					array.push(tempRow)
+				} else {
+					var tempValues = {
+						zone:f.zone,
+						town:f.town,
+						region:f.region,
+						date:f.date,
+						price:f.price
+					}
+					array.filter(function(g){return g.town === f.town})[0].values.push(tempValues)
+				}
+			})
+		})
+		for(var i=0; i<array.length; i++){
+			array[i].values.sort(function(a,b){return a.date - b.date})
+		}
+		return array
+	}
+
+	//GETTING THE DATA READY
+  	var allTowns = uniq_fast(townPriceData.map(function(d){return d.town}));
+  	var masterTownList = initializeTownList(allTowns, 0, 1);
+  	var lineData = reshapeMonthlyPrice(townPriceData,masterTownList,product,startDate,endDate);
   	var months = uniq_fast(townPriceData.filter(function(e) {return e.item===product}).map(function(d){ return d.date})).sort(function(a,b) { return a - b;});
 
   	//CREATING THE CANVAS
@@ -719,13 +614,8 @@ function drawLine(townPriceData){
         .attr("class", "y axis")
         .call(yAxis);
 
-	var towns = lineChart.append("g")
+	var townLines = lineChart.append("g")
 		.selectAll("path")
-		.data(lineData)
-		.enter().append("path")
-		.attr("class", "townLines")
-		.attr("d", function(d) { d.line = this; return line(d.values); })
-		.attr("clip-path", 'url(#lineclip)')
 
 
 	var voronoi = d3.geom.voronoi()
@@ -734,32 +624,195 @@ function drawLine(townPriceData){
 	    .clipExtent([[0, 0], [width, height]]);
 
 
-/*  	var voronoiGroup = lineChart.append("g")
+  	var voronoiGroup = lineChart.append("g")
 		.attr("class", "voronoi")
 		.selectAll("path")
-		.data(voronoi(d3.nest()
-			.key(function(d) { return xScale(d.date) + "," + yScale(d.price); })
-			.rollup(function(v) { return v[0]; })
-			.entries(d3.merge(lineData.map(function(d) { return d.values; })))
-			.map(function(d) { return d.values; })))
-	    .enter().append("path")
-		.attr("d", function(d) { return "M" + d.join("L") + "Z"; })
-		.datum(function(d) { return d.point; })
-		.style("cursor","default")
-		.on("mouseover", mouseoverLine)
-		.on("mouseout", mouseoutLine);*/
+
 
 	var focus = lineChart.append("g")
 		.attr("transform", "translate(-100,-100)")
 		.attr("class", "focus");
 
-	focus.append("circle")
-		.attr("r", 3.5)
-		.style("fill","red")
-		.style("stroke","none")
-		.call(tip);
+	var lineColor = 'rgb(50,50,50)';
+	var lineWidth = '1.5px';
 
-	//DEFINING THE MOUSEOVER FUNCTIONS
+	function drawLine(lineData, lineColor, lineWidth){
+		townLines = townLines.data(lineData);
+		townLines.exit().remove();
+		townLines.enter().append('path');
+		townLines.attr("class","townLines nonActiveLine")
+			.attr("d",function(d) { d.line = this; return line(d.values); })
+			.style('stroke-width', function(d){if(d.town === "Ethiopia"){return '2px'}else{return lineWidth}})
+			.style('stroke', function(d){if(d.town === "Ethiopia"){return 'green'}else{return lineColor}})
+			.attr('opacity', function(d){if(d.town === "Ethiopia"){return '1'}else{return '0'}})
+			.attr("clip-path", 'url(#lineclip)');
+
+		voronoiGroup = voronoiGroup.data(voronoi(d3.nest()
+			.key(function(d) { return xScale(d.date) + "," + yScale(d.price); })
+			.rollup(function(v) { return v[0]; })
+			.entries(d3.merge(lineData.map(function(d) { return d.values; })))
+			.map(function(d) { return d.values; })));
+
+		voronoiGroup.exit().remove();
+		voronoiGroup.enter().append("path");
+		voronoiGroup
+			.attr('class','voronoi')
+			.attr("d", function(d) { return "M" + d.join("L") + "Z"; })
+			.datum(function(d) { return d.point; })
+			.style("cursor","default")
+			.on("mouseover", mouseoverLine)
+			.on("mouseout", mouseoutLine);
+
+		focus.append("circle")
+			.attr("r", 3.5)
+			.style("fill","red")
+			.style("stroke","none")
+			.call(tip);
+	}
+	drawLine(lineData, lineColor, lineWidth)
+
+
+
+  	//MOUSEOVER FUNCTIONS FOR MAP
+  	d3.selection.prototype.moveToFront = function() {
+  		return this.each(function(){
+    	this.parentNode.appendChild(this);
+  		});
+	};
+
+	//INTERACTIONS WITH THE TOWN MAP
+	function onClickTown(d){//if town is already active then make it inactive and remove line else draw line
+		var tempTown = [d.town]
+		masterTownList.forEach(function(e){
+			if(e.town === d.town){
+				if(e.active){//make inactive and make the town line disappear
+					//update town list
+					var tempList = initializeTownList(tempTown, 0, 0)
+					masterTownList = updateTownList(masterTownList, tempList)
+					//make line transparent
+					d3.selectAll('.townLines').filter(function(e) {return e.town===d.town}).style({'stroke':lineColor,'stroke-width': lineWidth, 'opacity':0}).classed('activeLine', false).classed('nonActiveLine', true)
+					//make town dot normal
+					d3.selectAll('.townDots').filter(function(e) {return e.town===d.town}).attr({r: townDotRadius, opacity: townDotOpacity, stroke:'black'}).style('stroke-width', '0.5px').classed('activeDot', false).classed('nonActiveDot', true);
+				} else {//make the town active and show line
+					//update town list
+					var tempList = initializeTownList(tempTown, 1, 1)
+					masterTownList = updateTownList(masterTownList, tempList)
+					//highlight line
+					d3.selectAll('.townLines').filter(function(e) {return e.town===d.town}).style({'stroke':lineColor,'stroke-width':lineWidth,'opacity':1}).classed('activeLine', true).classed('nonActiveLine', false);
+
+					//highlight town dot
+					d3.selectAll('.townDots').filter(function(e){return e.town === d.town}).attr({r: townDotRadius * 2, opacity: 1, stroke: "LightBlue"}).style('stroke-width', '3px').classed('activeDot', true).classed('nonActiveDot', false).moveToFront()
+				}
+			}
+		})
+	}
+
+	function mouseoverTown(d) {
+		//Histogram is highlighted only on mouseover so we don't have to worry about clicked state
+		var obs = d3.selectAll('.histDots').filter(function(e){return e.town === d.town}).size()
+		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate && e.region === d.region}), function(g){return g.price}),2)
+		d3.selectAll('.histText').text(d.town + ", Avg. Price: " + d.price + " birr" + ", Region Avg.:" +meanPrice+ " birr," +'  obs.: ' + obs)
+		d3.selectAll('.histDots').filter(function(e) {return e.town===d.town}).style('fill', 'red').attr({r: histDotRadius*1.5}).moveToFront()
+
+		//region map is highlighted only on mouseover so we don't have to worry about clicked state
+		var regionName = d.region.replace(' ','')
+		d3.selectAll('.boundary-hover#'+regionName).filter(function(e) { return e}).classed('region-boundary',false).classed('boundary-hover-show',true).moveToFront()
+
+		townTip.show(d)
+
+		//The rest
+		var tempTown = [d.town];
+		var tempData = masterTownList.filter(function(e){return e.town === d.town}) //the data that we are intereste in
+		if(tempData[0].active){//is the moused over dot active?
+			//make the line red
+			d3.selectAll('.townLines').filter(function(e) {return e.town===d.town}).style({'stroke':'red'}).moveToFront();
+			//dim the rest of the town dots
+			d3.selectAll('.townDots').filter(function(e){return e.town != d.town}).attr({r: townDotRadius * 0.5, opacity: 0.5*townDotOpacity})
+		} else {
+			//make the line red and visible
+			d3.selectAll('.townLines').filter(function(e) {return e.town===d.town}).style({'stroke':'red','stroke-width':lineWidth,'opacity':1}).moveToFront();
+			//make the town bigger and the other less visible
+			d3.selectAll('.townDots').filter(function(e){return e.town === d.town}).attr({r: townDotRadius * 1.5, opacity: 1, stroke: "LightBlue"}).style('stroke-width', '2px').moveToFront()
+			d3.selectAll('.townDots').filter(function(e){return e.town != d.town}).attr({r: townDotRadius * 0.5, opacity: 0.5*townDotOpacity})
+		}
+	}
+
+	function mouseoutTown(d) {
+		//hist
+		var obs = d3.selectAll('.histDots').size()
+		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate}), function(g){return g.price}),2)
+		d3.selectAll('.histText').text(product + ", Avg. Price: "+ meanPrice + " birr"+', Tot obs: ' + obs)
+		d3.selectAll('.histDots').filter(function(e) {return e.region===d.region}).style('fill', 'silver').attr({r: histDotRadius})
+
+		//region map
+		var regionName = d.region.replace(' ','')
+		d3.selectAll('.boundary-hover#'+regionName).classed('region-boundary',true).classed('boundary-hover-show',false)
+
+		townTip.hide(d)
+
+		//the rest
+		var tempTown = [d.town];
+		var tempData = masterTownList.filter(function(e){return e.town === d.town}) //the data that we are intereste in
+		if(tempData[0].active){
+			//line goes back to normal styling
+			d3.selectAll('.activeLine').filter(function(e) {return e.town===d.town}).style({'stroke':lineColor})
+			//non-active dots go back to normal, active dots go back to highlighted
+			d3.selectAll('.nonActiveDot').attr({r: townDotRadius, opacity: townDotOpacity, stroke:'black'}).style('stroke-width', '0.5px');
+			d3.selectAll('.activeDot').attr({r: townDotRadius * 2, opacity: 1, stroke: "green"}).style('stroke-width', '3px').moveToFront();
+		} else {
+			//line disappear
+			d3.selectAll('.nonActiveLine').filter(function(e) {return e.town===d.town}).style({'stroke':lineColor,'stroke-width': lineWidth, 'opacity':0})
+			//non-active dots go back to normal, active dots go back to highlighted
+			d3.selectAll('.nonActiveDot').attr({r: townDotRadius, opacity: townDotOpacity, stroke:'black'}).style('stroke-width', '0.5px');
+			d3.selectAll('.activeDot').attr({r: townDotRadius * 2, opacity: 1, stroke: "green"}).style('stroke-width', '3px').moveToFront()
+		}
+	}
+
+	//INTERACTIONS WITH THE STATE MAP
+	function onClickRegion(d){
+		//make all the towns in the state active and the rest inactive
+		//allTowns = uniq_fast(townPriceData.map(function(d){return d.town}));
+		//var tempTown = uniq_fast(townPriceData.filter(function(e){return d.properties.regionName === e.region}).map(function(f){return f.town}))
+		//masterTownList = 
+		var tempList = initializeTownList(tempTown, 1, 1)
+		masterTownList = updateTownList(masterTownList, tempList)
+	}
+
+	function mouseoverRegion(d){
+		//histogram
+		var obs = d3.selectAll('.histDots').filter(function(e){return e.region === d.properties.regionName}).size()
+		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate && e.region === d.properties.regionName}), function(g){return g.price}),2)
+		d3.selectAll('.histText').text(d.properties.regionName+ ", Avg. Price: "+meanPrice+ " birr," +'  obs.: ' + obs)
+		d3.selectAll('.histDots').filter(function(e) {return e.region === d.properties.regionName}).style('fill', 'red').attr({r: histDotRadius*1.5}).moveToFront()
+		//line chart
+		d3.selectAll('.townLines').filter(function(e) {return e.region === d.properties.regionName}).style('stroke','red').style('stroke-width','1.5px').moveToFront();
+		//town map
+		d3.selectAll('.townDots').filter(function(e){return e.region === d.properties.regionName}).attr({r: townDotRadius * 1.5, opacity: 1, stroke: "LightBlue"}).style('stroke-width', '2px').moveToFront()
+		d3.selectAll('.townDots').filter(function(e){return e.region != d.properties.regionName}).attr({r: townDotRadius * 0.5, opacity: 0.5*townDotOpacity})
+
+		//region map
+		var regionName = d.properties.regionName.replace(' ','')
+		d3.selectAll('.boundary-hover#'+regionName).filter(function(e) { return e}).classed('region-boundary',false).classed('boundary-hover-show',true).moveToFront()
+
+		regionTip.show(d)
+	}
+
+	function mouseoutRegion(d){
+		//histogram
+		var obs = d3.selectAll('.histDots').size()
+		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate}), function(g){return g.price}),2)
+		d3.selectAll('.histText').text(product + ", Avg. Price: "+ meanPrice + " birr"+', Tot obs: ' + obs)
+		d3.selectAll('.histDots').style('fill', 'silver').attr({r: histDotRadius})
+		//line
+		d3.selectAll('.townLines').style('stroke','rgb(150,150,150)').style('stroke-width','1px');
+		//town
+		d3.selectAll('.townDots').attr({r: townDotRadius, opacity: townDotOpacity, stroke:'black'}).style('stroke-width', '0.5px');
+		//region map
+		var regionName = d.properties.regionName.replace(' ','')
+		d3.selectAll('.boundary-hover#'+regionName).classed('region-boundary',true).classed('boundary-hover-show',false)
+		regionTip.hide(d)
+	}
+	//DEFINING THE MOUSEOVER FUNCTIONS FOR LINE
 	function mouseoverLine(d) {
 		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate && e.town === d.town}), function(g){return g.price}),2)
 		d3.selectAll('.histText').text(d.town + " Price on "+monthYear(d.date)+": " + d.price + " birr" + ", Town Avg.: " +meanPrice+ " birr")
@@ -794,6 +847,57 @@ function drawLine(townPriceData){
 		d3.selectAll('.boundary-hover#'+regionName).classed('region-boundary',true).classed('boundary-hover-show',false)
 		focus.attr("transform", "translate(-100,-100)");
 		tip.hide(d);
+	}
+
+  	//RESELECTING THE PRODUCT AND REDRAWING THE MAP BASED ON CHANGES
+	d3.select('#productSelectPrice').on('change.map', function(d) {
+        var product = d3.select(this).property('value');
+		var dates = $('#slider').slider('values');
+		var startDate = sliderMonths[dates[0]];
+   		var endDate = sliderMonths[dates[1]];
+        redrawMap(product, startDate, endDate);
+    });
+
+    $("#slider").on( "slide", function( event, ui ) {
+	    if ((ui.values[0]) >= ui.values[1]) {
+	    	return false;
+	    }
+	    else {
+	    	var sel = document.getElementById('productSelectPrice');
+	    	var product = sel.options[sel.selectedIndex].value;
+	    	var startDate = sliderMonths[ui.values[0]];
+	    	var endDate = sliderMonths[ui.values[1]];
+	    	redrawMap(product, startDate, endDate);
+	    }
+    });
+
+	function redrawMap(product, startDate, endDate) {
+		townData = getTownData(townPriceData,startDate, endDate, product)
+		regionData = getRegionData(townPriceData,startDate, endDate, product)
+		// set the color and axis functions
+		max = d3.max(townData, function(d) { return d.price; });
+		min = d3.min(townData, function(d) { return d.price; });
+		bounds = setBins(max,min);
+		color.domain(bounds);
+		y.domain([min*.95, max*1.05]);
+    	axis.scale(y).tickValues([min*.95].concat(bounds));
+    	key.call(axis)
+
+    	regionFeatures = mergeRegionPrice(regionData,regionFeatures) //adding the region data to the region map
+		regionMap
+			.data(regionFeatures)
+			.style('fill', function(d){
+				return color(d.properties.price)
+			});
+
+		towns
+			.data(townData)
+			.attr("transform", function(d) {
+    			return "translate(" + projectionZone([d.lon, d.lat]) + ")"
+  			})
+  			.attr('fill', function(d){
+				return color(d.price)
+			});
 	}
 
 	d3.select('#productSelectPrice').on('change.line', function(d) {
@@ -839,10 +943,10 @@ function drawLine(townPriceData){
 		xAxisNodes.call(xAxis);
 		g.call(yAxis);
 
-		towns = towns.data(lineData);
-		towns.exit().remove();
-		towns.enter().append('path');
-		towns.attr("class","townLines")
+		townLines = townLines.data(lineData);
+		townLines.exit().remove();
+		townLines.enter().append('path');
+		townLines.attr("class","townLines")
 			.attr("d",function(d) { d.line = this; return line(d.values); })
 			.attr("clip-path", 'url(#lineclip)');
 
@@ -893,7 +997,7 @@ function drawHistogram(townPriceData){
 	var dates = $('#slider').slider('values'); //pulls the date values from the slider
 	var startDate = sliderMonths[dates[0]];
    	var endDate = sliderMonths[dates[1]];
-  	var data = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate});
+  	var data = townPriceData.filter(function(d){return d.item == product && d.date>= startDate && d.date <= endDate && d.town != "Ethiopia"});
 
   	//CREATING THE CANVAS AND Y-SCALES
   	var containerSize = d3.select('#histChartContainer').node().getBoundingClientRect()

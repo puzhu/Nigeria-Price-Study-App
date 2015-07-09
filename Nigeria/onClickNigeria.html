@@ -370,10 +370,13 @@ function drawMap(nigeriaStates,priceData){
     var stateFeatures = topojson.feature(nigeriaStates, nigeriaStates.objects.NGA_adm1).features;
     stateFeatures = mergeGeoPrice(mapData,stateFeatures);
 
+console.log(mapSize.width)
+console.log(mapSize.height)
+console.log(mapSize.width*2.45)
     //DEFINING THE MAPPING VARIABLES
 	var projection = d3.geo.mercator()
 		.center([8.5,10.5])
-		.scale(mapSize.width*2.45)
+		.scale(d3.min([mapSize.width*2.45,mapSize.height*5.7]))
 		.translate([mapSize.width*.34, mapSize.height*.36]);
 
 	var path = d3.geo.path()

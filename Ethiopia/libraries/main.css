@@ -139,6 +139,11 @@ h3 {
 	margin:auto;
 	/*border:1px solid black;*/
 }
+
+#mapSvg{
+	width:100%;
+    height: auto;
+}
 /*Map key*/
 .key path {
 	display:none;
@@ -189,12 +194,6 @@ h3 {
 	fill:none;
 }
 
-
-
-
-
-
-
 /*Hist div and CSS*/
 #histChartContainer{
 	width:95%;
@@ -215,6 +214,12 @@ h3 {
 	fill-opacity:.2;
 	stroke:none;
 }
+
+#lineSvg{
+	width:100%;
+    height: auto;
+}
+
 .voronoi path {
   fill: none;
   stroke:none;

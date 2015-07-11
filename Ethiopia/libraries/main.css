@@ -1,12 +1,11 @@
 /*Text styling*/
 h3 {
-	font-size:1.2em;
-	margin-left: 1em;
+	font-size:2.2vmin;
+	margin-left: 0.5em;
 	margin-bottom: 0px;
-	margin-top: 0px;
-	line-height: 1.5em;
+	margin-top: 0.2em;
+	line-height: 2.2vmin;
 }
-
 
 
 /*Position the Divs*/
@@ -40,7 +39,7 @@ h3 {
 	float: right;
 	margin-top: 1em;
 	width:36%;
-	font-size: 1em;
+	font-size: 2vmin;
 	padding:1% 1% 1% 1%;
 	float: right;
 	box-shadow: 0 0 0.5em #888888;
@@ -103,32 +102,7 @@ h3 {
 #productSelectPrice {
 	margin-right:40px;
 }
-#sliderContainer {
-	display:inline-block;
-}
-#sliderContainer .axis {
-  font: 10px sans-serif;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
 
-#sliderContainer .axis line {
-  fill: none;
-  stroke: black;
-  stroke-width:1px;
-  shape-rendering:crispEdges;
-}
-#sliderContainer .axis path {
-  fill:none;
-}
-
-#sliderContainer #slider {
-  width:250px;
-  margin-left:20px;
-  margin-right:20px;
-  margin-top:-15px;
-}
 
 
 
@@ -153,7 +127,7 @@ h3 {
 	shape-rendering:crispEdges;
 }
 .key text {
-	font-size:12px;
+	font-size:1.8vmin;
 }
 
 /*Map Boundaries*/
@@ -187,7 +161,7 @@ h3 {
 .boundary-hover-show {
 	stroke:green;
 	fill:none;
-	stroke-width:2px;
+	stroke-width:2.5px;
 }
 .boundary-hover-hide {
 	stroke:none;
@@ -201,6 +175,9 @@ h3 {
 	margin:auto;
 }
 
+.histText{
+	font-size: 1.8vmin;
+}
 #lineChartContainer{
 	width:98%;
 	height:100%;
@@ -249,9 +226,23 @@ h3 {
 }
 .townLines {
 	fill:none;
-	stroke-width: 1px;
-	stroke: rgb(150,150,150);
+	stroke-width: 1.5px;
 }
+.natLine {
+	fill:none;
+	stroke: green;
+	stroke-width: 3px;
+	opacity: 1;
+}
+
+.nonActiveLine{
+	opacity:0;
+}
+
+.activeLine{
+	opacity:1;
+}
+
 .focus {
 	pointer-events:none;
 }
@@ -265,65 +256,3 @@ select:focus {
   	box-shadow: none;
   	outline: 0 none;
  }
-.ui-slider .ui-slider-handle {
- 	cursor:grab;
- 	cursor:-webkit-grab;
- }
- .sliderPoly path{
-	fill:white;
-	stroke:black;
-	shape-rendering:crispEdges;
-}
-/*Common CSS for the indicators*/
-.zoneHoverShow{
-  stroke:black;
-  stroke-width:0.08px;
-}
-.zoneHoverHide {
-  fill: none;
-  stroke:black;
-  stroke-width:0.06px;
-}
-
-.textHoverShow{
-  font-size: 16px;
-}
-.textHoverHide{
-  color: red;
-}
-
-.meanLines line{
-	stroke: black;
-	stroke-width:1px;
-}
-
-.meanCross{
-
-}
-
-/*Volatility CSS*/
-#volatilityOuter{
-	float: left;
-	width:60%;
-	/*border:1px solid black;*/
-}
-/*#volatilityContainer{
-	margin: auto;
-}*/
-#indicatorTextContainer {
-	float: left;
-	width:30%;
-	padding:2% 3% 0% 3%;
-	/*border:1px solid black;*/
-}
-#segmentationOuter {
-	float:left;
-	width:58%;
-	/*border:1px solid black;*/
-}
-
-#passthroughOuter {
-	float:left;
-	width:40%;
-	/*border:1px solid black;*/
-}

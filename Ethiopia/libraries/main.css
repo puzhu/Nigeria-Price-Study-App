@@ -100,7 +100,7 @@ h3 {
 }
 .yAxis text {
     font-family: sans-serif;
-    font-size: 1.8vmin;
+    font-size: 1.1vmax;
 }
 
 /*Selector Div on price*/
@@ -212,7 +212,7 @@ h3 {
 	display: none;
 }
 .x.axis text, .y.axis text {
-	font-size:1.8vmin;
+	font-size:1.1vmax;
 }
 .x.axis line {
 	shape-rendering:crispEdges;

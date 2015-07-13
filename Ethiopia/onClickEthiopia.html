@@ -831,16 +831,18 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 
 		if(masterRegionList.filter(function(e){return e.active}).length > 0){//is there a selected state
 			var activeRegion = masterRegionList.filter(function(e){return e.active})[0].town.replace(' ','')
-			console.log(masterRegionList.filter(function(e){return e.active})[0].town.replace(' ',''))
 
 			d3.selectAll('.activeDot').attr({r: townDotRadius * 2, opacity: 1, stroke: "green"}).style('stroke-width', '3px').moveToFront();
 			d3.selectAll('.nonActiveDot').attr({r: townDotRadius * 0.5, opacity: 0.5*townDotOpacity}).style('stroke-width', '0.5px')
-			//Active lines go back to normal styling and non-active disappear
-			
+
 			if(masterRegionList.filter(function(f){return f.town === d.region})[0].active){//is the moused town in an active state?
-				//active lines go back to regular stying
-				d3.selectAll('.townLines').filter(function(t){return t.town === d.town}).style({'stroke':lineColor}).classed('nonActiveLine', false)
-				
+				//if yes, the moused town cud have been clicked on so we need to check for active status
+				if(!masterTownList.filter(function(z){return z.town === d.town})[0].active){//if the town is not active then make line active temporarily
+					d3.selectAll('.townLines').filter(function(t) {return t.town === d.town}).style({'stroke':lineColor}).classed('nonActiveLine', true)
+				} else {
+					d3.selectAll('.townLines').filter(function(t){return t.town === d.town}).style({'stroke':lineColor}).classed('nonActiveLine', false)
+				}
+
 				//region boundary remains hovered on
 				var regionName = d.region.replace(' ','')
 				d3.selectAll('.boundary-hover#'+regionName).filter(function(e) { return e}).classed('region-boundary',false).classed('boundary-hover-show',true).moveToFront()

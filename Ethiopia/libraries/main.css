@@ -1,4 +1,7 @@
 /*Text styling*/
+h1 {
+	font-size:4vmin
+}
 h3 {
 	font-size:2.2vmin;
 	margin-left: 0.5em;
@@ -24,7 +27,7 @@ h3 {
 }
 #topRow{
 	width:95%;
-	height: 330px;
+	height: 25vw;
 	/*border:5px solid red;*/
 }
 #mapOuter{
@@ -39,23 +42,25 @@ h3 {
 	float: right;
 	margin-top: 1em;
 	width:36%;
-	font-size: 2vmin;
+	height: 92%;
+	font-size: 1.2vmax;
+	line-height: 1.5vmax;
 	padding:1% 1% 1% 1%;
 	float: right;
-	box-shadow: 0 0 0.5em #888888;
+	box-shadow: 0 0 5px #888888;
 	/*border:1px solid #888888;*/
-	height:94%;
+	
 }
 #bottomRow{
 	clear: both;
 	width:95%;
-	height: 250px;
+	height: 15vw;
 	/*border:5px solid yellow;*/
 }
 #lineOuter{
 	float: left;
 	width:60%;
-	height: 100%;
+	height: 95%;
 	margin-top: 1em;
 	background: #EEEEEE;
 	box-shadow: 0 0 5px #888888;
@@ -63,7 +68,7 @@ h3 {
 #histOuter{
 	float: right;
 	width:38%;
-	height: 100%;
+	height: 95%;
 	margin-top: 1em;
 	background: #EEEEEE;
 	box-shadow: 0 0 5px #888888;
@@ -74,7 +79,7 @@ h3 {
 	margin-left: auto;
     margin-right: auto;
     width: 90%;
-    font-size: 0.9em;
+    font-size: 2vmin;
 	padding:2% 1% 1% 1%;
     box-shadow: 0 0 0.5em #888888;
 	border:1px solid #888888;
@@ -95,7 +100,7 @@ h3 {
 }
 .yAxis text {
     font-family: sans-serif;
-    font-size: 9px;
+    font-size: 1.8vmin;
 }
 
 /*Selector Div on price*/
@@ -177,6 +182,7 @@ h3 {
 
 .histText{
 	font-size: 1.8vmin;
+	margin-left: 1em;
 }
 #lineChartContainer{
 	width:98%;
@@ -206,7 +212,7 @@ h3 {
 	display: none;
 }
 .x.axis text, .y.axis text {
-	font-size:13px;
+	font-size:1.8vmin;
 }
 .x.axis line {
 	shape-rendering:crispEdges;
@@ -240,7 +246,7 @@ h3 {
 }
 
 .activeLine{
-	opacity:1;
+	/*opacity:1;*/
 }
 
 .focus {

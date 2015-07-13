@@ -147,6 +147,7 @@ function makeResponsiveMap(svg){
         var targetHeight = parseInt(container.style("height"));
         svg.attr("height", targetHeight);
         svg.attr("width", Math.round(targetHeight * aspect, 2));
+
     }
 }
 
@@ -166,6 +167,7 @@ function makeResponsiveChart(svg){
         var targetWidth = parseInt(container.style("width"));
         svg.attr("width", targetWidth);
         svg.attr("height", Math.round(targetWidth/aspect, 2));
+
     }
 }
 /*//SLIDER FUNCTIONS
@@ -252,7 +254,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 	//FUNCTIONS FOR PROCESSING DATA IN CHART
 	function getTownData(townPriceData, startDate, endDate, item){//filters and aggregates to town level
 		var array = [];
-		var towns = uniq_fast(townPriceData.map(function(e){return e.town}));
+		var towns = uniq_fast(townPriceData.filter(function(f){return f.town != "Ethiopia"}).map(function(e){return e.town}));
 		towns.forEach(function(d){
 			var townData = townPriceData.filter(function(e){return e.town===d && e.date>=startDate && e.date<=endDate && e.item===item});
 			var meanPrice = d3.round(d3.mean(townData, function(t){return t.price}), 2);
@@ -272,7 +274,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 
 	function getRegionData(townPriceData,startDate, endDate, item){//filters and aggregates at the region level
 		var array = [];
-		var regions = uniq_fast(townPriceData.map(function(e){return e.region}));
+		var regions = uniq_fast(townPriceData.filter(function(f){return f.region != "Ethiopia"}).map(function(e){return e.region}));
 		regions.forEach(function(d){
 			var regionData = townPriceData.filter(function(e){return e.region===d && e.date>=startDate && e.date<=endDate && e.item===item});
 			var meanPrice = d3.round(d3.mean(regionData, function(t){return t.price}), 2);
@@ -312,18 +314,17 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 
 	//CREATING THE CANVAS
 	var containerSize = d3.select('#mapContainer').node().getBoundingClientRect()
-  	var margin = {top: 0.008*containerSize.height , right: 0.008*containerSize.width, bottom: 0.008*containerSize.height, left: 0.008*containerSize.width};
-  	var padding = {top: 0.006*containerSize.height, right: 0.006*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
-  	var mapWidth = containerSize.width - margin.right - margin.left; //Chart width
-  	var mapHeight = containerSize.height - margin.top - margin.bottom; //Chart height
+  	var mapMargin = {top: 0.008*containerSize.height , right: 0.008*containerSize.width, bottom: 0.008*containerSize.height, left: 0.008*containerSize.width};
+  	var mapWidth = containerSize.width - mapMargin.right - mapMargin.left; //Chart width
+  	var mapHeight = containerSize.height - mapMargin.top - mapMargin.bottom; //Chart height
 
   	var map = d3.select('#mapContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
         .attr({
-          height: mapHeight + margin.top + margin.bottom,
-          width: mapWidth + margin.left + margin.right
+          height: mapHeight + mapMargin.top + mapMargin.bottom,
+          width: mapWidth + mapMargin.left + mapMargin.right
         })
         .attr("id", "mapSvg")
-      	.attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")")//moving the origin to the point where it starts
+      	.attr("transform", "translate(" + (mapMargin.left) + "," + (mapMargin.top)+ ")")//moving the origin to the point where it starts
       	.call(makeResponsiveMap)
       	
 
@@ -398,22 +399,40 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
     var regionFeatures = topojson.feature(ethiopiaRegions, ethiopiaRegions.objects.ETH_ADM1).features;
     regionFeatures = mergeRegionPrice(regionData,regionFeatures) //adding the region data to the region map
 
+    /*function getCentroid(selection) {
+    	// get the DOM element from a D3 selection
+    	// you could also use "this" inside .each()
+    	var element = selection.node(),
+        // use the native SVG interface to get the bounding box
+        bbox = element.getBBox();
+    	// return the center of the bounding box
+    	return [bbox.x + bbox.width/2, bbox.y + bbox.height/2];
+	}*/
+
     //DEFINING THE MAPPING VARIABLES
 	var projectionZone = d3.geo.mercator()
-		.center([8.5,10.5])
+		.center([4,5])
 		.scale(d3.min([mapWidth*2.45,mapHeight*4.5]))
-		.translate([-.85*mapWidth, 0.38*mapHeight]);
+		.translate([-mapWidth,0.82*mapHeight])
 
-	var projectionRegion = d3.geo.mercator()
-		.center([8.5,10.5])
-		.scale(d3.min([mapWidth*1.45,mapHeight*2.5]))
-		.translate([-0.08*mapWidth, .2*mapHeight]);
-
+	
 	var pathZone = d3.geo.path()
 		.projection(projectionZone);
 
+	// var zoneMapBox = d3.selectAll('.zone').node().getBBox()
+	// var zoneMapX = zoneMapBox.x + zoneMapBox.width
+	// console.log(zoneMapX)
+
+	var projectionRegion = d3.geo.conicEqualArea()
+		.center([20,4])
+		.scale(d3.min([mapWidth*1.45,mapHeight*2.5]))
+		.translate([0.3*mapWidth, 0.65*mapHeight]);
+
 	var pathRegion = d3.geo.path()
 		.projection(projectionRegion);
+	
+	// var testBounds = pathRegion.bounds(regionFeatures[0])
+	// console.log(testBounds)
 
     //DRAWING THE MAP
     var zoneMap = map.append('g').selectAll('.zone') //the large map with zone boundaries
@@ -425,7 +444,6 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 			'class': 'zone',
 			fill: "#DFDFDF",
 		})
-
 
 	var regionMap = map.append('g').selectAll('.regions')// the map with only region boundaries
 		.data(regionFeatures)
@@ -439,11 +457,15 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 			return color(d.properties.price)
 		})
 		.style('stroke','none')
+		.style('cursor', 'pointer')
 		.call(regionTip)
 		.on("mouseover", mouseoverRegion)
 		.on("mouseout", mouseoutRegion)
 		.on('click', onClickRegion);
 
+	// var testSel = d3.selectAll('.zone')
+	// var test = getCentroid(testSel)
+	// console.log(test)
 
 	//DRAWING THE BOUNDARIES
 	map.append("path") //the zonal boundaries
@@ -496,6 +518,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
     		return "translate(" + projectionZone([d.lon, d.lat]) + ")"
   		})
   		.style('stroke-width', '0.5px')
+  		.style('cursor', 'pointer')
   		.on('mouseover', mouseoverTown)
   		.on('mouseout', mouseoutTown)
   		.on('click', onClickTown)
@@ -575,19 +598,18 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 
   	//CREATING THE CANVAS
 	var containerSize = d3.select('#lineChartContainer').node().getBoundingClientRect()
-  	var margin = {top: 0.08*containerSize.height , right: 0.006*containerSize.width, bottom: 0.22*containerSize.height, left: 0.06*containerSize.width};
-  	var padding = {top: 0.006*containerSize.height, right: 0.012*containerSize.width, bottom: 0.006*containerSize.height, left: 0.06*containerSize.width};
-  	var liWidth = containerSize.width - margin.right - margin.left; //Chart width
-  	var liHeight = containerSize.height - margin.top - margin.bottom; //Chart height
+  	var lineMargin = {top: 0.08*containerSize.height , right: 0.006*containerSize.width, bottom: 0.25*containerSize.height, left: 0.075*containerSize.width};
+  	var liWidth = containerSize.width - lineMargin.right - lineMargin.left; //Chart width
+  	var liHeight = containerSize.height - lineMargin.top - lineMargin.bottom; //Chart height
 
   	var lineChart = d3.select('#lineChartContainer').append('svg') //http://bl.ocks.org/mbostock/3019563
         .attr({
-          height: liHeight + margin.top + margin.bottom,
-          width: liWidth + margin.left + margin.right
+          height: liHeight + lineMargin.top + lineMargin.bottom,
+          width: liWidth + lineMargin.left + lineMargin.right
         })
         .call(makeResponsiveChart)
         .append('g')
-      	.attr("transform", "translate(" + (margin.left) + "," + (margin.top)+ ")")//moving the origin to the point where it starts
+      	.attr("transform", "translate(" + (lineMargin.left) + "," + (lineMargin.top)+ ")")//moving the origin to the point where it starts
       	
 
     lineChart.append("clipPath")
@@ -925,10 +947,8 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate && e.region === d.properties.regionName}), function(g){return g.price}),2)
 		d3.selectAll('.histText').text(d.properties.regionName+ ", Avg. Price: "+meanPrice+ " birr," +'  obs.: ' + obs)
 		d3.selectAll('.histDots').filter(function(e) {return e.region === d.properties.regionName}).style('fill', 'red').attr({r: histDotRadius*1.5}).moveToFront()
-		
-		//if lines are not active already then they are temporarily made active (will be changed back in mouseout if not an active state)
-		
 
+		//if lines are not active already then they are temporarily made active (will be changed back in mouseout if not an active state)
 		regionTowns.forEach(function(g){
 			if(!masterTownList.filter(function(t){return t.town === g})[0].active){//if the town is not active then make line active temporarily
 				d3.selectAll('.townLines').filter(function(e) {return e.region === d.properties.regionName && e.town === g}).style({'stroke':lineColor}).classed('nonActiveLine', false).moveToFront();
@@ -942,7 +962,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 
 		//region map
 		var regionName = d.properties.regionName.replace(' ','')
-		console.log(regionName)
+
 		d3.selectAll('.boundary-hover#'+regionName).filter(function(e) { return e}).classed('region-boundary',false).classed('boundary-hover-show',true).moveToFront()
 
 		d3.selectAll(".natLine").moveToFront()
@@ -1152,8 +1172,8 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 		xAxisNodes.call(xAxis);
 		g.call(yAxis);
 
-		var lastDate = d3.max(lineData.filter(function(d){return d.town === "Ethiopia"})[0].values, function(d){return d.date})
-		var endofLine = lineData.filter(function(d){return d.town === "Ethiopia"})[0].values.filter(function(e){return e.date === lastDate})[0].price
+		lastDate = d3.max(lineData.filter(function(d){return d.town === "Ethiopia"})[0].values, function(d){return d.date})
+		endofLine = lineData.filter(function(d){return d.town === "Ethiopia"})[0].values.filter(function(e){return e.date === lastDate})[0].price
 
 	  	if (drawVoronoi===true) {
 	  		

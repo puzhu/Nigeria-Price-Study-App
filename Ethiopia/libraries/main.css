@@ -31,8 +31,8 @@ h3 {
 	width:15%;
 	margin-left: 0.2em;
 	margin-top:0.2em;
-	font-size: 1.8vmin;
-	line-height: 2vmin;
+	font-size: 2vmin;
+	/*line-height: 2vmin;*/
 }
 #topRow{
 	width:95%;

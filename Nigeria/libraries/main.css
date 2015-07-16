@@ -1,10 +1,15 @@
 /*Text styling*/
+h1{
+	font-size: 4vmax;
+	margin-bottom: 0.5em;
+}
 h3 {
 	font-size:1.2em;
-	margin-left: 1em;
-	margin-bottom: 0px;
+	margin-left: 0.5em;
+	margin-bottom: 0.5em;
 	margin-top: 0px;
-	line-height: 1.5em;
+	font-size: 1.5vmax;
+	
 }
 
 #main {
@@ -27,25 +32,28 @@ h3 {
 #mapOuter{
 	float: left;
 	width:60%;
-	height: 250px;
+	height: 25vmax;
+	margin-top: 1em;
 }
 
 #histOuter{
 	float: left;
 	width:39%;
-	height: 250px;
+	height: 25vmax;
+	margin-top: 1em;
 }
 
 #lineOuter{
 	clear: both;
 	width:98%;
-	height: 250px;
+	height: 20vmax;
 }
 
 /*Outer set of divs*/
 #selectorDiv{
 	margin-top: 1em;
 	margin-left:1em;
+	height:2.5vw;
 	background: #EEEEEE;
 
 }
@@ -55,12 +63,13 @@ h3 {
 	/*border:1px solid black;*/
 }
 #textDiv{
-	width:25%;
+	width:24%;
 	margin-top: 0.5em;
-	margin-right: 1em;
-	margin-left: 1em;
-	font-size: 0.9em;
-	padding:0.5% 1% 1% 0.5%;
+	margin-right: 0.5em;
+	margin-left: 0.5em;
+	font-size: 1.2vmax;
+	line-height: 1.5vmax;
+	padding:1% 1% 1% 1%;
 	float: right;
 	/*box-shadow: 0 0 0.5em #888888;*/
 	/*border:1px solid #888888;*/
@@ -92,13 +101,15 @@ h3 {
 
 /*Selector Div on price*/
 #productSelectPrice {
-	margin-right:40px;
+	margin-right:1.2vmax;
+	width:25%;
 }
 #sliderContainer {
 	display:inline-block;
+	width:25%;
 }
 #sliderContainer .axis {
-  font: 10px sans-serif;
+  font: 1.2vmax sans-serif;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
@@ -115,40 +126,33 @@ h3 {
 }
 
 #sliderContainer #slider {
-  width:250px;
-  margin-left:20px;
-  margin-right:20px;
-  margin-top:-15px;
+  width:20vmax;
+  margin-left:2vmax;
+  margin-right:2max;
+  margin-top:-1.2vmax;
 }
 
+}
+.focus {
+	pointer-events:none;
+}
+select:focus {
+	border: 1px solid #ccc;
+  	box-shadow: none;
+  	outline: 0 none;
+}
+.ui-state-focus {
+	border: 1px solid #000;
+  	box-shadow: none;
+  	outline: 0 none;
+ }
+
+.ui-slider .ui-slider-handle {
+ 	cursor:grab;
+ 	cursor:-webkit-grab;
+ }
 
 /*Map Div and CSS*/
-
-#volatilityOuter{
-	float: left;
-	width:60%;
-	/*border:1px solid black;*/
-}
-/*#volatilityContainer{
-	margin: auto;
-}*/
-#indicatorTextContainer {
-	float: left;
-	width:30%;
-	padding:2% 3% 0% 3%;
-	/*border:1px solid black;*/
-}
-#segmentationOuter {
-	float:left;
-	width:58%;
-	/*border:1px solid black;*/
-}
-
-#passthroughOuter {
-	float:left;
-	width:40%;
-	/*border:1px solid black;*/
-}
 
 #mapContainer{
 	width:95%;
@@ -163,7 +167,7 @@ h3 {
 	shape-rendering:crispEdges;
 }
 .key text {
-	font-size:.8em;
+	font-size:1.1vmax;
 }
 
 .states{
@@ -190,6 +194,7 @@ h3 {
 	fill:none;
 }
 
+
 /*Hist div and CSS*/
 
 #histChartContainer{
@@ -215,6 +220,22 @@ h3 {
   stroke:none;
   pointer-events: all;
 }
+
+.stateLines {
+	fill:none;
+}
+
+.natLine {
+	fill:none;
+	stroke: green;
+	stroke-width: 3px;
+	opacity: 1;
+}
+
+.nonActiveLine{
+	opacity:0;
+}
+
 .x.axis path {
 	display: none;
 }
@@ -237,54 +258,5 @@ h3 {
 .state--hover {
 	stroke:red;
 }
-.stateLines {
-	fill:none;
-	stroke-width: 1px;
-	cursor:pointer;
-}
-.focus {
-	pointer-events:none;
-}
-select:focus {
-	border: 1px solid #ccc;
-  	box-shadow: none;
-  	outline: 0 none;
-}
-.ui-state-focus {
-	border: 1px solid #000;
-  	box-shadow: none;
-  	outline: 0 none;
- }
-.ui-slider .ui-slider-handle {
- 	cursor:grab;
- 	cursor:-webkit-grab;
- }
- 
-/*Common CSS for the indicators*/
-.zoneHoverShow{
-  stroke:black;
-  stroke-width:0.08px;
-}
-.zoneHoverHide {
-  fill: none;
-  stroke:black;
-  stroke-width:0.06px;
-}
 
-.textHoverShow{
-  font-size: 16px;
-}
-.textHoverHide{
-  color: red;
-}
 
-.meanLines line{
-	stroke: black;
-	stroke-width:1px;
-}
-
-.meanCross{
-
-}
-
-/*Volatility CSS*/

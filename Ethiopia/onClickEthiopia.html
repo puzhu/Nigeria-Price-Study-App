@@ -51,7 +51,7 @@
 				</div>
 				<div id='textDiv'>
 					<p>Ethiopia is administratively divided into regions and zones. The data used for this dashboard is collected through monthly surveys of shops in different towns from each zone.</p>
-					<p>The <strong>maps</strong> shows the average of all the price observations across the selected time-period for towns and regions. The <strong>line chart</strong> represents the monthly price for towns during the selected time period. The <strong>histogram</strong> shows the spread of the observed prices from each town</p>
+					<p>The <strong>maps</strong> show the average of all the price observations across the selected time-period for towns and regions. The <strong>line chart</strong> represents the monthly price for towns during the selected time period. The <strong>histogram</strong> shows the spread of the observed prices from each town</p>
 					<p>Hovering over a zone or region would show the data points from that state in the histogram and the line chart. The same is true for the line chart.</p>
 				</div>
 			</div>
@@ -326,7 +326,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
         .attr("id", "mapSvg")
       	.attr("transform", "translate(" + (mapMargin.left) + "," + (mapMargin.top)+ ")")//moving the origin to the point where it starts
       	.call(makeResponsiveMap)
-      	
+
 
 	//DEFINING THE COLOR AND AXIS FUNCTION
 	var max = d3.max(townData, function(d) { return d.price; });
@@ -341,15 +341,18 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 		.domain(bounds)
 		.range(colorArray);
 
-	var y = d3.scale.linear().domain([min*.95, max*1.05]).range([120, 0]);
+	var keySize = {'height':mapHeight/2.5, 'width':mapWidth/50.7}
+
+	var y = d3.scale.linear().domain([min*.95, max*1.05]).range([keySize.height, 0]);
     var axis = d3.svg.axis()
     	.scale(y)
     	.orient("left")
-    	.tickSize(12)
+    	.tickSize(15)
     	.tickValues([min*.95]
     	.concat(bounds));
 
     //DRAWING THE LEGEND
+
     var key = map.append("g")
         .attr("class", "key")
         .attr("transform", "translate("+(mapWidth*.90)+","+(mapHeight*.5)+")");
@@ -365,8 +368,8 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
         .enter().append("rect")
         .attr("height", function(d,i) { return d.x0 - d.x1})
         .attr("y", function(d, i) { return d.x1; })
-        .attr("width", 10)
-        .attr("x",-10)
+        .attr("width", keySize.width)
+        .attr("x",-(mapWidth/45.07))
         .style("fill", function(d) { return d.z; });
 
     key.call(axis);
@@ -701,9 +704,9 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 	var label = lineChart.append('text')
 			.text("Ethiopia")
 
-	var focus = lineChart.append("g")
-		.attr("transform", "translate(-100,-100)")
-		.attr("class", "focus");
+	// var focus = lineChart.append("g")
+	// 	.attr("transform", "translate(-100,-100)")
+	// 	.attr("class", "focus");
 
 	var lineColor = 'rgb(50,50,50)';
 	var lineWidth = '1.5px';
@@ -714,9 +717,6 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 		townLines.enter().append('path');
 		townLines.attr("class", function(d){if(d.town === "Ethiopia"){return "natLine"} else{return "townLines nonActiveLine"}})
 			.attr("d",function(d) { d.line = this; return line(d.values); })
-			//.style('stroke-width', function(d){if(d.town === "Ethiopia"){return '3px'}else{return lineWidth}})
-			//.style('stroke', function(d){if(d.town === "Ethiopia"){return 'green'}else{return lineColor}})
-			//.attr('opacity', function(d){if(d.town === "Ethiopia"){return '1'}else{return '0'}})
 			.attr("clip-path", 'url(#lineclip)');
 
 		label.attr("transform", "translate(" + (liWidth-60) + "," + yScale(endofLine) + ")")
@@ -741,11 +741,11 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 			//.on("mouseover", mouseoverLine)
 			//.on("mouseout", mouseoutLine);
 
-		focus.append("circle")
-			.attr("r", 3.5)
-			.style("fill","red")
-			.style("stroke","none")
-			.call(tip);
+		// focus.append("circle")
+		// 	.attr("r", 3.5)
+		// 	.style("fill","red")
+		// 	.style("stroke","none")
+		// 	.call(tip);
 	}
 	drawLine(lineData, lineColor, lineWidth)
 
@@ -1160,10 +1160,14 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 	function redrawLine(product,startDate,endDate,drawVoronoi) {
 		//reset the master town and region lists
 		var tempRegions = uniq_fast(townPriceData.filter(function(e){return e.item === product && e.date >= startDate && e.date <= endDate}).map(function(e){return e.region}));
+
 		masterRegionList = initializeTownList(tempRegions, 0, 1);
 
 	  	var allTowns = uniq_fast(townPriceData.filter(function(e){return e.item === product && e.date >= startDate && e.date <= endDate}).map(function(d){return d.town}));
+	  	console.log(allTowns.length)
   		masterTownList = initializeTownList(allTowns, 0, 1);
+  		//reset all the townlines
+  		d3.selectAll('.townLines').classed('nonActiveLine', true)
 
 
 	  	var lineData = reshapeMonthlyPrice(townPriceData,masterTownList,product,startDate,endDate);
@@ -1178,9 +1182,8 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 		endofLine = lineData.filter(function(d){return d.town === "Ethiopia"})[0].values.filter(function(e){return e.date === lastDate})[0].price
 
 	  	if (drawVoronoi===true) {
-	  		
-	   		var townLines = lineChart.append("g")
-				.selectAll("path")
+	   		/*var townLines = lineChart.append("g")
+				.selectAll("path")*/
 	  		drawLine(lineData, lineColor, lineWidth)
 	  		
 	  	}

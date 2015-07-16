@@ -249,13 +249,11 @@ h3 {
 	opacity:0;
 }
 
-.activeLine{
-	/*opacity:1;*/
-}
 
 .focus {
 	pointer-events:none;
 }
+
 select:focus {
 
 	border: 1px solid #ccc;

@@ -206,9 +206,12 @@ for (var i=2009; i<=2012;i++) {
   	}
 }
 (function() { // initialize the slider -- the dates are hardcoded
-	var margin = {top: 20, right: 10, bottom: 0, left: 10},
-	    width = d3.select('#sliderAxis').node().getBoundingClientRect().width - margin.left - margin.right,
-	    height = 30 - margin.top - margin.bottom;
+	var containerWidth = d3.select('#sliderContainer').node().getBoundingClientRect().width;
+	var containerHeight = d3.select('#sliderContainer').node().getBoundingClientRect().height;
+	var margin = {top: 0.6*containerHeight, right: 0.2*containerWidth, bottom: 0.06*containerHeight, left: 0.06*containerWidth}
+
+	var width = d3.select('#sliderContainer').node().getBoundingClientRect().width - margin.left - margin.right;
+	var height = d3.select('#sliderContainer').node().getBoundingClientRect().height - margin.top - margin.bottom;
 
 	var x = d3.time.scale()
 	    .domain([sliderMonths[0], sliderMonths[sliderMonths.length-1]])
@@ -223,7 +226,7 @@ for (var i=2009; i<=2012;i++) {
 	var axis = d3.svg.axis()
 		.scale(x)
 	  	.orient("top")
-	  	.tickPadding(8)
+	  	.tickPadding(2)
 	  	.tickSize(0)
 	  	.tickValues(sliderMonths)
 	  	.tickFormat(function(d, i) {
@@ -231,7 +234,7 @@ for (var i=2009; i<=2012;i++) {
 	    });
 
 	var g = svg.append("g")
-	    .attr("class", "x axis")
+	    .attr("class", "sliderAxis")
 	    .call(axis)
 
 	$( "#slider" ).slider({
@@ -251,11 +254,29 @@ for (var i=2009; i<=2012;i++) {
 			}
 		}
 	});
+	d3.select(window).on("resize.sliderContainer", resize);
+	function resize(){
+
+		containerWidth = d3.select('#sliderContainer').node().getBoundingClientRect().width;
+		containerHeight = d3.select('#sliderContainer').node().getBoundingClientRect().height;
+		margin = {top: 0.4*containerHeight, right: 0.2*containerWidth, bottom: 0.06*containerHeight, left: 0.06*containerWidth}
+
+		width = d3.select('#sliderContainer').node().getBoundingClientRect().width - margin.left - margin.right;
+		height = d3.select('#sliderContainer').node().getBoundingClientRect().height - margin.top - margin.bottom;
+		console.log(margin)
+		x.range([0,width])
+		svg.attr("width", width + margin.left + margin.right)
+	    	.attr("height", height + margin.top + margin.bottom)
+
+	    g.call(axis)
+	}
 })();
 
 d3.selectAll('.ui-slider-handle')
 	.append('svg')
 	.attr({
+		width:20,
+		height:20,
 		class: 'sliderPoly'
 	})
 	.append('path')
@@ -623,14 +644,15 @@ function drawMap(nigeriaStates,priceData){
 		.attr("class", "voronoi")
 		.selectAll("path")
 
-	var focus = lineChart.append("g")
+	/*var focus = lineChart.append("g")
 		.attr("transform", "translate(-100,-100)")
-		.attr("class", "focus");
+		.attr("class", "focus");*/
 
 	var lastDate = d3.max(lineData.filter(function(d){return d.state === "Nigeria"})[0].values, function(d){return d.date})
 	var endofLine = lineData.filter(function(d){return d.state === "Nigeria"})[0].values.filter(function(e){return e.date === lastDate})[0].price
 	var label = lineChart.append('text')
 			.text("Nigeria")
+			.attr('class', 'label')
 
 	var lineColor = 'rgb(50,50,50)';
 	var lineWidth = '1.5px';
@@ -664,16 +686,16 @@ function drawMap(nigeriaStates,priceData){
 			.attr('class','voronoi')
 			.attr("d", function(d) { return "M" + d.join("L") + "Z"; })
 			.datum(function(d) { return d.point; })
-			.style("cursor", function(d){if(d.state==="Nigeria"){return "default"}else{return "pointer"}})
+			//.style("cursor", function(d){if(d.state==="Nigeria"){return "default"}else{return "pointer"}})
 			/*.on("mouseover", mouseoverLine)
 			.on("mouseout", mouseoutLine)
 			.on("click", onClickLine);*/
 
-		focus.append("circle")
+		/*focus.append("circle")
 			.attr("r", 3.5)
 			.style("fill","red")
 			.style("stroke","none")
-			.call(tip);
+			.call(tip);*/
     }
 	drawLine(lineData, lineColor, lineWidth)
 
@@ -1031,13 +1053,13 @@ function drawHistogram(allData){
     //CREATING LABELS AND TEXT
     var totObs = data.length
   	var histText = histChart.append('text')
-    .text('Total observations: ' + totObs)
-    .attr({
-      x:dotChartSeparation,
-      y:0,
-      class: 'histText'
-    })
-    .attr('font-size', 11)
+    	.text('Total observations: ' + totObs)
+    	.attr({
+      		x:dotChartSeparation,
+      		y:0,
+      		class: 'histText'
+    	})
+
 
   	//MARKING THE NEW PRODUCT SELECTION AND CALLING THE REDRAW FUNCTION
   	d3.select('#productSelectPrice') //changes the product based on user input from the dropdown menu

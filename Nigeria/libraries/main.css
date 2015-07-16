@@ -101,29 +101,33 @@ h3 {
 
 /*Selector Div on price*/
 #productSelectPrice {
+	font: 1.1vmax sans-serif;
 	margin-right:1.2vmax;
 	width:25%;
 }
 #sliderContainer {
 	display:inline-block;
-	width:25%;
+	width:45%;
+	height: 100%;
+	margin-left: 3vmax;
 }
-#sliderContainer .axis {
-  font: 1.2vmax sans-serif;
+#sliderContainer .sliderAxis {
+  font: 1.1vmax sans-serif;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
 }
 
-#sliderContainer .axis line {
+#sliderContainer .sliderAxis line {
   fill: none;
   stroke: black;
   stroke-width:1px;
   shape-rendering:crispEdges;
 }
-#sliderContainer .axis path {
+#sliderContainer .sliderAxis path {
   fill:none;
 }
+
 
 #sliderContainer #slider {
   width:20vmax;
@@ -150,6 +154,8 @@ select:focus {
 .ui-slider .ui-slider-handle {
  	cursor:grab;
  	cursor:-webkit-grab;
+ 	width:0.8vmax;
+ 	height:0.8vmax;
  }
 
 /*Map Div and CSS*/
@@ -167,11 +173,16 @@ select:focus {
 	shape-rendering:crispEdges;
 }
 .key text {
-	font-size:1.1vmax;
+	font-size:1vmax;
 }
 
 .states{
 	cursor: pointer;
+}
+
+.label{
+	font-size:0.8vmax;
+	font-weight: normal;
 }
 
 .state-boundary {
@@ -201,6 +212,10 @@ select:focus {
 	width:95%;
 	height:75%;
 	margin:auto;
+}
+
+.histText{
+	font-size:1vmax;
 }
 
 /*Line CSS*/
@@ -240,7 +255,7 @@ select:focus {
 	display: none;
 }
 .x.axis text, .y.axis text {
-	font-size:13px;
+	font-size:1vmax;
 }
 .x.axis line {
 	shape-rendering:crispEdges;

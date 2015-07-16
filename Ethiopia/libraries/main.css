@@ -150,27 +150,30 @@ h3 {
 .region-boundary {
 	fill:none;
 	stroke:black;
-	stroke-width:1px;
+	stroke-width:0.5px;
 	stroke-linejoin:round;
 	stroke-linecap:round;
+	transition: stroke 500ms;
 }
-.region-boundary-small {
+
+/*.region-boundary-small {
 	fill:none;
 	stroke:black;
 	stroke-width:0.1px;
 	stroke-linejoin:round;
 	stroke-linecap:round;
-}
+}*/
 
 .boundary-hover {
 	fill:none;
-	stroke:black;
-	stroke-width:1px;
+	stroke:DarkGrey;
+	stroke-width:0.5px;
 }
 .boundary-hover-show {
 	stroke:green;
 	fill:none;
 	stroke-width:2.5px;
+
 }
 .boundary-hover-hide {
 	stroke:none;
@@ -247,6 +250,10 @@ h3 {
 
 .nonActiveLine{
 	opacity:0;
+}
+.label{
+	font-size: 1vmax;
+	font-weight: normal;
 }
 
 

@@ -813,13 +813,13 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 			//make the active line red
 			d3.selectAll('.townLines').filter(function(e) {return e.town===d.town}).style({'stroke':'red'}).moveToFront();
 			//dim the rest of the town dots
-			d3.selectAll('.townDots').filter(function(e){return e.town != d.town}).transition().duration(300).attr({r: townDotRadius * 0.5, opacity: 0.5*townDotOpacity})
+			d3.selectAll('.townDots').filter(function(e){return e.town != d.town}).attr({r: townDotRadius * 0.5, opacity: 0.5*townDotOpacity})
 		} else {//the town is not active..
 			//make the line red and visible by temporarily falsifying non-active class
 			d3.selectAll('.townLines').filter(function(e) {return e.town===d.town}).style({'stroke':'red'}).classed('nonActiveLine', false).moveToFront();
 			//make the town bigger and the other less visible
 			d3.selectAll('.townDots').filter(function(e){return e.town === d.town}).attr({r: townDotRadius * 1.5, opacity: 1, stroke: "LightBlue"}).style('stroke-width', '2px').moveToFront()
-			d3.selectAll('.townDots').filter(function(e){return e.town != d.town}).transition().duration(300).attr({r: townDotRadius * 0.5, opacity: 0.5*townDotOpacity})
+			d3.selectAll('.townDots').filter(function(e){return e.town != d.town}).attr({r: townDotRadius * 0.5, opacity: 0.5*townDotOpacity})
 		}
 		d3.selectAll(".natLine").moveToFront()
 	}
@@ -964,7 +964,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 
 		//town map
 		d3.selectAll('.nonActiveDot').filter(function(e){return e.region === d.properties.regionName}).attr({r: townDotRadius * 1.5, opacity: 1, stroke: "LightBlue"}).style('stroke-width', '2px').moveToFront()
-		d3.selectAll('.townDots').filter(function(e){return e.region != d.properties.regionName}).transition().duration(500).attr({r: townDotRadius * 0.5, opacity: 0.5*townDotOpacity}).style('stroke-width', '0.5px')
+		d3.selectAll('.townDots').filter(function(e){return e.region != d.properties.regionName}).attr({r: townDotRadius * 0.5, opacity: 0.5*townDotOpacity}).style('stroke-width', '0.5px')
 
 		//region map
 		var regionName = d.properties.regionName.replace(' ','')

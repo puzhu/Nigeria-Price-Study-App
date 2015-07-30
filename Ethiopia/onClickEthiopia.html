@@ -10,7 +10,7 @@
 <script src="libraries/jquery-ui/jquery-ui.js"></script>
 <script src="libraries/bootstrap/js/bootstrap.min.js"></script>
 <script src="libraries/d3.tip.v0.6.3.js"></script>
-<link href="libraries/jquery-ui/jquery-ui.css" rel="stylesheet">
+<!-- <link href="libraries/jquery-ui/jquery-ui.css" rel="stylesheet"> -->
 <link rel="stylesheet" href="libraries/tool-tip-style.css">
 <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="libraries/main.css">
@@ -77,8 +77,8 @@
 </body>
 <script>
 //DATA PROCESSING FUNCTIONS
-function processTownPriceData(d, i){
-	var dateFormat = d3.time.format("%Y-%m-%d");
+
+function processTownJSON(data){
 	function deString(d) {
 		if (d==="") {
 			return NaN;
@@ -86,20 +86,47 @@ function processTownPriceData(d, i){
 			return +d;
 		}
 	}
-	
-	var array = {
-		item: d.item,
-		region: d.region,
-		zone: d.zone,
-		town: d.town,
-		date: dateFormat.parse(d.date),
-		price: deString(d.price),
-		lat: deString(d.lat),
-		lon: deString(d.lon)
-	}
-	return array
-}
+	var dateFormat = d3.time.format("%Y%m%d");
+	var array = []
+		var regions = uniq_fast(data.regions.map(function(d){return d.region}))
+		regions.forEach(function(e){
+			var tempDataRegion = data.regions.filter(function(f){return f.region === e})
+			var zones = uniq_fast(tempDataRegion[0].zones.map(function(g){return g.zone}))
+			
+			zones.forEach(function(h){
+				var tempDataZone = tempDataRegion[0].zones.filter(function(i){return i.zone === h})
+				var towns = uniq_fast(tempDataZone[0].towns.map(function(j){return j.town}))
 
+				towns.forEach(function(k){
+					var tempTownData = tempDataZone[0].towns.filter(function(l){return l.town})
+					var items = uniq_fast(tempTownData[0].items.map(function(m){return m.item}))
+					var lat = tempTownData[0].lat
+					var lon = tempTownData[0].lon
+
+					items.forEach(function(n){
+						var tempItemData = tempTownData[0].items.filter(function(o){return o.item === n})
+						var dates = uniq_fast((tempItemData[0].data.map(function(p){return p[0]})))
+
+						dates.forEach(function(q, r){
+							array.push({
+							item:n,
+							region:e,
+							zone:h,
+							town:k,
+							date:dateFormat.parse(q),
+							price:deString(tempItemData[0].data[r][1]),
+							lat: deString(lat),
+							lon: deString(lon)
+						})
+						})
+						
+					})
+				})
+			})
+		})
+		return array
+
+}
 //DATA MANIPULATION FUNCTIONS
 function uniq_fast(a) { // quickly drop duplicate values from an array
 	var seen = {};
@@ -241,7 +268,7 @@ d3.selectAll('.ui-slider-handle')
 queue()
 	.defer(d3.json, "maps/ethiopiaZones.json") //the zone map
 	.defer(d3.json, "maps/ethiopiaRegions.json") //the region map
-	.defer(d3.csv, "data/townPriceData.csv", processTownPriceData) //converts into the desired format for the map and the line chart
+	.defer(d3.json, "data/townPriceData.json")
 	.await(ready);
 
 //THE FUNCTION THAT CALLS THE OTHER DRAW FUNCTION
@@ -251,6 +278,8 @@ function ready(error,ethiopiaZones, ethiopiaRegions, townPriceData) {
 }
 
 function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
+
+	townPriceData = processTownJSON(townPriceData)
 	//FUNCTIONS FOR PROCESSING DATA IN CHART
 	function getTownData(townPriceData, startDate, endDate, item){//filters and aggregates to town level
 		var array = [];
@@ -402,15 +431,6 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
     var regionFeatures = topojson.feature(ethiopiaRegions, ethiopiaRegions.objects.ETH_ADM1).features;
     regionFeatures = mergeRegionPrice(regionData,regionFeatures) //adding the region data to the region map
 
-    /*function getCentroid(selection) {
-    	// get the DOM element from a D3 selection
-    	// you could also use "this" inside .each()
-    	var element = selection.node(),
-        // use the native SVG interface to get the bounding box
-        bbox = element.getBBox();
-    	// return the center of the bounding box
-    	return [bbox.x + bbox.width/2, bbox.y + bbox.height/2];
-	}*/
 
     //DEFINING THE MAPPING VARIABLES
 	var projectionZone = d3.geo.mercator()
@@ -422,9 +442,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 	var pathZone = d3.geo.path()
 		.projection(projectionZone);
 
-	// var zoneMapBox = d3.selectAll('.zone').node().getBBox()
-	// var zoneMapX = zoneMapBox.x + zoneMapBox.width
-	// console.log(zoneMapX)
+
 
 	var projectionRegion = d3.geo.conicEqualArea()
 		.center([20,4])
@@ -434,8 +452,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 	var pathRegion = d3.geo.path()
 		.projection(projectionRegion);
 	
-	// var testBounds = pathRegion.bounds(regionFeatures[0])
-	// console.log(testBounds)
+
 
     //DRAWING THE MAP
     var zoneMap = map.append('g').selectAll('.zone') //the large map with zone boundaries
@@ -466,9 +483,6 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 		.on("mouseout", mouseoutRegion)
 		.on('click', onClickRegion);
 
-	// var testSel = d3.selectAll('.zone')
-	// var test = getCentroid(testSel)
-	// console.log(test)
 
 	//DRAWING THE BOUNDARIES
 	map.append("path") //the zonal boundaries
@@ -704,10 +718,6 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 	var label = lineChart.append('text')
 			.text("Ethiopia")
 
-	// var focus = lineChart.append("g")
-	// 	.attr("transform", "translate(-100,-100)")
-	// 	.attr("class", "focus");
-
 	var lineColor = 'rgb(50,50,50)';
 	var lineWidth = '1.5px';
 
@@ -742,14 +752,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 			.attr("d", function(d) { return "M" + d.join("L") + "Z"; })
 			.datum(function(d) { return d.point; })
 			.style("cursor","default")
-			//.on("mouseover", mouseoverLine)
-			//.on("mouseout", mouseoutLine);
 
-		// focus.append("circle")
-		// 	.attr("r", 3.5)
-		// 	.style("fill","red")
-		// 	.style("stroke","none")
-		// 	.call(tip);
 	}
 	drawLine(lineData, lineColor, lineWidth)
 
@@ -1026,42 +1029,6 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 		regionTip.hide(d)
 	}
 
-	//DEFINING THE MOUSEOVER FUNCTIONS FOR LINE
-	/*function mouseoverLine(d) {
-		//we only need to interact if the line is from an active town or is Ethiopia
-		if(masterTownList.filter(function(e){return e.town === d.town})[0].active){//checks if town is active
-			tip.show(d);
-			//histogram
-			var meanPrice = d3.round(d3.mean(townPriceData.filter(function(f){return f.item == product && f.date>= startDate && f.date <= endDate && f.town === d.town}), function(g){return g.price}),2)
-			d3.selectAll('.histText').text(d.town + " Price on "+monthYear(d.date)+": " + d.price + " birr" + ", Town Avg.: " +meanPrice+ " birr")
-			d3.selectAll('.histDots').filter(function(t){return t.town === d.town && t.date === d.date}).style('fill', 'red').attr({r: histDotRadius*2}).moveToFront()
-			townLines.filter(function(f) {return f.town=== d.town}).style('stroke','red').style('stroke-width','1.5px').moveToFront(); 
-			townLines.filter(function(f) {return f.town==="Ethiopia"}).moveToFront()
-			focus.attr("transform", "translate(" + xScale(d.date) + "," + yScale(d.price) + ")");
-		} else if(d.town === "Ethiopia"){//is the line Ethiopia
-			tip.show(d);
-			focus.attr("transform", "translate(" + xScale(d.date) + "," + yScale(d.price) + ")");
-			townLines.filter(function(f) {return f.town==="Ethiopia"}).style('stroke','red').moveToFront(); 
-		}
-
-	}
-
-	function mouseoutLine(d) {
-		//Histogram
-		var obs = d3.selectAll('.histDots').size()
-		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate}), function(g){return g.price}),2)
-		d3.selectAll('.histText').text(product + ", Mean Price: "+ meanPrice + " birr"+', Tot obs: ' + obs)
-		d3.selectAll('.histDots').style('fill', 'silver').attr({r: histDotRadius});
-
-		if(masterTownList.filter(function(e){return e.town === d.town})[0].active){
-			focus.attr("transform", "translate(-100,-100)");
-			townLines.filter(function(f){return f.town=== d.town}).style({'stroke': lineColor, 'stroke-width': lineWidth});
-			tip.hide(d);
-		} else if(d.town === "Ethiopia"){
-			townLines.filter(function(f) {return f.town==="Ethiopia"}).style('stroke','green').moveToFront();
-			tip.hide(d);
-		}
-	}*/
 
   	//RESELECTING THE PRODUCT AND REDRAWING THE MAP BASED ON CHANGES
 	d3.select('#productSelectPrice').on('change.map', function(d) {
@@ -1073,19 +1040,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
         //resetting the lines and town dots that are not from the region
     });
 
-    /*$("#slider").on( "slide", function( event, ui ) {
-	    if ((ui.values[0]) >= ui.values[1]) {
-	    	return false;
-	    }
-	    else {
-	    	var sel = document.getElementById('productSelectPrice');
-	    	var product = sel.options[sel.selectedIndex].value;
-	    	var startDate = sliderMonths[ui.values[0]];
-	    	var endDate = sliderMonths[ui.values[1]];
-	    	redrawMap(product, startDate, endDate);
-	    }
-    });
-*/
+
 	function redrawMap(product, startDate, endDate) {
   		//reset data
 		var townData = getTownData(townPriceData,startDate, endDate, product)
@@ -1187,8 +1142,6 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 		endofLine = lineData.filter(function(d){return d.town === "Ethiopia"})[0].values.filter(function(e){return e.date === lastDate})[0].price
 
 	  	if (drawVoronoi===true) {
-	   		/*var townLines = lineChart.append("g")
-				.selectAll("path")*/
 	  		drawLine(lineData, lineColor, lineWidth)
 	  	}
 	}
@@ -1196,6 +1149,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 
 
 function drawHistogram(townPriceData){
+	townPriceData = processTownJSON(townPriceData)
 	//THIS FUNCTION CONVERTS THE FILTERED DATA INTO A HISTOGRAM LAYOUT FORMAT
 	function getData(data, histogram){
     	var histData = histogram(data); //create the array of arrays with hist data

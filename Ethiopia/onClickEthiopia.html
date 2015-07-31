@@ -78,6 +78,56 @@
 <script>
 //DATA PROCESSING FUNCTIONS
 
+// function processTownJSON(data){
+// 	function deString(d) {
+// 		if (d==="") {
+// 			return NaN;
+// 		} else {
+// 			return +d;
+// 		}
+// 	}
+// 	var dateFormat = d3.time.format("%Y%m%d");
+// 	var array = []
+// 		var regions = uniq_fast(data.regions.map(function(d){return d.region}))
+// 		regions.forEach(function(e){
+// 			var tempDataRegion = data.regions.filter(function(f){return f.region === e})
+// 			var zones = uniq_fast(tempDataRegion[0].zones.map(function(g){return g.zone}))
+			
+// 			zones.forEach(function(h){
+// 				var tempDataZone = tempDataRegion[0].zones.filter(function(i){return i.zone === h})
+// 				var towns = uniq_fast(tempDataZone[0].towns.map(function(j){return j.town}))
+
+// 				towns.forEach(function(k){
+// 					var tempTownData = tempDataZone[0].towns.filter(function(l){return l.town})
+// 					var items = uniq_fast(tempTownData[0].items.map(function(m){return m.item}))
+// 					var lat = tempTownData[0].lat
+// 					var lon = tempTownData[0].lon
+
+// 					items.forEach(function(n){
+// 						var tempItemData = tempTownData[0].items.filter(function(o){return o.item === n})
+// 						var dates = uniq_fast((tempItemData[0].data.map(function(p){return p[0]})))
+
+// 						dates.forEach(function(q, r){
+// 							array.push({
+// 							item:n,
+// 							region:e,
+// 							zone:h,
+// 							town:k,
+// 							date:dateFormat.parse(q),
+// 							price:deString(tempItemData[0].data[r][1]),
+// 							lat: deString(lat),
+// 							lon: deString(lon)
+// 						})
+// 						})
+						
+// 					})
+// 				})
+// 			})
+// 		})
+// 		return array
+
+// }
+
 function processTownJSON(data){
 	function deString(d) {
 		if (d==="") {
@@ -88,45 +138,38 @@ function processTownJSON(data){
 	}
 	var dateFormat = d3.time.format("%Y%m%d");
 	var array = []
-		var regions = uniq_fast(data.regions.map(function(d){return d.region}))
-		regions.forEach(function(e){
-			var tempDataRegion = data.regions.filter(function(f){return f.region === e})
-			var zones = uniq_fast(tempDataRegion[0].zones.map(function(g){return g.zone}))
-			
-			zones.forEach(function(h){
-				var tempDataZone = tempDataRegion[0].zones.filter(function(i){return i.zone === h})
-				var towns = uniq_fast(tempDataZone[0].towns.map(function(j){return j.town}))
-
-				towns.forEach(function(k){
-					var tempTownData = tempDataZone[0].towns.filter(function(l){return l.town})
-					var items = uniq_fast(tempTownData[0].items.map(function(m){return m.item}))
-					var lat = tempTownData[0].lat
-					var lon = tempTownData[0].lon
-
-					items.forEach(function(n){
-						var tempItemData = tempTownData[0].items.filter(function(o){return o.item === n})
-						var dates = uniq_fast((tempItemData[0].data.map(function(p){return p[0]})))
-
-						dates.forEach(function(q, r){
-							array.push({
-							item:n,
-							region:e,
-							zone:h,
-							town:k,
-							date:dateFormat.parse(q),
-							price:deString(tempItemData[0].data[r][1]),
-							lat: deString(lat),
-							lon: deString(lon)
-						})
-						})
-						
-					})
-				})
-			})
-		})
-		return array
-
+	data['regions'].forEach(function(d) {
+		var region = d.region;
+		d['zones'].forEach(function(e) {
+			var zone = e.zone;
+			e['towns'].forEach(function(f) {
+				var town = f.town;
+				var lat = deString(f.lat);
+				var lon = deString(f.lon);
+				var townCode = f.townCode;
+				f['items'].forEach(function(g) {
+					var item = g.item;
+					g['data'].forEach(function(h) {
+						var date = dateFormat.parse(h[0]);
+						var price = deString(h[1]);
+						array.push({
+							'item':item,
+							'region':region,
+							'zone':zone,
+							'town':town,
+							'date':date,
+							'price':price,
+							'lat': lat,
+							'lon': lon
+						});
+					});
+				});
+			});
+		});
+	});
+	return array;
 }
+
 //DATA MANIPULATION FUNCTIONS
 function uniq_fast(a) { // quickly drop duplicate values from an array
 	var seen = {};

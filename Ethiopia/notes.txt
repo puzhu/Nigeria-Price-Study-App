@@ -1,0 +1,16 @@
+TO DO:
+Make national line dashed
+Remove overflow on tab-content
+Title text needs more padding
+Labels on line chart too big?
+Histogram too tall
+Need a decimal on legend axis labels
+Region map overflowing the container
+Make tooltip completely opaque
+
+DONE:
+Change font
+Change national line color and stroke width
+Adjust national line label
+Legend too wide
+Fix break in rollover b/w regions

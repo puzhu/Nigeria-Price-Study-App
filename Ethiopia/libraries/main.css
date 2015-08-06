@@ -262,8 +262,9 @@ h3 {
 .natLine {
 	fill:none;
 	/*stroke: green;*/
+	stroke:#33a02c;
 	stroke-width: 1.5px;
-	stroke-dasharray: 10,10;
+	/*stroke-dasharray: 10,10;*/
 	opacity: 1;
 }
 

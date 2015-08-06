@@ -262,14 +262,14 @@ h3 {
 .natLine {
 	fill:none;
 	/*stroke: green;*/
-<<<<<<< HEAD
+
 	stroke-width: 2.5px;
 	stroke-dasharray: 10,10;
-=======
-	stroke:#33a02c;
-	stroke-width: 1.5px;
+
+	/*stroke:#33a02c;*/
+	/*stroke-width: 1.5px;*/
 	/*stroke-dasharray: 10,10;*/
->>>>>>> origin/master
+
 	opacity: 1;
 }
 

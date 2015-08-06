@@ -775,7 +775,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 			.attr("d",function(d) { d.line = this; return line(d.values); })
 			.attr("clip-path", 'url(#lineclip)');
 
-		d3.selectAll('.natLine').style('stroke', 'rgb(100,100,100)')//forcing it to be black to fix the hidden bug
+		d3.selectAll('.natLine').style('stroke', 'rgb(150,100,100)')//forcing it to be black to fix the hidden bug
 
 
 		label.attr("transform", "translate(" + (liWidth-60) + "," + (yScale(endofLine) - liHeight*.05) + ")")

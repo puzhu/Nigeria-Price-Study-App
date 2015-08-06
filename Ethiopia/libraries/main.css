@@ -48,6 +48,13 @@ h3 {
 	margin-top: 1em;
 	background: #EEEEEE;
 	box-shadow: 0 0 5px #888888;
+	padding-top:1%;
+}
+#mapOuter h3, #lineOuter h3 {
+	margin-left:3%;
+}
+#histOuter h3 {
+	margin-left:4.5%;
 }
 #textDiv{
 	float: right;
@@ -76,6 +83,7 @@ h3 {
 	margin-top: 1em;
 	background: #EEEEEE;
 	box-shadow: 0 0 5px #888888;
+	padding-top:1%;
 }
 #histOuter{
 	float: right;
@@ -84,6 +92,7 @@ h3 {
 	margin-top: 1em;
 	background: #EEEEEE;
 	box-shadow: 0 0 5px #888888;
+	padding-top:1%;
 }
 
 #tab2row1{
@@ -108,7 +117,7 @@ h3 {
 }
 .yAxis text {
     font-family: sans-serif;
-    font-size: 1.1vmax;
+    font-size: 1.0vmax;
 }
 
 /*Selector Div on price*/
@@ -135,11 +144,11 @@ h3 {
 	display:none;
 }
 .key line {
-	stroke:white;
+	stroke:#EEEEEE;
 	shape-rendering:crispEdges;
 }
 .key text {
-	font-size:1.8vmin;
+	font-size:1.7vmin;
 }
 
 /*Map Boundaries*/
@@ -168,7 +177,7 @@ h3 {
 	stroke-linecap:round;
 }*/
 .tab-content {
-	overflow:none !important;
+	overflow:visible;
 }
 .boundary-hover {
 	fill:none;
@@ -228,7 +237,7 @@ h3 {
 	display: none;
 }
 .x.axis text, .y.axis text {
-	font-size:1.1vmax;
+	font-size:1.0vmax;
 }
 .x.axis line {
 	shape-rendering:crispEdges;
@@ -254,6 +263,7 @@ h3 {
 	fill:none;
 	/*stroke: green;*/
 	stroke-width: 1.5px;
+	stroke-dasharray: 10,10;
 	opacity: 1;
 }
 

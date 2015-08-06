@@ -417,13 +417,14 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 
 	var keySize = {'height':mapHeight/2.5, 'width':mapWidth/60.7}
 
+	var oneDecimal = d3.format('.1f');
 	var y = d3.scale.linear().domain([min*.95, max*1.05]).range([keySize.height, 0]);
     var axis = d3.svg.axis()
     	.scale(y)
     	.orient("left")
     	.tickSize(15)
-    	.tickValues([min*.95]
-    	.concat(bounds));
+    	.tickValues([min*.95].concat(bounds))
+    	.tickFormat(function(d) { return oneDecimal(d)});
 
     //DRAWING THE LEGEND
 
@@ -480,8 +481,8 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
     //DEFINING THE MAPPING VARIABLES
 	var projectionZone = d3.geo.mercator()
 		.center([4,5])
-		.scale(d3.min([mapWidth*2.45,mapHeight*4.5]))
-		.translate([-mapWidth,0.82*mapHeight])
+		.scale(d3.min([mapWidth*2.45,mapHeight*4.3]))
+		.translate([-mapWidth,0.81*mapHeight])
 
 	
 	var pathZone = d3.geo.path()
@@ -491,7 +492,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 
 	var projectionRegion = d3.geo.conicEqualArea()
 		.center([20,4])
-		.scale(d3.min([mapWidth*1.45,mapHeight*2.5]))
+		.scale(d3.min([mapWidth*1.45,mapHeight*2.3]))
 		.translate([0.3*mapWidth, 0.65*mapHeight]);
 
 	var pathRegion = d3.geo.path()
@@ -660,7 +661,7 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 
   	//CREATING THE CANVAS
 	var containerSize = d3.select('#lineChartContainer').node().getBoundingClientRect()
-  	var lineMargin = {top: 0.08*containerSize.height , right: 0.006*containerSize.width, bottom: 0.25*containerSize.height, left: 0.05*containerSize.width};
+  	var lineMargin = {top: 0.08*containerSize.height , right: 0.006*containerSize.width, bottom: 0.3*containerSize.height, left: 0.05*containerSize.width};
   	var liWidth = containerSize.width - lineMargin.right - lineMargin.left; //Chart width
   	var liHeight = containerSize.height - lineMargin.top - lineMargin.bottom; //Chart height
 
@@ -1223,8 +1224,8 @@ function drawHistogram(townPriceData){
 
   	//CREATING THE CANVAS AND Y-SCALES
   	var containerSize = d3.select('#histChartContainer').node().getBoundingClientRect()
-  	var margin = {top: 0.08*containerSize.height , right: 0.09*containerSize.width, bottom: 0.2*containerSize.height, left: 0.06*containerSize.width};
-  	var padding = {top: 0.006*containerSize.height, right: 0.06*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
+  	var margin = {top: 0.08*containerSize.height , right: 0.09*containerSize.width, bottom: 0.25*containerSize.height, left: 0.06*containerSize.width};
+  	var padding = {top: 0.1*containerSize.height, right: 0.06*containerSize.width, bottom: 0.006*containerSize.height, left: 0.006*containerSize.width};
   	var width = containerSize.width - margin.right - margin.left; //Chart width
   	var height = containerSize.height - margin.top - margin.bottom; //Chart height
 
@@ -1257,7 +1258,7 @@ function drawHistogram(townPriceData){
 	}
 	var yScale = d3.scale.ordinal()
 	    .domain(yDomain)
-	    .rangeBands([height-padding.top, 0], 0.01);
+	    .rangeBands([height-padding.bottom, padding.top], 0.01);
 
 	var max = d3.max(histData, function(d) { return d.price; });
 	var min = d3.min(histData, function(d) { return d.price; });

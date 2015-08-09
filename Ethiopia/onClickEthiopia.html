@@ -850,8 +850,8 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 		//Histogram is highlighted only on mouseover so we don't have to worry about clicked state
 		var obs = d3.selectAll('.histDots').filter(function(e){return e.town === d.town}).size()
 		// var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate && e.region === d.region}), function(g){return g.price}),2)
-		var stDev = d3.round(d3.deviation(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate && e.town === d.town}), function(g){return g.price}),2)
-		d3.selectAll('.histText').text("Town: " + d.town + ", Mean: " + d.price + " birr" + ", SD: " +stDev+',  obs.: ' + obs)
+		var stDev = d3.round(d3.deviation(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate && e.town === d.town}), function(g){return g.price})/d.price,2)
+		d3.selectAll('.histText').text("Town: " + d.town + ", Mean: " + d.price + " birr" + ", CV(SD/Mean): " +stDev+',  obs.: ' + obs)
 		d3.selectAll('.histDots').filter(function(e) {return e.town===d.town}).style('fill', 'red').attr({r: histDotRadius*1.5}).moveToFront()
 
 		//region map is highlighted only on mouseover so we don't have to worry about clicked state
@@ -882,8 +882,8 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 		//hist
 		var obs = d3.selectAll('.histDots').size()
 		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate}), function(g){return g.price}),2)
-		var stDev = d3.round(d3.deviation(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate}), function(g){return g.price}),2)
-		d3.selectAll('.histText').text(product + ", Mean: "+ meanPrice + " birr"+ ', SD: ' + stDev + ', Tot obs: ' + obs)
+		var stDev = d3.round(d3.deviation(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate}), function(g){return g.price})/meanPrice,2)
+		d3.selectAll('.histText').text(product + ", Mean: "+ meanPrice + " birr"+ ', CV: ' + stDev + ', Tot obs: ' + obs)
 		d3.selectAll('.histDots').filter(function(e) {return e.region===d.region}).style('fill', 'silver').attr({r: histDotRadius})
 		townTip.hide(d)
 
@@ -1006,8 +1006,8 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 		//histogram
 		var obs = d3.selectAll('.histDots').filter(function(e){return e.region === d.properties.regionName}).size()
 		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate && e.region === d.properties.regionName}), function(g){return g.price}),2)
-		var stDev = d3.round(d3.deviation(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate && e.region === d.properties.regionName}), function(g){return g.price}), 2)
-		d3.selectAll('.histText').text("Region: " + d.properties.regionName+ ", Mean: "+meanPrice+ " birr,"+'  SD: '+ stDev +',  obs.: ' + obs)
+		var stDev = d3.round(d3.deviation(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate && e.region === d.properties.regionName}), function(g){return g.price})/meanPrice, 2)
+		d3.selectAll('.histText').text("Region: " + d.properties.regionName+ ", Mean: "+meanPrice+ " birr,"+'  CV: '+ stDev +',  obs.: ' + obs)
 		d3.selectAll('.histDots').filter(function(e) {return e.region === d.properties.regionName}).style('fill', 'red').attr({r: histDotRadius*1.5}).moveToFront()
 
 		//if lines are not active already then they are temporarily made active (will be changed back in mouseout if not an active state)
@@ -1039,8 +1039,8 @@ function drawMap(ethiopiaZones, ethiopiaRegions, townPriceData){
 		//histogram
 		var obs = d3.selectAll('.histDots').size()
 		var meanPrice = d3.round(d3.mean(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate}), function(g){return g.price}),2)
-		var stDev = d3.round(d3.deviation(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate}), function(g){return g.price}),2)
-		d3.selectAll('.histText').text(product + ", Mean: "+ meanPrice + " birr"+ ', SD: ' + stDev + ', Tot obs: ' + obs)
+		var stDev = d3.round(d3.deviation(townPriceData.filter(function(e){return e.item == product && e.date>= startDate && e.date <= endDate}), function(g){return g.price})/meanPrice,2)
+		d3.selectAll('.histText').text(product + ", Mean: "+ meanPrice + " birr"+ ', CV: ' + stDev + ', Tot obs: ' + obs)
 		d3.selectAll('.histDots').style('fill', 'silver').attr({r: histDotRadius})
 
 		regionTowns2.forEach(function(g){//make all non-active town lines transparent
@@ -1302,9 +1302,9 @@ function drawHistogram(townPriceData){
     //CREATING LABELS AND TEXT
     var totObs = data.length
     var meanPrice = d3.round(d3.mean(data, function(d){return d.price}), 2)
-    var stDev = d3.round(d3.deviation(data, function(d){return d.price}), 2)
+    var stDev = d3.round(d3.deviation(data, function(d){return d.price})/meanPrice, 2)
   	var histText = histChart.append('text')
-    .text(product + ", Mean: "+ meanPrice + " birr"+ ', SD: ' + stDev + ', Tot obs: ' + totObs)
+    .text(product + ", Mean: "+ meanPrice + " birr"+ ', CV: ' + stDev + ', Tot obs: ' + totObs)
     .attr({
       x:-5*dotChartSeparation,
       y:0,
@@ -1360,8 +1360,8 @@ function drawHistogram(townPriceData){
 	    axisLine.call(axis)
 	    var totObs = data.length
 	    var meanPrice = d3.round(d3.mean(data, function(d){return d.price}), 2)
-	    var stDev = d3.round(d3.deviation(data, function(d){return d.price}), 2)
-	    histText.text(product + ", Mean: "+ meanPrice + " birr"+ ', SD: ' + stDev + ', Tot obs: ' + totObs)
+	    var stDev = d3.round(d3.deviation(data, function(d){return d.price})/meanPrice, 2)
+	    histText.text(product + ", Mean: "+ meanPrice + " birr"+ ', CV: ' + stDev + ', Tot obs: ' + totObs)
   	}
 }
 
